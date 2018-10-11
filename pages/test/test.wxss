@@ -1,0 +1,13 @@
+/* pages/test/test.wxss */
+.my-address {
+    border: 1px solid red;
+}
+
+.add-address {
+    border: 1px solid green;
+    margin-top: 100rpx;
+}
+
+.add-address input {
+    border: 1px solid #ddd;
+}

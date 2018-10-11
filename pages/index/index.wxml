@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="input-box">
+    <input type="text" placeholder="我是input"  bindinput="searchGoods"/>
+  </view>
+  <view class="swiper-box">
+    <my-swiper></my-swiper>
+  </view>
+  <view class="goods-list">
+    <view wx:for="{{goodsList}}">
+      name:{{item.name}}
+      <image src="{{item.list_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
+    </view>
+  </view>
+</view>

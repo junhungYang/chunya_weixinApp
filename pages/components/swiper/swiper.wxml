@@ -1,0 +1,16 @@
+<my-swiper>
+  <view class="container">
+  <view class="page-body">
+    <view class="page-section page-section-spacing swiper">
+      <swiper
+        indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" vertical="{{false}}">
+        <block wx:for="{{background}}" wx:key="*this">
+          <swiper-item>
+            <view class="swiper-item {{item}}"></view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+</view>
+</my-swiper>

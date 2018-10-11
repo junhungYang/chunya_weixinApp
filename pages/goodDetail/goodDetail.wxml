@@ -1,0 +1,24 @@
+<!--pages/goodDetail/goodDetail.wxml-->
+<text>pages/goodDetail/goodDetail.wxml</text>
+<view>
+    <view class="brand">
+        {{detail.brand.name}}
+        {{detail.brand.simple_desc}}
+    </view>
+    <view class="good">
+        <rich-text nodes="{{detail.info.goods_desc}}"></rich-text>
+    </view>
+    <view class="select" bindtap="openProdList">
+        请选择规格
+        <view class="list" hidden="{{prodListFlag}}">
+            <view wx:for="{{detail.productList}}" 
+            data-prodid="{{item.id}}"
+            data-goodsid="{{item.goods_id}}"
+            catchtap="closeProdList">
+                规格:{{item.id}}
+            </view>
+        </view>
+        <text class="icon">v</text>
+    </view>
+    <button bindtap="cartAdd">添加到购物车</button>
+</view>

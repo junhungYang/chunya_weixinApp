@@ -1,0 +1,22 @@
+<!--pages/cart/cart.wxml-->
+
+    <view>
+        <view class="cart-list">
+            <view wx:if="{{cartList.length === 0 ? true : false}}">
+                你的购物车还没有商品
+            </view>
+            <view wx:if="{{cartList.length !== 0 ? true : false}}">
+                <view wx:for="{{cartList}}">
+                    {{item.goods_name}}
+                    <image src="{{item.list_pic_url}}" />
+                </view>
+            </view>
+        </view>
+        <view class="coupon-list">
+            <view wx:for="{{couponInfoList}}">
+                {{item.msg}}
+            </view>
+        </view>
+    </view>
+
+

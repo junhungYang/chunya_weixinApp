@@ -1,0 +1,16 @@
+/* pages/goodDetail/goodDetail.wxss */
+
+.select {
+    position: relative;
+    border:1px solid red;
+}
+.select .icon {
+    position: absolute;
+    right: 20rpx;
+    top: 5rpx;
+    font-weight: bold;
+}
+.select .list {
+    height: 100px;
+    background:green;
+}
