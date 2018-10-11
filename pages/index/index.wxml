@@ -1,15 +1,46 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="input-box">
-    <input type="text" placeholder="我是input"  bindinput="searchGoods"/>
+  <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  <!-- <view class="input-box">
+    <input type="text" placeholder="搜索"  bindinput="searchGoods"/>
+    <image src="../../img/index/searchIcon.png" />
   </view>
   <view class="swiper-box">
     <my-swiper></my-swiper>
+  </view> -->
+    <view class="goods-list">
+    <view wx:for="{{goodsList}}">
+      name:{{item.name}}
+      <image src="{{item.list_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
+    </view>
+  </view>
+  
+  <!-- <view class="nav">
+    <view class="item">
+      <image src="../../img/index/haowu.png" />
+      <text>好物</text>
+    </view>
+    <view class="item">
+      <image src="../../img/index/nuanke.png" />
+      <text>暖课</text>
+    </view>
+    <view class="item">
+      <image src="../../img/index/gongyi.png" />
+      <text>公益</text>
+    </view>
+    <view class="item">
+      <image src="../../img/index/gushi.png" />
+      <text>故事</text>
+    </view>
+    <view class="item">
+      <image src="../../img/index/qiandao.png" />
+      <text>签到</text>
+    </view>
   </view>
   <view class="goods-list">
     <view wx:for="{{goodsList}}">
       name:{{item.name}}
       <image src="{{item.list_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
     </view>
-  </view>
+  </view> -->
 </view>

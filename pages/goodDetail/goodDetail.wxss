@@ -14,3 +14,9 @@
     height: 100px;
     background:green;
 }
+.good image {
+    width: 1001
+}
+.fr-fin {
+    width: 300px;
+}

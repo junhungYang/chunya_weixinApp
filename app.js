@@ -46,6 +46,7 @@ App({
           let sessionKey = wx.getStorageSync("sessionKey");
           wx.getUserInfo({
             success: res => {
+              console.log(res)
               _GetSensitiveInfo({
                 sessionKey,
                 encryptedData: res.encryptedData,
@@ -57,9 +58,6 @@ App({
             }
           });
         }
-      },
-      fail: res => {
-        console.log(8888)
       }
     });
   },

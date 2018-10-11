@@ -8,6 +8,10 @@
     <view class="good">
         <rich-text nodes="{{detail.info.goods_desc}}"></rich-text>
     </view>
+    <button bindtap="cartAdd" 
+    data-prodid="{{detail.productList[0].id}}"
+    data-goodsid="{{detail.productList[0].goods_id}}"
+    >添加到购物车</button>
     <view class="select" bindtap="openProdList">
         请选择规格
         <view class="list" hidden="{{prodListFlag}}">
@@ -20,5 +24,4 @@
         </view>
         <text class="icon">v</text>
     </view>
-    <button bindtap="cartAdd">添加到购物车</button>
 </view>

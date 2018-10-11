@@ -4,6 +4,7 @@ import {_GoodsList} from '../../utils/request'
 const app = getApp()
 Page({
   data: {
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     name: "junxing",
     background: ["demo-text-1", "demo-text-2", "demo-text-3"],
     goodsList:[]
@@ -17,6 +18,7 @@ Page({
         goodsList:data.data
       })
     })
+    console.log(this.data.canIUse)
   },
   navToGoodDetail(e) {
     let goodId = e.currentTarget.dataset.goodid

@@ -1,9 +1,54 @@
 /**index.wxss**/
 .input-box {
-  background: #ccc;
-  height: 100rpx;
+  background: linear-gradient(to right, #2ba152,#2da7cb);
+  height: 88rpx;
+  position: relative;
 }
 
 .input-box input {
-  border: 1px solid red;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  height: 56rpx;
+  width: 95%;
+  background:#fff;
+  border-radius: 35rpx;
+  font-size: 28rpx;
+  color: #b2b2b2;
+  text-indent: 12em;
+}
+.input-box image  {
+  position: absolute;
+  left: 43%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25rpx;
+  height: 26rpx;
+}
+.swiper-box {
+  height: 374rpx;
+  background:red;
+}
+.nav .item image {
+  width: 80rpx;
+  height: 80rpx;
+  display: block;
+}
+.nav .item text {
+  font-size: 28rpx;
+  color: #444;
+  display: block;
+  text-align: center;
+}
+
+.nav .item {
+  align-self: center;
+}
+
+.nav {
+  height: 176rpx;
+  background:#fff;
+  display: flex;
+  justify-content: space-around;
 }

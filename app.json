@@ -5,15 +5,14 @@
     "pages/goods/goods",
       "pages/userCenter/userCenter",
     "pages/cart/cart",
-    "pages/healthService/healthService",
-    "pages/VIPcenter/VIPcenter",
     "pages/test/test",
-    "pages/goodDetail/goodDetail"
+    "pages/goodDetail/goodDetail",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "春芽好物",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

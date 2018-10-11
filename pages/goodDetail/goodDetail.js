@@ -31,19 +31,27 @@ Page({
       prodListFlag:false
     })
   },
-  closeProdList(e) {
+  // closeProdList(e) {
+  //   let buyingInfo = {
+  //     goodsId: e.currentTarget.dataset.goodsid,
+  //     productId: e.currentTarget.dataset.prodid,
+  //     number:1
+  //   }
+  //   this.setData({
+  //     prodListFlag: true,
+  //     buyingInfo: buyingInfo
+  //   });
+  //   this.cartAdd()
+  // },
+  cartAdd(e) {
     let buyingInfo = {
       goodsId: e.currentTarget.dataset.goodsid,
       productId: e.currentTarget.dataset.prodid,
-      number:1
+      number: 1
     }
     this.setData({
-      prodListFlag: true,
       buyingInfo: buyingInfo
     });
-    this.cartAdd()
-  },
-  cartAdd() {
     _CartAdd(this.data.buyingInfo).then(data => {
       wx.showToast({
         title:'添加成功',

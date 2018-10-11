@@ -1,5 +1,5 @@
 // pages/cart/cart.js
-import {_CartIndex} from '../../utils/request'
+import { _CartIndex, _CartDelete, _OrderCheckout, _OrderSubmit, _OrderList, _WeChatPay} from '../../utils/request'
 const app = getApp();
 Page({
 
@@ -9,17 +9,67 @@ Page({
   data: {
     name: 'junxing',
     cartList:[],
-    couponInfoList:[]
+    couponInfoList:[],
+    orderList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
     _CartIndex().then(data => {
       this.setData({
         cartList: data.cartList
       })
+    })
+    _OrderList({
+      page:1,
+      size:10
+    }).then(data => {
+      this.setData({
+        orderList:data.data
+      })
+    })
+  },
+  goodsDelete(e) {
+    _CartDelete({
+      productIds: e.currentTarget.dataset.prodid
+    }).then(data => {
+      this.setData({
+        cartList:data.cartList
+      })
+    })
+  },
+  buyConfirm() {
+    _OrderCheckout().then(data => {
+      let addressId = data.checkedAddress.id;
+      _OrderSubmit({addressId}).then( data => {
+        let orderId = data.orderInfo.id
+      })
+    })
+  },
+  balance(e) {
+    _WeChatPay({ orderId: e.currentTarget.dataset.orderid }).then(data => {
+      wx.requestPayment({
+        timeStamp: data.timeStamp,
+        appId: data.appId,
+        nonceStr: data.nonceStr,
+        package: data.package,
+        signType: data.signType,
+        paySign: data.paySign,
+        success: function() {
+          console.log('success')
+        },
+        fail:function(res) {
+          console.log(res)
+        }
+      });
+    });
+  },
+  navToOrderDetail(e) {
+    let orderId = e.currentTarget.dataset.orderId
+    wx.navigateTo({
+      url: `../orderDetail/orderDetail?orderId=${orderId}`
     })
   },
   /**
@@ -27,13 +77,6 @@ Page({
    */
   onReady: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-      
   },
 
   /**
