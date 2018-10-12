@@ -1,2 +1,25 @@
 <!--pages/orderDetail/orderDetail.wxml-->
 <text>pages/orderDetail/orderDetail.wxml</text>
+<view class="orderDetail">
+    <view>
+        订单详情
+    </view>
+    <view class="text">
+        <view>
+            收货人：{{orderDetail.checkedAddress.userName}}
+        </view>
+        <view>
+            省份：{{orderDetail.checkedAddress.provinceName}}
+        </view>
+        <view>
+            市：{{orderDetail.checkedAddress.cityName}} 
+        </view>
+        <view>
+            区：{{orderDetail.checkedAddress.countryName}}
+        </view>
+        <view>
+            电话号码 {{orderDetail.checkedAddress.telNumber}}
+        </view>
+    </view>
+    <button bindtap="buyConfirm">确认下单</button>
+</view>

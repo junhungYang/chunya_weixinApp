@@ -5,9 +5,9 @@
     "pages/goods/goods",
       "pages/userCenter/userCenter",
     "pages/cart/cart",
-    "pages/test/test",
     "pages/goodDetail/goodDetail",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/orderList/orderList"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -34,8 +34,8 @@
           "text":"我的"
       },
       {
-        "pagePath": "pages/test/test",
-        "text": "test"
+        "pagePath": "pages/orderList/orderList",
+        "text": "订单"
       }
     ]
   }

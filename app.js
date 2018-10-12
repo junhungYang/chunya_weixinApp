@@ -10,6 +10,7 @@ App({
     // 当打开app时需先判断当前登录态是否已过期
     wx.checkSession({
       success: () => {
+
         //未过期
         // this.wxappLogin();
         this.wxLoginApi();
@@ -19,10 +20,11 @@ App({
         this.wxLoginApi();
       }
     });
-    // 获取用户信
   },
-  wxLoginApi() {
 
+
+  //methods
+  wxLoginApi() {
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -46,7 +48,6 @@ App({
           let sessionKey = wx.getStorageSync("sessionKey");
           wx.getUserInfo({
             success: res => {
-              console.log(res)
               _GetSensitiveInfo({
                 sessionKey,
                 encryptedData: res.encryptedData,
@@ -62,16 +63,24 @@ App({
     });
   },
   wxappLogin(data) {
-    let userInfo = JSON.parse(wx.getStorageSync("userInfo"));
-    _WxappLogin({
-      openid: userInfo.openId,
-      gender: userInfo.gender,
-      avatarUrl: userInfo.avatarUrl,
-      nickName: userInfo.nickName
-    }).then( data => {
+    let userInfoJson = wx.getStorageSync("userInfo")
+    let phoneNum = wx.getStorageSync("userPhoneNum");
+    if(userInfoJson) {
+      let userInfo = JSON.parse(userInfoJson);
+      _WxappLogin({
+        openid: userInfo.openId,
+        gender: userInfo.gender,
+        avatarUrl: userInfo.avatarUrl,
+        nickName: userInfo.nickName,
+        mobile: phoneNum ? phoneNum : ''
+      }).then(data => {
         this.globalData.userInfo = data.userInfo;
         _SetToken(data.token)
-    }).catch( msg => this.showMod(msg))
+        this.globalData.token = data.token;
+      }).catch(msg => this.showMod(msg))
+    }else {
+      this.wxLoginApi();
+    }
   },
   showMod(msg) {
     wx.showModal({
@@ -79,6 +88,7 @@ App({
       content: msg
     })
   },
+  //监听器
   setWatcher(data, watch) {
     Object.keys(watch).forEach(v => {
       this.observe(data, v, watch[v]);
@@ -100,6 +110,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    cartInfo:{}
+    cartInfo:{},
+    token:''
   }
 });

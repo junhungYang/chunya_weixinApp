@@ -1,15 +1,17 @@
 //index.js
 //获取应用实例
-import {_GoodsList} from '../../utils/request'
+import { _GoodsList, _GetSensitiveInfo} from '../../utils/request'
 const app = getApp()
 Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     name: "junxing",
     background: ["demo-text-1", "demo-text-2", "demo-text-3"],
-    goodsList:[]
+    goodsList:[],
+    searchIconFlag:false
   },
   onLoad() {
+    app.setWatcher(this.data,this.watch)
     _GoodsList({
       page:1,
       size:10
@@ -18,12 +20,23 @@ Page({
         goodsList:data.data
       })
     })
-    console.log(this.data.canIUse)
   },
   navToGoodDetail(e) {
     let goodId = e.currentTarget.dataset.goodid
     wx.navigateTo({
       url:`../goodDetail/goodDetail?goodId=${goodId}`
+    })
+  },
+  scrollToTop() {
+    console.log(1111)
+    wx.pageScrollTo({
+      scrollTop: 0,
+      success() {
+        console.log(1);
+      },
+      fail() {
+        console.log(2)
+      }
     })
   },
   shangchuan() {  
@@ -55,14 +68,24 @@ Page({
       });
     }
   },
-  onShareAppMessage() {
-    return {
-      title: "你好吗你好吗你毫毛你好吗你好吗你毫毛你好吗你好吗你毫毛",
-      imageUrl:
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539584354&di=c4447ceab3aea25776bcea7cf215df1a&imgtype=jpg&er=1&src=http%3A%2F%2Fimg0w.pconline.com.cn%2Fpconline%2F1304%2F06%2F3243213_7.jpg"
-    };
+  getPhoneNumber(e) {
+    let sessionKey = wx.getStorageSync("sessionKey");
+    _GetSensitiveInfo({
+      sessionKey,
+      encryptedData: e.detail.encryptedData,
+      ivStr: e.detail.iv
+    })
+      .then(data => {
+        let dataObj = JSON.parse(data)
+        wx.setStorageSync("userPhoneNum", dataObj.phoneNumber);
+        app.wxappLogin();
+      })
+      .catch(msg => this.showMod(msg));
   },
   searchGoods(e) {
+    this.setData({
+            
+    })
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       _GoodsList({
@@ -79,5 +102,10 @@ Page({
       title: "Error",
       content: msg
     });
+  },
+  watch: {
+    token(nV) {
+      console.log(nV)
+    }
   }
 });

@@ -1,21 +1,17 @@
 <!--index.wxml-->
 <view class="container">
-  <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
-  <!-- <view class="input-box">
-    <input type="text" placeholder="搜索"  bindinput="searchGoods"/>
-    <image src="../../img/index/searchIcon.png" />
+  <!--<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号码</button> --> 
+   <view class="iconfont">
+    </view>
+  <view class="input-box">
+    <input type="text" placeholder="&#xe64c;搜索"  bindinput="searchGoods" class="iconfont"/>
+    <image src="../../img/index/searchIcon.png" hidden="{{searchIconFlag}}"/>
   </view>
   <view class="swiper-box">
     <my-swiper></my-swiper>
-  </view> -->
-    <view class="goods-list">
-    <view wx:for="{{goodsList}}">
-      name:{{item.name}}
-      <image src="{{item.list_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
-    </view>
   </view>
-  
-  <!-- <view class="nav">
+  <view class="nav">
     <view class="item">
       <image src="../../img/index/haowu.png" />
       <text>好物</text>
@@ -37,10 +33,42 @@
       <text>签到</text>
     </view>
   </view>
-  <view class="goods-list">
+  <!--  <view class="goods-list">
     <view wx:for="{{goodsList}}">
       name:{{item.name}}
-      <image src="{{item.list_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
+      <image src="{{item.primary_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
     </view>
   </view> -->
+  <view class="hot-goods">
+    <view class="hotgoods-title">
+      <text>热销产品</text><text>HOT-SALE PRODUCTS</text>
+    </view>
+    <view class="goods-item">
+      <view class="header">
+        <image src="../../img/index/good_banner.jpg" />
+        <text>贴心｜爱意｜惊喜｜舒心</text>
+      </view>
+      <view class="list">
+        <view class="list-item"  wx:for="{{goodsList}}">
+          <image src="{{item.primary_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
+          <text>{{item.name}}</text>
+          <view class="price">
+            <text class="now-price">￥{{item.retail_price}}</text>
+            <text class="old-price">￥{{item.market_price}}</text>
+            <image src="../../img/index/cart_icon.png" class="cart-icon"/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="fixed-group">
+
+ 
+
+       <image src="../../img/index/kefu_icon.png" />
+               <button open-type="contact" size="20" class="contact">
+    </button>
+    <image class="toTop" src="../../img/index/toTop_icon.png" bindtap="scrollToTop"/>
+    
+  </view>
 </view>

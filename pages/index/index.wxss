@@ -5,6 +5,24 @@
   position: relative;
 }
 
+@font-face {
+  font-family: 'iconfont';  /* project id 871069 */
+  src: url('//at.alicdn.com/t/font_871069_c1mtfzdeti.eot');
+  src: url('//at.alicdn.com/t/font_871069_c1mtfzdeti.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_871069_c1mtfzdeti.woff') format('woff'),
+  url('//at.alicdn.com/t/font_871069_c1mtfzdeti.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_871069_c1mtfzdeti.svg#iconfont') format('svg');
+}
+.iconfont{
+        font-family:"iconfont";
+        font-size:16px;
+        font-style:normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale; 
+        padding-left:20px
+}
+
 .input-box input {
   position: absolute;
   left: 50%;
@@ -51,4 +69,113 @@
   background:#fff;
   display: flex;
   justify-content: space-around;
+}
+
+
+.hot-goods {
+  width: 87%;
+  margin: 0 auto;
+}
+.hot-goods .hotgoods-title {
+  display: flex;
+  justify-content: space-between;
+}
+.hot-goods .hotgoods-title text:first-of-type {
+  font-size: 32rpx;
+  color: rgba(49,49,49,47);
+}
+.hot-goods .hotgoods-title text:last-of-type {
+  font-size: 20rpx;
+  color: #b2b2b2;
+  margin-top: 14rpx;
+}
+.hot-goods .goods-item {
+  margin-top: 10rpx;
+}
+.goods-item .header image {
+  display: block;
+  width: 100%;
+  height: 220rpx;
+}
+.goods-item .header text {
+  display: block;
+  width: 100%;
+  text-align: center;
+  height: 93rpx;
+  line-height: 93rpx;
+  font-size: 24rpx;
+  color: rgba(49,49,49,47);
+}
+.goods-item .list {
+  display: flex;
+  justify-content: space-between;
+}
+.goods-item .list .list-item {
+  width: 309rpx;
+}
+.goods-item .list .list-item image {
+  width: 309rpx;
+  height: 430rpx;
+}
+.goods-item .list .list-item text {
+  /* margin-top: 20rpx; */
+  display: block;
+  font-size: 24rpx;
+  color: rgba(68,68,68,30);
+  line-height: 42rpx;
+}
+
+.goods-item .list .list-item .price {
+  position: relative;
+  font-size: 0;
+}
+
+.goods-item .list .list-item .price .now-price {
+  display: inline-block;
+  color:#d1051f;
+  font-size: 24rpx;
+}
+.goods-item .list .list-item .price .old-price {
+  display: inline-block;
+  color:#b2b2b2;
+  font-size: 24rpx;
+  text-decoration: line-through;
+  margin-left: 20rpx;
+}
+.goods-item .list .list-item .price image {
+  position: absolute;
+  right: 0;
+  width:29rpx;
+  height: 29rpx;
+  bottom:10rpx;
+}
+
+.fixed-group .contact {
+    position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  right: 38rpx;
+  bottom: 162rpx;
+  background:transparent;
+  padding: 0;
+  margin:0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+
+.fixed-group image:first-of-type{
+  position: fixed;
+  right: 18rpx;
+  bottom: 140rpx;
+  width: 159rpx;
+  height: 162rpx;
+
+}
+
+.fixed-group .toTop {
+  position: fixed;
+  width: 159rpx;
+  height: 162rpx;
+  right: 18rpx;
+  bottom: 0;
 }

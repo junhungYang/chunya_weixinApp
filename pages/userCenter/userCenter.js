@@ -1,45 +1,113 @@
-
-// pages/userCenter/userCenter.js
-
-import { 
-  _OrderCheckout,
-  _OrderSubmit,
-  _WeChatPay
-} from '../../utils/request'
-
+// pages/test/test.js
+const app = getApp()
+import { _PositionList, _PositionSave } from '../../utils/request'
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    
+    myAddressList: [],
+    a: "abc",
+    defaultAddress: false,
+    inputData: {
+      userName: "",
+      provinceName: "",
+      cityName: "",
+      countyName: "",
+      detailInfo: "",
+      telNumber: "",
+      is_default: false
+    }
   },
-
-  pay() {
-    _OrderCheckout().then(data => {
-      let addressId = 10
-      _OrderSubmit({ addressId }).then( data => {
-        let orderId = data.orderInfo.id
-        _WeChatPay({orderId}).then()
-      }
-      )
-    })
-  },
-  pay1() {
-    wx.requestPayment({
-      timeStamp: "1490840662",
-      appId: "wxd678efh567hg6787",
-      nonceStr: "5K8264ILTKCH16CQ2502SI8ZNMTM67VS",
-      package: "prepay_id=wx2017033010242291fcfe0db70013231072",
-      signType: "paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6",
-      paySign: "123456",
-      success:function() {
-        console.log(111)
-      },
-      fail:function(res) {
-        console.log(res)
-      }
+  onReady() {
+    app.setWatcher(this.data, this.watch);
+    this.setData({
+      a: "nimeide"
     });
+    _PositionList().then(data => {
+      this.setData({
+        myAddressList: data
+      });
+    });
+  },
+  defaultAddress(res) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      let obj = this.data.inputData;
+      obj.is_default = res.detail.value;
+      this.setData({ inputData: obj });
+      console.log(this.data.inputData);
+    }, 500);
+  },
+  inpUser(res) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      let obj = this.data.inputData;
+      obj.userName = res.detail.value;
+      this.setData({
+        inputData: obj
+      });
+    }, 500);
+  },
+  inpProvince(res) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      let obj = this.data.inputData;
+      obj.provinceName = res.detail.value;
+      this.setData({ inputData: obj });
+    }, 500);
+  },
+  inpCity(res) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      let obj = this.data.inputData;
+      obj.cityName = res.detail.value;
+      this.setData({ inputData: obj });
+    }, 500);
+  },
+  inpDistrict(res) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      let obj = this.data.inputData;
+      obj.countyName = res.detail.value;
+      this.setData({ inputData: obj });
+    }, 500);
+  },
+  inpAddrDetail(res) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      let obj = this.data.inputData;
+      obj.detailInfo = res.detail.value;
+      this.setData({ inputData: obj });
+    }, 500);
+  },
+  inpPhoneNum(res) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      let obj = this.data.inputData;
+      obj.telNumber = res.detail.value;
+      this.setData({ inputData: obj });
+    }, 500);
+  },
+  inputConfirm() {
+    let flag = true;
+    let inputData = this.data.inputData;
+    for (let key in inputData) {
+      inputData[key] === '' ? (flag = false) : "";
+    }
+    if (flag) {
+      _PositionSave(inputData).then(data => {
+        let arr = [...this.data.myAddressList, ...[data]]
+        this.setData({
+          myAddressList: arr
+        })
+        console.log(this.data.myAddressList)
+      });
+    }
+  },
+  watch: {
+    myAddressList(newValue) {
+      console.log(newValue);
+    }
   }
-})
+});

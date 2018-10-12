@@ -18,19 +18,7 @@
                 {{item.msg}}
             </view>
         </view> -->
-        <button bindtap="buyConfirm">确认下单</button>
-        <view class="myOrder">
-            <view>
-                我的订单
-            </view>
-            <view wx:for="{{orderList}}" class="orderList">
-                <view bindtap="navToOrderDetail"
-                data-orderid="{{item.id}}"
-                >订单id:{{item.id}} 付款状态：{{item.order_status_text}} 总价：{{item.order_price}}元</view>
-                <button class="buyButton" bindtap="balance" 
-                data-orderid="{{item.id}}" data-price="{{item.order_price}}">去结算</button>
-            </view>
-        </view>
+        <button bindtap="buyConfirm">下单前确认</button>
     </view>
 
 

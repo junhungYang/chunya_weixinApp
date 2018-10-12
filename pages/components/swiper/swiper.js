@@ -5,7 +5,8 @@ Component({
 
 
   data: {
-    background: ["demo-text-1", "demo-text-2", "demo-text-3"]
+    background: ["demo-text-1", "demo-text-2", "demo-text-3"],
+    adList:[]
   }, // 私有数据，可用于模版渲染
 
 
@@ -14,12 +15,12 @@ Component({
     // 组件所在页面的生命周期函数
     show: function() {
         _SpreadList({
-            id: 1
+            id: 4
         }).then(data => {
-            // wx.setData({
-            //     background:data.adList
-            // })
-    
+            this.setData({
+                adList:data.adList
+            })
+            console.log(this.data.adList)
         })
         .catch(msg => {
             wx.showModal({

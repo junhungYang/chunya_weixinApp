@@ -2,11 +2,11 @@
   <view class="container">
   <view class="page-body">
     <view class="page-section page-section-spacing swiper">
-      <swiper
+      <swiper class="swiper-box"
         indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" vertical="{{false}}">
-        <block wx:for="{{background}}" wx:key="*this">
+        <block wx:for="{{adList}}" wx:key="*this">
           <swiper-item>
-            <view class="swiper-item {{item}}"></view>
+            <image class="swiper-item" src="{{item.image_url}}" />
           </swiper-item>
         </block>
       </swiper>

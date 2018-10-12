@@ -1,0 +1,19 @@
+/* pages/orderList/orderList.wxss */
+.myOrder {
+    border: 1px solid red;
+    margin-top: 100rpx;
+}
+
+/* .buyButton {
+    width: 100rpx;
+} */
+
+.myOrder .orderList {
+    margin: 30rpx 0;
+    border: 1px solid green;
+
+}
+
+.myOrder .orderList view {
+    height: 200rpx;
+}
