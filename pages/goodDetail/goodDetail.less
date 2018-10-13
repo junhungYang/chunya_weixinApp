@@ -1,0 +1,263 @@
+.template {
+    background:#f7f7f7;
+}
+.nav {
+    height: 88rpx;
+    background:#f2f2f2;
+    padding: 0 130rpx;
+    display: flex;
+    justify-content: space-between;
+    text {
+        font-size: 32rpx;
+        line-height: 88rpx;
+        color: #686868;
+        font-weight: 400;
+    }
+}
+.goodMod {
+    .swiper {
+        height: 750rpx;
+        border: 1px solid red;
+        
+    }
+    .goodInfo {
+        width: 86%;
+        padding:0 7%;
+        background:#fff;
+        .info {
+            padding-bottom: 29rpx;
+            border-bottom: 1px solid #f7f0da;
+            position: relative;
+            .text {
+                padding-top: 22rpx; 
+                .name {
+                    font-size: 36rpx;
+                    color: #000;
+                    font-weight: bold;
+                }
+                .desc {
+                    font-size: 28rpx;
+                    color: #6f6f6f;
+                }
+            }
+            .price {
+                margin-top:11rpx;
+                .new {
+                    font-size: 32rpx;
+                    color: #d1051f; 
+                }
+                .old {
+                    margin-left: 30rpx;
+                    font-size: 32rpx;
+                    color: #b2b2b2;
+                    text-decoration: line-through;
+                }
+            }
+            .coupon {
+                margin-top:22rpx;
+                background: #f7f0da;
+                height: 70rpx;
+            }
+            .collect-share {
+                view {
+                    position: absolute;
+                    image {
+                        width: 25rpx;
+                        margin: 0 auto;
+                        height: 25rpx;
+                        display: block;
+                    }
+                    text {
+                        margin-top: 8rpx;
+                        display: block;
+                        font-size: 16rpx;
+                        color: #9f9f9f;
+                    }
+                }
+                view:first-of-type {
+                    top: 32rpx;
+                    right: 83rpx;
+                }
+                view:last-of-type {
+                    top:32rpx;
+                    right: 0rpx;
+                }
+            }
+        }
+        .choose {
+            height: 100rpx;
+            line-height: 100rpx;
+            position: relative;
+            .menu {
+                text {
+                    font-size: 28rpx;
+                    color: #313131;
+                }
+                text:first-of-type {
+                    color:#b2b2b2;
+                }
+                text:nth-of-type(2) {
+                    margin-left: 15rpx;
+                }
+                text:nth-of-type(3),text:nth-of-type(4) {
+                    margin-left: 35rpx;
+                }
+            }
+            image {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 13rpx;
+                height: 24rpx;
+            }
+        }
+    }
+    .service {
+        margin-top: 20rpx;
+        width: 86%;
+        padding: 0 7%;
+        background:#fff;
+        height:124rpx;
+        position: relative;
+        .up {
+            position: absolute;
+            top: 9rpx;
+            text {
+                font-size: 28rpx;
+                line-height: 28rpx;
+            }
+            text:first-of-type {
+                color: #b2b2b2;
+            }
+            text:last-of-type {
+                color: #313131;
+            }
+        }
+        .bottom {
+            position: absolute;
+            left: 112rpx;
+            top: 53rpx;
+            view {
+                display: inline-block;
+                margin-left: 28rpx;
+                image {
+                    width: 20rpx;
+                    height: 20rpx;
+                }
+                text {
+                    font-size: 24rpx;
+                    color: #b2b2b2;
+                    margin-left: 10rpx;
+                }
+            }
+        }
+        .icon {
+            width: 13rpx;
+            height: 24rpx;
+            position: absolute;
+            right: 7%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    .shop-nav {
+        margin-top: 20rpx;
+        height: 94rpx;
+        width:86%;
+        padding: 30rpx 7%;
+        display: flex;
+        background:#fff;
+        image {
+            width: 94rpx;
+            height: 94rpx;
+        }
+        view {
+            margin-left: 19rpx;
+            flex: 1;
+            position: relative;
+            text {
+                display:block;
+            }
+            text:first-of-type {
+                font-size: 28rpx;
+                font-weight: bold;
+            }
+            text:nth-of-type(2) {
+                font-size: 11rpx;
+                color: #2ca5ae;
+            }
+            text:last-of-type{
+                height: 28rpx;
+                width: 60rpx;
+                border-radius: 6rpx;
+                font-weight: bold;
+                font-size: 20rpx;
+                line-height: 28rpx;
+                text-align: center;
+                color:#fff;
+                background:#2ca5ae;
+                margin-top: 11rpx;
+            }
+            .btn {
+                width: 88rpx;
+                height: 48rpx;
+                border: 1px solid #2ca5ae;
+                background:transparent;
+                border-radius: 12rpx;
+                font-size: 28rpx;
+                line-height: 48rpx;
+                text-align: center;
+                color:#2ca5ae;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                position: absolute;
+                font-weight: bold;
+            }
+        }
+    }
+    .reviews {
+        background:#fff;
+        width: 86%;
+        padding: 0 7%;
+        margin-top: 20rpx;
+        .title {
+            height: 88rpx;
+            border-bottom: 1px solid #b2b2b2;
+            line-height: 88rpx;
+            display: flex;
+            text {
+                font-size: 28rpx;
+                padding-top:2rpx;
+                color: #313131;
+                vertical-align: middle;
+            }
+            .start-list {
+                margin-left: 14rpx;
+                flex:1;
+                vertical-align: middle;
+                image {
+                    margin: 0 5rpx;
+                    width: 28rpx;
+                    height: 28rpx;
+                }
+            }
+            .quantity{
+                vertical-align: middle;
+                text {
+                     font-size: 24rpx;
+                                  color: #b7b7b7;
+                                             vertical-align: middle;
+                }
+                image {
+
+                    vertical-align: middle;
+                    margin-left: 10rpx;
+                    width: 13rpx;
+                    height: 24rpx;
+                }
+            }
+        }
+    }   
+}

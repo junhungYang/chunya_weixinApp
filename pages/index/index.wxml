@@ -2,10 +2,8 @@
 <view class="container">
   <!--<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
   <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号码</button> --> 
-   <view class="iconfont">
-    </view>
   <view class="input-box">
-    <input type="text" placeholder="&#xe64c;搜索"  bindinput="searchGoods" class="iconfont"/>
+    <input type="text" placeholder="搜索"  bindinput="searchGoods"/>
     <image src="../../img/index/searchIcon.png" hidden="{{searchIconFlag}}"/>
   </view>
   <view class="swiper-box">

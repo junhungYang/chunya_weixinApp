@@ -1,7 +1,121 @@
-<!--pages/goodDetail/goodDetail.wxml-->
-<text>pages/goodDetail/goodDetail.wxml</text>
-<view>
-    <view class="brand">
+<view class="template">
+    <view class="nav">
+        <text>宝贝</text>
+        <text>详情</text>
+        <text>评价</text>
+        <text>推荐</text>
+    </view>
+    <view class="goodMod">
+        <view class="swiper"></view>
+        <view class="goodInfo">
+           <view class="info">
+                <view class="text">
+                    <view class="name">
+                        善缘米
+                    </view>
+                    <view class="desc">
+                        善缘大米，送礼佳品，温度之作。
+                    </view>
+                </view>
+                <view class="price">
+                    <text class="new">￥950</text>
+                    <text class="old">￥1180</text>
+                </view>
+                <view class="coupon">
+                    
+                </view>
+                <view class="collect-share">
+                    <view>
+                        <image src="../../img/goodDetail/collect.png" />
+                        <text>收藏</text>
+                    </view>
+                    <view>
+                        <image src="../../img/goodDetail/share.png" />
+                        <text>分享</text>
+                    </view>
+                </view>
+           </view>
+           <view class="choose">
+               <view class="menu">
+                   <text>选择:</text>
+                   <text>规格</text>
+                   <text>重量</text>
+                   <text>包装</text>
+               </view>
+               <image src="../../img/redictTo.png" />
+           </view> 
+        </view>
+        <view class="service">
+            <view class="up">
+                <text>服务：</text>
+                <text>支持7天无理由退货</text>
+            </view>
+            <view class="bottom">
+                <view>
+                    <image src="../../img/goodDetail/redTickIcon.png" />
+                    <text>企业认证</text>
+                </view>
+                <view>
+                    <image src="../../img/goodDetail/redTickIcon.png" />
+                    <text>店铺认证</text>
+                </view>
+                <view>
+                    <image src="../../img/goodDetail/redTickIcon.png" />
+                    <text>担保交易</text>
+                </view>
+            </view>
+            <image class="icon" src="../../img/redictTo.png" />
+        </view>
+        <view class="shop-nav">
+            <image src="../../img/logo.png" />
+            <view>
+                <text>春芽健康科技</text>
+                <text>chunya Health Technology</text>
+                <text>官方</text>
+                <view class="btn">进店</view>
+            </view>
+        </view>
+        <view class="reviews">
+            <view class="title">
+                <text>用户评价:</text>
+                <view class="start-list">
+                    <image src="../../img/goodDetail/start.png" />
+                     <image src="../../img/goodDetail/start.png" />
+                      <image src="../../img/goodDetail/start.png" />
+                       <image src="../../img/goodDetail/start.png" />
+                </view>
+                <view class="quantity">
+                    <text>8956条评论</text>
+                    <image src="../../img/redictTo.png" />
+                </view>
+            </view>
+            <view class="list">
+                <view class="item">
+                    <view class="item-header">
+                        <image src="" class="pro-pic"/>
+                        <view class="name-time">
+                            <text>春**</text>
+                            <view>
+                                <text>2018.10.11</text>
+                                <text>16:45</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-cont">
+                        <view class="text">
+                            超级好吃，味道很正，口感很软。送礼佳品！赞赞赞！！超级好吃，味道很正，口感很软。送礼佳品！赞赞赞！！
+                        </view>
+                        <view class="pic-group">
+                            <image src="" />
+                            <image src="" />
+                            <image src="" />
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+<!--    <view class="brand">
         {{detail.brand.name}}
         {{detail.brand.simple_desc}}
     </view>
@@ -23,5 +137,5 @@
             </view>
         </view>
         <text class="icon">v</text>
-    </view>
+    </view> -->
 </view>
