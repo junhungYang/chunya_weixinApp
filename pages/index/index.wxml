@@ -60,13 +60,8 @@
     </view>
   </view>
   <view class="fixed-group">
-
- 
-
-       <image src="../../img/index/kefu_icon.png" />
-               <button open-type="contact" size="20" class="contact">
-    </button>
+    <image src="../../img/index/kefu_icon.png" />
+    <button open-type="contact" size="20" class="contact"></button>
     <image class="toTop" src="../../img/index/toTop_icon.png" bindtap="scrollToTop"/>
-    
   </view>
 </view>

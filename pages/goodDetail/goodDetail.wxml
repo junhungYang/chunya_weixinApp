@@ -92,10 +92,12 @@
             <view class="list">
                 <view class="item">
                     <view class="item-header">
-                        <image src="" class="pro-pic"/>
+                        <view class="pro-pic">
+                            <image src="../../img/goodDetail/pro_pic.png" />
+                        </view>
                         <view class="name-time">
-                            <text>春**</text>
-                            <view>
+                            <text class="name">春**</text>
+                            <view class="time">
                                 <text>2018.10.11</text>
                                 <text>16:45</text>
                             </view>
@@ -106,14 +108,42 @@
                             超级好吃，味道很正，口感很软。送礼佳品！赞赞赞！！超级好吃，味道很正，口感很软。送礼佳品！赞赞赞！！
                         </view>
                         <view class="pic-group">
-                            <image src="" />
-                            <image src="" />
-                            <image src="" />
+                            <image src="../../img/goodDetail/review_pic1.png" />
+                            <image src="../../img/goodDetail/review_pic2.png" />
                         </view>
                     </view>
                 </view>
             </view>
         </view>
+    </view>
+      <view class="fixed-group">
+        <button open-type="contact" size="20" class="contact">
+            <image src="../../img/index/kefu_icon.png" />
+        </button>
+        <image class="toTop" src="../../img/index/toTop_icon.png" bindtap="scrollToTop"/>
+    </view>
+    <view class="bottom-nav">
+        <view class="other">
+            <view>
+                <image src="../../img/goodDetail/home_icon.png" />
+                <text>主页</text>
+            </view>
+            <view>
+                <image src="../../img/goodDetail/kefu_icon.png" />
+                <text>客服</text>
+            </view>
+            <view>
+                <image src="../../img/goodDetail/cart_icon.png" />
+                <text>购物车</text>
+            </view>
+        </view>
+        <view class="cart-add">
+            加入购物车
+        </view>
+        <view class="buy-btn">
+            立即购买
+        </view>
+
     </view>
 <!--    <view class="brand">
         {{detail.brand.name}}

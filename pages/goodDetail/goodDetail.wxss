@@ -214,8 +214,8 @@
 }
 .goodMod .reviews {
   background: #fff;
-  width: 86%;
-  padding: 0 7%;
+  width: 87.2%;
+  padding: 0 6.4%;
   margin-top: 20rpx;
 }
 .goodMod .reviews .title {
@@ -253,4 +253,128 @@
   margin-left: 10rpx;
   width: 13rpx;
   height: 24rpx;
+}
+.goodMod .reviews .list .item {
+  padding-bottom: 32rpx;
+  border-bottom: 1px solid #b2b2b2;
+}
+.goodMod .reviews .list .item .item-header {
+  height: 140rpx;
+  display: flex;
+}
+.goodMod .reviews .list .item .item-header .pro-pic {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 50%;
+  border: 1px solid #b9b9b9;
+  align-self: center;
+  overflow: hidden;
+}
+.goodMod .reviews .list .item .item-header .pro-pic image {
+  width: 100%;
+  height: 100%;
+}
+.goodMod .reviews .list .item .item-header .name-time {
+  flex: 1;
+  padding-left: 20rpx;
+  align-self: center;
+}
+.goodMod .reviews .list .item .item-header .name-time .name {
+  font-size: 28rpx;
+  color: #313131;
+}
+.goodMod .reviews .list .item .item-header .name-time .time {
+  font-size: 20rpx;
+  color: #b2b2b2;
+}
+.goodMod .reviews .list .item .item-cont .text {
+  font-size: 20rpx;
+  line-height: 32rpx;
+  color: #6f6f6f;
+}
+.goodMod .reviews .list .item .item-cont .pic-group {
+  font-size: 0;
+}
+.goodMod .reviews .list .item .item-cont .pic-group image {
+  margin-top: 20rpx;
+  width: 224rpx;
+  height: 236rpx;
+}
+.goodMod .reviews .list .item .item-cont .pic-group image:nth-child(even) {
+  margin-left: 12rpx;
+}
+.fixed-group .contact {
+  position: fixed;
+  width: 159rpx;
+  height: 162rpx;
+  right: 0rpx;
+  bottom: 255rpx;
+  background: transparent;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+}
+.fixed-group .contact image {
+  width: 100%;
+  height: 100%;
+}
+.fixed-group .contact::after {
+  border: 0;
+}
+.fixed-group .toTop {
+  position: fixed;
+  width: 159rpx;
+  height: 162rpx;
+  right: 0rpx;
+  bottom: 125rpx;
+}
+.bottom-nav {
+  height: 100rpx;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.bottom-nav .other {
+  width: 278rpx;
+  display: flex;
+  background: #f2f2f2;
+  justify-content: space-between;
+}
+.bottom-nav .other view {
+  flex: 1;
+}
+.bottom-nav .other view image {
+  padding-top: 24rpx;
+  display: block;
+  height: 32rpx;
+  width: 32rpx;
+  margin: 0 auto;
+}
+.bottom-nav .other view text {
+  margin-top: 10rpx;
+  display: block;
+  font-size: 20rpx;
+  letter-spacing: 2rpx;
+  color: #999999;
+  text-align: center;
+}
+.bottom-nav .other view:nth-of-type(2) image {
+  width: 38rpx;
+}
+.bottom-nav .cart-add,
+.bottom-nav .buy-btn {
+  line-height: 100rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+}
+.bottom-nav .cart-add {
+  flex: 1;
+  background: #f0b146;
+}
+.bottom-nav .buy-btn {
+  flex: 1;
+  background: #d1051f;
 }
