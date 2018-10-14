@@ -374,8 +374,19 @@
             }
         }
         view:nth-of-type(2) {
-            image {
-                width: 38rpx;
+            .contact {
+                 background:transparent;
+                 padding: 0;
+                 margin: 0;
+                image {
+                    width: 38rpx;
+                }
+                text {
+                    margin-top:0;
+                }
+            }
+            .contact::after {
+                border: 0;
             }
         }
     }

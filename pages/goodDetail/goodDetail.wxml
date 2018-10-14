@@ -124,23 +124,28 @@
     </view>
     <view class="bottom-nav">
         <view class="other">
-            <view>
+            <view bindtap="reToIndex">
                 <image src="../../img/goodDetail/home_icon.png" />
                 <text>主页</text>
             </view>
             <view>
-                <image src="../../img/goodDetail/kefu_icon.png" />
-                <text>客服</text>
+                <button open-type="contact" size="20" class="contact">
+                    <image src="../../img/goodDetail/kefu_icon.png" />
+                    <text>客服</text>
+                </button>
             </view>
-            <view>
+            <view bindtap="navToCart">
                 <image src="../../img/goodDetail/cart_icon.png" />
                 <text>购物车</text>
             </view>
         </view>
-        <view class="cart-add">
+        <view class="cart-add" 
+        data-prodid="{{detail.productList[0].id}}"
+        data-goodsid="{{detail.productList[0].goods_id}}"
+        bindtap="cartAdd">
             加入购物车
         </view>
-        <view class="buy-btn">
+        <view class="buy-btn" bindtap="orderCheckout">
             立即购买
         </view>
 

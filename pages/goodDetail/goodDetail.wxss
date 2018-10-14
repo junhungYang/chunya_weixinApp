@@ -360,8 +360,19 @@
   color: #999999;
   text-align: center;
 }
-.bottom-nav .other view:nth-of-type(2) image {
+.bottom-nav .other view:nth-of-type(2) .contact {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+.bottom-nav .other view:nth-of-type(2) .contact image {
   width: 38rpx;
+}
+.bottom-nav .other view:nth-of-type(2) .contact text {
+  margin-top: 0;
+}
+.bottom-nav .other view:nth-of-type(2) .contact::after {
+  border: 0;
 }
 .bottom-nav .cart-add,
 .bottom-nav .buy-btn {

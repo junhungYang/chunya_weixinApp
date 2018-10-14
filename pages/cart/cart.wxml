@@ -1,7 +1,85 @@
 <!--pages/cart/cart.wxml-->
 
-    <view>
-        <view class="cart-list">
+    <view class="template">
+        <view class="bg"></view>
+        <view class="title">
+            <view>
+                <image src="../../img/cart/icon1.png" />
+                <text>春芽好物</text>
+            </view>
+            <view>
+                编辑
+            </view>
+        </view>
+        <view class="list">
+            <view class="item">
+                <view class="choose">
+                    <image src="../../img/cart/icon2.png" />
+                </view>
+                <view class="image">
+                    <image src="../../img/cart/good1.jpg" />
+                </view>
+                <view class="text">
+                    <text>善缘大米，送礼佳品，温度之作</text>
+                    <text>￥950.00</text>
+                </view>
+                <view class="quantity-control">
+                    <view class="minus">
+                        -
+                    </view>
+                    <view class="num">
+                        1
+                    </view>
+                    <view class="add">
+                        +
+                    </view>
+                </view>
+            </view>
+            <view class="item">
+                <view class="choose">
+                    <image src="../../img/cart/icon3.png" />
+                </view>
+                <view class="image">
+                    <image src="../../img/cart/good1.jpg" />
+                </view>
+                <view class="text">
+                    <text>善缘大米，送礼佳品，温度之作</text>
+                    <text>￥950.00</text>
+                </view>
+                <view class="quantity-control">
+                    <view class="minus">
+                        -
+                    </view>
+                    <view class="num">
+                        1
+                    </view>
+                    <view class="add">
+                        +
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="explain">
+            <image src="" />
+            <text>已同步至微信购物单</text>
+        </view>
+        <view class="all-price">
+            <view class="all-choose">
+                <image src="" />
+                <text>全选</text>
+            </view>
+            <view class="price">
+                <text>合计:</text>
+                <text>￥950.00</text>
+                <view>
+                    不含运费
+                </view>
+            </view>
+            <view class="balance">
+                结算
+            </view>
+        </view>
+        <!-- <view class="cart-list">
             <view wx:if="{{cartList.length === 0 ? true : false}}">
                 你的购物车还没有商品
             </view>
@@ -13,12 +91,7 @@
                 </view>
             </view>
         </view>
-        <!-- <view class="coupon-list">
-            <view wx:for="{{couponInfoList}}">
-                {{item.msg}}
-            </view>
-        </view> -->
-        <button bindtap="buyConfirm">下单前确认</button>
+        <button bindtap="buyConfirm">下单前确认</button> -->
     </view>
 
 

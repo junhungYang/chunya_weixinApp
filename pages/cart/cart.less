@@ -1,0 +1,130 @@
+.template {
+    background: #f2f2f2;
+    .bg {
+        height: 253rpx;
+        width: 100%;
+        background:linear-gradient( to right,#2ba152,#2da7cb);
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .title {
+        height: 70rpx;
+        position: relative;
+        line-height: 70rpx;
+        view:first-of-type {
+            position: absolute;
+            left: 6.4%;
+            image{
+                width: 32rpx;
+                height: 29rpx;
+                vertical-align: middle;
+            }
+            text {
+                margin-left: 20rpx;
+                font-size: 28rpx;
+                color:#fff;
+                vertical-align: middle;
+            }
+        }
+        view:last-of-type {
+            position: absolute;
+            right: 6.4%;
+            font-size: 28rpx;
+            color:#fff;
+            top: 5rpx;
+        }
+    }
+    .list {
+        .item {
+            width: 87.2%;
+            height: 294rpx;
+            margin: 0 6.4%;
+            box-sizing: border-box;
+            padding: 0 18rpx;
+            margin-top: 18rpx;
+            display: flex;
+            background:#fff;
+            border-radius: 15rpx;
+            position: relative;
+            .choose {
+                width: 42rpx;
+                position: relative;
+                image {
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    width: 32rpx;
+                    height: 32rpx;
+                    transform: translateY(-50%);
+                }
+            }
+            .image {
+                width: 176rpx;
+                position: relative;
+                image {
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 176rpx;
+                    height: 176rpx;
+                }
+            }
+            .text {
+                flex: 1;
+                margin-left: 20rpx;
+                position: relative;
+                text:first-of-type {
+                    margin-top: 53rpx;
+                    display: block;
+                    font-size: 28rpx;
+                    color:#313131;
+                    line-height: 38rpx;
+                    letter-spacing: 1rpx;
+                }
+                text:last-of-type {
+                    position: absolute;
+                    left: 0;
+                    bottom: 68rpx;
+                    color:#d1051f;
+                    font-size: 24rpx;
+                }
+            }
+            .quantity-control {
+                position: absolute;
+                right: 21rpx;
+                bottom: 50rpx;
+                width: 240rpx;
+                height: 64rpx;
+                display: flex;
+                view {
+                    flex: 1;
+                    font-size: 24rpx;
+                    line-height:60rpx;
+                    text-align: center;
+                }
+                .minus {
+                    border: 1px solid #e8e8e8;
+                    border-right: 0;
+                    border-top-left-radius:8rpx;
+                    border-bottom-left-radius: 8rpx;
+                    color:  #999;
+                    background:#f8f8f8;
+                }
+                .num,.add {
+                    border: 1px solid #999;
+                    color:#313131;
+                }
+                .num {
+                    border-right: 0;
+                }
+                .add {
+                    border-top-right-radius: 8rpx;
+                    border-bottom-right-radius: 8rpx;
+                }
+            }
+        }
+
+    }
+}

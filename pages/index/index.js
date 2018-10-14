@@ -28,15 +28,8 @@ Page({
     })
   },
   scrollToTop() {
-    console.log(1111)
     wx.pageScrollTo({
       scrollTop: 0,
-      success() {
-        console.log(1);
-      },
-      fail() {
-        console.log(2)
-      }
     })
   },
   shangchuan() {  

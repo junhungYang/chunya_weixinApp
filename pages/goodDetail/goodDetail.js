@@ -1,5 +1,5 @@
 // pages/goodDetail/goodDetail.js
-import { _GoodsDetail, _CartAdd} from '../../utils/request'
+import { _GoodsDetail, _CartAdd, _OrderCheckout} from '../../utils/request'
 Page({
 
   /**
@@ -8,7 +8,6 @@ Page({
   data: {
     detail:{},
     htmlStr:'',
-    prodListFlag:true,
     buyingInfo:{
       goodsId:'',
       productId:'',
@@ -16,9 +15,6 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     _GoodsDetail({id:options.goodId}).then(data => {
       this.setData({
@@ -26,23 +22,18 @@ Page({
       })
     })
   },
-  openProdList() {
-    this.setData({
-      prodListFlag:false
+  reToIndex() {
+    console.log(222)
+    wx.navigateBack({
+      url:'../index/index'
     })
   },
-  // closeProdList(e) {
-  //   let buyingInfo = {
-  //     goodsId: e.currentTarget.dataset.goodsid,
-  //     productId: e.currentTarget.dataset.prodid,
-  //     number:1
-  //   }
-  //   this.setData({
-  //     prodListFlag: true,
-  //     buyingInfo: buyingInfo
-  //   });
-  //   this.cartAdd()
-  // },
+  navToCart() {
+    console.log(111)
+    wx.navigateTo({
+      url:'../cart/cart'
+    })
+  },
   cartAdd(e) {
     let buyingInfo = {
       goodsId: e.currentTarget.dataset.goodsid,
@@ -59,52 +50,29 @@ Page({
       })
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  scrollToTop() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  orderCheckout() {
+    _OrderCheckout().then(data => {
+      let addressId = data.checkedAddress.id;
+      if (data.checkedAddress) {
+        let dataStr = JSON.stringify(data)
+        wx.navigateTo({
+          url: `../orderDetail/orderDetail?dataStr=${dataStr}`
+        })
+      } else {
+        wx.showModal({
+          title: '请添加地址',
+          success() {
+            wx.redirectTo({
+              url: '../userCenter/userCenter'
+            })
+          }
+        })
+      }
+    })
   }
 })
