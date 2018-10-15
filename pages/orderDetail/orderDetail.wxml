@@ -1,6 +1,5 @@
 <!--pages/orderDetail/orderDetail.wxml-->
-<text>pages/orderDetail/orderDetail.wxml</text>
-<view class="orderDetail">
+<!-- <view class="orderDetail">
     <view>
         订单详情
     </view>

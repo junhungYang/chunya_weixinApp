@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/addressInput/addressInput",
-    "pages/cart/cart",
-    "pages/goods/goods",
-    "pages/userCenter/userCenter",
-    "pages/goodDetail/goodDetail",
-    "pages/orderDetail/orderDetail",
+        "pages/beforeBalance/beforeBalance",
+                "pages/userCenter/userCenter",
+        "pages/addressInput/addressInput",
+            "pages/orderDetail/orderDetail",
+            "pages/cart/cart",
+        "pages/goodDetail/goodDetail",
+        "pages/goods/goods",
+        "pages/index/index",
     "pages/orderList/orderList"
+ 
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -27,7 +29,7 @@
       "iconPath": "img/cartIcon.png",
       "selectedIconPath": "img/cartActive.png"
     },{
-      "pagePath": "pages/index/index",
+      "pagePath": "pages/userCenter/userCenter",
       "text": "我的",
       "iconPath": "img/myIcon.png",
       "selectedIconPath": "img/myActiveIcon.png"

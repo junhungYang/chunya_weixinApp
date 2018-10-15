@@ -1,8 +1,9 @@
 <view class="template">
     <view class="bg"></view>
-    <view class="info">
+    <view class="main">
+            <view class="info">
         <view class="pro-pic">
-            <image src="" />
+            <image src="../../img/userCenter/pro_pic.jpg" />
         </view>
         <view class="text">
             <text>春芽chunya</text>
@@ -14,7 +15,7 @@
     </view>
     <view class="integral">
         <view class="point">
-            <image src="" />
+            <image src="../../img/userCenter/icon1.png" />
             <view class="desc">
                 <text>积分</text>
                 <text>565</text>
@@ -25,7 +26,7 @@
             <text>礼遇好物</text>
         </view>
        <view class="vip">
-            <image src="" />
+            <image src="../../img/userCenter/icon2.png" />
         </view>
     </view>
     <view class="order">
@@ -33,43 +34,43 @@
             <view>我的订单</view>
             <view>
                 <text>查看全部订单</text>
-                <image src="" />
+                <image src="../../img/redictTo.png" />
             </view>
         </view>
         <view class="nav">
             <view>
-                <image src="" />
+                <image src="../../img/userCenter/nav1.png" />
                 <text>待付款</text>
             </view>
             <view>
-                <image src="" />
+                <image src="../../img/userCenter/nav2.png" />
                 <text>待发货</text>
             </view>
             <view>
-                <image src="" />
+                <image src="../../img/userCenter/nav3.png" />
                 <text>待收货</text>
             </view>
             <view>
-                <image src="" />
+                <image src="../../img/userCenter/nav4.png" />
                 <text>待评价</text>
             </view>
             <view>
-                <image src="" />
+                <image src="../../img/userCenter/nav5.png" />
                 <text>售后服务</text>
             </view>
         </view>
         <view class="cont">
             <view class="list">
                 <view class="cont-item">
-                    <view class="title">
+                    <view class="cont-title">
                         <text>最新物流</text>
                         <text>10-08</text>
                     </view>
                     <view class="desc">
-                        <image src="" />
+                        <image src="../../img/userCenter/good.png" />
                         <view class="desc-text">
                             <view>
-                                <image src="" />
+                                <image src="../../img/userCenter/icon3.png" />
                                 <text>已签收</text>
                             </view>
                             <view>
@@ -119,6 +120,7 @@
                 <text>关于我们</text>
             </view>
         </view>
+    </view>
     </view>
 </view>
 <!-- <view class="my-address">
