@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/cart/cart",
     "pages/index/index",
+    "pages/addressInput/addressInput",
+    "pages/cart/cart",
     "pages/goods/goods",
-      "pages/userCenter/userCenter",
-            "pages/goodDetail/goodDetail",
+    "pages/userCenter/userCenter",
+    "pages/goodDetail/goodDetail",
     "pages/orderDetail/orderDetail",
     "pages/orderList/orderList"
   ],
@@ -13,5 +14,23 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "春芽好物",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list":[{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath":"img/homeIcon.png",
+      "selectedIconPath": "img/homeActiveIcon.png"
+    },{
+      "pagePath": "pages/cart/cart",
+      "text": "购物车",
+      "iconPath": "img/cartIcon.png",
+      "selectedIconPath": "img/cartActive.png"
+    },{
+      "pagePath": "pages/index/index",
+      "text": "我的",
+      "iconPath": "img/myIcon.png",
+      "selectedIconPath": "img/myActiveIcon.png"
+    }]
   }
 }

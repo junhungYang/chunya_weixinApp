@@ -60,17 +60,19 @@
             </view>
         </view>
         <view class="explain">
-            <image src="" />
+            <image src="../../img/cart/icon4.png" />
             <text>已同步至微信购物单</text>
         </view>
         <view class="all-price">
             <view class="all-choose">
-                <image src="" />
+                <image src="../../img/cart/icon2.png" />
                 <text>全选</text>
             </view>
             <view class="price">
-                <text>合计:</text>
-                <text>￥950.00</text>
+                <view>
+                    <text>合计:</text>
+                    <text>￥950.00</text>
+                </view>
                 <view>
                     不含运费
                 </view>

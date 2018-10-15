@@ -1,4 +1,127 @@
-<view class="my-address">
+<view class="template">
+    <view class="bg"></view>
+    <view class="info">
+        <view class="pro-pic">
+            <image src="" />
+        </view>
+        <view class="text">
+            <text>春芽chunya</text>
+            <text>明天，永远崭新，永不断货</text>
+        </view>
+        <view class="control">
+            编辑
+        </view>
+    </view>
+    <view class="integral">
+        <view class="point">
+            <image src="" />
+            <view class="desc">
+                <text>积分</text>
+                <text>565</text>
+            </view>
+        </view>
+        <view class="text">
+            <text>春芽vip</text>
+            <text>礼遇好物</text>
+        </view>
+       <view class="vip">
+            <image src="" />
+        </view>
+    </view>
+    <view class="order">
+        <view class="title">
+            <view>我的订单</view>
+            <view>
+                <text>查看全部订单</text>
+                <image src="" />
+            </view>
+        </view>
+        <view class="nav">
+            <view>
+                <image src="" />
+                <text>待付款</text>
+            </view>
+            <view>
+                <image src="" />
+                <text>待发货</text>
+            </view>
+            <view>
+                <image src="" />
+                <text>待收货</text>
+            </view>
+            <view>
+                <image src="" />
+                <text>待评价</text>
+            </view>
+            <view>
+                <image src="" />
+                <text>售后服务</text>
+            </view>
+        </view>
+        <view class="cont">
+            <view class="list">
+                <view class="cont-item">
+                    <view class="title">
+                        <text>最新物流</text>
+                        <text>10-08</text>
+                    </view>
+                    <view class="desc">
+                        <image src="" />
+                        <view class="desc-text">
+                            <view>
+                                <image src="" />
+                                <text>已签收</text>
+                            </view>
+                            <view>
+                                包裹已到达自提柜，请您及时取件
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="tool">
+        <view class="title">
+            必备工具
+        </view>
+        <view class="list">
+            <view class="item">
+                <image src="../../img/userCenter/coupon.png" />
+                <text>优惠券</text>
+            </view>
+            <view class="item">
+                <image src="../../img/userCenter/collect.png" />
+                <text>我的收藏</text>
+            </view>
+            <view class="item">
+                <image src="../../img/userCenter/event.png" />
+                <text>我的活动</text>
+            </view>
+            <view class="item">
+                <image src="../../img/userCenter/share.png" />
+                <text>课堂分享</text>
+            </view>
+            <view class="item">
+                <image src="../../img/userCenter/kefu.png" />
+                <text>客服</text>
+            </view>
+            <view class="item">
+                <image src="../../img/userCenter/yijian.png" />
+                <text>意见反馈</text>
+            </view>
+            <view class="item">
+                <image src="../../img/userCenter/position.png" />
+                <text>地址管理</text>
+            </view>
+            <view class="item">
+                <image src="../../img/userCenter/about.png" />
+                <text>关于我们</text>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- <view class="my-address">
     <text>我的收获地址</text>
     <view>
         <text wx:if="{{myAddressList.length === 0}}">请添加你的收获地址</text>
@@ -29,4 +152,4 @@
         <switch checked="false" bindchange="defaultAddress"/>
     </view>
     <button bindtap="inputConfirm">确定</button>
-</view>
+</view> -->
