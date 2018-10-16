@@ -1,0 +1,79 @@
+.template {
+  background: #f2f2f2;
+  min-height: 100vh;
+}
+.template .list {
+  display: inline-block;
+  width: 87.2%;
+  margin: 0 6.4%;
+}
+.template .list .item {
+  background: #fff;
+  padding: 0 30rpx;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+}
+.template .list .item .info {
+  height: 135rpx;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 2px solid #f7f7f7;
+}
+.template .list .item .info text {
+  display: block;
+  color: #313131;
+  font-size: 28rpx;
+}
+.template .list .item .info text:first-of-type {
+  margin-top: 22rpx;
+}
+.template .list .item .info text:nth-of-type(2) {
+  margin-top: 12rpx;
+}
+.template .list .item .info text:last-of-type {
+  position: absolute;
+  right: 0;
+  top: 22rpx;
+}
+.template .list .item .control {
+  height: 97rpx;
+  display: flex;
+}
+.template .list .item .control view {
+  align-self: center;
+}
+.template .list .item .control view text,
+.template .list .item .control view image {
+  vertical-align: middle;
+}
+.template .list .item .control view text {
+  font-size: 28rpx;
+  color: #b2b2b2;
+}
+.template .list .item .control view:first-of-type {
+  flex: 1;
+}
+.template .list .item .control view:first-of-type image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.template .list .item .control view:first-of-type text {
+  margin-left: 21rpx;
+}
+.template .list .item .control view:nth-of-type(2) {
+  padding-right: 54rpx;
+}
+.template .list .item .control view:nth-of-type(2) image {
+  width: 28rpx;
+  height: 28rpx;
+}
+.template .list .item .control view:nth-of-type(2) text {
+  margin-left: 10rpx;
+}
+.template .list .item .control view:last-of-type image {
+  width: 26rpx;
+  height: 32rpx;
+}
+.template .list .item .control view:last-of-type text {
+  margin-left: 10rpx;
+}
