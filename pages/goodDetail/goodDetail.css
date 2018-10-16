@@ -37,6 +37,7 @@
   font-size: 36rpx;
   color: #000;
   font-weight: bold;
+  width: 75%;
 }
 .goodMod .goodInfo .info .text .desc {
   font-size: 28rpx;
@@ -363,9 +364,9 @@
   font-size: 20rpx;
   color: #6f6f6f;
 }
-.goodMod .good-detail .image image {
-  width: 100%;
-  height: 3898rpx;
+.goodMod .good-detail .image .fr-fin {
+  display: block;
+  width: 100% !important;
 }
 .fixed-group .contact {
   position: fixed;
@@ -484,6 +485,7 @@
   padding-bottom: 19rpx;
   border-bottom: 1px solid #e8e8e8;
   height: 148rpx;
+  position: relative;
 }
 .cart-control .box .info .text-img image {
   width: 164rpx;
@@ -525,6 +527,18 @@
 }
 .cart-control .box .info .text-img .about .price-size .size view:first-of-type {
   margin: 0;
+}
+.cart-control .box .info .text-img .close {
+  position: absolute;
+  width: 44rpx;
+  height: 44rpx;
+  top: 31rpx;
+  right: 0;
+}
+.cart-control .box .info .text-img .close image {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 .cart-control .box .info .quantity-control {
   height: 120rpx;

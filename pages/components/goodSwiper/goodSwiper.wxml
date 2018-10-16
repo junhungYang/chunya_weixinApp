@@ -6,9 +6,9 @@
         indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}"
          vertical="{{false}}" indicator-color="rgba(255,255,255,0.5)"
          indicator-active-color="rgba(255,255,255,1)">
-        <block wx:for="{{adList}}" wx:key="*this">
+        <block wx:for="{{gallery}}" wx:key="*this">
           <swiper-item>
-            <image class="swiper-item" src="{{item.image_url}}" />
+            <image class="swiper-item" src="{{item.img_url}}" />
           </swiper-item>
         </block>
       </swiper>

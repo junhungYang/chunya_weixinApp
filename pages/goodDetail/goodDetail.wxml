@@ -7,21 +7,21 @@
     </view>
     <view class="goodMod">
         <view class="swiper">
-            <good-swiper></good-swiper>
+            <good-swiper gallery="{{detail.gallery}}"></good-swiper>
         </view>
         <view class="goodInfo">
            <view class="info">
                 <view class="text">
                     <view class="name">
-                        善缘米
+                        {{detail.info.name}}
                     </view>
                     <view class="desc">
-                        善缘大米，送礼佳品，温度之作。
+                        {{detail.info.goods_brief}}
                     </view>
                 </view>
                 <view class="price">
-                    <text class="new">￥950</text>
-                    <text class="old">￥1180</text>
+                    <text class="new">￥{{detail.info.retail_price}}</text>
+                    <text class="old">￥{{detail.info.market_price}}</text>
                 </view>
                 <view class="coupon">
                     <view>
@@ -34,9 +34,9 @@
                     </view>
                 </view>
                 <view class="collect-share">
-                    <view>
-                        <image src="../../img/goodDetail/collect.png" />
-                        <text>收藏</text>
+                    <view bindtap="collect">
+                        <image src="{{collectState === 'add' ? '../../img/goodDetail/collect1.png' : '../../img/goodDetail/collect.png'}}" />
+                        <text>{{collectText}}</text>
                     </view>
                     <view>
                         <image src="../../img/goodDetail/share.png" />
@@ -44,7 +44,7 @@
                     </view>
                 </view>
            </view>
-           <view class="choose">
+           <view class="choose" data-index="{{1}}" bindtap="cartStateManage">
                <view class="menu">
                    <text>选择:</text>
                    <text>规格</text>
@@ -75,7 +75,7 @@
             </view>
             <image class="icon" src="../../img/redictTo.png" />
         </view>
-        <view class="shop-nav">
+        <view class="shop-nav" bindtap="switchToIndex">
             <image src="../../img/logo.png" />
             <view>
                 <text>春芽健康科技</text>
@@ -133,7 +133,7 @@
                 <text>COMMODITY DETAILS</text>
             </view>
             <view class="image">
-                <image src="../../img/goodDetail/detail.jpg" />
+                <rich-text nodes="{{detail.info.goods_desc}}"></rich-text>
             </view>
         </view>
     </view>
@@ -171,7 +171,7 @@
         </view>
 
     </view>
-    <view class="cart-control" wx:if="{{false}}">
+    <view class="cart-control" hidden="{{cartShowFlag}}">
         <view class="box">
             <view class="info">
                 <view class="text-img">
@@ -196,6 +196,9 @@
                                 </view>
                             </view>
                         </view>
+                    </view>
+                    <view class="close" data-index="{{2}}" bindtap="cartStateManage">
+                        <image src="../../img/goodDetail/cart_close.png" />
                     </view>
                 </view>
                 <view class="quantity-control">

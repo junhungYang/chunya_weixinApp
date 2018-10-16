@@ -1,33 +1,20 @@
-import { _SpreadList} from '../../../utils/request'
+import { _SpreadList } from "../../../utils/request";
 
 Component({
   behaviors: [],
-
+  properties: {
+    gallery: {
+      // 属性名
+      type: Array, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
+      value: [] // 属性初始值（可选），如果未指定则会根据类型选择一个
+    }
+  },
 
   data: {
-    background: ["demo-text-1", "demo-text-2", "demo-text-3"],
-    adList:[]
   }, // 私有数据，可用于模版渲染
-
-
 
   pageLifetimes: {
     // 组件所在页面的生命周期函数
-    show: function() {
-        _SpreadList({
-            id: 4
-        }).then(data => {
-            this.setData({
-                adList:data.adList
-            })
-            console.log(this.data.adList)
-        })
-        .catch(msg => {
-            wx.showModal({
-                title: "Error",
-                content: msg
-            });
-        })
-    }
+    
   }
 });
