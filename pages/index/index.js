@@ -6,7 +6,6 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     name: "junxing",
-    background: ["demo-text-1", "demo-text-2", "demo-text-3"],
     goodsList:[],
     searchIconFlag:false
   },

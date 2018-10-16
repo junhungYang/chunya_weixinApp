@@ -1,4 +1,130 @@
-<!--pages/orderDetail/orderDetail.wxml-->
+
+<view class="template">
+    <view class="state">
+        <image src="../../img/orderDetail/bg.jpg" />
+        <view>
+            <text>卖家已发货</text>
+            <text>还剩1天21小时自动确认</text>
+        </view>
+    </view>
+    <view class="logistics">
+        <view class="desc">
+            <image src="../../img/orderDetail/icon1.png" />
+            <view class="text">
+                【深圳市】【以签收，签收人是拍照签收。轻骑只为佳人笑，给个五星好评好不好？请在评价小件处给予五星好评】，感谢使用百世快递，期待再次为你服务
+            </view>
+            <image src="../../img/redictTo.png" />
+        </view>
+        <view class="address">
+            <image src="../../img/orderDetail/icon2.png" />
+            <view>
+                <text>小春芽</text>
+                <text>深圳市龙华新区汇海广场A座908</text>
+                <text>15888881688</text>
+            </view>
+        </view>
+    </view>
+    <view class="main">
+        <view class="order">
+            <image src="../../img/orderDetail/good.jpg" />
+            <view class="text">
+                <text class="name">善缘大米，送礼佳品，温度之作</text>
+                <text class="price">￥950.00</text>
+                <view class="other">
+                    <text>公益捐赠0.95元</text>
+                    <text>坏单包赔</text>
+                    <text>48小时发</text>
+                </view>
+            </view>
+            <text class="quantity">×1</text>
+            <view class="refund">
+                退款
+            </view>
+        </view>
+        <view class="freight">
+            <view class="header">
+                <image src="../../img/orderDetail/icon3.png" />
+                <view>
+                    <text>运费险</text>
+                    <text>确认收货前退货可理赔</text>
+                    <text>已出单</text>
+                </view>
+                <image src="../../img/redictTo.png" />
+            </view>
+            <view class="desc">
+                <view>
+                    <text>运费险</text>
+                    <text>卖家赠送</text>
+                </view>
+                <view>
+                    <text>运费</text>
+                    <text>￥0.00</text>
+                </view>
+                <view>
+                    <text>商家促销</text>
+                    <text>-￥8.80</text>
+                </view>
+                <view>
+                    <text>活动中</text>
+                    <text>-￥88.5</text>
+                </view>
+                <view>
+                    <text>实付款（含运费）</text>
+                    <text>￥950.00</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="order-data">
+        <view class="code">
+            <text>订单编号：</text>
+            <text>201858581681688888</text>
+        </view>
+        <view class="data">
+            <view class="text">
+                <view>
+                    <text>微信交易号：</text>
+                    <text>201810162200110301507755886</text>
+                </view>
+            </view>
+            <view class="text">
+                <view>
+                    <text>创建时间：</text>
+                    <text>2018-10-13 16:58:58</text>                
+                </view>
+            </view>
+            <view class="text">
+                <view>
+                    <text>付款时间：</text>
+                    <text>2018-10-13 16:59:25</text>                    
+                </view>
+            </view>
+            <view class="text">
+                <view>
+                    <text>发货时间：</text>
+                    <text>2018-10-13 17:21:25</text>
+                </view>   
+            </view>
+        </view>
+        <view class="contact">
+            <image src="../../img/orderDetail/icon4.png" />
+            <text>联系我们</text>
+        </view>
+    </view>
+    <view class="control">
+        <view class="btn-group">
+            <view>
+                延长收货
+            </view>
+            <view>
+                查看物流
+            </view>
+            <view>
+                确认收货
+            </view>
+        </view>
+    </view>
+</view>
 <!-- <view class="orderDetail">
     <view>
         订单详情

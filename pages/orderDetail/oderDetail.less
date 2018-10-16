@@ -1,0 +1,296 @@
+.template {
+    background: rgb(247,247,247);
+    .state {
+        height: 212rpx;
+        position: relative;
+        image {
+            width: 100%;
+            height: 212rpx;
+        }
+        view {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-left: 6.4%;
+            text {
+                display: block;
+                color:#fff;
+            }
+            text:first-of-type {
+                margin-top:62rpx;
+                font-size: 28rpx;
+                font-weight: bold;
+            }
+            text:last-of-type {
+                margin-top: 5rpx;
+                font-size: 20rpx;
+            }
+        }
+
+    }
+    .logistics {
+        background:#fff;
+        padding: 0 6.4%;
+        .desc {
+            display: flex;
+            border-bottom: 2px solid #f7f7f7;
+            height: 130rpx;
+            image:first-of-type {
+                width:32rpx;
+                height:27rpx;
+                align-self: center;
+            }
+            image:last-of-type {
+                width:13rpx;
+                height: 24rpx;
+                align-self: center;
+            }
+            .text {
+                align-self: center;
+                flex: 1;
+                padding: 0 39rpx;
+                font-size: 20rpx;
+                line-height: 26rpx;
+                color: #2ca5ae;
+            }
+
+        }
+        .address {
+            display: flex;
+            height: 130rpx;
+            image {
+                width: 32rpx;
+                height: 40rpx;
+                align-self: center;
+            }
+            view {
+                flex: 1;
+                position: relative;
+                align-self: center;
+                padding-left: 39rpx;
+                text {
+                    color: #313131;
+                    font-size: 28rpx;
+                    display: block;
+                }
+                text:first-of-type {
+                    // margin-top:30rpx;
+                }
+                text:nth-of-type(2) {
+                    margin-top: 5rpx;
+                }
+                text:last-of-type {
+                    position: absolute;
+                    right: 0;
+                    top:0rpx;
+                }
+            }
+        }
+    }
+    .main {
+        margin-top: 20rpx;
+        background:#fff;
+        padding: 0 6.4%;
+        .order {
+            height: 210rpx;
+            display: flex;
+            position: relative;
+                padding-top: 22rpx;
+                border-bottom: 2px solid #f7f7f7;
+            image {
+                width: 124rpx;
+                height: 124rpx;
+            
+            }
+            .text {
+                flex: 1;
+                padding-left: 25rpx;
+                margin-top: 5rpx;
+                .name,.price {
+                    display:block;
+                    font-size: 28rpx;
+                    color: #313131;
+                }
+                .price {
+                    margin-top: 10rpx;
+                }
+                .other {
+                    color: #d1051f;
+                    font-size: 20rpx;
+                    text:nth-of-type(2),text:last-of-type {
+                        margin-left: 20rpx;
+                    }
+                }
+            }
+            .quantity {
+                    position: absolute;
+                    right: 0;
+                    top: 82rpx;
+                    font-size: 24rpx;
+                    color: #b2b2b2;
+                }
+                .refund {
+                    width: 136rpx;
+                    height: 44rpx;
+                    border-radius: 20rpx;
+                    border:1px solid #b2b2b2;
+                    position: absolute;
+                    right: 0;
+                    top: 160rpx;
+                    font-size: 28rpx;
+                    color:#b2b2b2;
+                    text-align: center;
+                    line-height: 44rpx;
+                }
+        }
+        .freight {
+            margin-top: 28rpx;
+            padding-bottom: 20rpx;
+            .header {
+                display: flex;
+                image:first-of-type {
+                    width: 28rpx;
+                    height: 32rpx;
+                    padding-top: 4rpx;
+                }
+                image:last-of-type {
+                    padding-top: 8rpx;
+                    width: 13rpx;
+                    height: 24rpx;
+                }
+                view {
+                    flex: 1;
+                    position: relative;
+                    margin: 0 18rpx;
+                    text {
+                        display: block;
+                    }
+                    text:first-of-type {
+                        color: #313131;
+                        font-size: 28rpx
+                    }
+                    text:nth-of-type(2) {
+                        color: #b2b2b2;
+                        font-size: 24rpx;
+                    }
+                    text:last-of-type {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        font-size: 28rpx;
+                        color: #ff9d5e;
+                    }
+                }
+
+            }
+            .desc {
+                margin-top: 20rpx;
+                view {
+                    display: flex;
+                    height: 37rpx;
+                    text:first-of-type {
+                        flex: 1;
+                    }
+                    text {
+                        line-height: 37rpx;
+                        color:#313131;
+                        font-size: 24rpx;
+                        align-self: center;
+                    }
+                }
+                view:last-of-type {
+                    text:last-of-type {
+                        color: #d1051f;
+                    }
+                }
+            }
+        }
+    }
+    .order-data {
+        margin-top: 20rpx;
+        background:#fff;
+        padding: 0 6.4%;
+        padding-bottom: 100rpx;
+        .data {
+            padding-bottom: 20rpx;
+            .text {
+                height: 32rpx ;
+                position: relative;
+                view {
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    text {
+                        font-size: 24rpx;
+                        color: #b2b2b2;
+                        line-height: 32rpx;
+                    }
+
+                }
+            }
+        }
+
+        .code {
+                height: 65rpx;
+                padding-top: 5rpx;
+                text {
+                    font-size: 24rpx;
+                    color: #b2b2b2;
+                    line-height: 65rpx;
+                }
+        }
+        .contact {
+            height: 88rpx;
+            border-top: 2px solid #f7f7f7;
+            display: flex;
+            image {
+                align-self: center;
+                width: 32rpx;
+                height: 27rpx;
+            }
+            text {
+                align-self: center;
+                line-height: 88rpx;
+                padding-left: 10rpx;
+                font-size: 24rpx;
+                color: #b2b2b2;
+            }
+        }
+
+    }
+    .control {
+        position: fixed;
+        width: 100%;
+        height: 100rpx;
+        left: 0;
+        bottom: 0;
+        background: #f7f7f7;
+        .btn-group {
+            position: absolute;
+            top: 50%;
+            right: 6.4%;
+            transform: translateY(-50%);
+            view {
+                display: inline-block;
+                width:　136rpx;
+                height: 44rpx;
+                border-radius: 22rpx;
+                border: 1px solid #b2b2b2;
+                line-height: 44rpx;
+                text-align: center;
+                font-size: 28rpx;
+                color:#313131;
+                padding: 0 13rpx;
+            }
+            view:nth-of-type(2) {
+                margin-left: 20rpx;
+            }
+            view:last-of-type {
+                margin-left: 20rpx;
+                color: #d1051f;
+                border: 1px solid  #d1051f;
+            }
+        }
+    }
+}

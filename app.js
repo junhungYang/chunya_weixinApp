@@ -12,8 +12,8 @@ App({
       success: () => {
 
         //未过期
-        // this.wxappLogin();
-        this.wxLoginApi();
+        this.wxappLogin();
+        // this.wxLoginApi();
       },
       fail: () => {
         //已过期

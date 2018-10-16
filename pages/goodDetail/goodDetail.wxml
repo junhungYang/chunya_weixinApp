@@ -115,6 +115,18 @@
                 </view>
             </view>
         </view>
+        <view class="promise">
+            <image src="../../img/goodDetail/promise.png" />
+        </view>
+        <view class="good-detail">
+            <view class="text">
+                <text>— 商品详情 —</text>
+                <text>COMMODITY DETAILS</text>
+            </view>
+            <view class="image">
+                <image src="../../img/goodDetail/detail.jpg" />
+            </view>
+        </view>
     </view>
       <view class="fixed-group">
         <button open-type="contact" size="20" class="contact">

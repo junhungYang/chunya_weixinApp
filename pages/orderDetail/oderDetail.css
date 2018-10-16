@@ -1,0 +1,286 @@
+.template {
+  background: #f7f7f7;
+}
+.template .state {
+  height: 212rpx;
+  position: relative;
+}
+.template .state image {
+  width: 100%;
+  height: 212rpx;
+}
+.template .state view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 6.4%;
+}
+.template .state view text {
+  display: block;
+  color: #fff;
+}
+.template .state view text:first-of-type {
+  margin-top: 62rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.template .state view text:last-of-type {
+  margin-top: 5rpx;
+  font-size: 20rpx;
+}
+.template .logistics {
+  background: #fff;
+  padding: 0 6.4%;
+}
+.template .logistics .desc {
+  display: flex;
+  border-bottom: 2px solid #f7f7f7;
+  height: 130rpx;
+}
+.template .logistics .desc image:first-of-type {
+  width: 32rpx;
+  height: 27rpx;
+  align-self: center;
+}
+.template .logistics .desc image:last-of-type {
+  width: 13rpx;
+  height: 24rpx;
+  align-self: center;
+}
+.template .logistics .desc .text {
+  align-self: center;
+  flex: 1;
+  padding: 0 39rpx;
+  font-size: 20rpx;
+  line-height: 26rpx;
+  color: #2ca5ae;
+}
+.template .logistics .address {
+  display: flex;
+  height: 130rpx;
+}
+.template .logistics .address image {
+  width: 32rpx;
+  height: 40rpx;
+  align-self: center;
+}
+.template .logistics .address view {
+  flex: 1;
+  position: relative;
+  align-self: center;
+  padding-left: 39rpx;
+}
+.template .logistics .address view text {
+  color: #313131;
+  font-size: 28rpx;
+  display: block;
+}
+.template .logistics .address view text:nth-of-type(2) {
+  margin-top: 5rpx;
+}
+.template .logistics .address view text:last-of-type {
+  position: absolute;
+  right: 0;
+  top: 0rpx;
+}
+.template .main {
+  margin-top: 20rpx;
+  background: #fff;
+  padding: 0 6.4%;
+}
+.template .main .order {
+  height: 210rpx;
+  display: flex;
+  position: relative;
+  padding-top: 22rpx;
+  border-bottom: 2px solid #f7f7f7;
+}
+.template .main .order image {
+  width: 124rpx;
+  height: 124rpx;
+}
+.template .main .order .text {
+  flex: 1;
+  padding-left: 25rpx;
+  margin-top: 5rpx;
+}
+.template .main .order .text .name,
+.template .main .order .text .price {
+  display: block;
+  font-size: 28rpx;
+  color: #313131;
+}
+.template .main .order .text .price {
+  margin-top: 10rpx;
+}
+.template .main .order .text .other {
+  color: #d1051f;
+  font-size: 20rpx;
+}
+.template .main .order .text .other text:nth-of-type(2),
+.template .main .order .text .other text:last-of-type {
+  margin-left: 20rpx;
+}
+.template .main .order .quantity {
+  position: absolute;
+  right: 0;
+  top: 82rpx;
+  font-size: 24rpx;
+  color: #b2b2b2;
+}
+.template .main .order .refund {
+  width: 136rpx;
+  height: 44rpx;
+  border-radius: 20rpx;
+  border: 1px solid #b2b2b2;
+  position: absolute;
+  right: 0;
+  top: 160rpx;
+  font-size: 28rpx;
+  color: #b2b2b2;
+  text-align: center;
+  line-height: 44rpx;
+}
+.template .main .freight {
+  margin-top: 28rpx;
+  padding-bottom: 20rpx;
+}
+.template .main .freight .header {
+  display: flex;
+}
+.template .main .freight .header image:first-of-type {
+  width: 28rpx;
+  height: 32rpx;
+  padding-top: 4rpx;
+}
+.template .main .freight .header image:last-of-type {
+  padding-top: 8rpx;
+  width: 13rpx;
+  height: 24rpx;
+}
+.template .main .freight .header view {
+  flex: 1;
+  position: relative;
+  margin: 0 18rpx;
+}
+.template .main .freight .header view text {
+  display: block;
+}
+.template .main .freight .header view text:first-of-type {
+  color: #313131;
+  font-size: 28rpx;
+}
+.template .main .freight .header view text:nth-of-type(2) {
+  color: #b2b2b2;
+  font-size: 24rpx;
+}
+.template .main .freight .header view text:last-of-type {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 28rpx;
+  color: #ff9d5e;
+}
+.template .main .freight .desc {
+  margin-top: 20rpx;
+}
+.template .main .freight .desc view {
+  display: flex;
+  height: 37rpx;
+}
+.template .main .freight .desc view text:first-of-type {
+  flex: 1;
+}
+.template .main .freight .desc view text {
+  line-height: 37rpx;
+  color: #313131;
+  font-size: 24rpx;
+  align-self: center;
+}
+.template .main .freight .desc view:last-of-type text:last-of-type {
+  color: #d1051f;
+}
+.template .order-data {
+  margin-top: 20rpx;
+  background: #fff;
+  padding: 0 6.4%;
+  padding-bottom: 100rpx;
+}
+.template .order-data .data {
+  padding-bottom: 20rpx;
+}
+.template .order-data .data .text {
+  height: 32rpx ;
+  position: relative;
+}
+.template .order-data .data .text view {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.template .order-data .data .text view text {
+  font-size: 24rpx;
+  color: #b2b2b2;
+  line-height: 32rpx;
+}
+.template .order-data .code {
+  height: 65rpx;
+  padding-top: 5rpx;
+}
+.template .order-data .code text {
+  font-size: 24rpx;
+  color: #b2b2b2;
+  line-height: 65rpx;
+}
+.template .order-data .contact {
+  height: 88rpx;
+  border-top: 2px solid #f7f7f7;
+  display: flex;
+}
+.template .order-data .contact image {
+  align-self: center;
+  width: 32rpx;
+  height: 27rpx;
+}
+.template .order-data .contact text {
+  align-self: center;
+  line-height: 88rpx;
+  padding-left: 10rpx;
+  font-size: 24rpx;
+  color: #b2b2b2;
+}
+.template .control {
+  position: fixed;
+  width: 100%;
+  height: 100rpx;
+  left: 0;
+  bottom: 0;
+  background: #f7f7f7;
+}
+.template .control .btn-group {
+  position: absolute;
+  top: 50%;
+  right: 6.4%;
+  transform: translateY(-50%);
+}
+.template .control .btn-group view {
+  display: inline-block;
+  width: 　136rpx;
+  height: 44rpx;
+  border-radius: 22rpx;
+  border: 1px solid #b2b2b2;
+  line-height: 44rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #313131;
+  padding: 0 13rpx;
+}
+.template .control .btn-group view:nth-of-type(2) {
+  margin-left: 20rpx;
+}
+.template .control .btn-group view:last-of-type {
+  margin-left: 20rpx;
+  color: #d1051f;
+  border: 1px solid  #d1051f;
+}

@@ -1,56 +1,72 @@
 <view class="template">
     <view class="about-address">
-        <view class="add">
+        <!--<view class="add">
             <image src="../../img/beforeBalance/add.png" />
             <text>新增收货地址</text>
             <image src="../../img/redictTo.png" />
+        </view> --> 
+        <view class="info">
+            <view class="text">
+                收件人：
+                <text>junxing</text>
+            </view>
+            <view class="text">
+                联系方式：
+                <text>15218917058</text>
+            </view>
+            <view class="text">
+                收货地址：
+                <text>广东省佛山市顺德区容桂街道竹山四向3好</text>
+            </view>
+            <view class="refresh">
+                编辑
+            </view>
         </view>
     </view>
     <view class="desc">
-        <view class="main">
-            <view class="header">
-                <image src="../../img/beforeBalance/logo.png" />
-                <text>春芽好物</text>
-            </view>
-            <view class="good">
-                <image src="../../img/beforeBalance/good.png" />
-                <view>
-                    <text>善缘大米，送礼佳品，温度之作</text>
-                    <text>￥950</text>
-                    <text>×1</text>
-                </view>
-            </view>
+        <view class="header">
+            <image src="../../img/beforeBalance/logo.png" />
+            <text>春芽好物</text>
+        </view>
+        <view class="good">
+            <image src="../../img/beforeBalance/good.png" />
             <view>
-                <text>配送方式</text>
-                <text>快递配送</text>
-            </view>
-            <view>
-                <text>发票类型</text>
-                <text>个人电子发票</text>
-                <image src="" />
-            </view>
-            <view>
-                <text>买家留言</text>
-                <input type="text" placeholder="填写内容需与商家协商并确认，45字内"  />
-            </view>
-            <view>
-                <view>
-                    <text>邮费：</text>
-                    <text>0.00元</text>
-                </view>
-                <view>
-                    共计
-                    <text>1</text>
-                    件商品，小计: 
-                    <text>950元</text>
-                </view>
+                <text>善缘大米，送礼佳品，温度之作</text>
+                <text>￥950</text>
+                <text>×1</text>
             </view>
         </view>
-        <view class="coupon">
-            <text>优惠券/优惠码</text>
-            <image src="" />
+        <view class="distribution">
+            <text>配送方式</text>
+            <text>快递配送</text>
         </view>
-        <view class="price">
+        <view class="invoice">
+            <text>发票类型</text>
+            <text>个人电子发票</text>
+            <image src="../../img/redictTo.png" />
+        </view>
+        <view class="word">
+            <text>买家留言</text>
+            <input type="text" placeholder="填写内容需与商家协商并确认，45字内"  placeholder-style="color:#b2b2b2;"/>
+        </view>
+        <view class="postage">
+            <view>
+                <text>邮费：</text>
+                <text>0.00元</text>
+            </view>
+            <view>
+                共计
+                <text>1</text>
+                件商品，小计: 
+                <text>950元</text>
+            </view>
+        </view>
+    </view>
+    <view class="coupon">
+        <text>优惠券/优惠码</text>
+        <image src="../../img/redictTo.png" />
+    </view>
+    <view class="price">
             <view>
                 <text>商品总价</text>
                 <text>￥950.00</text>
@@ -64,8 +80,8 @@
                 <text>￥0.00</text>
             </view>
         </view>
-    </view>
-    <view class="submit-order">
+</view>
+  <view class="submit-order">
         <view>
             <text>合计：</text>
             <text>￥950.00</text>
@@ -74,4 +90,3 @@
             提交订单
         </view>
     </view>
-</view>

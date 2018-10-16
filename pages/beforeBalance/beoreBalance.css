@@ -1,14 +1,12 @@
 .template {
   background: #f7f7f7;
-  height: 100vh;
 }
 .template .about-address {
-  height: 120rpx;
   background: #fff;
   padding: 0 6.4%;
 }
 .template .about-address .add {
-  height: 100%;
+  height: 120rpx;
   display: flex;
 }
 .template .about-address .add image:first-of-type {
@@ -27,6 +25,25 @@
   width: 13rpx;
   height: 24rpx;
   align-self: center;
+}
+.template .about-address .info {
+  padding-bottom: 15rpx;
+  position: relative;
+}
+.template .about-address .info .text {
+  color: #313131;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+.template .about-address .info .text text {
+  color: #8a8a8a;
+}
+.template .about-address .info .refresh {
+  position: absolute;
+  font-size: 28rpx;
+  color: #3283fa;
+  right: 0rpx;
+  top: 5rpx;
 }
 .template .desc {
   margin-top: 20rpx;
@@ -52,7 +69,7 @@
   display: flex;
   height: 180rpx;
   margin: 0 6.4%;
-  border-bottom: 2px solid color #f7f7f7;
+  border-bottom: 2px solid #f7f7f7;
 }
 .template .desc .good image {
   width: 124rpx;
@@ -72,7 +89,7 @@
   font-size: 28rpx;
   color: #313131;
   width: 100%;
-  white-space: nowrap ;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -84,7 +101,163 @@
 .template .desc .good view text:last-of-type {
   position: absolute;
   right: 0;
-  top: 59rpx;
+  top: 70rpx;
   font-size: 24rpx;
-  color: #B2B2B2;
+  color: #b2b2b2;
+}
+.template .desc .invoice,
+.template .desc .distribution,
+.template .desc .word,
+.template .desc .postage {
+  margin: 0 6.4%;
+  height: 84rpx;
+  border-bottom: 2px solid #f7f7f7;
+  position: relative;
+}
+.template .desc .distribution text {
+  font-size: 28rpx;
+  line-height: 84rpx;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.template .desc .distribution text:first-of-type {
+  left: 0;
+  color: #313131;
+}
+.template .desc .distribution text:last-of-type {
+  right: 0;
+  color: #b2b2b2;
+}
+.template .desc .invoice text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28rpx;
+}
+.template .desc .invoice text:first-of-type {
+  left: 0;
+  color: #313131;
+}
+.template .desc .invoice text:last-of-type {
+  right: 25rpx;
+  color: #b2b2b2;
+}
+.template .desc .invoice image {
+  position: absolute;
+  right: 0;
+  top: 33rpx;
+  width: 13rpx;
+  height: 24rpx;
+}
+.template .desc .word {
+  display: flex;
+}
+.template .desc .word text {
+  font-size: 28rpx;
+  color: #313131;
+  line-height: 84rpx;
+}
+.template .desc .word input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #b2b2b2;
+  line-height: 84rpx;
+  margin-left: 20rpx;
+  height: 84rpx;
+}
+.template .desc .postage {
+  position: relative;
+  border: 0;
+}
+.template .desc .postage view:first-of-type {
+  font-size: 28rpx;
+  color: #313131;
+  line-height: 84rpx;
+}
+.template .desc .postage view:last-of-type {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28rpx;
+  color: #b2b2b2;
+  line-height: 84rpx;
+}
+.template .desc .postage view:last-of-type text:last-of-type {
+  color: #d1051f;
+}
+.template .coupon {
+  margin-top: 20rpx;
+  padding: 0 6.4%;
+  background: #fff;
+  height: 84rpx;
+  position: relative;
+}
+.template .coupon text {
+  font-size: 28rpx;
+  color: #313131;
+  line-height: 84rpx;
+}
+.template .coupon image {
+  position: absolute;
+  right: 6.4%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 13rpx;
+  height: 24rpx;
+}
+.template .price {
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 0 6.4%;
+  padding-top: 15rpx;
+  height: 400rpx;
+}
+.template .price view {
+  height: 58rpx;
+  display: flex;
+}
+.template .price view text {
+  line-height: 58rpx;
+  font-size: 28rpx;
+}
+.template .price view text:first-of-type {
+  color: #313131;
+}
+.template .price view text:last-of-type {
+  flex: 1;
+  text-align: right;
+  color: #d1051f;
+}
+.submit-order {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #f2f2f2;
+  display: flex;
+}
+.submit-order view:first-of-type {
+  flex: 1;
+  padding-left: 6.4%;
+}
+.submit-order view:first-of-type text {
+  font-size: 28rpx;
+  line-height: 100rpx;
+}
+.submit-order view:first-of-type text:first-of-type {
+  color: #313131;
+}
+.submit-order view:first-of-type text:last-of-type {
+  color: #d1051f;
+}
+.submit-order view:last-of-type {
+  width: 236rpx;
+  background: #d1051f;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #fff;
 }
