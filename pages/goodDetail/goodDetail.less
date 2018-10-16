@@ -17,9 +17,7 @@
 .goodMod {
     padding-bottom: 92rpx;
     .swiper {
-        height: 750rpx;
-        border: 1px solid red;
-        
+        height: 750rpx;   
     }
     .goodInfo {
         width: 86%;
@@ -58,6 +56,37 @@
                 margin-top:22rpx;
                 background: #f7f0da;
                 height: 70rpx;
+                display: flex;
+                padding: 0 20rpx;
+                view {
+                    display: flex;
+                    text {
+                        color: #313131;
+                        font-size: 24rpx;
+                    }
+                    text,image {
+                        align-self: center;
+                    }
+                }
+                view:first-of-type {
+                    flex: 1;
+                    image {
+                        width: 54rpx;
+                        height: 46rpx;
+                    }
+                    text {
+                        margin-left: 20rpx;
+                    }
+                }
+                view:last-of-type {
+                    text {
+                        margin-right: 8rpx;
+                    }
+                    image {
+                        width:13rpx;
+                        height: 24rpx;
+                    }
+                }
             }
             .collect-share {
                 view {
@@ -440,5 +469,129 @@
     .buy-btn {
         flex: 1;
         background: #d1051f;
+    }
+}
+.cart-control {
+    position: fixed;
+    top: 88rpx;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.73);
+    .box {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .next-btn {
+            height: 100rpx;
+            background:#d1051f;
+            color: #fff;
+            font-size: 28rpx;
+            line-height: 100rpx;
+            text-align: center;
+        }
+        .info {
+            background:#fff;
+            padding: 0 6.4%;
+            .text-img {
+                display: flex;
+                padding-bottom: 19rpx;
+                border-bottom: 1px solid #e8e8e8;
+                height: 148rpx;
+                image {
+                    width: 164rpx;
+                    height: 164rpx;
+                    margin-top: -36rpx;
+                    border: 1px solid #e8e8e8;
+                    border-radius: 10rpx;
+                }
+                .about {
+                    margin-left: 19rpx;
+                           padding-top: 32rpx;
+                    .name {
+                        font-size: 24rpx;
+                        color: #313131;
+                    }
+                    .price-size {
+                        display: flex;
+                        margin-top: 21rpx;
+                        .price {
+                           color:#d1051f; 
+                        }
+                        .size {
+                            margin-left: 30rpx;
+                            view {
+                                display: inline-block;
+                                height: 28rpx;
+                                padding: 0 8rpx;
+                                text-align: center;
+                                line-height: 28rpx;
+                                font-size: 20rpx;
+                                border: 1px solid #e8e8e8;
+                                color: #6f6f6f;
+                            }
+                            view {
+                                margin-left: 18rpx;
+                            }
+                            view:first-of-type {
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+            .quantity-control {
+                display: flex;
+                height: 120rpx;
+                display: flex;
+                .quantity {
+                    flex: 1;
+                    align-self: center;
+                    text {
+                        display: block;
+                    }
+                    text:first-of-type {
+                        font-size: 28rpx;
+                    }
+                    text:last-of-type {
+                        font-size: 20rpx;
+                        color:#b2b2b2;
+                        margin-top: 5rpx;
+                    }
+                }
+                .control {
+                    width: 240rpx;
+                    height: 64rpx;
+                    display: flex;
+                    align-self: center;
+                    view {
+                        flex: 1;
+                        font-size: 24rpx;
+                        line-height:60rpx;
+                        text-align: center;
+                    }
+                    .minus {
+                        border: 1px solid #e8e8e8;
+                        border-right: 0;
+                        border-top-left-radius:8rpx;
+                        border-bottom-left-radius: 8rpx;
+                        color:  #999;
+                        background:#f8f8f8;
+                    }
+                    .num,.add {
+                        border: 1px solid #999;
+                        color:#313131;
+                    }
+                    .num {
+                        border-right: 0;
+                    }
+                    .add {
+                        border-top-right-radius: 8rpx;
+                        border-bottom-right-radius: 8rpx;
+                    }
+                }
+            }
+        }
     }
 }

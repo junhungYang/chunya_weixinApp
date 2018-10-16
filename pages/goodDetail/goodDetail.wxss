@@ -19,7 +19,6 @@
 }
 .goodMod .swiper {
   height: 750rpx;
-  border: 1px solid red;
 }
 .goodMod .goodInfo {
   width: 86%;
@@ -60,6 +59,36 @@
   margin-top: 22rpx;
   background: #f7f0da;
   height: 70rpx;
+  display: flex;
+  padding: 0 20rpx;
+}
+.goodMod .goodInfo .info .coupon view {
+  display: flex;
+}
+.goodMod .goodInfo .info .coupon view text {
+  color: #313131;
+  font-size: 24rpx;
+}
+.goodMod .goodInfo .info .coupon view text,
+.goodMod .goodInfo .info .coupon view image {
+  align-self: center;
+}
+.goodMod .goodInfo .info .coupon view:first-of-type {
+  flex: 1;
+}
+.goodMod .goodInfo .info .coupon view:first-of-type image {
+  width: 54rpx;
+  height: 46rpx;
+}
+.goodMod .goodInfo .info .coupon view:first-of-type text {
+  margin-left: 20rpx;
+}
+.goodMod .goodInfo .info .coupon view:last-of-type text {
+  margin-right: 8rpx;
+}
+.goodMod .goodInfo .info .coupon view:last-of-type image {
+  width: 13rpx;
+  height: 24rpx;
 }
 .goodMod .goodInfo .info .collect-share view {
   position: absolute;
@@ -423,4 +452,128 @@
 .bottom-nav .buy-btn {
   flex: 1;
   background: #d1051f;
+}
+.cart-control {
+  position: fixed;
+  top: 88rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.73);
+}
+.cart-control .box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.cart-control .box .next-btn {
+  height: 100rpx;
+  background: #d1051f;
+  color: #fff;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+.cart-control .box .info {
+  background: #fff;
+  padding: 0 6.4%;
+}
+.cart-control .box .info .text-img {
+  display: flex;
+  padding-bottom: 19rpx;
+  border-bottom: 1px solid #e8e8e8;
+  height: 148rpx;
+}
+.cart-control .box .info .text-img image {
+  width: 164rpx;
+  height: 164rpx;
+  margin-top: -36rpx;
+  border: 1px solid #e8e8e8;
+  border-radius: 10rpx;
+}
+.cart-control .box .info .text-img .about {
+  margin-left: 19rpx;
+  padding-top: 32rpx;
+}
+.cart-control .box .info .text-img .about .name {
+  font-size: 24rpx;
+  color: #313131;
+}
+.cart-control .box .info .text-img .about .price-size {
+  display: flex;
+  margin-top: 21rpx;
+}
+.cart-control .box .info .text-img .about .price-size .price {
+  color: #d1051f;
+}
+.cart-control .box .info .text-img .about .price-size .size {
+  margin-left: 30rpx;
+}
+.cart-control .box .info .text-img .about .price-size .size view {
+  display: inline-block;
+  height: 28rpx;
+  padding: 0 8rpx;
+  text-align: center;
+  line-height: 28rpx;
+  font-size: 20rpx;
+  border: 1px solid #e8e8e8;
+  color: #6f6f6f;
+}
+.cart-control .box .info .text-img .about .price-size .size view {
+  margin-left: 18rpx;
+}
+.cart-control .box .info .text-img .about .price-size .size view:first-of-type {
+  margin: 0;
+}
+.cart-control .box .info .quantity-control {
+  height: 120rpx;
+  display: flex;
+}
+.cart-control .box .info .quantity-control .quantity {
+  flex: 1;
+  align-self: center;
+}
+.cart-control .box .info .quantity-control .quantity text {
+  display: block;
+}
+.cart-control .box .info .quantity-control .quantity text:first-of-type {
+  font-size: 28rpx;
+}
+.cart-control .box .info .quantity-control .quantity text:last-of-type {
+  font-size: 20rpx;
+  color: #b2b2b2;
+  margin-top: 5rpx;
+}
+.cart-control .box .info .quantity-control .control {
+  width: 240rpx;
+  height: 64rpx;
+  display: flex;
+  align-self: center;
+}
+.cart-control .box .info .quantity-control .control view {
+  flex: 1;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+.cart-control .box .info .quantity-control .control .minus {
+  border: 1px solid #e8e8e8;
+  border-right: 0;
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+  color: #999;
+  background: #f8f8f8;
+}
+.cart-control .box .info .quantity-control .control .num,
+.cart-control .box .info .quantity-control .control .add {
+  border: 1px solid #999;
+  color: #313131;
+}
+.cart-control .box .info .quantity-control .control .num {
+  border-right: 0;
+}
+.cart-control .box .info .quantity-control .control .add {
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
 }

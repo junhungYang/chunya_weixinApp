@@ -1,5 +1,6 @@
 {
   "pages": [
+            "pages/goodDetail/goodDetail",
         "pages/addressList/addressList",
         "pages/orderList/orderList",
         "pages/orderDetail/orderDetail",
@@ -7,7 +8,7 @@
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
         "pages/addressInput/addressInput",
-            "pages/goodDetail/goodDetail",
+    
             "pages/cart/cart",
         "pages/goods/goods"
      

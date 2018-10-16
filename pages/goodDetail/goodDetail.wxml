@@ -6,7 +6,9 @@
         <text>推荐</text>
     </view>
     <view class="goodMod">
-        <view class="swiper"></view>
+        <view class="swiper">
+            <good-swiper></good-swiper>
+        </view>
         <view class="goodInfo">
            <view class="info">
                 <view class="text">
@@ -22,7 +24,14 @@
                     <text class="old">￥1180</text>
                 </view>
                 <view class="coupon">
-                    
+                    <view>
+                        <image src="../../img/goodDetail/hongbao.png" />
+                        <text>150元新人红包</text>
+                    </view>
+                    <view>
+                        <text>立即领取</text>
+                        <image src="../../img/redictTo.png" />
+                    </view>
                 </view>
                 <view class="collect-share">
                     <view>
@@ -161,6 +170,56 @@
             立即购买
         </view>
 
+    </view>
+    <view class="cart-control" wx:if="{{false}}">
+        <view class="box">
+            <view class="info">
+                <view class="text-img">
+                    <image src="../../img/cart/cart_good.png" />
+                    <view class="about">
+                        <view class="name">
+                            善缘大米，送礼佳品，温度之作。
+                        </view>
+                        <view class="price-size">
+                            <view class="price">
+                                ￥950
+                            </view>
+                            <view class="size">
+                                <view>
+                                    2.5KG
+                                </view>
+                                <view>
+                                    5KG
+                                </view>
+                                <view>
+                                    礼盒装
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="quantity-control">
+                    <view class="quantity">
+                        <text>购买数量</text>
+                        <text>剩余1588件</text>
+                    </view>
+                    <view class="control">
+                        <view class="minus">
+                            -
+                        </view>
+                        <view class="num">
+                            1
+                        </view>
+                        <view class="add">
+                            +
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="next-btn">
+                下一步
+            </view>
+        </view>
     </view>
 <!--    <view class="brand">
         {{detail.brand.name}}
