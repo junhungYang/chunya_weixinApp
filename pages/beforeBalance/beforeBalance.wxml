@@ -1,26 +1,26 @@
 <view class="template">
     <view class="about-address">
-        <!--<view class="add">
-            <image src="../../img/beforeBalance/add.png" />
-            <text>新增收货地址</text>
-            <image src="../../img/redictTo.png" />
-        </view> --> 
-        <view class="info">
+        <view class="info" wx:if="{{data.checkedAddress}}">
             <view class="text">
                 收件人：
-                <text>junxing</text>
+                <text>{{data.checkedAddress.userName}}</text>
             </view>
             <view class="text">
                 联系方式：
-                <text>15218917058</text>
+                <text>{{data.checkedAddress.telNumber}}</text>
             </view>
             <view class="text">
                 收货地址：
-                <text>广东省佛山市顺德区容桂街道竹山四向3好</text>
+                <text>{{data.checkedAddress.provinceName}}{{data.checkedAddress.cityName}}{{data.checkedAddress.countyName}}{{data.checkedAddress.detailInfo}}</text>
             </view>
             <view class="refresh">
                 编辑
             </view>
+        </view>
+        <view class="add" wx:else>
+            <image src="../../img/beforeBalance/add.png" />
+            <text>新增收货地址</text>
+            <image src="../../img/redictTo.png" />
         </view>
     </view>
     <view class="desc">
@@ -28,12 +28,14 @@
             <image src="../../img/beforeBalance/logo.png" />
             <text>春芽好物</text>
         </view>
-        <view class="good">
-            <image src="../../img/beforeBalance/good.png" />
-            <view>
-                <text>善缘大米，送礼佳品，温度之作</text>
-                <text>￥950</text>
-                <text>×1</text>
+        <view class="good-list">
+            <view class="item" wx:for="{{data.checkedGoodsList}}">
+                <image src="{{item.product_pic_url}}" />
+                <view>
+                    <text>{{item.goods_name}}</text>
+                    <text>￥{{item.retail_product_price}}</text>
+                    <text>×{{item.number}}</text>
+                </view>
             </view>
         </view>
         <view class="distribution">
@@ -52,13 +54,13 @@
         <view class="postage">
             <view>
                 <text>邮费：</text>
-                <text>0.00元</text>
+                <text>{{data.freightPrice}}元</text>
             </view>
             <view>
                 共计
-                <text>1</text>
+                <text>{{allQuantity}}</text>
                 件商品，小计: 
-                <text>950元</text>
+                <text>{{data.orderTotalPrice}}</text>
             </view>
         </view>
     </view>
@@ -69,24 +71,24 @@
     <view class="price">
             <view>
                 <text>商品总价</text>
-                <text>￥950.00</text>
+                <text>￥{{data.orderTotalPrice}}</text>
             </view>
             <view>
                 <text>运费</text>
-                <text>￥0.00</text>
+                <text>￥{{data.freightPrice}}</text>
             </view>
             <view>
                 <text>优惠</text>
-                <text>￥0.00</text>
+                <text>￥{{data.couponPrice}}</text>
             </view>
         </view>
 </view>
   <view class="submit-order">
         <view>
             <text>合计：</text>
-            <text>￥950.00</text>
+            <text>￥{{data.actualPrice}}</text>
         </view>
-        <view>
+        <view bindtap="orderConfirm">
             提交订单
         </view>
     </view>

@@ -14,20 +14,20 @@
         </view>
     </view>
     <view class="content">
-        <view class="item">
+        <view class="item" wx:for="{{orderList}}">
             <view class="title">
                 <image src="../../img/orderList/icon1.png" />
                 <text>春芽好物</text>
-                <text>已发货</text>
+                <text>{{item.order_status_text}}</text>
             </view>
             <view class="desc">
                 <image src="../../img/orderDetail/good.jpg" />
                 <view class="text">
                     <text class="name">善缘大米，送礼佳品，温度之作</text>
-                    <text class="price">￥950.00</text>
-                    <view class="other">
+                    <text class="price">￥{{item.order_price}}</text>
+                    <!--<view class="other">
                             公益捐赠0.95元
-                    </view>
+                    </view>-->
                 </view>
                 <text class="quantity">×1</text>
             </view>

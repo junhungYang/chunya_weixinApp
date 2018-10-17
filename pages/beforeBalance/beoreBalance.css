@@ -65,27 +65,27 @@
   font-size: 28rpx;
   color: #313131;
 }
-.template .desc .good {
+.template .desc .good-list .item {
   display: flex;
   height: 180rpx;
   margin: 0 6.4%;
   border-bottom: 2px solid #f7f7f7;
 }
-.template .desc .good image {
+.template .desc .good-list .item image {
   width: 124rpx;
   height: 124rpx;
   align-self: center;
 }
-.template .desc .good view {
+.template .desc .good-list .item view {
   flex: 1;
   align-self: center;
   padding-left: 23rpx;
   position: relative;
 }
-.template .desc .good view text {
+.template .desc .good-list .item view text {
   display: block;
 }
-.template .desc .good view text:first-of-type {
+.template .desc .good-list .item view text:first-of-type {
   font-size: 28rpx;
   color: #313131;
   width: 100%;
@@ -93,12 +93,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.template .desc .good view text:nth-of-type(2) {
+.template .desc .good-list .item view text:nth-of-type(2) {
   margin-top: 23rpx;
   font-size: 28rpx;
   color: #d1051f;
 }
-.template .desc .good view text:last-of-type {
+.template .desc .good-list .item view text:last-of-type {
   position: absolute;
   right: 0;
   top: 70rpx;

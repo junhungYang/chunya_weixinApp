@@ -19,6 +19,16 @@ Page({
       is_default: false
     }
   },
+  navToOrderList() {
+    wx.navigateTo({
+      url:"../orderList/orderList"
+    })
+  },
+  navToAddressList() {
+    wx.navigateTo({
+      url: '../addressList/addressList'
+    })
+  },
   onReady() {
     app.setWatcher(this.data, this.watch);
     this.setData({

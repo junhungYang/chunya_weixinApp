@@ -56,7 +56,7 @@
                     不含运费
                 </view>
             </view>
-            <view class="balance">
+            <view class="balance" bindtap="buyConfirm">
                 结算
             </view>
         </view>

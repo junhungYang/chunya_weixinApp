@@ -7,12 +7,12 @@
             <view class="cont">
                 <view>
                     <text>姓名</text>
-                    <input type="text" placeholder="真实姓名"/>
+                    <input type="text" value="{{detail.userName}}" placeholder="真实姓名"/>
                 </view>
                 <view>
                     <text>电话</text>
-                    <input placeholder="手机号码"/>
-                    <button class="getNum-btn">获取手机号码</button>
+                    <input value="{{detail.telNumber}}" placeholder="手机号码"/>
+                    <button class="getNum-btn"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号码</button>
                 </view>
             </view>
         </view>
@@ -23,8 +23,8 @@
             <view class="cont">
                 <view>
                     <text>地区信息</text>
-                    <input type="text" placeholder="选择 省/市/区"/>
-                    <image src="../../img/positionIcon.png" class="icon"/>
+                    <input type="text" value="{{detail.}}"/>
+                    <image src="../../img/positionIcon.png" class="icon" />
                 </view>
                 <view>
                     <text>详细地址</text>
@@ -32,7 +32,7 @@
                 </view>
             </view>
         </view>
-        <view class="getAddress">
+        <view class="getAddress" bindtap="chooseAddress">
             <image src="../../img/wechatIcon.png" />
             <text>一键添加微信地址</text>
         </view>

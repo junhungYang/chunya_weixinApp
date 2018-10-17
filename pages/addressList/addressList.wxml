@@ -1,42 +1,22 @@
 <view class="template">
     <view class="list">
-        <view class="item">
+        <view class="item" wx:for="{{addressList}}">
             <view class="info">
-                <text>小春芽</text>
-                <text>深圳市龙华新区汇海广场A座908</text>
-                <text>15888888888</text>
+                <text>{{item.userName}}</text>
+                <text>{{item.full_region}}</text>
+                <text>{{item.telNumber}}</text>
             </view>
             <view class="control">
-                <view>
-                    <image src="../../img/cart/icon2.png" />
+                <view bindtap="addressDefault" data-index="{{item}}">
+                    <image wx:if="{{item.is_default}}" src="../../img/cart/icon2.png" />
+                    <image wx:else src="../../img/cart/icon3.png" />
                     <text>默认地址</text>
                 </view>
-                <view>
+                <view bindtap="navToAddressInput" data-id="{{item.id}}">
                     <image src="../../img/bianji.png" />
                     <text>编辑</text>
                 </view>
-                <view>
-                    <image src="../../img/delete.png" />
-                    <text>删除</text>
-                </view>
-            </view>
-        </view>
-        <view class="item">
-            <view class="info">
-                <text>小春芽</text>
-                <text>深圳市龙华新区汇海广场A座908</text>
-                <text>15888888888</text>
-            </view>
-            <view class="control">
-                <view>
-                    <image src="../../img/cart/icon2.png" />
-                    <text>默认地址</text>
-                </view>
-                <view>
-                    <image src="../../img/bianji.png" />
-                    <text>编辑</text>
-                </view>
-                <view>
+                <view bindtap="addressDel" data-id="{{item.id}}">
                     <image src="../../img/delete.png" />
                     <text>删除</text>
                 </view>

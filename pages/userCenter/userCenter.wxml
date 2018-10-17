@@ -30,7 +30,7 @@
         </view>
     </view>
     <view class="order">
-        <view class="title">
+        <view class="title" bindtap="navToOrderList">
             <view>我的订单</view>
             <view>
                 <text>查看全部订单</text>
@@ -112,7 +112,7 @@
                 <text>意见反馈</text>
             </view>
             <view class="item">
-                <image src="../../img/userCenter/position.png" />
+                <image src="../../img/userCenter/position.png" bindtap="navToAddressList"/>
                 <text>地址管理</text>
             </view>
             <view class="item">

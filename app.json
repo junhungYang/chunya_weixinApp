@@ -1,13 +1,11 @@
 {
   "pages": [
         "pages/index/index",
-        "pages/goodDetail/goodDetail",
-    
-          
-        "pages/addressList/addressList",
-        "pages/orderList/orderList",
-        "pages/orderDetail/orderDetail",
+      "pages/orderDetail/orderDetail",
       
+        "pages/goodDetail/goodDetail",
+        "pages/orderList/orderList",
+        "pages/addressList/addressList",
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
         "pages/addressInput/addressInput",
