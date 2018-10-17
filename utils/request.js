@@ -536,11 +536,32 @@ const _CartAdd = function (data) {
             if (res.data.errno === 0) {
               resolve(res.data.data);
             } else {
+ 
               reject(res.data.errmsg);
             }
           }
         });
     });
+}
+const _CartChecked = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/cart/checked`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
 }
 const _GetCartGoodsCount = function (data) {
     return new Promise((resolve, reject) => {
@@ -640,6 +661,7 @@ module.exports = {
     _OfficialNewsList,
     _CommentCount,
     _CartAdd,
+  _CartChecked,
     _GetCartGoodsCount,
     _CartDelete,
     _CartIndex,

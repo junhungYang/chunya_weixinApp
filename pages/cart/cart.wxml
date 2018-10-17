@@ -12,66 +12,45 @@
             </view>
         </view>
         <view class="list">
-            <view class="item">
-                <view class="choose">
-                    <image src="../../img/cart/icon2.png" />
+            <view class="item" wx:for="{{cartList}}" wx:for-index="arrIndex">
+                <view class="choose" data-state="{{item.checked}}" data-arrindex="{{arrIndex}}" bindtap="choose">
+                    <image wx:if="{{item.checked}}" src="../../img/cart/icon2.png" />
+                    <image wx:else src="../../img/cart/icon3.png" />
                 </view>
                 <view class="image">
-                    <image src="../../img/cart/good1.jpg" />
+                    <image src="{{item.product_pic_url}}" />
                 </view>
                 <view class="text">
-                    <text>善缘大米，送礼佳品，温度之作</text>
-                    <text>￥950.00</text>
+                    <text>{{item.goods_name}}</text>
+                    <text>￥{{item.retail_product_price}}</text>
                 </view>
                 <view class="quantity-control">
-                    <view class="minus">
+                    <view class="minus" data-index="{{2}}" data-arrindex="{{arrIndex}}" bindtap="quantityControl">
                         -
                     </view>
                     <view class="num">
-                        1
+                        {{item.number}}
                     </view>
-                    <view class="add">
-                        +
-                    </view>
-                </view>
-            </view>
-            <view class="item">
-                <view class="choose">
-                    <image src="../../img/cart/icon3.png" />
-                </view>
-                <view class="image">
-                    <image src="../../img/cart/good1.jpg" />
-                </view>
-                <view class="text">
-                    <text>善缘大米，送礼佳品，温度之作</text>
-                    <text>￥950.00</text>
-                </view>
-                <view class="quantity-control">
-                    <view class="minus">
-                        -
-                    </view>
-                    <view class="num">
-                        1
-                    </view>
-                    <view class="add">
+                    <view class="add" data-index="{{1}}" data-arrindex="{{arrIndex}}" bindtap="quantityControl">
                         +
                     </view>
                 </view>
             </view>
         </view>
-        <view class="explain">
+        <!--<view class="explain">
             <image src="../../img/cart/icon4.png" />
             <text>已同步至微信购物单</text>
-        </view>
+        </view> -->
         <view class="all-price">
-            <view class="all-choose">
-                <image src="../../img/cart/icon2.png" />
+            <view class="all-choose" bindtap="allChoose">
+                <image wx:if="{{allChoose}}" src="../../img/cart/icon2.png" />
+                <image wx:else src="../../img/cart/icon3.png" />
                 <text>全选</text>
             </view>
             <view class="price">
                 <view>
                     <text>合计:</text>
-                    <text>￥950.00</text>
+                    <text>￥{{cartTotal.checkedGoodsAmount}}</text>
                 </view>
                 <view>
                     不含运费

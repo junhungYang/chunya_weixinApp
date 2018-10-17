@@ -75,7 +75,7 @@
             </view>
             <image class="icon" src="../../img/redictTo.png" />
         </view>
-        <view class="shop-nav" bindtap="switchToIndex">
+        <view class="shop-nav" bindtap="navToIndex">
             <image src="../../img/logo.png" />
             <view>
                 <text>春芽健康科技</text>
@@ -145,7 +145,7 @@
     </view>
     <view class="bottom-nav">
         <view class="other">
-            <view bindtap="reToIndex">
+            <view bindtap="navToIndex">
                 <image src="../../img/goodDetail/home_icon.png" />
                 <text>主页</text>
             </view>
@@ -155,18 +155,17 @@
                     <text>客服</text>
                 </button>
             </view>
-            <view bindtap="navToCart">
+            <view bindtap="switchToCart">
                 <image src="../../img/goodDetail/cart_icon.png" />
                 <text>购物车</text>
             </view>
         </view>
         <view class="cart-add" 
-        data-prodid="{{detail.productList[0].id}}"
-        data-goodsid="{{detail.productList[0].goods_id}}"
-        bindtap="cartAdd">
+        data-index="{{1}}"
+        bindtap="cartStateManage">
             加入购物车
         </view>
-        <view class="buy-btn" bindtap="orderCheckout">
+        <view class="buy-btn" data-index="{{1}}" bindtap="cartStateManage">
             立即购买
         </view>
 
@@ -182,7 +181,7 @@
                         </view>
                         <view class="price-size">
                             <view class="price">
-                                ￥950
+                                {{allPrice}}
                             </view>
                             <view class="size">
                                 <view>
@@ -207,19 +206,19 @@
                         <text>剩余1588件</text>
                     </view>
                     <view class="control">
-                        <view class="minus">
+                        <view class="minus" data-index="{{2}}" bindtap="quantityControl">
                             -
                         </view>
                         <view class="num">
-                            1
+                            {{quantity}}
                         </view>
-                        <view class="add">
+                        <view class="add" data-index="{{1}}" bindtap="quantityControl">
                             +
                         </view>
                     </view>
                 </view>
             </view>
-            <view class="next-btn">
+            <view class="next-btn" bindtap="cartAdd">
                 下一步
             </view>
         </view>

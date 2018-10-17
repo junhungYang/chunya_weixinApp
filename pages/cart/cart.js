@@ -1,5 +1,13 @@
 // pages/cart/cart.js
-import { _CartIndex, _CartDelete, _OrderCheckout, _OrderSubmit, _OrderList, _WeChatPay} from '../../utils/request'
+import { 
+    _CartIndex,
+     _CartDelete, 
+     _OrderCheckout, 
+     _OrderSubmit,
+      _OrderList, 
+      _WeChatPay,
+     _CartAdd,
+    _CartChecked} from '../../utils/request'
 const app = getApp();
 Page({
 
@@ -10,15 +18,79 @@ Page({
     name: 'junxing',
     cartList:[],
     couponInfoList:[],
+    cartTotal:{},
+    allChoose: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onShow: function (options) {
     _CartIndex().then(data => {
       this.setData({
-        cartList: data.cartList
+        cartList: data.cartList,
+        cartTotal: data.cartTotal
+      })
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
+  },
+  //全选
+  allChoose() {
+    this.setData({
+      allChoose: !this.data.allChoose
+    })
+    let arr = []
+    this.data.cartList.forEach(item => {
+        arr.push(item.product_id)
+    })
+    let str = arr.toString()
+    
+  },
+  //单选
+  choose(e) {
+    let isChecked = e.currentTarget.dataset.state === 1 ? 0 : 1
+    let arrindex = e.currentTarget.dataset.arrindex;
+    _CartChecked({
+      productIds:this.data.cartList[arrindex].product_id,
+      isChecked
+    }).then(data => {
+      this.setData({
+        cartList:data.cartList,
+        cartTotal:data.cartTotal
+      })
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
+  },
+  quantityControl(e) {
+    let index = e.currentTarget.dataset.index
+    let arrindex = e.currentTarget.dataset.arrindex
+    let cartList = this.data.cartList
+    if (index === 1) {
+      this.refreshCart(arrindex,1);
+    } else {
+      if (cartList[arrindex].number > 1) {
+        this.refreshCart(arrindex,-1);
+      }
+    }
+  },
+  refreshCart(arrindex,number) {
+    let cartList = this.data.cartList
+    _CartAdd({
+      id: cartList[arrindex].id,
+      goodsId: cartList[arrindex].goods_id,
+      productId: cartList[arrindex].product_id,
+      number
+    }).then(data => {
+      this.setData({
+        cartList: data.cartList,
+        cartTotal:data.cartTotal
+      })
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
       })
     })
   },

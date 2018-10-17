@@ -17,11 +17,8 @@ Page({
     cartShowFlag: true,
     collectState:"",
     collectText: "",
-    buyingInfo: {
-      goodsId: "",
-      productId: "",
-      number: ""
-    }
+    allPrice:0,
+    quantity:1
   },
 
   onLoad: function(options) {
@@ -29,7 +26,8 @@ Page({
     app.setWatcher(this.data,this.watch)
     _GoodsDetail({ id: options.goodId }).then(data => {
       this.setData({
-        detail: data
+        detail: data,
+        allPrice: data.info.retail_price
       });
       this.collect()
     });
@@ -43,6 +41,28 @@ Page({
       }else {
         that.setData({
           collectText: "收藏"
+        })
+      }
+    },
+    quantity(newValue) {
+      let allPrice = newValue * that.data.detail.info.retail_price
+      that.setData({
+        allPrice
+      })
+    }
+  },
+  //数量操作
+  quantityControl(e) {
+    let index = e.currentTarget.dataset.index
+    let newQuantity = this.data.quantity
+    if(index === 1) {
+      this.setData({
+        quantity: newQuantity +1
+      })
+    }else {
+      if(newQuantity > 1) {
+        this.setData({
+          quantity: newQuantity - 1
         })
       }
     }
@@ -75,38 +95,37 @@ Page({
     })
   },
   //跳转至首页
-  switchToIndex() {
-    wx.switchTab({
-      url: "../index/index"
-    });
-  },
-  reToIndex() {
-    console.log(222);
+  navToIndex() {
     wx.navigateBack({
       url: "../index/index"
     });
   },
-  navToCart() {
-    console.log(111);
-    wx.navigateTo({
+  switchToCart() {
+    wx.switchTab({
       url: "../cart/cart"
     });
   },
-  cartAdd(e) {
+  cartAdd() {
     let buyingInfo = {
-      goodsId: e.currentTarget.dataset.goodsid,
-      productId: e.currentTarget.dataset.prodid,
-      number: 1
+      goodsId: this.data.detail.productList[0].goods_id,
+      productId: this.data.detail.productList[0].id,
+      number: this.data.quantity
     };
-    this.setData({
-      buyingInfo: buyingInfo
-    });
-    _CartAdd(this.data.buyingInfo).then(data => {
+    _CartAdd(buyingInfo).then(data => {
       wx.showToast({
         title: "添加成功",
         icon: "success"
-      });
-    });
+      })
+      setTimeout(() => {
+        wx.switchTab({
+          url: "../cart/cart"
+        });
+      }, 1500);
+    }).catch(msg => 　{
+      wx.showModal({
+        title: msg
+      })
+    });;
   },
   scrollToTop() {
     wx.pageScrollTo({
