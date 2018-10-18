@@ -62,6 +62,31 @@ App({
       }
     });
   },
+  pay(data) {
+    wx.requestPayment({
+      timeStamp: data.timeStamp,
+      appId: data.appId,
+      nonceStr: data.nonceStr,
+      package: data.package,
+      signType: data.signType,
+      paySign: data.paySign,
+      success: function (res) {
+        wx.showToast({
+          title: '成功结算',
+        })
+        setTimeout(() => {
+          wx.redirectTo({
+            url: '../orderList/orderList'
+          })
+        }, 1000);
+      },
+      fail: function (res) {
+        wx.redirectTo({
+          url: '../orderList/orderList'
+        })
+      }
+    });
+  },
   wxappLogin(data) {
     let userInfoJson = wx.getStorageSync("userInfo")
     let phoneNum = wx.getStorageSync("userPhoneNum");

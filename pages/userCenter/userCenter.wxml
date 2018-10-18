@@ -1,19 +1,26 @@
 <view class="template">
     <view class="bg"></view>
     <view class="main">
-            <view class="info">
+    <view class="info" wx:if="{{userInfo!==null?true:false}}">
         <view class="pro-pic">
-            <image src="../../img/userCenter/pro_pic.jpg" />
+            <image src="{{userInfo.avatarUrl}}" />
         </view>
         <view class="text">
-            <text>春芽chunya</text>
-            <text>明天，永远崭新，永不断货</text>
+            <text>{{userInfo.nickName}}</text>
         </view>
-        <view class="control">
+        <!--<view class="control">
             编辑
+        </view> -->
+    </view>
+    <view class="info" wx:else>
+        <view class="pro-pic">
+            <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">头像</button>
+        </view>
+        <view>
+           请点击头像进行授权登录 
         </view>
     </view>
-    <view class="integral">
+    <!--<view class="integral">
         <view class="point">
             <image src="../../img/userCenter/icon1.png" />
             <view class="desc">
@@ -28,7 +35,7 @@
        <view class="vip">
             <image src="../../img/userCenter/icon2.png" />
         </view>
-    </view>
+    </view> -->
     <view class="order">
         <view class="title" bindtap="navToOrderList">
             <view>我的订单</view>
@@ -38,19 +45,19 @@
             </view>
         </view>
         <view class="nav">
-            <view>
-                <image src="../../img/userCenter/nav1.png" />
+            <view data-index="{{undefined}}" bindtap="getOrderList">
+                <image src="../../img/userCenter/nav1.png"/>
                 <text>待付款</text>
             </view>
-            <view>
+            <view data-index="{{201}}" bindtap="getOrderList">
                 <image src="../../img/userCenter/nav2.png" />
                 <text>待发货</text>
             </view>
-            <view>
+            <view data-index="{{300}}" bindtap="getOrderList">
                 <image src="../../img/userCenter/nav3.png" />
                 <text>待收货</text>
             </view>
-            <view>
+            <view data-index="{{301}}" bindtap="getOrderList">
                 <image src="../../img/userCenter/nav4.png" />
                 <text>待评价</text>
             </view>
@@ -61,20 +68,22 @@
         </view>
         <view class="cont">
             <view class="list">
-                <view class="cont-item">
+                <view class="cont-item"  wx:if="{{orderInfo}}">
                     <view class="cont-title">
-                        <text>最新物流</text>
-                        <text>10-08</text>
+                        <text>最新订单</text>
+                        <text>{{orderInfo.add_time}}</text>
                     </view>
-                    <view class="desc">
-                        <image src="../../img/userCenter/good.png" />
-                        <view class="desc-text">
-                            <view>
-                                <image src="../../img/userCenter/icon3.png" />
-                                <text>已签收</text>
-                            </view>
-                            <view>
-                                包裹已到达自提柜，请您及时取件
+                    <view wx:for="{{orderInfo.orderGoodsList}}">
+                        <view class="desc">
+                            <image src="{{item.list_pic_url}}" />
+                            <view class="desc-text">
+                                <view>
+                                    <image src="../../img/userCenter/icon3.png" />
+                                    <text>{{orderInfo.order_status_text}}</text>
+                                </view>
+                                <view>
+                                    备注:无
+                                </view>
                             </view>
                         </view>
                     </view>

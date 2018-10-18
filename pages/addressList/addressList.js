@@ -30,6 +30,11 @@ Page({
       })
     })
   },
+  navToAddressInput() {
+    wx.navigateTo({
+      url:"../addressInput/addressInput"
+    })
+  },
   addressDefault(e) {
     let data = e.currentTarget.dataset.index
     let is_default = data.is_default === 0 ? true : false
@@ -62,7 +67,7 @@ Page({
   },
   navToAddressInput(e) {
     let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
+    wx.redirectTo({
       url: `../addressInput/addressInput?id=${id}`
     })
   },

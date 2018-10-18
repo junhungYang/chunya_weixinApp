@@ -1,5 +1,6 @@
 // pages/orderDetail/orderDetail.js
-import { _OrderSubmit, _WeChatPay, _OrderDetail} from '../../utils/request'
+import { _WeChatPay, _OrderDetail} from '../../utils/request'
+const app = getApp()
 Page({
 
   data: {
@@ -21,8 +22,17 @@ Page({
       })
     })
   },
-  onReady: function () {
-
+  pay(e) {
+    let orderId = e.currentTarget.dataset.id
+    _WeChatPay({ orderId })
+      .then(data => {
+        app.pay(data)
+      })
+      .catch(msg => {
+        wx.showModal({
+          title: msg
+        })
+      })
   },
   buyConfirm() {
     let addressId = this.data.orderDetail.checkedAddress.id;

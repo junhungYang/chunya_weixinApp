@@ -18,17 +18,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if(options.id) {
+    if (options.id !== 'undefined') {
       let id = options.id;
       _PositionDetail({
         id
-      })
-        .then(data => {
+      }).then(data => {
           this.setData({
             detail: data
           });
-        })
-        .catch(msg => {
+        }).catch(msg => {
           wx.showModal({
             title: msg
           });
@@ -61,8 +59,8 @@ Page({
   chooseAddress() {
     wx.chooseAddress({
       success:(res) => {
-        res.id = this.data.detail.id
-        res.is_default = this.data.detail.is_default
+          res.id = this.data.detail.id
+          res.is_default = this.data.detail.is_default
         this.setData({
           detail: res,
           addressText: `${res.provinceName}${res.cityName}${res.countyName}`
@@ -89,23 +87,26 @@ Page({
   },
   saveAddress() {
     let detail = this.data.detail
-    _PositionSave({
-      id: detail.id,
+    let obj = {
       userName: detail.userName,
       provinceName: detail.provinceName,
       cityName: detail.cityName,
       countyName: detail.countyName,
       detailInfo: detail.detailInfo,
       telNumber: detail.telNumber,
-      is_default: detail.is_default
-    }).then(() => {
+      is_default:true
+    }
+    if(detail.id) {
+      obj.id = detail.id
+    }
+    _PositionSave(obj).then(() => {
       wx.showToast({
         title:'保存成功',
         icon:'success'
       })
       setTimeout(() => {
-        wx.navigateBack({
-          delta: 1
+        wx.redirectTo({
+          url:'../addressList/addressList'
         })
       }, 1500);
     });

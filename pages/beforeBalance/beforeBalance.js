@@ -55,10 +55,19 @@ Page({
           signType: data.signType,
           paySign: data.paySign,
           success: function(res) {
-            console.log("success",res);
+            wx.showToast({
+              title:'成功结算',
+            })
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '../orderList/orderList'
+              })
+            }, 1000);
           },
           fail: function(res) {
-            console.log(res);
+            wx.redirectTo({
+              url:'../orderList/orderList'
+            })
           }
         });
       });

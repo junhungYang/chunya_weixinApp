@@ -1,21 +1,20 @@
 <view class="template">
     <view class="nav">
-        <view bindtap="changeActive" data-index="{{1}}">
-            <text class="{{active===1?'active':''}}">全部</text>
+        <view bindtap="changeActive" data-requestCode="{{-1}}">
+            <text class="{{requestCode===-1?'active':''}}">全部</text>
         </view>
-        <view bindtap="changeActive" data-index="{{2}}">
-            <text class="{{active===2?'active':''}}">待付款</text>
+        <view bindtap="changeActive" data-requestCode="{{0}}">
+            <text class="{{requestCode===0?'active':''}}">待付款</text>
         </view>
-        <view bindtap="changeActive" data-index="{{3}}">
-            <text class="{{active===3?'active':''}}">待收货</text>
+        <view bindtap="changeActive" data-requestCode="{{300}}">
+            <text class="{{requestCode===300?'active':''}}">待收货</text>
         </view>
-        <view bindtap="changeActive" data-index="{{4}}">
-            <text class="{{active===4?'active':''}}">待评价</text>
+        <view bindtap="changeActive" data-requestCode="{{301}}">
+            <text class="{{requestCode===301?'active':''}}">待评价</text>
         </view>
     </view>
     <view class="content">
         <view class="item" wx:for="{{orderList}}">
-        
             <view class="title">
                 <image src="../../img/orderList/icon1.png" />
                 <text>春芽好物</text>
@@ -48,7 +47,7 @@
                 </view>
             </view>
             <view class="control" wx:else>
-                <view class="btn-group">
+                <view class="btn-group" data-id="{{item.id}}" bindtap="pay">
                     <view>
                         结算
                     </view>

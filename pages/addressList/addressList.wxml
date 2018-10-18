@@ -23,4 +23,7 @@
             </view>
         </view>
     </view>
+    <view class="add-address" bindtap="navToAddressInput">
+        新增收货地址
+    </view>
 </view>
