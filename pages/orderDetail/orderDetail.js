@@ -1,24 +1,29 @@
 // pages/orderDetail/orderDetail.js
-import { _OrderSubmit,_WeChatPay} from '../../utils/request'
+import { _OrderSubmit, _WeChatPay, _OrderDetail} from '../../utils/request'
 Page({
 
   data: {
-    orderDetail:{}
+    data:{}
   },
 
 
   onLoad: function (options) {
-    let orderDetail = JSON.parse(options.dataStr)
-    this.setData({
-      orderDetail
+   let orderId = options.id
+    _OrderDetail({
+      orderId
+    }).then(data => {
+      this.setData({
+        data
+      })
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
     })
   },
-  
-
   onReady: function () {
 
   },
-
   buyConfirm() {
     let addressId = this.data.orderDetail.checkedAddress.id;
     _OrderSubmit({ addressId }).then(data => {

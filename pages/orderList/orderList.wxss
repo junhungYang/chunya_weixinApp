@@ -1,6 +1,5 @@
 .template {
   background: #f7f7f7;
-  min-height: 100vh;
 }
 .template .nav {
   position: fixed;
@@ -9,6 +8,8 @@
   right: 0;
   height: 88rpx;
   display: flex;
+  background: #f7f7f7;
+  z-index: 99;
 }
 .template .nav view {
   flex: 1;
@@ -24,6 +25,10 @@
   height: 86rpx;
   line-height: 86rpx;
   white-space: nowrap;
+}
+.template .nav view .active {
+  color: #2ca5ae;
+  border-bottom: 2px solid #2ca5ae;
 }
 .template .content {
   padding-top: 88rpx;

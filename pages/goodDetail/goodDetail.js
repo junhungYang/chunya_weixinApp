@@ -17,17 +17,25 @@ Page({
     cartShowFlag: true,
     collectState:"",
     collectText: "",
-    allPrice:0,
-    quantity:1
+    productPrice:0,
+    quantity:1,
+    activeProduct:{}
   },
-
+  chooseProduct(e) {
+    let obj = e.currentTarget.dataset.item;
+    this.setData({
+      activeProduct: obj,
+      productPrice: obj.retail_price
+    }) 
+  },
   onLoad: function(options) {
     that = this;
     app.setWatcher(this.data,this.watch)
     _GoodsDetail({ id: options.goodId }).then(data => {
       this.setData({
         detail: data,
-        allPrice: data.info.retail_price
+        productPrice: data.productList[0].retail_price,
+        activeProduct:data.productList[0]
       });
       this.collect()
     });
@@ -43,12 +51,6 @@ Page({
           collectText: "收藏"
         })
       }
-    },
-    quantity(newValue) {
-      let allPrice = newValue * that.data.detail.info.retail_price
-      that.setData({
-        allPrice
-      })
     }
   },
   //数量操作
@@ -107,8 +109,8 @@ Page({
   },
   cartAdd() {
     let buyingInfo = {
-      goodsId: this.data.detail.productList[0].goods_id,
-      productId: this.data.detail.productList[0].id,
+      goodsId: this.data.activeProduct.goods_id,
+      productId: this.data.activeProduct.id,
       number: this.data.quantity
     };
     _CartAdd(buyingInfo).then(data => {

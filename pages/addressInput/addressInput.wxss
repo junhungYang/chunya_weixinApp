@@ -20,13 +20,18 @@
   background: #fff;
   border-radius: 12rpx;
 }
-.template .main .person .cont view:first-of-type,
-.template .main .address .cont view:first-of-type {
+.template .main .person .cont .address,
+.template .main .address .cont .address {
   height: 87rpx;
   border-bottom: 1px solid #f7f7f7;
 }
-.template .main .person .cont view:first-of-type .icon,
-.template .main .address .cont view:first-of-type .icon {
+.template .main .person .cont .address text:nth-of-type(2),
+.template .main .address .cont .address text:nth-of-type(2) {
+  flex: 1;
+  color: #b2b2b2;
+}
+.template .main .person .cont .address .icon,
+.template .main .address .cont .address .icon {
   width: 32rpx;
   height: 40rpx;
   align-self: center;

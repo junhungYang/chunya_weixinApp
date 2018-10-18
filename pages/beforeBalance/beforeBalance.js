@@ -15,6 +15,7 @@ Page({
    */
   onLoad: function (options) {
     let data = JSON.parse(options.dataStr)
+    console.log(data)
     this.setData({
       data
     })
@@ -29,6 +30,15 @@ Page({
       allQuantity
     })
   },
+  navToAddressInput() {
+    if(this.data.data.checkedAddress) {
+      let id = this.data.data.checkedAddress.id
+      wx.navigateTo({ url: `../addressInput/addressInput?id=${id}` });
+    }else {
+      wx.navigateTo({ url: `../addressInput/addressInput` });
+    }
+    
+  },
   orderConfirm() {
     _OrderSubmit({
       postscript: "",
@@ -36,21 +46,22 @@ Page({
       fullCutCouponDec: this.data.data.fullCutCouponDec
     }).then(data => {
       let orderId = data.orderInfo.id;
-      wx.showModal({
-        title:'订单提交成功',
-        content:'请点击确认进入订单列表进行支付操作',
-        success(res) {
-          if(res.cancel) {
-            wx.switchTab({
-              url: "../index/index"
-            });
-          }else {
-            wx.redirectTo({
-              url: '../orderList/orderList'
-            })
+      _WeChatPay({ orderId }).then(data => {
+        wx.requestPayment({
+          timeStamp: data.timeStamp,
+          appId: data.appId,
+          nonceStr: data.nonceStr,
+          package: data.package,
+          signType: data.signType,
+          paySign: data.paySign,
+          success: function(res) {
+            console.log("success",res);
+          },
+          fail: function(res) {
+            console.log(res);
           }
-        }
-      })
+        });
+      });
     });
   },
   /**

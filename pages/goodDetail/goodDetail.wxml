@@ -174,24 +174,20 @@
         <view class="box">
             <view class="info">
                 <view class="text-img">
-                    <image src="../../img/cart/cart_good.png" />
+                    <image src="{{detail.info.primary_pic_url}}" />
                     <view class="about">
                         <view class="name">
-                            善缘大米，送礼佳品，温度之作。
+                            {{detail.info.name}}
                         </view>
                         <view class="price-size">
                             <view class="price">
-                                {{allPrice}}
+                                {{productPrice}}
                             </view>
                             <view class="size">
-                                <view>
-                                    2.5KG
-                                </view>
-                                <view>
-                                    5KG
-                                </view>
-                                <view>
-                                    礼盒装
+                                <view class="{{activeProduct.id===item.id?'active':''}}"
+                                 wx:for="{{detail.productList}}" 
+                                 data-item="{{item}}" bindtap="chooseProduct">
+                                    {{item.product_name}}
                                 </view>
                             </view>
                         </view>

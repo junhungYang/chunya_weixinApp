@@ -1,9 +1,10 @@
 // pages/addressInput/addressInput.js
 const app = getApp()
-import { 
+import {
   _PositionDetail,
-  _GetSensitiveInfo
-} from '../../utils/request'
+  _GetSensitiveInfo,
+  _PositionSave
+} from "../../utils/request";
 Page({
   /**
    * 页面的初始数据
@@ -17,20 +18,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let id = options.id;
-    _PositionDetail({
-      id
-    })
-      .then(data => {
-        this.setData({
-          detail: data
-        });
+    if(options.id) {
+      let id = options.id;
+      _PositionDetail({
+        id
       })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
+        .then(data => {
+          this.setData({
+            detail: data
+          });
+        })
+        .catch(msg => {
+          wx.showModal({
+            title: msg
+          });
         });
-      });
+    }
   },
   getPhoneNumber(e) {
     let sessionKey = wx.getStorageSync("sessionKey");
@@ -58,10 +61,53 @@ Page({
   chooseAddress() {
     wx.chooseAddress({
       success:(res) => {
+        res.id = this.data.detail.id
+        res.is_default = this.data.detail.is_default
         this.setData({
           detail: res,
-        })
+          addressText: `${res.provinceName}${res.cityName}${res.countyName}`
+        });
       }
+    });
+  },
+  inputControl(e) {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let index = e.currentTarget.dataset.index
+      let detail = this.data.detail
+      switch (index) {
+        case 1:
+          detail.userName = e.detail.value
+          break;
+        case 2:
+          detail.telNumber = e.detail.value
+          break;
+        case 3:
+          detail.detailInfo = e.detail.value
+      }
+    }, 300);
+  },
+  saveAddress() {
+    let detail = this.data.detail
+    _PositionSave({
+      id: detail.id,
+      userName: detail.userName,
+      provinceName: detail.provinceName,
+      cityName: detail.cityName,
+      countyName: detail.countyName,
+      detailInfo: detail.detailInfo,
+      telNumber: detail.telNumber,
+      is_default: detail.is_default
+    }).then(() => {
+      wx.showToast({
+        title:'保存成功',
+        icon:'success'
+      })
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 1500);
     });
   },
   /**

@@ -1,5 +1,5 @@
 <view class="template">
-    <view class="about-address">
+    <view class="about-address" bindtap="navToAddressInput">
         <view class="info" wx:if="{{data.checkedAddress}}">
             <view class="text">
                 收件人：
@@ -17,7 +17,7 @@
                 编辑
             </view>
         </view>
-        <view class="add" wx:else>
+        <view class="add" wx:else bindtap="navToAddressInput">
             <image src="../../img/beforeBalance/add.png" />
             <text>新增收货地址</text>
             <image src="../../img/redictTo.png" />

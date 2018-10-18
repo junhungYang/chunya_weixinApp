@@ -1,37 +1,40 @@
 <view class="template">
     <view class="nav">
-        <view>
-            <text class="active">全部</text>
+        <view bindtap="changeActive" data-index="{{1}}">
+            <text class="{{active===1?'active':''}}">全部</text>
         </view>
-        <view>
-            <text>待付款</text>
+        <view bindtap="changeActive" data-index="{{2}}">
+            <text class="{{active===2?'active':''}}">待付款</text>
         </view>
-        <view>
-            <text>待收货</text>
+        <view bindtap="changeActive" data-index="{{3}}">
+            <text class="{{active===3?'active':''}}">待收货</text>
         </view>
-        <view>
-            <text>待评价</text>
+        <view bindtap="changeActive" data-index="{{4}}">
+            <text class="{{active===4?'active':''}}">待评价</text>
         </view>
     </view>
     <view class="content">
         <view class="item" wx:for="{{orderList}}">
+        
             <view class="title">
                 <image src="../../img/orderList/icon1.png" />
                 <text>春芽好物</text>
                 <text>{{item.order_status_text}}</text>
             </view>
-            <view class="desc">
-                <image src="../../img/orderDetail/good.jpg" />
-                <view class="text">
-                    <text class="name">善缘大米，送礼佳品，温度之作</text>
-                    <text class="price">￥{{item.order_price}}</text>
-                    <!--<view class="other">
-                            公益捐赠0.95元
-                    </view>-->
-                </view>
-                <text class="quantity">×1</text>
+            <view wx:for="{{item.orderGoodsList}}" wx:for-item="item1" data-item="{{item}}" bindtap="navToOrderDetail">
+                    <view class="desc">
+                        <image src="{{item1.list_pic_url}}" />
+                        <view class="text">
+                            <text class="name">{{item1.goods_name}}</text>
+                            <text class="price">￥{{item1.retail_price}}</text>
+                            <!--<view class="other">
+                                    公益捐赠0.95元
+                            </view>-->
+                        </view>
+                        <text class="quantity">×{{item1.number}}</text>
+                    </view>  
             </view>
-            <view class="control">
+            <view class="control" wx:if="{{item.order_status_text!=='未付款'?true:false}}">
                 <view class="btn-group">
                     <view>
                         延长收货
@@ -44,34 +47,10 @@
                     </view>
                 </view>
             </view>
-        </view>
-        <view class="item">
-            <view class="title">
-                <image src="../../img/orderList/icon1.png" />
-                <text>春芽好物</text>
-                <text>已发货</text>
-            </view>
-            <view class="desc">
-                <image src="../../img/orderDetail/good.jpg" />
-                <view class="text">
-                    <text class="name">善缘大米，送礼佳品，温度之作</text>
-                    <text class="price">￥950.00</text>
-                    <view class="other">
-                            公益捐赠0.95元
-                    </view>
-                </view>
-                <text class="quantity">×1</text>
-            </view>
-            <view class="control">
+            <view class="control" wx:else>
                 <view class="btn-group">
                     <view>
-                        延长收货
-                    </view>
-                    <view>
-                        查看物流
-                    </view>
-                    <view>
-                        确认收货
+                        结算
                     </view>
                 </view>
             </view>

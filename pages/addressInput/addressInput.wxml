@@ -7,12 +7,12 @@
             <view class="cont">
                 <view>
                     <text>姓名</text>
-                    <input type="text" value="{{detail.userName}}" placeholder="真实姓名"/>
+                    <input type="text" value="{{detail.userName}}" placeholder="真实姓名" data-index="1" bindinput="inputControl"/>
                 </view>
                 <view>
                     <text>电话</text>
-                    <input value="{{detail.telNumber}}" placeholder="手机号码"/>
-                    <button class="getNum-btn"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号码</button>
+                    <input value="{{detail.telNumber}}" placeholder="手机号码" data-index="2" bindinput="inputControl"/>
+                    <button class="getNum-btn"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" >获取手机号码</button>
                 </view>
             </view>
         </view>
@@ -21,14 +21,14 @@
                 收货地址
             </view>
             <view class="cont">
-                <view>
+                <view class="address">
                     <text>地区信息</text>
-                    <input type="text" value="{{detail.}}"/>
-                    <image src="../../img/positionIcon.png" class="icon" />
+                    <text>{{addressText}}</text>
+                    <image src="../../img/positionIcon.png" class="icon" bindtap="chooseAddress"/>
                 </view>
                 <view>
                     <text>详细地址</text>
-                    <input type="text" placeholder="街道门派、楼层房间号等信息"/>
+                    <input type="text" value="{{detail.detailInfo}}"placeholder="街道门派、楼层房间号等信息" data-index="3" bindinput="inputControl"/>
                 </view>
             </view>
         </view>
@@ -37,7 +37,7 @@
             <text>一键添加微信地址</text>
         </view>
     </view>
-    <view class="save-btn">
+    <view class="save-btn" bindtap="saveAddress">
         保存并使用
     </view>
 </view>

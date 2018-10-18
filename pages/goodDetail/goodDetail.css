@@ -528,6 +528,10 @@
 .cart-control .box .info .text-img .about .price-size .size view:first-of-type {
   margin: 0;
 }
+.cart-control .box .info .text-img .about .price-size .size .active {
+  border: 1px solid #ed015c;
+  color: #ed015c;
+}
 .cart-control .box .info .text-img .close {
   position: absolute;
   width: 44rpx;
