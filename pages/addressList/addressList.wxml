@@ -3,14 +3,18 @@
         <view class="item" wx:for="{{addressList}}">
             <view class="info">
                 <text>{{item.userName}}</text>
-                <text>{{item.full_region}}</text>
+                <text>{{item.full_region}}{{item.detailInfo}}</text>
                 <text>{{item.telNumber}}</text>
             </view>
             <view class="control">
-                <view bindtap="addressDefault" data-index="{{item}}">
+                <view wx:if="{{fromIndex === 1}}" bindtap="addressDefault" data-index="{{item}}">
                     <image wx:if="{{item.is_default}}" src="../../img/cart/icon2.png" />
                     <image wx:else src="../../img/cart/icon3.png" />
                     <text>默认地址</text>
+                </view>
+                <view wx:else data-item="{{item}}" bindtap="navBackBeforeBalance">
+                    <image class="addressIcon" src="../../img/addressIcon.png" />
+                    <text>设置为收货地址</text>
                 </view>
                 <view bindtap="navToAddressInput" data-id="{{item.id}}">
                     <image src="../../img/bianji.png" />
@@ -24,6 +28,6 @@
         </view>
     </view>
     <view class="add-address" bindtap="navToAddressInput">
-        新增收货地址
+        新增收货地址{{app.globalData.text}}
     </view>
 </view>

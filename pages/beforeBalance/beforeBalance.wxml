@@ -1,5 +1,5 @@
 <view class="template">
-    <view class="about-address" bindtap="navToAddressInput">
+    <view class="about-address" bindtap="navToAddressList">
         <view class="info" wx:if="{{data.checkedAddress}}">
             <view class="text">
                 收件人：
@@ -17,7 +17,7 @@
                 编辑
             </view>
         </view>
-        <view class="add" wx:else bindtap="navToAddressInput">
+        <view class="add" wx:else bindtap="navToAddressList">
             <image src="../../img/beforeBalance/add.png" />
             <text>新增收货地址</text>
             <image src="../../img/redictTo.png" />
@@ -49,7 +49,8 @@
         </view>
         <view class="word">
             <text>买家留言</text>
-            <input type="text" placeholder="填写内容需与商家协商并确认，45字内"  placeholder-style="color:#b2b2b2;"/>
+            <input type="text" placeholder="填写内容需与商家协商并确认，45字内" 
+            bindinput="postscriptInput"  placeholder-style="color:#b2b2b2;"/>
         </view>
         <view class="postage">
             <view>
@@ -89,6 +90,6 @@
             <text>￥{{data.actualPrice}}</text>
         </view>
         <view bindtap="orderConfirm">
-            提交订单
+            结算
         </view>
     </view>

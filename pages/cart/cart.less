@@ -43,7 +43,7 @@
     .list {
         .item {
             width: 87.2%;
-            height: 294rpx;
+            min-height: 294rpx;
             margin: 0 6.4%;
             box-sizing: border-box;
             padding: 0 18rpx;
@@ -87,6 +87,18 @@
                     color:#313131;
                     line-height: 38rpx;
                     letter-spacing: 1rpx;
+                    max-height: 76rpx;
+                    overflow: hidden;
+                }
+                text:nth-of-type(2) {
+                    display: inline-block;
+                    height: 28rpx;
+                    padding: 0 8rpx;
+                    text-align: center;
+                    line-height: 28rpx;
+                    font-size: 20rpx;
+                    border: 1px solid #ed015c;
+                    color: #ed015c;
                 }
                 text:last-of-type {
                     position: absolute;

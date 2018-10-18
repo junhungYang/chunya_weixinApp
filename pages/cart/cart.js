@@ -114,24 +114,32 @@ Page({
     });
   },
   buyConfirm() {
-    _OrderCheckout().then(data => {
-      let addressId = data.checkedAddress.id;
-      if (data.checkedAddress) {
-        let dataStr = JSON.stringify(data);
-        wx.navigateTo({
-          url: `../beforeBalance/beforeBalance?dataStr=${dataStr}`
-        });
-      } else {
-        wx.showModal({
-          title: "请添加地址",
-          success() {
-            wx.navigateTo({
-              url: "../addressInput/addressInput"
-            });
-          }
-        });
-      }
-    });
+    if (this.data.cartTotal.checkedGoodsAmount !== 0) {
+      _OrderCheckout().then(data => {
+        let addressId = data.checkedAddress.id;
+        if (data.checkedAddress) {
+          let dataStr = JSON.stringify(data);
+          wx.navigateTo({
+            url: `../beforeBalance/beforeBalance?dataStr=${dataStr}`
+          });
+        } else {
+          wx.showModal({
+            title: "请添加地址",
+            success() {
+              wx.navigateTo({
+                url: "../addressInput/addressInput"
+              });
+            }
+          });
+        }
+      });
+    }else {
+      wx.showToast({
+        icon:'none',
+        title: '请先选择商品',
+        duration: 1000
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

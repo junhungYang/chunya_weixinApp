@@ -136,6 +136,7 @@ App({
   globalData: {
     userInfo: null,
     cartInfo:{},
-    token:''
+    token:'',
+    text:'abc'
   }
 });

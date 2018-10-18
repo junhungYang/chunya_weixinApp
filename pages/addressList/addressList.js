@@ -1,4 +1,5 @@
 // pages/addressList/addressList.js
+const app = getApp()
 import {
   _PositionList,
   _PositionSave,
@@ -10,13 +11,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    addressList:[]
+    addressList:[],
+    fromIndex:'',
+    text:app.globalData.text
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      fromIndex:options.index
+    })
+    console.log(this.data.fromIndex)
     this.getPositionList()
   },
   getPositionList() {
@@ -28,6 +35,19 @@ Page({
       wx.showModal({
         title: msg
       })
+    })
+  },
+  navBackBeforeBalance(e) {
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    let activeAddress = e.currentTarget.dataset.item
+    let data = prevPage.data.data
+    data.checkedAddress = activeAddress;
+    prevPage.setData({
+      data
+    })
+    wx.navigateBack({
+      delta:1
     })
   },
   navToAddressInput() {

@@ -7,9 +7,7 @@
                 <image src="../../img/cart/icon1.png" />
                 <text>春芽好物</text>
             </view>
-            <view>
-                编辑
-            </view>
+            <view></view>
         </view>
         <view class="list">
             <view class="item" wx:for="{{cartList}}" wx:for-index="arrIndex">
@@ -22,6 +20,7 @@
                 </view>
                 <view class="text">
                     <text>{{item.goods_name}}</text>
+                    <text>{{item.product_name}}</text>
                     <text>￥{{item.retail_product_price}}</text>
                 </view>
                 <view class="quantity-control">
@@ -57,22 +56,9 @@
                 </view>
             </view>
             <view class="balance" bindtap="buyConfirm">
-                结算
+                提交订单
             </view>
         </view>
-        <!-- <view class="cart-list">
-            <view wx:if="{{cartList.length === 0 ? true : false}}">
-                你的购物车还没有商品
-            </view>
-            <view wx:if="{{cartList.length !== 0 ? true : false}}">
-                <view wx:for="{{cartList}}">
-                    {{item.goods_name}}
-                    <image src="{{item.list_pic_url}}" />
-                    <button bindtap="goodsDelete" data-prodid="{{item.product_id}}">删除商品</button>
-                </view>
-            </view>
-        </view>
-        <button bindtap="buyConfirm">下单前确认</button> -->
     </view>
 
 
