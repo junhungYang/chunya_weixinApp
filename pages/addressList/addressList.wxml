@@ -7,7 +7,7 @@
                 <text>{{item.telNumber}}</text>
             </view>
             <view class="control">
-                <view wx:if="{{fromIndex === 1}}" bindtap="addressDefault" data-index="{{item}}">
+                <view wx:if="{{fromIndex==='1'}}" bindtap="addressDefault" data-index="{{item}}">
                     <image wx:if="{{item.is_default}}" src="../../img/cart/icon2.png" />
                     <image wx:else src="../../img/cart/icon3.png" />
                     <text>默认地址</text>

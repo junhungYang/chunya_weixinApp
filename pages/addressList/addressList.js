@@ -50,9 +50,10 @@ Page({
       delta:1
     })
   },
-  navToAddressInput() {
+  navToAddressInput(e) {
+    let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url:"../addressInput/addressInput"
+      url: `../addressInput/addressInput?id=${id}`
     })
   },
   addressDefault(e) {
@@ -83,12 +84,6 @@ Page({
       wx.showModal({
         title:msg
       })
-    })
-  },
-  navToAddressInput(e) {
-    let id = e.currentTarget.dataset.id;
-    wx.redirectTo({
-      url: `../addressInput/addressInput?id=${id}`
     })
   },
   /**

@@ -73,7 +73,7 @@ Page({
   },
   navToAddressList() {
     wx.navigateTo({
-      url: "../addressList/addressList?index=2"
+      url: "../addressList/addressList?index=1"
     });
   },
   onReady() {
