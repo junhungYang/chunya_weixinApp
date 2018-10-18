@@ -10,9 +10,7 @@
                 "pages/userCenter/userCenter",
         "pages/addressInput/addressInput",
     
-            "pages/cart/cart",
-        "pages/goods/goods"
-     
+            "pages/cart/cart"
   ],
   "window": {
     "backgroundTextStyle": "light",

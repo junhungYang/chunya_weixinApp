@@ -474,7 +474,7 @@
 }
 .cart-control {
     position: fixed;
-    top: 88rpx;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -499,7 +499,6 @@
                 display: flex;
                 padding-bottom: 19rpx;
                 border-bottom: 1px solid #e8e8e8;
-                height: 148rpx;
                 position: relative;
                 image {
                     width: 164rpx;
@@ -510,19 +509,25 @@
                 }
                 .about {
                     margin-left: 19rpx;
-                           padding-top: 32rpx;
+                    padding-top: 32rpx;
+                    flex: 1;
                     .name {
                         font-size: 24rpx;
                         color: #313131;
+                        width: 90%;
                     }
                     .price-size {
                         display: flex;
                         margin-top: 21rpx;
+                        position: relative;
                         .price {
                            color:#d1051f; 
                         }
                         .size {
-                            margin-left: 30rpx;
+                            position: absolute;
+                            right:0;
+                            top: 50%;
+                            transform: translateY(-50%);
                             view {
                                 display: inline-block;
                                 height: 28rpx;

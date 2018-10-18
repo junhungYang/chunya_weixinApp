@@ -456,7 +456,7 @@
 }
 .cart-control {
   position: fixed;
-  top: 88rpx;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -484,7 +484,6 @@
   display: flex;
   padding-bottom: 19rpx;
   border-bottom: 1px solid #e8e8e8;
-  height: 148rpx;
   position: relative;
 }
 .cart-control .box .info .text-img image {
@@ -497,20 +496,26 @@
 .cart-control .box .info .text-img .about {
   margin-left: 19rpx;
   padding-top: 32rpx;
+  flex: 1;
 }
 .cart-control .box .info .text-img .about .name {
   font-size: 24rpx;
   color: #313131;
+  width: 90%;
 }
 .cart-control .box .info .text-img .about .price-size {
   display: flex;
   margin-top: 21rpx;
+  position: relative;
 }
 .cart-control .box .info .text-img .about .price-size .price {
   color: #d1051f;
 }
 .cart-control .box .info .text-img .about .price-size .size {
-  margin-left: 30rpx;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .cart-control .box .info .text-img .about .price-size .size view {
   display: inline-block;
