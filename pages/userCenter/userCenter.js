@@ -6,7 +6,7 @@ Page({
     userInfo: {},
     orderInfo:{}
   },
-  onLoad() {
+  onShow() {
     if (wx.getStorageSync("userInfo")) {
       let userInfo = JSON.parse(wx.getStorageSync("userInfo"));
       this.setData({

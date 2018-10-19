@@ -20,7 +20,6 @@ Page({
     cartTotal: {},
     allChoose: false
   },
-
   onShow: function(options) {
     _CartIndex()
       .then(data => {
@@ -117,20 +116,15 @@ Page({
     if (this.data.cartTotal.checkedGoodsAmount !== 0) {
       _OrderCheckout().then(data => {
         let addressId = data.checkedAddress.id;
-        if (data.checkedAddress) {
+        if (addressId) {
           let dataStr = JSON.stringify(data);
           wx.navigateTo({
             url: `../beforeBalance/beforeBalance?dataStr=${dataStr}`
           });
         } else {
-          wx.showModal({
-            title: "请添加地址",
-            success() {
-              wx.navigateTo({
-                url: "../addressInput/addressInput"
-              });
-            }
-          });
+          wx.showModal({ title: "请添加地址", success() {
+              wx.navigateTo({ url: "../addressInput/addressInput" });
+            } });
         }
       });
     }else {

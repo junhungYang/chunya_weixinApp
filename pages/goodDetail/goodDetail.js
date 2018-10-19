@@ -14,7 +14,7 @@ Page({
     htmlStr: "",
     cartShowFlag: true,
     collectState: "",
-    quantity: 0,
+    quantity: 1,
     activeProduct: {},
     goodId:'',
     reviews:[]
@@ -24,7 +24,7 @@ Page({
     this.setData({
       activeProduct: obj,
       productPrice: obj.retail_price,
-      quantity: 0
+      quantity: 1
     });
   },
   onLoad: function(options) {
