@@ -6,6 +6,28 @@ const _SetToken = function(token) {
   console.log(Token)
 };
 
+//获取formid
+const _SendFormid = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/user/addfromid`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+}
+//相关登录操作网络流程
 const _GetSessionKey = function(data) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -655,6 +677,7 @@ const _CouponList = function () {
     });
 }
 module.exports = {
+  _SendFormid,
     _GetSessionKey,
     _GetSensitiveInfo,
     _WxappLogin,

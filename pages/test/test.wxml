@@ -1,34 +1,5 @@
-<!--pages/test/test.wxml-->
-<text>pages/test/test.wxml</text>
-<view class="my-address">
-    <text>我的收获地址</text>
-    <view>
-        <text wx:if="{{myAddressList.length === 0}}">请添加你的收获地址</text>
-        <view wx:if="{{myAddressList.length !== 0}}">
-            <view wx:for="{{myAddressList}}">
-                名字：{{item.userName}},
-                省： {{item.cityName}},
-                电话：{{item.telNumber}}
-            </view>
-        </view>
-    </view>
-</view>
-<view class="add-address">
-    <text>收货人</text>
-    <input type="text" bindinput="inpUser"/>
-    <text>省</text>
-    <input type="text" bindinput="inpProvince"/>
-    <text>市</text>
-    <input type="text" bindinput="inpCity"/>
-    <text>区</text>
-    <input type="text" bindinput="inpDistrict"/>
-    <text>详细地址</text>
-    <input type="text" bindinput="inpAddrDetail"/>
-    <text>手机号码</text>
-    <input type="text" bindinput="inpPhoneNum"/>
-    <view>
-        是否设为默认地址
-        <switch checked="false" bindchange="defaultAddress"/>
-    </view>
-    <button bindtap="inputConfirm">确定</button>
+<view>
+    <form bindsubmit="formSubmit_collect" report-submit="true">
+        <button  formType="submit"  hover-class="none" class='invisibleclass'>提交订单</button>
+    </form> 
 </view>

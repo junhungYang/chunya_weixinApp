@@ -20,6 +20,9 @@ Page({
       })
     })
   },
+  test() {
+    console.log('nimeide')
+  },
   navToGoodDetail(e) {
     let goodId = e.currentTarget.dataset.goodid
     wx.navigateTo({

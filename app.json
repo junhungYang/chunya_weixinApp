@@ -11,8 +11,8 @@
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
         "pages/addressInput/addressInput",
-    
-            "pages/cart/cart"
+            "pages/cart/cart",
+            "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,6 +36,9 @@
       "text": "我的",
       "iconPath": "img/myIcon.png",
       "selectedIconPath": "img/myActiveIcon.png"
+    },{
+      "pagePath": "pages/test/test",
+      "text": "测试"
     }]
   }
 }
