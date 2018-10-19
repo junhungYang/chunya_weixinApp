@@ -46,7 +46,7 @@
 }
 .swiper-box {
   height: 374rpx;
-  background:#ccc;
+  background:rgb(238, 238, 238);
 }
 .nav .item image {
   width: 80rpx;

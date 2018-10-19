@@ -20,10 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.index)
     this.setData({
       fromIndex:options.index
     })
-    console.log(this.data.fromIndex)
     this.getPositionList()
   },
   getPositionList() {

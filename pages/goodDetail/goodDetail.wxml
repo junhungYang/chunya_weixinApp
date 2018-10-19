@@ -20,8 +20,8 @@
                     </view>
                 </view>
                 <view class="price">
-                    <text class="new">￥{{detail.info.retail_price}}</text>
-                    <text class="old">￥{{detail.info.market_price}}</text>
+                    <text class="new">￥{{detail.info.retail_price_range}}</text>
+                    <text class="old">￥{{detail.info.market_price_range}}</text>
                 </view>
                 <!--<view class="coupon">
                     <view>
@@ -32,17 +32,18 @@
                         <text>立即领取</text>
                         <image src="../../img/redictTo.png" />
                     </view>
-                </view>
+                </view> -->
                 <view class="collect-share">
                     <view bindtap="collect">
                         <image src="{{collectState === 'add' ? '../../img/goodDetail/collect1.png' : '../../img/goodDetail/collect.png'}}" />
-                        <text>{{collectText}}</text>
+                        <text>{{collectState==='add'?'已收藏':'收藏'}}</text>
                     </view>
-                    <view>
+                    <view bindtap="share">
                         <image src="../../img/goodDetail/share.png" />
                         <text>分享</text>
                     </view>
-                </view> -->
+                    <button open-type="share" title="{{detail.info.name}}" path="/pages/goodDetail/goodDetail?goodId={{goodId}}">Button</button>
+                </view>
            </view> 
            <view class="choose" data-index="{{1}}" bindtap="cartStateManage">
                <view class="menu">

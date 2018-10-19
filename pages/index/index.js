@@ -72,32 +72,26 @@ Page({
         wx.setStorageSync("userPhoneNum", dataObj.phoneNumber);
         app.wxappLogin();
       })
-      .catch(msg => this.showMod(msg));
+      .catch(msg => {
+        wx.showModal({
+          title: msg
+        })
+      });
   },
   searchGoods(e) {
-    this.setData({
-            
-    })
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       _GoodsList({
         page: 1,
         size: 10,
         keyword: e.detail.value
-      })
-        .then(data => console.log(data))
-        .catch(msg => this.showMod(msg));
+      }).catch(msg => {
+          wx.showModal({
+            title: msg
+          })
+        });
     }, 1000);
   },
-  showMod(msg) {
-    wx.showModal({
-      title: "Error",
-      content: msg
-    });
-  },
   watch: {
-    token(nV) {
-      console.log(nV)
-    }
   }
 });

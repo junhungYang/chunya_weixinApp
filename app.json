@@ -1,9 +1,10 @@
 {
   "pages": [
+        "pages/goodDetail/goodDetail",
         "pages/index/index",
       "pages/orderDetail/orderDetail",
       
-        "pages/goodDetail/goodDetail",
+    
         "pages/orderList/orderList",
         "pages/addressList/addressList",
         "pages/beforeBalance/beforeBalance",

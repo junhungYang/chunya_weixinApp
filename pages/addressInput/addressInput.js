@@ -18,7 +18,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(getCurrentPages());
     if (options.id !== 'undefined') {
       let id = options.id;
       _PositionDetail({
@@ -70,21 +69,22 @@ Page({
     });
   },
   inputControl(e) {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(() => {
-      let index = e.currentTarget.dataset.index
-      let detail = this.data.detail
-      switch (index) {
-        case 1:
-          detail.userName = e.detail.value
-          break;
-        case 2:
-          detail.telNumber = e.detail.value
-          break;
-        case 3:
-          detail.detailInfo = e.detail.value
-      }
-    }, 300);
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        let index = e.currentTarget.dataset.index
+        let detail = this.data.detail
+        switch (index) {
+          case 1:
+            detail.userName = e.detail.value
+            break;
+          case 2:
+            detail.telNumber = e.detail.value
+            break;
+          case 3:
+            detail.detailInfo = e.detail.value
+        }
+        this.setData({ detail })
+      }, 300);
   },
   saveAddress() {
     let detail = this.data.detail
@@ -105,9 +105,12 @@ Page({
         title:'保存成功',
         icon:'success'
       })
+      let pages = getCurrentPages()
+      let prevPage = pages[pages.length - 2];
+      prevPage.getPositionList()
       setTimeout(() => {
-        wx.redirectTo({
-          url:'../addressList/addressList'
+        wx.navigateBack({
+          delta: 1
         })
       }, 1500);
     });

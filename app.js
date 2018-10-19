@@ -87,7 +87,7 @@ App({
       }
     });
   },
-  wxappLogin(data) {
+  wxappLogin() {
     let userInfoJson = wx.getStorageSync("userInfo")
     let phoneNum = wx.getStorageSync("userPhoneNum");
     if(userInfoJson) {
@@ -102,6 +102,7 @@ App({
         this.globalData.userInfo = data.userInfo;
         _SetToken(data.token)
         this.globalData.token = data.token;
+        return 'loginOk'
       }).catch(msg => this.showMod(msg))
     }else {
       this.wxLoginApi();

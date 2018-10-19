@@ -27,8 +27,7 @@ Page({
       //用户点击了取消
       wx.showModal({
         title: "警告通知",
-        content:
-          "您点击了拒绝授权,将无法正常显示个人信息,请从新点击授权按钮获取授权。"
+        content:"您点击了拒绝授权,将无法正常显示个人信息,请从新点击授权按钮获取授权。"
       });
     }
   },
@@ -73,7 +72,7 @@ Page({
   },
   navToAddressList() {
     wx.navigateTo({
-      url: "../addressList/addressList?index=1"
+      url: "../addressList/addressList?index=2"
     });
   },
   onReady() {

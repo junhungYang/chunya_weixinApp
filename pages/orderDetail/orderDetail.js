@@ -4,23 +4,22 @@ const app = getApp()
 Page({
 
   data: {
-    data:{}
+    data:{},
+    orderId:''
   },
-
-
   onLoad: function (options) {
-   let orderId = options.id
-    _OrderDetail({
+   let orderId
+    options.orderId ? (orderId = options.orderId) : (orderId = options.id);
+    this.setData({
       orderId
-    }).then(data => {
-      this.setData({
-        data
-      })
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
+    _OrderDetail({ orderId: this.data.orderId })
+      .then(data => {
+        this.setData({ data });
+      })
+      .catch(msg => {
+        wx.showModal({ title: msg });
+      });
   },
   pay(e) {
     let orderId = e.currentTarget.dataset.id
@@ -81,7 +80,20 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.showLoading({
+      title:'正在刷新'
+    })
+    _OrderDetail({ orderId: this.data.orderId })
+      .then(data => {
+        this.setData({ data });
+        wx.stopPullDownRefresh();
+        setTimeout(()=> {
+          wx.hideLoading();
+        },600)
+      })
+      .catch(msg => {
+        wx.showModal({ title: msg });
+      });
   },
 
   /**
