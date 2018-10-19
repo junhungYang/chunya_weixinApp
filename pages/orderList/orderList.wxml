@@ -22,7 +22,7 @@
             </view>
             <view wx:for="{{item.orderGoodsList}}" wx:for-item="item1" data-item="{{item}}" bindtap="navToOrderDetail">
                     <view class="desc">
-                        <image src="{{item1.list_pic_url}}" />
+                        <image src="{{item1.product_pic_url}}" />
                         <view class="text">
                             <text class="name">{{item1.goods_name}}</text>
                             <text class="price">￥{{item1.retail_price}}</text>

@@ -40,7 +40,6 @@
   margin-top: 0;
 }
 .template .content .item {
-  height: 372rpx;
   padding: 0 6.4%;
   background: #fff;
 }

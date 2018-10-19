@@ -42,7 +42,7 @@
                         <image src="../../img/goodDetail/share.png" />
                         <text>分享</text>
                     </view>
-                    <button open-type="share" title="{{detail.info.name}}" path="/pages/goodDetail/goodDetail?goodId={{goodId}}">Button</button>
+                    <!--<button open-type="share" title="{{detail.info.name}}" path="/pages/goodDetail/goodDetail?goodId={{goodId}}">Button</button>-->
                 </view>
            </view> 
            <view class="choose" data-index="{{1}}" bindtap="cartStateManage">
@@ -95,31 +95,30 @@
                        <image src="../../img/goodDetail/start.png" />
                 </view>
                 <view class="quantity">
-                    <text>8956条评论</text>
+                    <text>{{reviews.count}}条评论</text>
                     <image src="../../img/redictTo.png" />
                 </view>
             </view>
             <view class="list">
-                <view class="item">
+                <view class="item" wx:for="{{reviews.data}}">
                     <view class="item-header">
                         <view class="pro-pic">
-                            <image src="../../img/goodDetail/pro_pic.png" />
+                            <image src="{{item.user_info.avatar}}" />
                         </view>
                         <view class="name-time">
-                            <text class="name">春**</text>
+                            <text class="name">{{item.user_info.nickname}}</text>
                             <view class="time">
-                                <text>2018.10.11</text>
-                                <text>16:45</text>
+                                <text>{{item.add_time}}</text>
                             </view>
                         </view>
                     </view>
                     <view class="item-cont">
                         <view class="text">
-                            超级好吃，味道很正，口感很软。送礼佳品！赞赞赞！！超级好吃，味道很正，口感很软。送礼佳品！赞赞赞！！
+                            {{item.content}}
                         </view>
                         <view class="pic-group">
-                            <image src="../../img/goodDetail/review_pic1.png" />
-                            <image src="../../img/goodDetail/review_pic2.png" />
+                            <image src="{{item1.pic_url}}" wx:for-item="item1" wx:for="{{item.pic_list}}" />
+                    
                         </view>
                     </view>
                 </view>
@@ -175,14 +174,14 @@
         <view class="box">
             <view class="info">
                 <view class="text-img">
-                    <image src="{{detail.info.primary_pic_url}}" />
+                    <image src="{{activeProduct.primary_pic_url}}" />
                     <view class="about">
                         <view class="name">
-                            {{detail.info.name}}
+                            {{activeProduct.goods_name}}
                         </view>
                         <view class="price-size">
                             <view class="price">
-                                ￥{{productPrice}}
+                                ￥{{activeProduct.retail_price}}
                             </view>
                             <view class="size">
                                 <view class="{{activeProduct.id===item.id?'active':''}}"
@@ -199,8 +198,8 @@
                 </view>
                 <view class="quantity-control">
                     <view class="quantity">
-                        <text>购买数量</text>
-                        <text>剩余{{detail.info.goods_number}}件</text>
+                        <text>库存数量</text>
+                        <text>剩余{{activeProduct.goods_number}}件</text>
                     </view>
                     <view class="control">
                         <view class="minus" data-index="{{2}}" bindtap="quantityControl">

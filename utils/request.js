@@ -461,6 +461,26 @@ const _GoodsKeyWordsList = function() {
   });
 };
 //评论
+const _CommentList = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/comment/list`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+}
 const _CommentPost = function(data) {
     return new Promise((resolve, reject) => {
         wx.request({
@@ -660,6 +680,7 @@ module.exports = {
     _CommentPost,
     _OfficialNewsList,
     _CommentCount,
+  _CommentList,
     _CartAdd,
   _CartChecked,
     _GetCartGoodsCount,

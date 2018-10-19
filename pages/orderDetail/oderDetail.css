@@ -57,7 +57,7 @@
 }
 .template .logistics .address {
   display: flex;
-  height: 130rpx;
+  padding: 20rpx 0;
 }
 .template .logistics .address image {
   width: 32rpx;

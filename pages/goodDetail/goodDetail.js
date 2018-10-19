@@ -5,28 +5,26 @@ import {
   _GoodsDetail,
   _CartAdd,
   _OrderCheckout,
-  _CollectAddorDelete
+  _CollectAddorDelete,
+  _CommentList
 } from "../../utils/request";
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     detail: {},
     htmlStr: "",
     cartShowFlag: true,
     collectState: "",
-    collectText: "",
-    productPrice: 0,
-    quantity: 1,
+    quantity: 0,
     activeProduct: {},
-    goodId:''
+    goodId:'',
+    reviews:[]
   },
   chooseProduct(e) {
     let obj = e.currentTarget.dataset.item;
     this.setData({
       activeProduct: obj,
-      productPrice: obj.retail_price
+      productPrice: obj.retail_price,
+      quantity: 0
     });
   },
   onLoad: function(options) {
@@ -38,6 +36,7 @@ Page({
     if(app.globalData.token) {
       console.log('有token')
       this.getGoodDetail()
+      this.getReviews()
     }else {
       console.log('无token')
       wx.getSetting({
@@ -67,32 +66,33 @@ Page({
       });
     }
   },
+  getReviews() {
+    _CommentList({
+      typeId: 0,
+      valueId: this.data.goodId,
+      showType:0
+    }).then(data => {
+      this.setData({
+        reviews:data
+      })
+    }).catch(msg => {
+      wx.showModal({
+        title:msg
+      })
+    })
+  },
   getGoodDetail() {
     _GoodsDetail({ id: this.data.goodId }).then(data => {
       this.setData({
         detail: data,
-        productPrice: data.productList[0].retail_price,
-        activeProduct: data.productList[0]
-      }).catch(msg => {
-        wx.showModal({
-          title:msg
-        })
+        activeProduct: data.productList[0],
       })
       this.collect();
+    }).catch(msg => {
+      wx.showModal({ title: msg });
     });
   },
   watch: {
-    collectState(newValue) {
-      if (newValue === "add") {
-        that.setData({
-          collectText: "已收藏"
-        });
-      } else {
-        that.setData({
-          collectText: "收藏"
-        });
-      }
-    }
   },
   //数量操作
   quantityControl(e) {
