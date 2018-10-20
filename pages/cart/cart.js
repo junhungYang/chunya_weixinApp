@@ -7,7 +7,10 @@ import {
       _OrderList, 
       _WeChatPay,
      _CartAdd,
-    _CartChecked} from '../../utils/request'
+    _CartChecked,
+  _SetToken,
+  _GetSensitiveInfo,
+  _WxappLogin} from '../../utils/request'
 const app = getApp();
 Page({
   /**
@@ -18,9 +21,18 @@ Page({
     cartList: [],
     couponInfoList: [],
     cartTotal: {},
-    allChoose: false
+    allChoose: false,
+    canIUse: false
+  },
+  onLoad() {
+    this.setData({
+      canIUse: app.globalData.canIUseFlag
+    });
   },
   onShow: function(options) {
+    this.getCartList()
+  },
+  getCartList() {
     _CartIndex()
       .then(data => {
         this.setData({
@@ -29,9 +41,7 @@ Page({
         });
       })
       .catch(msg => {
-        wx.showModal({
-          title: msg
-        });
+        wx.showModal({ title: msg });
       });
   },
   //全选
@@ -44,22 +54,23 @@ Page({
       arr.push(item.product_id);
     });
     let productIds = arr.toString();
-    let isChecked
-    this.data.allChoose === true ? isChecked = 1 : isChecked = 0;
-    this.cartChecked(productIds,isChecked)
+    let isChecked;
+    this.data.allChoose === true ? (isChecked = 1) : (isChecked = 0);
+    this.cartChecked(productIds, isChecked);
   },
   //单选
   choose(e) {
     let isChecked = e.currentTarget.dataset.state === 1 ? 0 : 1;
     let arrindex = e.currentTarget.dataset.arrindex;
     let productIds = this.data.cartList[arrindex].product_id;
-    this.cartChecked(productIds,isChecked)
+    this.cartChecked(productIds, isChecked);
   },
   cartChecked(productIds, isChecked) {
     _CartChecked({
       productIds,
       isChecked
-    }).then(data => {
+    })
+      .then(data => {
         this.setData({
           cartList: data.cartList,
           cartTotal: data.cartTotal
@@ -115,48 +126,88 @@ Page({
   buyConfirm() {
     if (this.data.cartTotal.checkedGoodsAmount !== 0) {
       _OrderCheckout().then(data => {
-  
-          let dataStr = JSON.stringify(data);
-          wx.navigateTo({
-            url: `../beforeBalance/beforeBalance?dataStr=${dataStr}`
-          });
-
+        let dataStr = JSON.stringify(data);
+        wx.navigateTo({
+          url: `../beforeBalance/beforeBalance?dataStr=${dataStr}`
+        });
       });
-    }else {
+    } else {
       wx.showToast({
-        icon:'none',
-        title: '请先选择商品',
+        icon: "none",
+        title: "请先选择商品",
         duration: 1000
-      })
+      });
     }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {}
+  bindGetUserInfo(res) {
+    console.log(res);
+    if (res.detail.userInfo) {
+      //用户点击了授权
+      this.getSensitiveInfo();
+    } else {
+      //用户点击了取消
+      wx.showModal({
+        title: "警告通知",
+        content:
+          "您点击了拒绝授权,将无法正常显示个人信息,请从新点击授权按钮获取授权。"
+      });
+    }
+  },
+  getSensitiveInfo() {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting["scope.userInfo"]) {
+          let sessionKey = wx.getStorageSync("sessionKey");
+          wx.getUserInfo({
+            success: res => {
+              _GetSensitiveInfo({
+                sessionKey,
+                encryptedData: res.encryptedData,
+                ivStr: res.iv
+              })
+                .then(data => {
+                  console.log(1111);
+                  wx.setStorageSync("userInfo", data);
+                  this.wxappLogin();
+                })
+                .catch(msg => {
+                  wx.showModal({
+                    title: msg
+                  });
+                });
+            }
+          });
+        }
+      }
+    });
+  },
+  wxappLogin() {
+    let userInfoJson = wx.getStorageSync("userInfo");
+    let phoneNum = wx.getStorageSync("userPhoneNum");
+    if (userInfoJson) {
+      let userInfo = JSON.parse(userInfoJson);
+      _WxappLogin({
+        openid: userInfo.openId,
+        gender: userInfo.gender,
+        avatarUrl: userInfo.avatarUrl,
+        nickName: userInfo.nickName,
+        mobile: phoneNum ? phoneNum : ""
+      })
+        .then(data => {
+          app.globalData.userInfo = data.userInfo;
+          _SetToken(data.token);
+          app.globalData.token = data.token;
+          this.setData({
+            canIUse: true
+          });
+          app.globalData.canIUseFlag = true;
+          this.getCartList()
+        })
+        .catch(msg => {
+          wx.showModal();
+        });
+    } else {
+      app.wxLoginApi();
+    }
+  }
 });

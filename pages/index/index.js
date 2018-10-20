@@ -9,7 +9,7 @@ Page({
     goodsList:[],
     searchIconFlag:false
   },
-  onLoad() {
+  onShow() {
     app.setWatcher(this.data,this.watch)
     _GoodsList({
       page:1,

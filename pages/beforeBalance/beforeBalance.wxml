@@ -17,7 +17,7 @@
                 编辑
             </view>
         </view>
-        <view class="add" wx:else bindtap="navToAddressList">
+        <view class="add" wx:else>
             <image src="../../img/beforeBalance/add.png" />
             <text>新增收货地址</text>
             <image src="../../img/redictTo.png" />

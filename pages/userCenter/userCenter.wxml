@@ -1,7 +1,7 @@
 <view class="template">
     <view class="bg"></view>
     <view class="main">
-    <view class="info" wx:if="{{userInfo!==null?true:false}}">
+    <view class="info" wx:if="{{canIUse}}">
         <view class="pro-pic">
             <image src="{{userInfo.avatarUrl}}" />
         </view>
@@ -16,8 +16,8 @@
         <view class="pro-pic">
             <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">头像</button>
         </view>
-        <view>
-           请点击头像进行授权登录 
+        <view class="text">
+            <text>请点击头像进行授权登录</text>
         </view>
     </view>
     <!--<view class="integral">

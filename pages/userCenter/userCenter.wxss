@@ -41,6 +41,9 @@
   padding: 0;
   margin: 0;
   background: #ccc;
+  line-height: 126rpx;
+  font-size: 24rpx;
+  color: #fff;
 }
 .template .main .info .pro-pic button::after {
   border: 0;

@@ -1,10 +1,7 @@
 .template {
     background: #f2f2f2;
     position: absolute;
-    top: 0;
-    bottom: 96rpx;
-    left: 0;
-    right: 0;
+    min-height: 100vh;
     .bg {
         height: 253rpx;
         width: 100%;
@@ -41,6 +38,7 @@
         }
     }
     .list {
+        padding-bottom: 100rpx;
         .item {
             width: 87.2%;
             min-height: 294rpx;
@@ -213,6 +211,36 @@
                 font-size: 20rpx;
                 color: #b2b2b2;
             }
+        }
+    }
+    .login-mask {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background:#f2f2f2;
+        image {
+            opacity: 0.5;
+            position: absolute;
+            left: 45%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            width: 50%
+        }
+        button {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+            padding: 0rpx 60rpx;
+            background:transparent;
+            border: 2px solid rgb(138, 138, 138);
+            color: rgb(100,100,100)
+        }
+        button::after {
+            border: 0
         }
     }
 }

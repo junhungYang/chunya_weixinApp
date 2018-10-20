@@ -1,17 +1,15 @@
 {
   "pages": [
         "pages/index/index",
+                "pages/cart/cart",
         "pages/goodDetail/goodDetail",
     
       "pages/orderDetail/orderDetail",
-      
-    
         "pages/orderList/orderList",
         "pages/addressList/addressList",
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
         "pages/addressInput/addressInput",
-            "pages/cart/cart",
             "pages/test/test"
   ],
   "window": {
@@ -36,9 +34,6 @@
       "text": "我的",
       "iconPath": "img/myIcon.png",
       "selectedIconPath": "img/myActiveIcon.png"
-    },{
-      "pagePath": "pages/test/test",
-      "text": "测试"
     }]
   }
 }

@@ -47,8 +47,7 @@
       </view>
       <view class="list">
         <view class="list-item"  wx:for="{{goodsList}}">
-            <form bindsubmit="formSubmit_collect" report-submit="true" class="form">
-                <button  formType="submit"  hover-class="none" class="invisibleclass">
+           
                   <image src="{{item.primary_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
                   <text>{{item.name}}</text>
                   <view class="price">
@@ -56,8 +55,6 @@
                     <text class="old-price">￥{{item.market_price}}</text>
                     <image src="../../img/index/cart_icon.png" class="cart-icon"/>
                   </view>
-                </button>
-            </form> 
         </view>
       </view>
     </view>

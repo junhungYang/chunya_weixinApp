@@ -1,6 +1,7 @@
 <!--pages/cart/cart.wxml-->
 
-    <view class="template">
+<view class="template">
+    <view class="loginOk" wx:if="{{canIUse}}">
         <view class="bg"></view>
         <view class="title">
             <view>
@@ -60,5 +61,10 @@
             </view>
         </view>
     </view>
+    <view class="login-mask" wx:else>
+        <image src="../../img/cart.svg" />
+        <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+    </view>
+</view>
 
 
