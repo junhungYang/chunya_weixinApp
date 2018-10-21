@@ -104,7 +104,6 @@ App({
           this.globalData.userInfo = data.userInfo;
           _SetToken(data.token);
           this.globalData.token = data.token;
-          return "loginOk";
         })
         .catch(msg => this.showMod(msg));
     } else {

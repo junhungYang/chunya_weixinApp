@@ -1,10 +1,8 @@
 // pages/test/test.js
 const app = getApp()
+var that;
 import {
-  _OrderList,
-  _SetToken,
-  _GetSensitiveInfo,
-  _WxappLogin
+  _OrderList
 } from "../../utils/request";
 Page({
   data: {
@@ -13,27 +11,40 @@ Page({
     canIUse: false
   },
   onLoad() {
-    this.setData({
-      canIUse: app.globalData.canIUseFlag
-    })
+    that = this
+    app.setWatcher(app.globalData, this.watch);
+    if(app.globalData.token) {
+      this.setData({
+        hasToken: true
+      })
+      this.setUserInfo();
+    }
   },
   onShow() {
-    this.setUserInfo();
+    this.requestOrderList();
+  },
+  watch: {
+    token(newValue) {
+      if(newValue) {
+        that.setData({
+          hasToken:true
+        })
+      }
+      that.setUserInfo();
+      that.requestOrderList()
+    }
   },
   setUserInfo() {
     if (wx.getStorageSync("userInfo")) {
       let userInfo = JSON.parse(wx.getStorageSync("userInfo"));
       this.setData({ userInfo });
-      this.requestOrderList(undefined);
-    } else {
-      this.setData({ userInfo: null });
     }
   },
   bindGetUserInfo(res) {
     console.log(res)
     if (res.detail.userInfo) {
       //用户点击了授权
-      this.getSensitiveInfo();
+      app.getSensitiveInfo();
     } else {
       //用户点击了取消
       wx.showModal({
@@ -88,63 +99,5 @@ Page({
     wx.navigateTo({
       url: "../addressList/addressList?index=2"
     });
-  },
-  getSensitiveInfo() {
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting["scope.userInfo"]) {
-          let sessionKey = wx.getStorageSync("sessionKey");
-          wx.getUserInfo({
-            success: res => {
-              _GetSensitiveInfo({
-                sessionKey,
-                encryptedData: res.encryptedData,
-                ivStr: res.iv
-              })
-                .then(data => {
-                  console.log(1111)
-                  wx.setStorageSync("userInfo", data);
-                  this.wxappLogin();
-                })
-                .catch(msg => {
-                  wx.showModal({
-                    title: msg
-                  });
-                });
-            }
-          });
-        }
-      }
-    });
-  },
-  wxappLogin() {
-    let userInfoJson = wx.getStorageSync("userInfo");
-    let phoneNum = wx.getStorageSync("userPhoneNum");
-    if (userInfoJson) {
-      let userInfo = JSON.parse(userInfoJson);
-      _WxappLogin({
-        openid: userInfo.openId,
-        gender: userInfo.gender,
-        avatarUrl: userInfo.avatarUrl,
-        nickName: userInfo.nickName,
-        mobile: phoneNum ? phoneNum : ""
-      })
-        .then(data => {
-          app.globalData.userInfo = data.userInfo;
-          _SetToken(data.token);
-          app.globalData.token = data.token;
-          this.setData({
-            canIUse: true
-          })
-          app.globalData.canIUseFlag = true
-          this.setUserInfo();
-          this.requestOrderList(undefined)
-        })
-        .catch(msg => {
-          wx.showModal()
-        });
-    } else {
-      app.wxLoginApi();
-    }
-  },
+  }
 });

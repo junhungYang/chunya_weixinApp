@@ -1,7 +1,7 @@
 <!--pages/cart/cart.wxml-->
 
 <view class="template">
-    <view class="loginOk" wx:if="{{canIUse}}">
+    <view class="loginOk" wx:if="{{hasToken}}">
         <view class="bg"></view>
         <view class="title">
             <view>

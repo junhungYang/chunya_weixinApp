@@ -10,7 +10,7 @@ Page({
     searchIconFlag:false
   },
   onShow() {
-    app.setWatcher(this.data,this.watch)
+    app.setWatcher(app.globalData,this.watch)
     _GoodsList({
       page:1,
       size:10
@@ -95,6 +95,7 @@ Page({
         });
     }, 1000);
   },
-  watch: {
+  watch() {
+    
   }
 });

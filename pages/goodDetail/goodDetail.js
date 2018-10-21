@@ -28,8 +28,9 @@ Page({
     });
   },
   onLoad: function(options) {
+    console.log(options)
     that = this;
-    app.setWatcher(this.data, this.watch);
+    app.setWatcher(app.globalData, this.watch);
     this.setData({
       goodId: options.goodId
     })
@@ -41,29 +42,15 @@ Page({
       console.log('无token')
       wx.getSetting({
         success: res => {
-          if (res.authSetting["scope.userInfo"]) {
-            console.log('之前已经进行过授权登录')
-            let state = app.wxappLogin()
-            console.log(`state的状态: ${state}`)
-            if(state === 'loginOk') {
-              console.log('getGoodDetail接口')
-              this.getGoodDetail()
-            }
+          if (!res.authSetting["scope.userInfo"]) {
+           wx.navigateTo({
+             url:'../cart/cart'
+           })
           }else {
-            wx.showModal({
-              title:'登录失败',
-              content: '请点击确认跳转至个人中心进行登录操作',
-              success(res) {
-                if(res.confirm === true) {
-                  wx.navigateTo({
-                    url:'../userCenter/userCenter'
-                  })
-                }
-              }
-            })
+            console.log('已进行过授权登录')
           }
         }
-      });
+      })
     }
   },
   getReviews() {
@@ -93,6 +80,12 @@ Page({
     });
   },
   watch: {
+    token(newValue) {
+      if(newValue) {
+        that.getGoodDetail()
+        that.getReviews()
+      }
+    }
   },
   //数量操作
   quantityControl(e) {

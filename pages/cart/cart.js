@@ -3,15 +3,10 @@ import {
     _CartIndex,
      _CartDelete, 
      _OrderCheckout, 
-     _OrderSubmit,
-      _OrderList, 
-      _WeChatPay,
      _CartAdd,
-    _CartChecked,
-  _SetToken,
-  _GetSensitiveInfo,
-  _WxappLogin} from '../../utils/request'
+    _CartChecked} from '../../utils/request'
 const app = getApp();
+var that;
 Page({
   /**
    * 页面的初始数据
@@ -22,15 +17,29 @@ Page({
     couponInfoList: [],
     cartTotal: {},
     allChoose: false,
-    canIUse: false
+    hasToken:false
   },
   onLoad() {
-    this.setData({
-      canIUse: app.globalData.canIUseFlag
-    });
+    that = this
+    app.setWatcher(app.globalData, this.watch);
+    if(app.globalData.token) {
+      this.setData({
+        hasToken: true
+      });
+    }
   },
   onShow: function(options) {
     this.getCartList()
+  },
+  watch: {
+    token(newValue) {
+      if(newValue) {
+        that.setData({
+          hasToken:true
+        })
+        that.getCartList()
+      }
+    }
   },
   getCartList() {
     _CartIndex()
@@ -143,7 +152,7 @@ Page({
     console.log(res);
     if (res.detail.userInfo) {
       //用户点击了授权
-      this.getSensitiveInfo();
+      app.getSensitiveInfo();
     } else {
       //用户点击了取消
       wx.showModal({
@@ -151,63 +160,6 @@ Page({
         content:
           "您点击了拒绝授权,将无法正常显示个人信息,请从新点击授权按钮获取授权。"
       });
-    }
-  },
-  getSensitiveInfo() {
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting["scope.userInfo"]) {
-          let sessionKey = wx.getStorageSync("sessionKey");
-          wx.getUserInfo({
-            success: res => {
-              _GetSensitiveInfo({
-                sessionKey,
-                encryptedData: res.encryptedData,
-                ivStr: res.iv
-              })
-                .then(data => {
-                  console.log(1111);
-                  wx.setStorageSync("userInfo", data);
-                  this.wxappLogin();
-                })
-                .catch(msg => {
-                  wx.showModal({
-                    title: msg
-                  });
-                });
-            }
-          });
-        }
-      }
-    });
-  },
-  wxappLogin() {
-    let userInfoJson = wx.getStorageSync("userInfo");
-    let phoneNum = wx.getStorageSync("userPhoneNum");
-    if (userInfoJson) {
-      let userInfo = JSON.parse(userInfoJson);
-      _WxappLogin({
-        openid: userInfo.openId,
-        gender: userInfo.gender,
-        avatarUrl: userInfo.avatarUrl,
-        nickName: userInfo.nickName,
-        mobile: phoneNum ? phoneNum : ""
-      })
-        .then(data => {
-          app.globalData.userInfo = data.userInfo;
-          _SetToken(data.token);
-          app.globalData.token = data.token;
-          this.setData({
-            canIUse: true
-          });
-          app.globalData.canIUseFlag = true;
-          this.getCartList()
-        })
-        .catch(msg => {
-          wx.showModal();
-        });
-    } else {
-      app.wxLoginApi();
     }
   }
 });

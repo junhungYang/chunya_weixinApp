@@ -1,7 +1,7 @@
 <view class="template">
     <view class="bg"></view>
     <view class="main">
-    <view class="info" wx:if="{{canIUse}}">
+    <view class="info" wx:if="{{hasToken}}">
         <view class="pro-pic">
             <image src="{{userInfo.avatarUrl}}" />
         </view>
