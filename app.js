@@ -4,6 +4,7 @@ import {
   _GetSensitiveInfo,
   _WxappLogin,
   _SetToken,
+  _GetUserInfo
 } from "./utils/request";
 App({
   onLaunch: function() {
@@ -72,6 +73,7 @@ App({
       signType: data.signType,
       paySign: data.paySign,
       success: function(res) {
+        console.log(res)
         wx.showToast({
           title: "成功结算"
         });
@@ -101,7 +103,6 @@ App({
         mobile: phoneNum ? phoneNum : ""
       })
         .then(data => {
-          this.globalData.userInfo = data.userInfo;
           _SetToken(data.token);
           this.globalData.token = data.token;
         })

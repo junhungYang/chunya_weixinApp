@@ -6,7 +6,8 @@ import {
   _CartAdd,
   _OrderCheckout,
   _CollectAddorDelete,
-  _CommentList
+  _CommentList,
+  _SendFormid
 } from "../../utils/request";
 Page({
   data: {
@@ -17,7 +18,19 @@ Page({
     quantity: 1,
     activeProduct: {},
     goodId:'',
-    reviews:[]
+    reviews:[],
+    domPosTop:{}
+  },
+  formSubmit_collect: function (e) {
+    let fromid = `${e.detail.formId}`;
+    let userInfoStorage = wx.getStorageSync('userInfo')
+    if (fromid && userInfoStorage) {
+      let openid = JSON.parse(userInfoStorage).openId
+      _SendFormid({
+        fromid,
+        openid
+      })
+    }
   },
   chooseProduct(e) {
     let obj = e.currentTarget.dataset.item;
@@ -53,6 +66,43 @@ Page({
       })
     }
   },
+  getDomPosTop() {
+    let query = wx.createSelectorQuery();
+    query.select("#good-detail").boundingClientRect();
+    query.select(".reviews").boundingClientRect();
+    let obj = {}
+    obj.allTop = 0;
+    
+    query.exec(function (res) {
+      console.log(res)
+      obj.detailTop = res[0].top
+      obj.reviewsTop = res[1].top
+    })
+    this.setData({
+      domPosTop: obj
+    })
+  },
+  scrollToDom(e) {
+    let index = e.currentTarget.dataset.index
+    let domPosTop = this.data.domPosTop
+    switch (index) {
+      case 1:
+        wx.pageScrollTo({
+          scrollTop:0
+        })
+        break;
+      case 2:
+        wx.pageScrollTo({
+          scrollTop:domPosTop.detailTop
+        })
+        break;
+      case 3:
+        wx.pageScrollTo({
+          scrollTop:domPosTop.reviewsTop
+        })
+        break;
+    }
+  },
   getReviews() {
     _CommentList({
       typeId: 0,
@@ -62,6 +112,7 @@ Page({
       this.setData({
         reviews:data
       })
+      this.getDomPosTop();
     }).catch(msg => {
       wx.showModal({
         title:msg
@@ -75,6 +126,7 @@ Page({
         activeProduct: data.productList[0],
       })
       this.collect();
+      this.getDomPosTop();
     }).catch(msg => {
       wx.showModal({ title: msg });
     });

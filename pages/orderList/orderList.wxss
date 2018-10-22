@@ -88,6 +88,7 @@
   display: block;
   font-size: 28rpx;
   color: #313131;
+  line-height: 36rpx;
 }
 .template .content .item .desc .text .price {
   margin-top: 10rpx;
@@ -106,9 +107,10 @@
 .template .content .item .desc .quantity {
   position: absolute;
   right: 0;
-  top: 82rpx;
+  bottom: 30rpx;
   font-size: 24rpx;
   color: #b2b2b2;
+  line-height: 36rpx;
 }
 .template .content .item .control {
   height: 100rpx;
@@ -139,4 +141,17 @@
   margin-left: 20rpx;
   color: #d1051f;
   border: 1px solid  #d1051f;
+}
+.invisibleclass {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+  height: 100%;
+  color: #fff;
+  line-height: 0;
+}
+.invisibleclass::after {
+  border: 0;
 }

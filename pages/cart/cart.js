@@ -3,7 +3,8 @@ import {
     _CartIndex,
      _CartDelete, 
      _CartAdd,
-    _CartChecked} from '../../utils/request'
+    _CartChecked,
+  _SendFormid} from '../../utils/request'
 const app = getApp();
 var that;
 Page({
@@ -16,27 +17,27 @@ Page({
     couponInfoList: [],
     cartTotal: {},
     allChoose: false,
-    hasToken:false
+    hasToken: false
   },
   onLoad() {
-    that = this
+    that = this;
     app.setWatcher(app.globalData, this.watch);
-    if(app.globalData.token) {
+  },
+  onShow: function(options) {
+    if (app.globalData.token) {
       this.setData({
         hasToken: true
       });
+      this.getCartList();
     }
-  },
-  onShow: function(options) {
-    this.getCartList()
   },
   watch: {
     token(newValue) {
-      if(newValue) {
+      if (newValue) {
         that.setData({
-          hasToken:true
-        })
-        that.getCartList()
+          hasToken: true
+        });
+        that.getCartList();
       }
     }
   },
@@ -51,6 +52,17 @@ Page({
       .catch(msg => {
         wx.showModal({ title: msg });
       });
+  },
+  formSubmit_collect: function(e) {
+    let fromid = `${e.detail.formId}`;
+    let userInfoStorage = wx.getStorageSync("userInfo");
+    if (fromid && userInfoStorage) {
+      let openid = JSON.parse(userInfoStorage).openId;
+      _SendFormid({
+        fromid,
+        openid
+      });
+    }
   },
   //全选
   allChoose() {
@@ -134,8 +146,8 @@ Page({
   buyConfirm() {
     if (this.data.cartTotal.checkedGoodsAmount !== 0) {
       wx.navigateTo({
-        url:`../beforeBalance/beforeBalance`
-      })
+        url: `../beforeBalance/beforeBalance`
+      });
     } else {
       wx.showToast({
         icon: "none",
@@ -156,6 +168,27 @@ Page({
         content:
           "您点击了拒绝授权,将无法正常显示个人信息,请从新点击授权按钮获取授权。"
       });
+    }
+  },
+  onPullDownRefresh: function() {
+    wx.showLoading({
+      title: "正在刷新"
+    });
+    if (app.globalData.token) {
+      _CartIndex()
+        .then(data => {
+          this.setData({
+            cartList: data.cartList,
+            cartTotal: data.cartTotal
+          });
+          wx.stopPullDownRefresh();
+          setTimeout(() => {
+            wx.hideLoading();
+          }, 600);
+        })
+        .catch(msg => {
+          wx.showModal({ title: msg });
+        });
     }
   }
 });

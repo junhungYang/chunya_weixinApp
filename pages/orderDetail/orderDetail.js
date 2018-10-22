@@ -9,9 +9,6 @@ Page({
     orderId:''
   },
   onLoad: function (options) {
-    wx.showModal({
-      title: options.orderId
-    })
     that = this
     app.setWatcher(app.globalData, this.watch);
     let orderId

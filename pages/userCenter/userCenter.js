@@ -2,12 +2,13 @@
 const app = getApp()
 var that;
 import {
-  _OrderList
+  _UserCenterOrderCount,
+  _GetUserInfo
 } from "../../utils/request";
 Page({
   data: {
     userInfo: {},
-    orderInfo: {},
+    orderInfo: null,
     canIUse: false
   },
   onLoad() {
@@ -21,7 +22,9 @@ Page({
     }
   },
   onShow() {
-    this.requestOrderList();
+    if(app.globalData.token) {
+      this.requestOrderList(300);
+    }
   },
   watch: {
     token(newValue) {
@@ -29,19 +32,19 @@ Page({
         that.setData({
           hasToken:true
         })
+        that.setUserInfo();
+        that.requestOrderList(300)
       }
-      that.setUserInfo();
-      that.requestOrderList()
     }
   },
   setUserInfo() {
-    if (wx.getStorageSync("userInfo")) {
-      let userInfo = JSON.parse(wx.getStorageSync("userInfo"));
-      this.setData({ userInfo });
-    }
+    _GetUserInfo().then(data => {
+      this.setData({
+        userInfo:data
+      })
+    }).catch(msg => wx.showModal({title:msg}));
   },
   bindGetUserInfo(res) {
-    console.log(res)
     if (res.detail.userInfo) {
       //用户点击了授权
       app.getSensitiveInfo();
@@ -60,35 +63,46 @@ Page({
   },
   requestOrderList(orderStatus) {
     let promiseObj;
-    if (orderStatus) {
-      promiseObj = _OrderList({
-        page: 1,
-        size: 1,
-        orderStatus
+    if (!orderStatus) {
+      this.setData({
+        orderInfo: null
       });
     } else {
-      promiseObj = _OrderList({
-        page: 1,
-        size: 1
-      });
-    }
-    promiseObj
-      .then(data => {
-        if (data.data[0]) {
+      _UserCenterOrderCount().then(data => {
+        console.log(data)
+        if(data.orderInfo) {
           this.setData({
-            orderInfo: data.data[0]
-          });
+            orderInfo: data.orderInfo
+          })
         } else {
           this.setData({
             orderInfo: null
-          });
+          })
         }
-      })
-      .catch(msg => {
+      }).catch(msg => {
         wx.showModal({
-          title: msg
-        });
-      });
+          title
+        })
+      })
+      // _OrderList({
+      //   page: 1,
+      //   size: 1
+      // }).then(data => {
+      //   if (data.data[0]) {
+      //     this.setData({
+      //       orderInfo: data.data[0]
+      //     });
+      //   } else {
+      //     this.setData({
+      //       orderInfo: null
+      //     });
+      //   }
+      // }).catch(msg => {
+      //     wx.showModal({
+      //       title: msg
+      //     });
+      //   });
+    }      
   },
   navToOrderList() {
     wx.navigateTo({
@@ -99,5 +113,32 @@ Page({
     wx.navigateTo({
       url: "../addressList/addressList?index=2"
     });
+  },
+  onPullDownRefresh: function () {
+    wx.showLoading({
+      title: '正在刷新'
+    })
+    _GetUserInfo().then(data => {
+      this.data.userInfo = data;
+      _UserCenterOrderCount().then(data => {
+        if (data.orderInfo) {
+          this.setData({
+            orderInfo: data.orderInfo
+          })
+        } else {
+          this.setData({
+            orderInfo: null
+          })
+        }
+        wx.stopPullDownRefresh();
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 600)
+      }).catch(msg => {
+        wx.showModal({
+          title: msg
+        })
+      })
+    }).catch(msg => wx.showModal({ title: msg }));
   }
 });

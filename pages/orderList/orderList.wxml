@@ -21,17 +21,21 @@
                 <text>{{item.order_status_text}}</text>
             </view>
             <view wx:for="{{item.orderGoodsList}}" wx:for-item="item1" data-item="{{item}}" bindtap="navToOrderDetail">
-                    <view class="desc">
-                        <image src="{{item1.product_pic_url}}" />
-                        <view class="text">
-                            <text class="name">{{item1.goods_name}}</text>
-                            <text class="price">￥{{item1.retail_price}}</text>
-                            <!--<view class="other">
-                                    公益捐赠0.95元
-                            </view>-->
-                        </view>
-                        <text class="quantity">×{{item1.number}}</text>
-                    </view>  
+                    <form bindsubmit="formSubmit_collect" report-submit="true">
+                        <button  formType="submit"  hover-class="none" class='invisibleclass'>
+                            <view class="desc">
+                                <image src="{{item1.product_pic_url}}" />
+                                <view class="text">
+                                    <text class="name">{{item1.goods_name}}</text>
+                                    <text class="price">￥{{item1.retail_price}}</text>
+                                    <!--<view class="other">
+                                            公益捐赠0.95元
+                                    </view>-->
+                                </view>
+                                <text class="quantity">×{{item1.number}}</text>
+                            </view>  
+                        </button>
+                    </form> 
             </view>
             <view class="control" wx:if="{{item.order_status_text!=='未付款'?true:false}}">
                 <view class="btn-group">

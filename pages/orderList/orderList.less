@@ -83,6 +83,7 @@
             display: block;
             font-size: 28rpx;
             color: #313131;
+            line-height: 36rpx;
           }
           .price {
             margin-top: 10rpx;
@@ -102,9 +103,10 @@
         .quantity {
           position: absolute;
           right: 0;
-          top: 82rpx;
+          bottom: 30rpx;
           font-size: 24rpx;
           color: #b2b2b2;
+          line-height: 36rpx;
         }
       }
       .control {
@@ -139,4 +141,17 @@
       }
     }
   }
+}
+.invisibleclass {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background:transparent;
+  text-align: left;
+    height:100%;
+    color: #fff;
+    line-height: 0;
+}
+.invisibleclass::after {
+  border: 0;
 }

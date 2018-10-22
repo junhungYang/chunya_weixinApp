@@ -1,5 +1,5 @@
 // pages/orderList/orderList.js
-import { _OrderList, _WeChatPay} from '../../utils/request'
+import { _OrderList, _WeChatPay, _SendFormid} from '../../utils/request'
 const app = getApp();
 Page({
 
@@ -11,9 +11,8 @@ Page({
     requestCode:-1,
     pageIndex: 1
   },
-
-  onShow: function () {
-    this.getOrderList(-1)
+  onLoad: function () {
+    this.getOrderList(this.data.requestCode)
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -29,7 +28,19 @@ Page({
     })
     this.getOrderList(this.data.requestCode,'byScroll')
   },
+  formSubmit_collect: function (e) {
+    let fromid = `${e.detail.formId}`;
+    let userInfoStorage = wx.getStorageSync('userInfo')
+    if (fromid && userInfoStorage) {
+      let openid = JSON.parse(userInfoStorage).openId
+      _SendFormid({
+        fromid,
+        openid
+      })
+    }
+  },
   getOrderList(num,str) {
+    console.log(num)
     let obj
     if(num === -1) {
       obj = { page: this.data.pageIndex, size: 10 };
