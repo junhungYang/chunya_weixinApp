@@ -1,5 +1,5 @@
 // pages/beforeBalance/beforeBalance.js
-import { _OrderSubmit,_WeChatPay} from '../../utils/request'
+import { _OrderSubmit,_WeChatPay,_OrderCheckout} from '../../utils/request'
 const app = getApp()
 Page({
   /**
@@ -15,11 +15,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let data = JSON.parse(options.dataStr);
-    this.setData({
-      data
-    });
-    this.getAllQuantity();
+    this.getOrderCheckout()
+  },
+  getOrderCheckout(fromIndex) {
+    _OrderCheckout().then(data => {
+      this.setData({
+        data
+      })
+      this.getAllQuantity();
+      if(fromIndex) {
+        wx.stopPullDownRefresh();
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 600)
+      }
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
   },
   postscriptInput(e) {
     clearTimeout(this.timer)
@@ -53,6 +67,7 @@ Page({
       });
     });
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -76,7 +91,13 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function() {
+    console.log(123456)
+    wx.showLoading({
+      title: '正在刷新'
+    })
+    this.getOrderCheckout('pullDown')
+  },
 
   /**
    * 页面上拉触底事件的处理函数

@@ -38,17 +38,19 @@ Page({
     })
   },
   navBackBeforeBalance(e) {
-    let pages = getCurrentPages();
-    let prevPage = pages[pages.length - 2];
-    let activeAddress = e.currentTarget.dataset.item
-    let data = prevPage.data.data
-    data.checkedAddress = activeAddress;
-    prevPage.setData({
-      data
-    })
-    wx.navigateBack({
-      delta:1
-    })
+    if(this.data.fromIndex === '1') {
+      let pages = getCurrentPages();
+      let prevPage = pages[pages.length - 2];
+      let activeAddress = e.currentTarget.dataset.item
+      let data = prevPage.data.data
+      data.checkedAddress = activeAddress;
+      prevPage.setData({
+        data
+      })
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   },
   navToAddressInput(e) {
     let id = e.currentTarget.dataset.id;

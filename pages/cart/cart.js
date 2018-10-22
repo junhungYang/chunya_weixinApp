@@ -2,7 +2,6 @@
 import { 
     _CartIndex,
      _CartDelete, 
-     _OrderCheckout, 
      _CartAdd,
     _CartChecked} from '../../utils/request'
 const app = getApp();
@@ -134,12 +133,9 @@ Page({
   },
   buyConfirm() {
     if (this.data.cartTotal.checkedGoodsAmount !== 0) {
-      _OrderCheckout().then(data => {
-        let dataStr = JSON.stringify(data);
-        wx.navigateTo({
-          url: `../beforeBalance/beforeBalance?dataStr=${dataStr}`
-        });
-      });
+      wx.navigateTo({
+        url:`../beforeBalance/beforeBalance`
+      })
     } else {
       wx.showToast({
         icon: "none",

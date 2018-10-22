@@ -1,6 +1,7 @@
 // pages/orderDetail/orderDetail.js
 import { _WeChatPay, _OrderDetail} from '../../utils/request'
 const app = getApp()
+var that;
 Page({
 
   data: {
@@ -8,11 +9,26 @@ Page({
     orderId:''
   },
   onLoad: function (options) {
-   let orderId
+    wx.showModal({
+      title: options.orderId
+    })
+    that = this
+    app.setWatcher(app.globalData, this.watch);
+    let orderId
     options.orderId ? (orderId = options.orderId) : (orderId = options.id);
     this.setData({
       orderId
     })
+    if(app.globalData.token) {
+      this.getOrderDetail()
+    }
+  },
+  watch : {
+    token(newValue) {
+      that.getOrderDetail()
+    }
+  },
+  getOrderDetail() {
     _OrderDetail({ orderId: this.data.orderId })
       .then(data => {
         this.setData({ data });

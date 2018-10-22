@@ -1,7 +1,7 @@
 <view class="template">
     <view class="list">
         <view class="item" wx:for="{{addressList}}">
-            <view class="info">
+            <view class="info" data-item="{{item}}" bindtap="navBackBeforeBalance">
                 <text>{{item.userName}}</text>
                 <text>{{item.full_region}}{{item.detailInfo}}</text>
                 <text>{{item.telNumber}}</text>

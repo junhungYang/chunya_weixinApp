@@ -3,7 +3,11 @@
   <!--<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
   <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号码</button> --> 
   <view class="input-box">
-    <input type="text" placeholder="搜索"  bindinput="searchGoods"/>
+      <view class="mask {{searchText?'':'iconfont icon-search'}}">{{searchText?'':'搜索'}}</view>
+    <input type="text" class="iconfont icon-search" class="bgText"  bindinput="searchInput"
+    bindconfirm="searchGoods"
+    value="{{searchText}}"/>
+
   </view>
   <view class="swiper-box">
     <my-swiper></my-swiper>
@@ -47,14 +51,17 @@
       </view>
       <view class="list">
         <view class="list-item"  wx:for="{{goodsList}}">
-           
-                  <image src="{{item.primary_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
+          <form bindsubmit="formSubmit_collect" report-submit="true">
+              <button  formType="submit"  hover-class="none" class='invisibleclass' data-goodId="{{item.id}}" bindtap="navToGoodDetail">
+                  <image src="{{item.primary_pic_url}}" />
                   <text>{{item.name}}</text>
                   <view class="price">
                     <text class="now-price">￥{{item.retail_price}}</text>
                     <text class="old-price">￥{{item.market_price}}</text>
                     <image src="../../img/index/cart_icon.png" class="cart-icon"/>
                   </view>
+              </button>
+          </form>      
         </view>
       </view>
     </view>

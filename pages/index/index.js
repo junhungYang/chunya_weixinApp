@@ -1,40 +1,49 @@
 //index.js
 //获取应用实例
-import { _GoodsList, _GetSensitiveInfo} from '../../utils/request'
+import { _GoodsList, _GetSensitiveInfo, _SendFormid} from '../../utils/request'
 const app = getApp()
 Page({
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    canIUse: wx.canIUse("button.open-type.getUserInfo"),
     name: "junxing",
-    goodsList:[],
-    searchIconFlag:false
+    goodsList: [],
+    value:''
   },
   onShow() {
-    app.setWatcher(app.globalData,this.watch)
+    app.setWatcher(app.globalData, this.watch);
     _GoodsList({
-      page:1,
-      size:10
+      page: 1,
+      size: 10
     }).then(data => {
       this.setData({
-        goodsList:data.data
-      })
-    })
+        goodsList: data.data
+      });
+    });
   },
-  test() {
-    console.log('nimeide')
+  formSubmit_collect: function (e) {
+    let fromid = `${e.detail.formId}`;
+    let userInfoStorage = wx.getStorageSync('userInfo')
+    if (fromid && userInfoStorage) {
+      let openid = JSON.parse(userInfoStorage).openId
+      _SendFormid({
+        fromid,
+        openid
+      })
+    }
   },
   navToGoodDetail(e) {
-    let goodId = e.currentTarget.dataset.goodid
+    let goodId = e.currentTarget.dataset.goodid;
+    console.log(123456798)
     wx.navigateTo({
-      url:`../goodDetail/goodDetail?goodId=${goodId}`
-    })
+      url: `../goodDetail/goodDetail?goodId=${goodId}`
+    });
   },
   scrollToTop() {
     wx.pageScrollTo({
-      scrollTop: 0,
-    })
+      scrollTop: 0
+    });
   },
-  shangchuan() {  
+  shangchuan() {
     wx.chooseImage({
       success: res => {
         let token = app.globalData.token;
@@ -71,17 +80,23 @@ Page({
       ivStr: e.detail.iv
     })
       .then(data => {
-        let dataObj = JSON.parse(data)
+        let dataObj = JSON.parse(data);
         wx.setStorageSync("userPhoneNum", dataObj.phoneNumber);
         app.wxappLogin();
       })
       .catch(msg => {
         wx.showModal({
           title: msg
-        })
+        });
       });
   },
+  searchInput(e) {
+    this.setData({
+      searchText:e.detail.value
+    })
+  },
   searchGoods(e) {
+    console.log(e.detail.value)
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       _GoodsList({
@@ -89,13 +104,14 @@ Page({
         size: 10,
         keyword: e.detail.value
       }).catch(msg => {
-          wx.showModal({
-            title: msg
-          })
+        wx.showModal({
+          title: msg
         });
+      });
     }, 1000);
   },
-  watch() {
-    
-  }
+  onShareAppMessage: function() {
+    wx.showShareMenu();
+  },
+  watch() {}
 });
