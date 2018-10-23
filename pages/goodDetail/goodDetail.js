@@ -21,6 +21,27 @@ Page({
     reviews:[],
     domPosTop:{}
   },
+  onLoad: function(options) {
+    console.log(options)
+    that = this;
+    app.setWatcher(app.globalData, this.watch);
+    this.setData({
+      goodId: options.goodId
+    })
+    if(app.globalData.token) {
+      console.log('有token')
+      this.getGoodDetail()
+      this.getReviews()
+    }
+  },
+  watch: {
+    token(newValue) {
+      if (newValue) {
+        that.getGoodDetail()
+        that.getReviews()
+      }
+    }
+  },
   formSubmit_collect: function (e) {
     let fromid = `${e.detail.formId}`;
     let userInfoStorage = wx.getStorageSync('userInfo')
@@ -40,39 +61,12 @@ Page({
       quantity: 1
     });
   },
-  onLoad: function(options) {
-    console.log(options)
-    that = this;
-    app.setWatcher(app.globalData, this.watch);
-    this.setData({
-      goodId: options.goodId
-    })
-    if(app.globalData.token) {
-      console.log('有token')
-      this.getGoodDetail()
-      this.getReviews()
-    }else {
-      console.log('无token')
-      wx.getSetting({
-        success: res => {
-          if (!res.authSetting["scope.userInfo"]) {
-           wx.navigateTo({
-             url:'../cart/cart'
-           })
-          }else {
-            console.log('已进行过授权登录')
-          }
-        }
-      })
-    }
-  },
   getDomPosTop() {
     let query = wx.createSelectorQuery();
     query.select("#good-detail").boundingClientRect();
     query.select(".reviews").boundingClientRect();
     let obj = {}
     obj.allTop = 0;
-    
     query.exec(function (res) {
       console.log(res)
       obj.detailTop = res[0].top
@@ -107,7 +101,8 @@ Page({
     _CommentList({
       typeId: 0,
       valueId: this.data.goodId,
-      showType:0
+      showType:0,
+      size: 5
     }).then(data => {
       this.setData({
         reviews:data
@@ -130,14 +125,6 @@ Page({
     }).catch(msg => {
       wx.showModal({ title: msg });
     });
-  },
-  watch: {
-    token(newValue) {
-      if(newValue) {
-        that.getGoodDetail()
-        that.getReviews()
-      }
-    }
   },
   //数量操作
   quantityControl(e) {
@@ -187,7 +174,7 @@ Page({
   },
   //跳转至首页
   navToIndex() {
-    wx.navigateBack({
+    wx.switchTab({
       url: "../index/index"
     });
   },

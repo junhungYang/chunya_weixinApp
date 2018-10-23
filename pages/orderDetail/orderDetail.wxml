@@ -8,11 +8,14 @@
         </view>
     </view>
     <view class="logistics">
-        <view class="desc">
+        <view class="desc" wx:if="{{data.shippingList}}">
             <image src="../../img/orderDetail/icon1.png" />
-            <view class="text">
-                {{data.shippingList.length!==0?data.shippingList[0].AcceptStation:'暂无物流信息'}}
-                【{{data.shippingList.length!==0?data.shippingList[0].AcceptTime:''}}】
+            <view class="text" wx:if="{{data.shippingList.length!==0}}">
+                {{data.shippingList[0].AcceptStation}}
+                【{{data.shippingList[0].AcceptTime}}】
+            </view>
+            <view class="text" wx:else>
+                暂无物流信息
             </view>
             <image src="../../img/redictTo.png" />
         </view>
@@ -70,7 +73,7 @@
                 <!--<view>
                     <text>活动中</text>
                     <text>-￥</text>
-                </view> -->
+                </view>-->
                 <view>
                     <text>实付款（含运费）</text>
                     <text>￥{{data.orderInfo.actual_price}}</text>
@@ -115,20 +118,31 @@
         </view>
     </view>
     <view class="control">
-        <view class="btn-group" wx:if="{{data.orderInfo.order_status_text!=='未付款'}}">
-            <view>
-                延长收货
+        <view class="btn-group">
+            <view wx:if="{{data.orderInfo.handleOption.cancel}}">
+                <text wx:if="{{data.orderInfo.order_status===201}}">退款</text>
+                <text wx:else>取消订单</text>
             </view>
-            <view>
+            <view wx:if="{{data.orderInfo.handleOption.delete}}">
+                删除订单
+            </view>
+            <view wx:if="{{data.orderInfo.handleOption.comment}}">
+                添加评论
+            </view>
+            <view wx:if="{{data.orderInfo.order_status===300||data.orderInfo.order_status===301}}">
                 查看物流
             </view>
-            <view>
+            <view wx:if="{{data.orderInfo.handleOption.return}}">
+                退换货
+            </view>
+            <view wx:if="{{data.orderInfo.handleOption.buy}}" data-goodslist="{{data.orderGoods}}" bindtap="buyAgain">
+                再次购买
+            </view>
+            <view wx:if="{{data.orderInfo.handleOption.confirm}}">
                 确认收货
             </view>
-        </view>
-        <view class="btn-group" wx:else data-id="{{data.orderInfo.id}}" bindtap="pay">
-            <view>
-                去结算
+            <view wx:if="{{data.orderInfo.handleOption.pay}}" data-id="{{data.orderInfo.id}}" bindtap="pay">
+                结算
             </view>
         </view>
     </view>

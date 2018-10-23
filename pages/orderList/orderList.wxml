@@ -37,22 +37,31 @@
                         </button>
                     </form> 
             </view>
-            <view class="control" wx:if="{{item.order_status_text!=='未付款'?true:false}}">
+            <view class="control">
                 <view class="btn-group">
-                    <view>
-                        延长收货
+                    <view wx:if="{{item.handleOption.cancel}}">
+                        <text wx:if="{{item.order_status===201}}">退款</text>
+                        <text wx:else bindtap="orderControl" data-orderid="{{item.id}}" data-str="cancel">取消订单</text>
                     </view>
-                    <view>
+                    <view wx:if="{{item.handleOption.delete}}" data-orderid="{{item.id}}" data-str="delete" bindtap="orderControl">
+                        删除订单
+                    </view>
+                    <view wx:if="{{item.handleOption.comment}}">
+                        添加评论
+                    </view>
+                    <view wx:if="{{item.order_status===300||item.order_status===301}}">
                         查看物流
                     </view>
-                    <view>
+                    <view wx:if="{{item.handleOption.return}}">
+                        退换货
+                    </view>
+                    <view wx:if="{{item.handleOption.buy}}" data-goodslist="{{item.orderGoodsList}}" bindtap="buyAgain">
+                        再次购买
+                    </view>
+                    <view wx:if="{{item.handleOption.confirm}}" data-orderid="{{item.id}}" data-str="confirm" bindtap="orderControl">
                         确认收货
                     </view>
-                </view>
-            </view>
-            <view class="control" wx:else>
-                <view class="btn-group" data-id="{{item.id}}" bindtap="pay">
-                    <view>
+                    <view wx:if="{{item.handleOption.pay}}" data-id="{{item.id}}" bindtap="pay">
                         结算
                     </view>
                 </view>
@@ -60,16 +69,3 @@
         </view>
     </view>
 </view>
-
-<!-- <view class="myOrder">
-    <view>
-        我的订单
-    </view>
-    <view wx:for="{{orderList}}" class="orderList">
-        <view bindtap="navToOrderDetail"
-        data-orderid="{{item.id}}"
-        >订单id:{{item.id}} 付款状态：{{item.order_status_text}} 总价：{{item.order_price}}元</view>
-        <button class="buyButton" bindtap="balance" 
-        data-orderid="{{item.id}}" data-price="{{item.order_price}}">去结算</button>
-    </view>
-</view> -->

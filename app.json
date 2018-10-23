@@ -1,16 +1,14 @@
 {
   "pages": [
-            "pages/addressInput/addressInput",
         "pages/index/index",
         "pages/orderDetail/orderDetail",
-        "pages/goodDetails/goodDetail",
                 "pages/cart/cart",
-   
+                "pages/addressInput/addressInput",
         "pages/orderList/orderList",
         "pages/addressList/addressList",
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
- 
+            "pages/goodDetail/goodDetail",
             "pages/test/test"
   ],
   "window": {

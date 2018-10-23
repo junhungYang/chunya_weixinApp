@@ -11,10 +11,8 @@ Page({
   onLoad: function (options) {
     that = this
     app.setWatcher(app.globalData, this.watch);
-    let orderId
-    options.orderId ? (orderId = options.orderId) : (orderId = options.id);
     this.setData({
-      orderId
+      orderId: options.orderId
     })
     if(app.globalData.token) {
       this.getOrderDetail()
@@ -67,7 +65,34 @@ Page({
         })
       })
     })
-    },
+  },
+  buyAgain(e) {
+    let goodsList = e.currentTarget.dataset.goodslist
+    goodsList.forEach((item, index) => {
+      _CartAdd({
+        id: item.id,
+        goodsId: item.goods_id,
+        number: item.number
+      }).then(data => {
+        if (index === goodsList.length - 1) {
+          wx.showToast({
+            icon: "success",
+            title: "已添加至购物车",
+            duration: 1000
+          })
+          setTimeout(() => {
+            wx.switchTab({
+              url: "../cart/cart"
+            });
+          }, 1000);
+        }
+      }).catch(msg => {
+        wx.showModal({
+          title: msg
+        })
+      })
+    });
+  },
   /**
    * 生命周期函数--监听页面显示
    */

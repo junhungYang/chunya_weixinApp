@@ -3,8 +3,7 @@ import {
   _GetSessionKey,
   _GetSensitiveInfo,
   _WxappLogin,
-  _SetToken,
-  _GetUserInfo
+  _SetToken
 } from "./utils/request";
 App({
   onLaunch: function() {
@@ -71,32 +70,6 @@ App({
       }
     });
   },
-  pay(data) {
-    wx.requestPayment({
-      timeStamp: data.timeStamp,
-      appId: data.appId,
-      nonceStr: data.nonceStr,
-      package: data.package,
-      signType: data.signType,
-      paySign: data.paySign,
-      success: function(res) {
-        console.log(res);
-        wx.showToast({
-          title: "成功结算"
-        });
-        setTimeout(() => {
-          wx.redirectTo({
-            url: "../orderList/orderList"
-          });
-        }, 1000);
-      },
-      fail: function(res) {
-        wx.redirectTo({
-          url: "../orderList/orderList"
-        });
-      }
-    });
-  },
   wxappLogin() {
     let userInfoJson = wx.getStorageSync("userInfo");
     let phoneNum = wx.getStorageSync("userPhoneNum");
@@ -113,6 +86,32 @@ App({
           this.globalData.token = data.token;
         })
         .catch(msg => this.showMod(msg));
+  },
+  pay(data) {
+    wx.requestPayment({
+      timeStamp: data.timeStamp,
+      appId: data.appId,
+      nonceStr: data.nonceStr,
+      package: data.package,
+      signType: data.signType,
+      paySign: data.paySign,
+      success: function (res) {
+        console.log(res);
+        wx.showToast({
+          title: "成功结算"
+        });
+        setTimeout(() => {
+          wx.redirectTo({
+            url: "../orderList/orderList"
+          });
+        }, 1000);
+      },
+      fail: function (res) {
+        wx.redirectTo({
+          url: "../orderList/orderList"
+        });
+      }
+    });
   },
   showMod(msg) {
     wx.showModal({

@@ -310,3 +310,15 @@
   text-align: center;
   margin-top: 10rpx;
 }
+.custom-service {
+  display: block;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 32rpx;
+}
+.custom-service::after {
+  border: 0;
+}

@@ -113,8 +113,10 @@
                 <text>课堂分享</text>
             </view>
             <view class="item">
-                <image src="../../img/userCenter/kefu.png" />
-                <text>客服</text>
+                <button open-type="contact" size="20" class="custom-service">
+                    <image src="../../img/userCenter/kefu.png" />
+                    <text>客服</text>
+                </button>
             </view>
             <view class="item">
                 <image src="../../img/userCenter/yijian.png" />

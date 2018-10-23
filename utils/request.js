@@ -25,27 +25,7 @@ const _GetUserInfo = function (data) {
     });
   });
 };
-//个人中心订单数量(即最新物流)
-const _UserCenterOrderCount = function(data) {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: `${GlobalUrl}api/order/orderCount`,
-      data: data,
-      method: "POST",
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "X-Nideshop-Token": Token
-      },
-      success: res => {
-        if (res.data.errno === 0) {
-          resolve(res.data.data);
-        } else {
-          reject(res.data.errmsg);
-        }
-      }
-    });
-  });
-};
+
 //获取formid
 const _SendFormid = function (data) {
   return new Promise((resolve, reject) => {
@@ -316,7 +296,27 @@ const _OrderDetail = function(data) {
     });
   });
 };
-
+//个人中心订单数量(即最新物流)
+const _UserCenterOrderCount = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/orderCount`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
 const _OrderList = function(data) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -337,7 +337,66 @@ const _OrderList = function(data) {
     });
   });
 };
-
+const _OrderConfirmOrder = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/confirmOrder`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+}
+const _OrderCancelOrder = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/cancelOrder`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+const _OrderDeleteOrder = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/deleteOrder`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
 const _OrderSubmit = function(data) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -730,6 +789,9 @@ module.exports = {
     _PositionDetail,
     _PositionDelete,
     _WeChatPay,
+    _OrderConfirmOrder,
+    _OrderCancelOrder,
+    _OrderDeleteOrder,
     _OrderDetail,
     _OrderList,
     _OrderSubmit,

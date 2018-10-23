@@ -56,16 +56,20 @@ Page({
       wx.navigateTo({ url: `../addressList/addressList?index=1` });
   },
   orderConfirm() {
-    _OrderSubmit({
-      postscript: this.data.postscript,
-      addressId: this.data.data.checkedAddress.id,
-      fullCutCouponDec: this.data.data.fullCutCouponDec
-    }).then(data => {
-      let orderId = data.orderInfo.id;
-      _WeChatPay({ orderId }).then(data => {
-        app.pay(data)
+    if(this.data.data.checkedAddress) {
+      _OrderSubmit({
+        postscript: this.data.postscript,
+        addressId: this.data.data.checkedAddress.id,
+        fullCutCouponDec: this.data.data.fullCutCouponDec
+      }).then(data => {
+        let orderId = data.orderInfo.id;
+        _WeChatPay({ orderId }).then(data => {
+          app.pay(data)
+        });
       });
-    });
+    }else {
+      console.log('没地址')
+    }
   },
 
   /**

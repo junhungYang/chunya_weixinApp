@@ -8,9 +8,6 @@ import {
 const app = getApp();
 var that;
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     name: "junxing",
     cartList: [],
@@ -157,7 +154,6 @@ Page({
     }
   },
   bindGetUserInfo(res) {
-    console.log(res);
     if (res.detail.userInfo) {
       //用户点击了授权
       app.getSensitiveInfo();

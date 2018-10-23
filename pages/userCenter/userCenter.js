@@ -69,7 +69,6 @@ Page({
       });
     } else {
       _UserCenterOrderCount().then(data => {
-        console.log(data)
         if(data.orderInfo) {
           this.setData({
             orderInfo: data.orderInfo
@@ -84,24 +83,6 @@ Page({
           title
         })
       })
-      // _OrderList({
-      //   page: 1,
-      //   size: 1
-      // }).then(data => {
-      //   if (data.data[0]) {
-      //     this.setData({
-      //       orderInfo: data.data[0]
-      //     });
-      //   } else {
-      //     this.setData({
-      //       orderInfo: null
-      //     });
-      //   }
-      // }).catch(msg => {
-      //     wx.showModal({
-      //       title: msg
-      //     });
-      //   });
     }      
   },
   navToOrderList() {
