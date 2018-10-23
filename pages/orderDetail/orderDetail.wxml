@@ -8,13 +8,14 @@
         </view>
     </view>
     <view class="logistics">
-        <!--<view class="desc">
+        <view class="desc">
             <image src="../../img/orderDetail/icon1.png" />
             <view class="text">
-                【深圳市】【以签收，签收人是拍照签收。轻骑只为佳人笑，给个五星好评好不好？请在评价小件处给予五星好评】，感谢使用百世快递，期待再次为你服务
+                {{data.shippingList.length!==0?data.shippingList[0].AcceptStation:'暂无物流信息'}}
+                【{{data.shippingList.length!==0?data.shippingList[0].AcceptTime:''}}】
             </view>
             <image src="../../img/redictTo.png" />
-        </view> -->
+        </view>
         <view class="address">
             <image src="../../img/orderDetail/icon2.png" />
             <view>
@@ -83,12 +84,12 @@
             <text>{{data.orderInfo.order_sn}}</text>
         </view>
         <view class="data">
-            <!--<view class="text">
+            <view class="text" wx:if="{{data.orderInfo.transaction_id}}">
                 <view>
                     <text>微信交易号：</text>
-                    <text>201810162200110301507755886</text>
+                    <text>{{data.orderInfo.transaction_id}}</text>
                 </view>
-            </view> -->
+            </view> 
             <view class="text">
                 <view>
                     <text>创建时间：</text>
@@ -101,11 +102,11 @@
                     <text>{{data.orderInfo.pay_time===null?'未付款':data.orderInfo.pay_time}}</text>                    
                 </view>
             </view>
-            <view class="text">
-                <!--<view>
+            <view class="text" wx:if="{{data.orderInfo.delivery_time}}">
+                <view>
                     <text>发货时间：</text>
-                    <text >{{data.orderInfo.order_status_text==='未付款'?'未发货'}}</text>
-                </view>-->   
+                    <text >{{data.orderInfo.delivery_time}}</text>
+                </view>
             </view>
         </view>
         <view class="contact">
@@ -114,7 +115,7 @@
         </view>
     </view>
     <view class="control">
-        <view class="btn-group" wx:if="{{data.orderInfo.order_status_text!=='未付款'?true:false}}">
+        <view class="btn-group" wx:if="{{data.orderInfo.order_status_text!=='未付款'}}">
             <view>
                 延长收货
             </view>

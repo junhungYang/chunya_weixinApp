@@ -1,5 +1,6 @@
 {
   "pages": [
+            "pages/addressInput/addressInput",
         "pages/index/index",
         "pages/orderDetail/orderDetail",
         "pages/goodDetails/goodDetail",
@@ -9,7 +10,7 @@
         "pages/addressList/addressList",
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
-        "pages/addressInput/addressInput",
+ 
             "pages/test/test"
   ],
   "window": {

@@ -20,18 +20,28 @@
   background: #fff;
   border-radius: 12rpx;
 }
-.template .main .person .cont .address,
-.template .main .address .cont .address {
+.template .main .person .cont .name,
+.template .main .address .cont .name {
+  border-bottom: 1px solid #f7f7f7;
+  height: 87rpx;
+}
+.template .main .person .cont .name input,
+.template .main .address .cont .name input {
+  height: 100%;
+  line-height: 87rpx;
+}
+.template .main .person .cont .address-input,
+.template .main .address .cont .address-input {
   height: 87rpx;
   border-bottom: 1px solid #f7f7f7;
 }
-.template .main .person .cont .address text:nth-of-type(2),
-.template .main .address .cont .address text:nth-of-type(2) {
+.template .main .person .cont .address-input text:nth-of-type(2),
+.template .main .address .cont .address-input text:nth-of-type(2) {
   flex: 1;
   color: #b2b2b2;
 }
-.template .main .person .cont .address .icon,
-.template .main .address .cont .address .icon {
+.template .main .person .cont .address-input .icon,
+.template .main .address .cont .address-input .icon {
   width: 32rpx;
   height: 40rpx;
   align-self: center;

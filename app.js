@@ -12,8 +12,16 @@ App({
     wx.checkSession({
       success: () => {
         //未过期
-        // this.wxappLogin();
-        this.wxLoginApi();
+        let userInfoJson = wx.getStorageSync("userInfo");
+        wx.getSetting({
+          success: res => {
+            if (res.authSetting["scope.userInfo"] && userInfoJson) {
+              this.wxappLogin(userInfoJson);
+            } else {
+              this.wxLoginApi();
+            }
+          }
+        });
       },
       fail: () => {
         //已过期
@@ -43,7 +51,6 @@ App({
     wx.getSetting({
       success: res => {
         this.globalData.canIUseFlag = res.authSetting["scope.userInfo"];
-        console.log(this.globalData.canIUseFlag);
         if (res.authSetting["scope.userInfo"]) {
           let sessionKey = wx.getStorageSync("sessionKey");
           wx.getUserInfo({
@@ -73,7 +80,7 @@ App({
       signType: data.signType,
       paySign: data.paySign,
       success: function(res) {
-        console.log(res)
+        console.log(res);
         wx.showToast({
           title: "成功结算"
         });
@@ -93,7 +100,6 @@ App({
   wxappLogin() {
     let userInfoJson = wx.getStorageSync("userInfo");
     let phoneNum = wx.getStorageSync("userPhoneNum");
-    if (userInfoJson) {
       let userInfo = JSON.parse(userInfoJson);
       _WxappLogin({
         openid: userInfo.openId,
@@ -107,9 +113,6 @@ App({
           this.globalData.token = data.token;
         })
         .catch(msg => this.showMod(msg));
-    } else {
-      this.wxLoginApi();
-    }
   },
   showMod(msg) {
     wx.showModal({
@@ -142,6 +145,6 @@ App({
     cartInfo: {},
     token: "",
     text: "abc",
-    canIUseFlag:false
+    canIUseFlag: false
   }
 });

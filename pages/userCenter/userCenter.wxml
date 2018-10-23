@@ -25,7 +25,7 @@
             <image src="../../img/userCenter/icon1.png" />
             <view class="desc">
                 <text>积分</text>
-                <text></text>
+                <text>{{userInfo.integral}}</text>
             </view>
         </view>
         <view class="text">

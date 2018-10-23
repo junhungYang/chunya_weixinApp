@@ -5,7 +5,7 @@
                 收货人
             </view>
             <view class="cont">
-                <view>
+                <view class="name">
                     <text>姓名</text>
                     <input type="text" value="{{detail.userName}}" placeholder="真实姓名" data-index="{{1}}" bindinput="inputControl"/>
                 </view>
@@ -21,7 +21,7 @@
                 收货地址
             </view>
             <view class="cont">
-                <view class="address">
+                <view class="address-input">
                     <text>地区信息</text>
                     <text>{{addressText}}</text>
                     <image src="../../img/positionIcon.png" class="icon" bindtap="chooseAddress"/>
