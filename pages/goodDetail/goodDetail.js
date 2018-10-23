@@ -22,14 +22,12 @@ Page({
     domPosTop:{}
   },
   onLoad: function(options) {
-    console.log(options)
     that = this;
     app.setWatcher(app.globalData, this.watch);
     this.setData({
       goodId: options.goodId
     })
     if(app.globalData.token) {
-      console.log('有token')
       this.getGoodDetail()
       this.getReviews()
     }
@@ -68,7 +66,6 @@ Page({
     let obj = {}
     obj.allTop = 0;
     query.exec(function (res) {
-      console.log(res)
       obj.detailTop = res[0].top
       obj.reviewsTop = res[1].top
     })

@@ -1,5 +1,12 @@
 // pages/orderDetail/orderDetail.js
-import { _WeChatPay, _OrderDetail} from '../../utils/request'
+import { 
+  _WeChatPay, 
+  _OrderDetail, 
+  _CartAdd,
+  _OrderConfirmOrder,
+  _OrderCancelOrder,
+  _OrderDeleteOrder
+  } from '../../utils/request'
 const app = getApp()
 var that;
 Page({
@@ -67,30 +74,50 @@ Page({
     })
   },
   buyAgain(e) {
-    let goodsList = e.currentTarget.dataset.goodslist
-    goodsList.forEach((item, index) => {
-      _CartAdd({
-        id: item.id,
-        goodsId: item.goods_id,
-        number: item.number
-      }).then(data => {
-        if (index === goodsList.length - 1) {
-          wx.showToast({
-            icon: "success",
-            title: "已添加至购物车",
-            duration: 1000
+    app.buyAgain(e)
+  },
+  orderControl(e) {
+    let orderId = e.currentTarget.dataset.orderid;
+    let controlStyle = e.currentTarget.dataset.str;
+    let promiseObj;
+    switch (controlStyle) {
+      case 'delete':
+        promiseObj = _OrderDeleteOrder({ orderId })
+
+        break;
+      case 'cancel':
+        promiseObj = _OrderCancelOrder({ orderId })
+        break;
+      case 'confirm':
+        promiseObj = _OrderConfirmOrder({ orderId })
+        break
+    }
+    promiseObj.then(data => {
+      wx.showToast({
+        icon: "success",
+        title: data,
+        duration: 600
+      });
+      setTimeout(() => {
+        if (controlStyle === 'delete') {
+          let pages = getCurrentPages()
+          let prevPage = pages[pages.length - 2];
+          prevPage.setData({
+            requestCode: -1,
+            pageIndex: 1
           })
-          setTimeout(() => {
-            wx.switchTab({
-              url: "../cart/cart"
-            });
-          }, 1000);
+          prevPage.getOrderList()
+          wx.navigateBack({
+            delta: 1
+          })
+        }else {
+          this.getOrderDetail();
         }
-      }).catch(msg => {
-        wx.showModal({
-          title: msg
-        })
-      })
+      }, 600); 
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      });
     });
   },
   /**

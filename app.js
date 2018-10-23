@@ -3,7 +3,8 @@ import {
   _GetSessionKey,
   _GetSensitiveInfo,
   _WxappLogin,
-  _SetToken
+  _SetToken,
+  _CartAdd
 } from "./utils/request";
 App({
   onLaunch: function() {
@@ -111,6 +112,31 @@ App({
           url: "../orderList/orderList"
         });
       }
+    });
+  },
+  buyAgain(e) {
+    let goodsList = e.currentTarget.dataset.goodslist;
+    goodsList.forEach((item, index) => {
+      _CartAdd({
+        productId: item.product_id,
+        goodsId: item.goods_id,
+        number: item.number
+      })
+        .then(data => {
+          if (index === goodsList.length - 1) {
+            wx.showToast({
+              icon: "success",
+              title: "已添加至购物车",
+              duration: 1000
+            });
+            setTimeout(() => {
+              wx.switchTab({ url: "../cart/cart" });
+            }, 1000);
+          }
+        })
+        .catch(msg => {
+          wx.showModal({ title: msg });
+        });
     });
   },
   showMod(msg) {

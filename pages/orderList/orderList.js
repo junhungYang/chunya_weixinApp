@@ -128,30 +128,7 @@ Page({
       });
   },
   buyAgain(e) {
-    let goodsList = e.currentTarget.dataset.goodslist;
-    console.log(goodsList)
-    goodsList.forEach((item, index) => {
-      _CartAdd({
-        productId: item.product_id,
-        goodsId: item.goods_id,
-        number: item.number
-      })
-        .then(data => {
-          if (index === goodsList.length - 1) {
-            wx.showToast({
-              icon: "success",
-              title: "已添加至购物车",
-              duration: 1000
-            });
-            setTimeout(() => {
-              wx.switchTab({ url: "../cart/cart" });
-            }, 1000);
-          }
-        })
-        .catch(msg => {
-          wx.showModal({ title: msg });
-        });
-    });
+    app.buyAgain(e);
   },
   /**
    * 生命周期函数--监听页面隐藏
