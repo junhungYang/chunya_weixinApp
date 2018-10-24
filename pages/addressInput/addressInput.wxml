@@ -28,7 +28,7 @@
                 </view>
                 <view>
                     <text>详细地址</text>
-                    <input type="text" value="{{detail.detailInfo}}"placeholder="街道门派、楼层房间号等信息" data-index="{{3}}" bindinput="inputControl"/>
+                    <input type="text" value="{{detail.detailInfo}}" placeholder="街道门派、楼层房间号等信息" data-index="{{3}}" bindinput="inputControl"/>
                 </view>
             </view>
         </view>
