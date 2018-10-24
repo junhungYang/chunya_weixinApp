@@ -45,6 +45,34 @@
   text-align: center;
   color: #b2b2b2;
 }
+.input-box .search-list {
+  position: fixed;
+  top: 81rpx;
+  left: 50%;
+  transform: translateX(-50%); 
+  width: 95%;
+  background:#fff;
+  z-index: 99;
+  box-shadow: 0 0 16rpx rgba(0,0,0,0.4)
+}
+.input-box .search-list .haveGoods view{
+  color: rgb(145, 145, 145);
+  height: 80rpx;
+  margin: 0 30rpx;
+  border-bottom: 1px solid #f7f7f7;
+  font-size: 24rpx;
+  line-height: 80rpx;
+  white-space:nowrap ; 
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+.input-box .search-list .noGoods {
+  height: 80rpx;
+  text-align:center;
+  line-height: 80rpx;
+  font-size: 24rpx;
+  color: rgb(145, 145, 145);
+}
 .invisibleclass {
   display: block;
   margin: 0;

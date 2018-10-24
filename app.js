@@ -67,6 +67,10 @@ App({
                 .catch(msg => this.showMod(msg));
             }
           });
+        } else {
+          wx.switchTab({
+            url:'../cart/cart'
+          })
         }
       }
     });

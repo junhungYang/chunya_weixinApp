@@ -8,8 +8,7 @@
         "pages/addressList/addressList",
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
-            "pages/goodDetail/goodDetail",
-            "pages/test/test"
+            "pages/goodDetail/goodDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

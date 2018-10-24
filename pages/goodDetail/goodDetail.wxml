@@ -39,11 +39,10 @@
                         <image src="{{collectState === 'add' ? '../../img/goodDetail/collect1.png' : '../../img/goodDetail/collect.png'}}" />
                         <text>{{collectState==='add'?'已收藏':'收藏'}}</text>
                     </view>
-                    <view bindtap="share">
+                    <button open-type="share" class="share-btn">
                         <image src="../../img/goodDetail/share.png" />
                         <text>分享</text>
-                    </view>
-                    <!--<button open-type="share" title="{{detail.info.name}}" path="/pages/goodDetail/goodDetail?goodId={{goodId}}">Button</button>-->
+                    </button>
                 </view>
            </view> 
            <view class="choose" data-index="{{1}}" bindtap="cartStateManage">

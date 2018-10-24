@@ -18,7 +18,12 @@ Page({
     requestCode: -1,
     pageIndex: 1
   },
-  onLoad: function() {
+  onLoad: function(options) {
+    if(options.requestCode) {
+      this.setData({
+        requestCode: Number(options.requestCode)
+      })
+    }
     this.getOrderList();
   },
   /**
@@ -116,16 +121,19 @@ Page({
     this.getOrderList();
   },
   pay(e) {
-    let orderId = e.currentTarget.dataset.id;
-    _WeChatPay({ orderId })
-      .then(data => {
-        app.pay(data);
-      })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let orderId = e.currentTarget.dataset.id;
+      _WeChatPay({ orderId })
+        .then(data => {
+          app.pay(data);
+        })
+        .catch(msg => {
+          wx.showModal({
+            title: msg
+          });
         });
-      });
+    }, 500);
   },
   buyAgain(e) {
     app.buyAgain(e);

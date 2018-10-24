@@ -5,7 +5,6 @@ Component({
 
 
   data: {
-    background: ["demo-text-1", "demo-text-2", "demo-text-3"],
     adList:[]
   }, // 私有数据，可用于模版渲染
 
@@ -20,7 +19,6 @@ Component({
             this.setData({
                 adList:data.adList
             })
-            console.log(this.data.adList)
         })
         .catch(msg => {
             wx.showModal({

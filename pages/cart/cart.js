@@ -14,7 +14,7 @@ Page({
     couponInfoList: [],
     cartTotal: {},
     allChoose: false,
-    hasToken: false
+    hasToken: false,
   },
   onLoad() {
     that = this;
@@ -45,6 +45,7 @@ Page({
           cartList: data.cartList,
           cartTotal: data.cartTotal
         });
+        this.checkAllChoose()
       })
       .catch(msg => {
         wx.showModal({ title: msg });
@@ -61,26 +62,38 @@ Page({
       });
     }
   },
+  checkAllChoose() {
+    let cartTotal = this.data.cartTotal
+    if (cartTotal.checkedGoodsCount === cartTotal.goodsCount) {
+      this.setData({
+        allChoose: true
+      })
+    } else {
+      this.setData({
+        allChoose: false
+      })
+    }
+  },
   //全选
   allChoose() {
-    this.setData({
-      allChoose: !this.data.allChoose
-    });
-    let arr = [];
-    this.data.cartList.forEach(item => {
-      arr.push(item.product_id);
-    });
-    let productIds = arr.toString();
-    let isChecked;
-    this.data.allChoose === true ? (isChecked = 1) : (isChecked = 0);
-    this.cartChecked(productIds, isChecked);
+      this.setData({
+        allChoose: !this.data.allChoose
+      });
+      let arr = [];
+      this.data.cartList.forEach(item => {
+        arr.push(item.product_id);
+      });
+      let productIds = arr.toString();
+      let isChecked;
+      this.data.allChoose === true ? (isChecked = 1) : (isChecked = 0);
+      this.cartChecked(productIds, isChecked);
   },
   //单选
   choose(e) {
-    let isChecked = e.currentTarget.dataset.state === 1 ? 0 : 1;
-    let arrindex = e.currentTarget.dataset.arrindex;
-    let productIds = this.data.cartList[arrindex].product_id;
-    this.cartChecked(productIds, isChecked);
+      let isChecked = e.currentTarget.dataset.state === 1 ? 0 : 1;
+      let arrindex = e.currentTarget.dataset.arrindex;
+      let productIds = this.data.cartList[arrindex].product_id;
+      this.cartChecked(productIds, isChecked);  
   },
   cartChecked(productIds, isChecked) {
     _CartChecked({
@@ -92,6 +105,7 @@ Page({
           cartList: data.cartList,
           cartTotal: data.cartTotal
         });
+        this.checkAllChoose()
       })
       .catch(msg => {
         wx.showModal({
@@ -130,15 +144,6 @@ Page({
           title: msg
         });
       });
-  },
-  goodsDelete(e) {
-    _CartDelete({
-      productIds: e.currentTarget.dataset.prodid
-    }).then(data => {
-      this.setData({
-        cartList: data.cartList
-      });
-    });
   },
   buyConfirm() {
     if (this.data.cartTotal.checkedGoodsAmount !== 0) {
@@ -186,5 +191,25 @@ Page({
           wx.showModal({ title: msg });
         });
     }
+  },
+  goodsDelete() {
+    let arr = []
+    this.data.cartList.forEach(item => {
+      if(item.checked === 1) {
+        arr.push(item.product_id)
+      }
+    })
+    if(arr.length > 0) {
+      let productIds = arr.toString();
+      _CartDelete({
+        productIds
+      }).then(data => {
+        this.setData({
+          cartList: data.cartList,
+          cartTotal: data.cartTotal
+        })
+      })
+    }
+    
   }
 });

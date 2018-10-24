@@ -106,28 +106,42 @@
   width: 13rpx;
   height: 24rpx;
 }
-.goodMod .goodInfo .info .collect-share view {
+.goodMod .goodInfo .info .collect-share {
   position: absolute;
+  top: 32rpx;
+  right: 0;
+  display: flex;
 }
-.goodMod .goodInfo .info .collect-share view image {
+.goodMod .goodInfo .info .collect-share view,
+.goodMod .goodInfo .info .collect-share .share-btn {
+  flex: 1;
+}
+.goodMod .goodInfo .info .collect-share view image,
+.goodMod .goodInfo .info .collect-share .share-btn image {
   width: 25rpx;
+  padding: 0 15rpx;
   margin: 0 auto;
   height: 25rpx;
   display: block;
 }
-.goodMod .goodInfo .info .collect-share view text {
+.goodMod .goodInfo .info .collect-share view text,
+.goodMod .goodInfo .info .collect-share .share-btn text {
   margin-top: 8rpx;
   display: block;
   font-size: 16rpx;
+  line-height: 20rpx;
   color: #9f9f9f;
+  text-align: center;
 }
-.goodMod .goodInfo .info .collect-share view:first-of-type {
-  top: 32rpx;
-  right: 83rpx;
+.goodMod .goodInfo .info .collect-share .share-btn {
+  margin: 0;
+  margin-left: 30rpx;
+  padding: 0;
+  line-height: 0;
+  background: transparent;
 }
-.goodMod .goodInfo .info .collect-share view:last-of-type {
-  top: 32rpx;
-  right: 0rpx;
+.goodMod .goodInfo .info .collect-share .share-btn::after {
+  border: 0;
 }
 .goodMod .goodInfo .choose {
   height: 100rpx;

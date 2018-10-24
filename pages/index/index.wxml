@@ -1,13 +1,19 @@
 <!--index.wxml-->
 <view class="container">
-  <!--<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号码</button> --> 
   <view class="input-box">
       <view class="mask {{searchText?'':'iconfont icon-search'}}">{{searchText?'':'搜索'}}</view>
     <input type="text" class="iconfont icon-search" class="bgText"  bindinput="searchInput"
-    bindconfirm="searchGoods"
-    value="{{searchText}}"/>
-
+    value="{{searchText}}" bindblur="hidSearchList"/>
+    <view class="search-list" hidden="{{searchListHid}}">
+      <view class="haveGoods" wx:if="{{searchList.length!==0}}">
+        <view wx:for="{{searchList}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail">
+          {{item.name}}
+        </view> 
+      </view>
+      <view class="noGoods" wx:else>
+        没有该商品
+      </view>
+    </view>
   </view>
   <view class="swiper-box">
     <my-swiper></my-swiper>

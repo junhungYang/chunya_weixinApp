@@ -6,6 +6,9 @@
         <view bindtap="changeActive" data-requestCode="{{0}}">
             <text class="{{requestCode===0?'active':''}}">待付款</text>
         </view>
+        <view bindtap="changeActive" data-requestCode="{{201}}">
+            <text class="{{requestCode===201?'active':''}}">待发货</text>
+        </view>
         <view bindtap="changeActive" data-requestCode="{{300}}">
             <text class="{{requestCode===300?'active':''}}">待收货</text>
         </view>

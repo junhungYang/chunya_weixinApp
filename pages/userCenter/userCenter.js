@@ -85,9 +85,11 @@ Page({
       })
     }      
   },
-  navToOrderList() {
+  navToOrderList(e) {
+    let requestCode = e.currentTarget.dataset.requestcode
+    let url = requestCode !== undefined ? `../orderList/orderList?requestCode=${requestCode}` : `../orderList/orderList`;
     wx.navigateTo({
-      url: "../orderList/orderList"
+      url
     });
   },
   navToAddressList() {

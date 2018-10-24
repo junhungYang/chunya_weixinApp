@@ -1,6 +1,5 @@
 .template {
   background: #f2f2f2;
-  position: absolute;
   min-height: 100vh;
 }
 .template .bg {
@@ -42,16 +41,17 @@
   padding-bottom: 100rpx;
 }
 .template .list .item {
+  border-radius: 15rpx;
   width: 87.2%;
-  min-height: 294rpx;
+  height: 294rpx;
   margin: 0 6.4%;
+  margin-top: 18rpx;
   box-sizing: border-box;
   padding: 0 18rpx;
-  margin-top: 18rpx;
   display: flex;
   background: #fff;
-  border-radius: 15rpx;
   position: relative;
+  z-index: 1;
 }
 .template .list .item .choose {
   width: 42rpx;
@@ -170,6 +170,7 @@
 .template .all-price .all-choose {
   margin-left: 6.4%;
   line-height: 100rpx;
+  margin-right: 18rpx;
 }
 .template .all-price .all-choose image {
   width: 32rpx;
@@ -180,6 +181,14 @@
   margin-left: 20rpx;
   font-size: 28rpx;
   vertical-align: middle;
+}
+.template .all-price .goods-delete {
+  line-height: 100rpx;
+}
+.template .all-price .goods-delete text {
+  padding-left: 20rpx;
+  font-size: 28rpx;
+  border-left: 1px solid #b2b2b2;
 }
 .template .all-price .balance {
   width: 236rpx;

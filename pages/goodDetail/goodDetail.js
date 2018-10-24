@@ -139,9 +139,6 @@ Page({
       }
     }
   },
-  share() {
-    wx.showShareMenu();
-  },
   //购物车开关回调
   cartStateManage(e) {
     clearTimeout(this.timer);
@@ -230,6 +227,7 @@ Page({
     });
   },
   onShareAppMessage: function() {
+    console.log(123456789)
     wx.showShareMenu();
   }
 });

@@ -7,7 +7,9 @@ Page({
     canIUse: wx.canIUse("button.open-type.getUserInfo"),
     name: "junxing",
     goodsList: [],
-    value:''
+    searchText:'',
+    searchListHid:true,
+    searchList:[]
   },
   onShow() {
     app.setWatcher(app.globalData, this.watch);
@@ -94,21 +96,35 @@ Page({
     this.setData({
       searchText:e.detail.value
     })
-  },
-  searchGoods(e) {
-    console.log(e.detail.value)
+    if (this.data.searchText) {
+      this.setData({ searchListHid: false })
+    } else {
+      this.setData({ searchListHid: true });
+    }
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       _GoodsList({
         page: 1,
         size: 10,
-        keyword: e.detail.value
+        keyword: this.data.searchText
+      }).then(data => {
+        this.setData({
+          searchList: data.data
+        })
       }).catch(msg => {
         wx.showModal({
           title: msg
         });
       });
-    }, 1000);
+    }, 500);
+  },
+
+  hidSearchList() {
+    setTimeout(() => {
+      this.setData({
+        searchListHid: true,
+      });
+    }, 0);
   },
   onShareAppMessage: function() {
     wx.showShareMenu();

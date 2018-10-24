@@ -47,6 +47,9 @@
                 <image wx:else src="../../img/cart/icon3.png" />
                 <text>全选</text>
             </view>
+            <view class="goods-delete" bindtap="goodsDelete">
+                <text>删除</text>
+            </view>
             <view class="price">
                 <view>
                     <text>合计:</text>

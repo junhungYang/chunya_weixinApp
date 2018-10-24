@@ -40,38 +40,19 @@ Page({
       });
   },
   pay(e) {
-    let orderId = e.currentTarget.dataset.id
-    _WeChatPay({ orderId })
-      .then(data => {
-        app.pay(data)
-      })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let orderId = e.currentTarget.dataset.id
+      _WeChatPay({ orderId })
+        .then(data => {
+          app.pay(data)
         })
-      })
-  },
-  buyConfirm() {
-    let addressId = this.data.orderDetail.checkedAddress.id;
-    _OrderSubmit({ addressId }).then(data => {
-      let orderId = data.orderInfo.id;
-      _WeChatPay({ orderId }).then(data => {
-        wx.requestPayment({
-          timeStamp: data.timeStamp,
-          appId: data.appId,
-          nonceStr: data.nonceStr,
-          package: data.package,
-          signType: data.signType,
-          paySign: data.paySign,
-          success: function () {
-            console.log('success')
-          },
-          fail: function (res) {
-            console.log(res)
-          }
+        .catch(msg => {
+          wx.showModal({
+            title: msg
+          })
         })
-      })
-    })
+    }, 500);
   },
   buyAgain(e) {
     app.buyAgain(e)
