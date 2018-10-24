@@ -35,6 +35,7 @@
                         +
                     </view>
                 </view>
+                <!--<view class="mask" data-arrindex="{{arrIndex}}"  bindtap="pullOff"></view> -->
             </view>
         </view>
         <!--<view class="explain">

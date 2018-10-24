@@ -81,7 +81,9 @@ Page({
       });
       let arr = [];
       this.data.cartList.forEach(item => {
-        arr.push(item.product_id);
+        if (item.product_status) {
+          arr.push(item.product_id);
+        }
       });
       let productIds = arr.toString();
       let isChecked;
@@ -195,7 +197,7 @@ Page({
   goodsDelete() {
     let arr = []
     this.data.cartList.forEach(item => {
-      if(item.checked === 1) {
+      if (item.checked === 1 || item.product_status === 0) {
         arr.push(item.product_id)
       }
     })
@@ -210,6 +212,8 @@ Page({
         })
       })
     }
-    
+  },
+  pullOff() {
+
   }
 });
