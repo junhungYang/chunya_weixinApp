@@ -15,9 +15,19 @@ Page({
   },
   onLoad() {
     that = this
-  },
-  onShow() {
     app.setWatcher(app.globalData, this.watch);
+  },
+
+  onShow() {
+    if (app.globalData.token) {
+      this.setData({
+        hasToken: true
+      })
+    } else {
+      this.setData({
+        hasToken: false
+      })
+    }
     _GoodsList({
       page: 1,
       size: 10
@@ -153,6 +163,7 @@ Page({
   watch: {
     token(newValue) {
       if(newValue) {
+        console.log(newValue + 'aaa')
         that.setData({
           hasToken:true
         })

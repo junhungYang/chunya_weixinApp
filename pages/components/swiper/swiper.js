@@ -9,6 +9,7 @@ Component({
             }
         }
     },
+
   data: {
     adList:[]
   }, // 私有数据，可用于模版渲染
@@ -22,7 +23,6 @@ Component({
         }
     }
   },
-  created() {},
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function() {

@@ -120,6 +120,14 @@
 .swiper-box {
   height: 374rpx;
   background:rgb(238, 238, 238);
+  position: relative
+}
+.swiper-box .mask {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 .nav .item image {
   width: 80rpx;
