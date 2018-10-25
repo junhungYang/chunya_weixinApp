@@ -19,7 +19,8 @@ Page({
     activeProduct: {},
     goodId:'',
     reviews:[],
-    domPosTop:{}
+    domPosTop:{},
+    navActive:1
   },
   onLoad: function(options) {
     that = this;
@@ -76,6 +77,9 @@ Page({
   scrollToDom(e) {
     let index = e.currentTarget.dataset.index
     let domPosTop = this.data.domPosTop
+    this.setData({
+      navActive: index
+    })
     switch (index) {
       case 1:
         wx.pageScrollTo({
@@ -84,12 +88,12 @@ Page({
         break;
       case 2:
         wx.pageScrollTo({
-          scrollTop:domPosTop.detailTop
+          scrollTop:domPosTop.detailTop -44
         })
         break;
       case 3:
         wx.pageScrollTo({
-          scrollTop:domPosTop.reviewsTop
+          scrollTop:domPosTop.reviewsTop -44
         })
         break;
     }
@@ -178,56 +182,64 @@ Page({
     });
   },
   cartAdd() {
-    let buyingInfo = {
-      goodsId: this.data.activeProduct.goods_id,
-      productId: this.data.activeProduct.id,
-      number: this.data.quantity
-    };
-    _CartAdd(buyingInfo)
-      .then(data => {
-        wx.showToast({
-          title: "添加成功",
-          icon: "success"
-        });
-        setTimeout(() => {
-          wx.switchTab({
-            url: "../cart/cart"
+    if (this.data.activeProduct.is_on_sale) {
+      let buyingInfo = {
+        goodsId: this.data.activeProduct.goods_id,
+        productId: this.data.activeProduct.id,
+        number: this.data.quantity
+      };
+      _CartAdd(buyingInfo)
+        .then(data => {
+          wx.showToast({
+            title: "添加成功",
+            icon: "success"
           });
-        }, 1500);
-      })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
+          setTimeout(() => {
+            wx.switchTab({
+              url: "../cart/cart"
+            });
+          }, 1500);
+        })
+        .catch(msg => {
+          wx.showModal({
+            title: msg
+          });
         });
+    }else {
+      wx.showModal({
+        title: "提示",
+        content: "该商品已下架",
+        showCancel: false,
+        confirmColor: '#b2b2b2'
       });
+    }
+
   },
   scrollToTop() {
     wx.pageScrollTo({
       scrollTop: 0
     });
+    this.setData({
+      navActive: 1
+    })
   },
-  orderCheckout() {
-    _OrderCheckout().then(data => {
-      let addressId = data.checkedAddress.id;
-      if (data.checkedAddress) {
-        let dataStr = JSON.stringify(data);
-        wx.navigateTo({
-          url: `../orderDetail/orderDetail?dataStr=${dataStr}`
-        });
-      } else {
-        wx.showModal({
-          title: "请添加地址",
-          success() {
-            wx.redirectTo({
-              url: "../userCenter/userCenter"
-            });
-          }
-        });
-      }
-    });
+  onPageScroll(res) {
+    let domPosTop = this.data.domPosTop
+    if(res.scrollTop < domPosTop.reviewsTop - 44) {
+      this.setData({
+        navActive: 1
+      })
+    }else if (res.scrollTop >= domPosTop.reviewsTop - 44) {
+      this.setData({
+        navActive: 2
+      })
+    }else if (res.scrollTop >= domPosTop.detailTop - 44) {
+      this.setData({
+        navActive: 3
+      })
+    }
   },
   onShareAppMessage: function() {
-    console.log(123456789)
     wx.showShareMenu();
   }
 });

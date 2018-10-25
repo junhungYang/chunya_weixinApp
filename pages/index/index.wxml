@@ -51,10 +51,10 @@
       <text>热销产品</text><text>HOT-SALE PRODUCTS</text>
     </view>
     <view class="goods-item">
-      <view class="header">
+      <!--<view class="header">
         <image src="../../img/index/good_banner.jpg" />
         <text>贴心｜爱意｜惊喜｜舒心</text>
-      </view>
+      </view> -->
       <view class="list">
         <view class="list-item"  wx:for="{{goodsList}}">
           <form bindsubmit="formSubmit_collect" report-submit="true">
@@ -64,7 +64,6 @@
                   <view class="price">
                     <text class="now-price">￥{{item.retail_price}}</text>
                     <text class="old-price">￥{{item.market_price}}</text>
-                    <image src="../../img/index/cart_icon.png" class="cart-icon"/>
                   </view>
               </button>
           </form>      

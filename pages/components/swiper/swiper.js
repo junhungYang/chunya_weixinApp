@@ -7,9 +7,15 @@ Component({
   data: {
     adList:[]
   }, // 私有数据，可用于模版渲染
-
-
-
+  methods: {
+    navToGoodDetail(e) {
+        let url = e.currentTarget.dataset.item.link
+        wx.navigateTo({
+            url
+        })
+    }
+  },
+    
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function() {

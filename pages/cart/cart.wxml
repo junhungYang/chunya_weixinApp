@@ -35,7 +35,7 @@
                         +
                     </view>
                 </view>
-                <!--<view class="mask" data-arrindex="{{arrIndex}}"  bindtap="pullOff"></view> -->
+                <view class="mask" data-productid="{{item.product_id}}"  bindtap="pullOff"></view>
             </view>
         </view>
         <!--<view class="explain">

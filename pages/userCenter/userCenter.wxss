@@ -173,37 +173,49 @@
   display: flex;
   justify-content: space-between;
 }
-.template .main .order .nav view {
+.template .main .order .nav .nav-item {
   flex: 1;
+  position: relative;
 }
-.template .main .order .nav view image,
-.template .main .order .nav view text {
+.template .main .order .nav .nav-item image,
+.template .main .order .nav .nav-item text {
   display: block;
   margin: 0 auto;
 }
-.template .main .order .nav view text {
+.template .main .order .nav .nav-item text {
   font-size: 24rpx;
   color: #313131;
   text-align: center;
   margin-top: 13rpx;
 }
-.template .main .order .nav view image:nth-of-type(1) {
+.template .main .order .nav .nav-item view {
+  position: absolute;
+  right: 16rpx;
+  top: -14rpx;
+  padding: 0 10rpx;
+  border-radius: 12rpx;
+  background: #d1051f;
+  font-size: 20rpx;
+  text-align: center;
+  color: #fff;
+}
+.template .main .order .nav .nav-item image:nth-of-type(1) {
   width: 32rpx;
   height: 34rpx;
 }
-.template .main .order .nav view image:nth-of-type(2) {
+.template .main .order .nav .nav-item image:nth-of-type(2) {
   width: 32rpx;
   height: 32rpx;
 }
-.template .main .order .nav view image:nth-of-type(3) {
+.template .main .order .nav .nav-item image:nth-of-type(3) {
   width: 38rpx;
   height: 32rpx;
 }
-.template .main .order .nav view image:nth-of-type(4) {
+.template .main .order .nav .nav-item image:nth-of-type(4) {
   width: 29rpx;
   height: 36rpx;
 }
-.template .main .order .nav view image:nth-of-type(5) {
+.template .main .order .nav .nav-item image:nth-of-type(5) {
   width: 27rpx;
   height: 32rpx;
 }

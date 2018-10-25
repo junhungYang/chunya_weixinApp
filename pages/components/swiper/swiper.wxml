@@ -5,8 +5,8 @@
       <swiper class="swiper-box"
         indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" vertical="{{false}}"
         indicator-color="rgba(255,255,255,0.5)" indicator-active-color="rgba(255,255,255,1)">
-        <block wx:for="{{adList}}" wx:key="*this" >
-          <swiper-item>
+        <block wx:for="{{adList}}" wx:key="*this">
+          <swiper-item data-item="{{item}}" bindtap="navToGoodDetail">
             <image class="swiper-item" src="{{item.image_url}}" />
           </swiper-item>
         </block>

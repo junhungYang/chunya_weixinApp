@@ -23,7 +23,8 @@ Page({
   onShow: function(options) {
     if (app.globalData.token) {
       this.setData({
-        hasToken: true
+        hasToken: true,
+        allChoose:false
       });
       this.getCartList();
     }
@@ -41,11 +42,15 @@ Page({
   getCartList() {
     _CartIndex()
       .then(data => {
+        data.cartList.forEach(item => {
+          if (item.product_status === 0&&item.checked) {
+            this.cartChecked(item.product_id, 0);
+          }
+        })
         this.setData({
           cartList: data.cartList,
           cartTotal: data.cartTotal
         });
-        this.checkAllChoose()
       })
       .catch(msg => {
         wx.showModal({ title: msg });
@@ -60,18 +65,6 @@ Page({
         fromid,
         openid
       });
-    }
-  },
-  checkAllChoose() {
-    let cartTotal = this.data.cartTotal
-    if (cartTotal.checkedGoodsCount === cartTotal.goodsCount) {
-      this.setData({
-        allChoose: true
-      })
-    } else {
-      this.setData({
-        allChoose: false
-      })
     }
   },
   //全选
@@ -107,7 +100,6 @@ Page({
           cartList: data.cartList,
           cartTotal: data.cartTotal
         });
-        this.checkAllChoose()
       })
       .catch(msg => {
         wx.showModal({
@@ -197,7 +189,7 @@ Page({
   goodsDelete() {
     let arr = []
     this.data.cartList.forEach(item => {
-      if (item.checked === 1 || item.product_status === 0) {
+      if (item.checked === 1 && item.product_status) {
         arr.push(item.product_id)
       }
     })
@@ -213,7 +205,26 @@ Page({
       })
     }
   },
-  pullOff() {
-
+  pullOff(e) {
+    wx.showModal({
+      title: "商品已下架",
+      content: "确定删除该下架商品吗?",
+      confirmText: "删除",
+      confirmColor: "#d1051f",
+      cancelColor:"#3b3b3b",
+      success:(res) => {
+        if(res.confirm) {
+          let productIds = e.currentTarget.dataset.productid;
+          _CartDelete({
+            productIds
+          }).then(data => {
+            this.setData({
+              cartList: data.cartList,
+              cartTotal: data.cartTotal
+            })
+          })
+        }
+      }
+    });
   }
 });

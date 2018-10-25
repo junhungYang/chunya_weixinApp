@@ -1,10 +1,9 @@
 <view class="template">
-
     <view class="nav">
-        <text bindtap="scrollToDom" data-index="{{1}}">宝贝</text>
-        <text bindtap="scrollToDom" data-index="{{2}}">详情</text>
-        <text bindtap="scrollToDom" data-index="{{3}}">评价</text>
-        <text>推荐</text>
+        <text bindtap="scrollToDom" class="{{navActive===1?'nav-active':''}}" data-index="{{1}}">宝贝</text>
+        <text bindtap="scrollToDom" class="{{navActive===2?'nav-active':''}}" data-index="{{2}}">详情</text>
+        <text bindtap="scrollToDom" class="{{navActive===3?'nav-active':''}}" data-index="{{3}}">评价</text>
+        <text class="{{navActive===4?'nav-active':''}}" >推荐</text>
     </view>
     <view class="goodMod">
         <view class="swiper">

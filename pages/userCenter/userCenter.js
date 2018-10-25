@@ -8,8 +8,8 @@ import {
 Page({
   data: {
     userInfo: {},
-    orderInfo: null,
-    canIUse: false
+    canIUse: false,
+    orderCount: {}
   },
   onLoad() {
     that = this
@@ -23,7 +23,7 @@ Page({
   },
   onShow() {
     if(app.globalData.token) {
-      this.requestOrderList(300);
+      this.requestOrderList();
     }
   },
   watch: {
@@ -33,7 +33,7 @@ Page({
           hasToken:true
         })
         that.setUserInfo();
-        that.requestOrderList(300)
+        that.requestOrderList()
       }
     }
   },
@@ -57,33 +57,16 @@ Page({
       });
     }
   },
-  getOrderList(e) {
-    let orderStatus = e.currentTarget.dataset.index;
-    this.requestOrderList(orderStatus);
-  },
-  requestOrderList(orderStatus) {
-    let promiseObj;
-    if (!orderStatus) {
-      this.setData({
-        orderInfo: null
-      });
-    } else {
+  requestOrderList() {
       _UserCenterOrderCount().then(data => {
-        if(data.orderInfo) {
-          this.setData({
-            orderInfo: data.orderInfo
-          })
-        } else {
-          this.setData({
-            orderInfo: null
-          })
-        }
+        this.setData({
+          orderCount: data
+        })
       }).catch(msg => {
         wx.showModal({
           title
         })
-      })
-    }      
+      })    
   },
   navToOrderList(e) {
     let requestCode = e.currentTarget.dataset.requestcode
@@ -104,15 +87,9 @@ Page({
     _GetUserInfo().then(data => {
       this.data.userInfo = data;
       _UserCenterOrderCount().then(data => {
-        if (data.orderInfo) {
-          this.setData({
-            orderInfo: data.orderInfo
-          })
-        } else {
-          this.setData({
-            orderInfo: null
-          })
-        }
+        this.setData({
+          orderCount:data
+        })
         wx.stopPullDownRefresh();
         setTimeout(() => {
           wx.hideLoading();
