@@ -229,13 +229,13 @@ Page({
       this.setData({
         navActive: 1
       })
-    }else if (res.scrollTop >= domPosTop.reviewsTop - 44) {
+    } else if (res.scrollTop >= domPosTop.reviewsTop - 44 && res.scrollTop < domPosTop.detailTop - 44) {
       this.setData({
-        navActive: 2
+        navActive: 3
       })
     }else if (res.scrollTop >= domPosTop.detailTop - 44) {
       this.setData({
-        navActive: 3
+        navActive: 2
       })
     }
   },

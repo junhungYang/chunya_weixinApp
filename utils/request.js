@@ -25,7 +25,27 @@ const _GetUserInfo = function (data) {
     });
   });
 };
-
+//签到获取积分
+const _UserSignin = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/user/signIn`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+}
 //获取formid
 const _SendFormid = function (data) {
   return new Promise((resolve, reject) => {
@@ -776,6 +796,7 @@ const _CouponList = function () {
     });
 }
 module.exports = {
+  _UserSignin,
   _GetUserInfo,
   _SendFormid,
     _GetSessionKey,

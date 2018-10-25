@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-import { _GoodsList, _GetSensitiveInfo, _SendFormid} from '../../utils/request'
+import { _GoodsList, _GetSensitiveInfo, _SendFormid, _UserSignin} from '../../utils/request'
 const app = getApp()
 Page({
   data: {
@@ -118,7 +118,24 @@ Page({
       });
     }, 500);
   },
-
+  toSign() {
+    if(app.globalData.token) {
+      _UserSignin().then(data => {
+        wx.showModal({
+          title: "签到成功",
+          content: data,
+          showCancel: false,
+          confirmColor: '#2d2d2d'
+        });
+      }).catch(msg => {
+        wx.showModal({
+          title:msg,
+          showCancel:false,
+          confirmColor: '#2d2d2d'
+        })
+      })
+    }
+  },
   hidSearchList() {
     setTimeout(() => {
       this.setData({

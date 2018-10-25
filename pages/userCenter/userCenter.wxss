@@ -198,6 +198,7 @@
   font-size: 20rpx;
   text-align: center;
   color: #fff;
+  min-width: 22rpx;
 }
 .template .main .order .nav .nav-item image:nth-of-type(1) {
   width: 32rpx;

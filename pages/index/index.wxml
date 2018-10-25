@@ -35,17 +35,11 @@
       <image src="../../img/index/gushi.png" />
       <text>故事</text>
     </view>
-    <view class="item">
+    <view class="item" bindtap="toSign">
       <image src="../../img/index/qiandao.png" />
       <text>签到</text>
     </view>
   </view>
-  <!--  <view class="goods-list">
-    <view wx:for="{{goodsList}}">
-      name:{{item.name}}
-      <image src="{{item.primary_pic_url}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail"/>
-    </view>
-  </view> -->
   <view class="hot-goods">
     <view class="hotgoods-title">
       <text>热销产品</text><text>HOT-SALE PRODUCTS</text>
