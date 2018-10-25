@@ -78,10 +78,12 @@ Page({
           arr.push(item.product_id);
         }
       });
-      let productIds = arr.toString();
-      let isChecked;
-      this.data.allChoose === true ? (isChecked = 1) : (isChecked = 0);
-      this.cartChecked(productIds, isChecked);
+      if(arr.length) {
+        let productIds = arr.toString();
+        let isChecked;
+        this.data.allChoose === true ? (isChecked = 1) : (isChecked = 0);
+        this.cartChecked(productIds, isChecked);
+      }
   },
   //单选
   choose(e) {
@@ -108,16 +110,19 @@ Page({
       });
   },
   quantityControl(e) {
-    let index = e.currentTarget.dataset.index;
-    let arrindex = e.currentTarget.dataset.arrindex;
-    let cartList = this.data.cartList;
-    if (index === 1) {
-      this.refreshCart(arrindex, 1);
-    } else {
-      if (cartList[arrindex].number > 1) {
-        this.refreshCart(arrindex, -1);
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let index = e.currentTarget.dataset.index;
+      let arrindex = e.currentTarget.dataset.arrindex;
+      let cartList = this.data.cartList;
+      if (index === 1) {
+        this.refreshCart(arrindex, 1);
+      } else {
+        if (cartList[arrindex].number > 1) {
+          this.refreshCart(arrindex, -1);
+        }
       }
-    }
+    }, 250);
   },
   refreshCart(arrindex, number) {
     let cartList = this.data.cartList;

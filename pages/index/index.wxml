@@ -16,7 +16,7 @@
     </view>
   </view>
   <view class="swiper-box">
-    <my-swiper></my-swiper>
+    <my-swiper has-token="{{hasToken}}"></my-swiper>
   </view>
   <view class="nav">
     <view class="item">

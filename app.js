@@ -29,6 +29,9 @@ App({
       }
     });
   },
+  test() {
+    console.log('test')
+  },
   //methods
   wxLoginApi() {
     wx.login({

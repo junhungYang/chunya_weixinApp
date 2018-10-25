@@ -245,7 +245,9 @@
   border: 1px solid transparent;
   border-radius: 50%;
 }
-
+.fixed-group .contact::after {
+  border: 0;
+}
 .fixed-group image:first-of-type{
   position: fixed;
   right: 18rpx;

@@ -67,8 +67,8 @@ Page({
     let obj = {}
     obj.allTop = 0;
     query.exec(function (res) {
-      obj.detailTop = res[0].top
-      obj.reviewsTop = res[1].top
+      obj.detailTop = res[0].top -44
+      obj.reviewsTop = res[1].top -44
     })
     this.setData({
       domPosTop: obj
@@ -88,12 +88,12 @@ Page({
         break;
       case 2:
         wx.pageScrollTo({
-          scrollTop:domPosTop.detailTop -44
+          scrollTop:domPosTop.detailTop
         })
         break;
       case 3:
         wx.pageScrollTo({
-          scrollTop:domPosTop.reviewsTop -44
+          scrollTop:domPosTop.reviewsTop
         })
         break;
     }
@@ -225,15 +225,15 @@ Page({
   },
   onPageScroll(res) {
     let domPosTop = this.data.domPosTop
-    if(res.scrollTop < domPosTop.reviewsTop - 44) {
+    if(res.scrollTop < domPosTop.reviewsTop) {
       this.setData({
         navActive: 1
       })
-    } else if (res.scrollTop >= domPosTop.reviewsTop - 44 && res.scrollTop < domPosTop.detailTop - 44) {
+    } else if (res.scrollTop >= domPosTop.reviewsTop && res.scrollTop < domPosTop.detailTop) {
       this.setData({
         navActive: 3
       })
-    }else if (res.scrollTop >= domPosTop.detailTop - 44) {
+    }else if (res.scrollTop >= domPosTop.detailTop) {
       this.setData({
         navActive: 2
       })

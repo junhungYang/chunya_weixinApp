@@ -2,6 +2,7 @@
 //获取应用实例
 import { _GoodsList, _GetSensitiveInfo, _SendFormid, _UserSignin} from '../../utils/request'
 const app = getApp()
+var that;
 Page({
   data: {
     canIUse: wx.canIUse("button.open-type.getUserInfo"),
@@ -9,7 +10,11 @@ Page({
     goodsList: [],
     searchText:'',
     searchListHid:true,
-    searchList:[]
+    searchList:[],
+    hasToken: false
+  },
+  onLoad() {
+    that = this
   },
   onShow() {
     app.setWatcher(app.globalData, this.watch);
@@ -35,7 +40,6 @@ Page({
   },
   navToGoodDetail(e) {
     let goodId = e.currentTarget.dataset.goodid;
-    console.log(123456798)
     wx.navigateTo({
       url: `../goodDetail/goodDetail?goodId=${goodId}`
     });
@@ -146,5 +150,13 @@ Page({
   onShareAppMessage: function() {
     wx.showShareMenu();
   },
-  watch() {}
+  watch: {
+    token(newValue) {
+      if(newValue) {
+        that.setData({
+          hasToken:true
+        })
+      }
+    }
+  }
 });
