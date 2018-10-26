@@ -29,24 +29,26 @@
         </view>
     </view>
     <view class="main">
-        <view wx:for="{{data.orderGoods}}">
-            <view class="order">
-                <image src="{{item.product_pic_url}}" />
-                <view class="text">
-                    <text class="name">{{item.goods_name}}</text>
-                    <text class="price">￥{{item.retail_price}}</text>
-                    <view class="other">
-                        <text>公益捐赠0.95元</text>
-                        <text>坏单包赔</text>
-                        <text>48小时发</text>
+        <view class="order-refund">
+            <view wx:for="{{data.orderGoods}}">
+                <view class="order">
+                    <image src="{{item.product_pic_url}}" />
+                    <view class="text">
+                        <text class="name">{{item.goods_name}}</text>
+                        <text class="price">￥{{item.retail_price}}</text>
+                        <view class="other">
+                            <text>公益捐赠0.95元</text>
+                            <text>坏单包赔</text>
+                            <text>48小时发</text>
+                        </view>
                     </view>
+                    <text class="quantity">×{{item.number}}</text>        
                 </view>
-                <text class="quantity">×{{item.number}}</text>        
             </view>
-        </view>
-        <view class="refund" wx:if="{{data.orderInfo.handleOption.cancel&&data.orderInfo.order_status===201}}"
-        bindtap="orderControl" data-orderid="{{data.orderInfo.id}}" data-str="cancel">
-            <text>退款</text>
+            <view class="refund" wx:if="{{data.orderInfo.handleOption.cancel&&data.orderInfo.order_status===201}}"
+                bindtap="orderControl" data-orderid="{{data.orderInfo.id}}" data-str="cancel">
+                <text>退款</text>
+            </view>
         </view>
         <view class="freight" wx:if="{{data.orderInfo.pay_status!==0}}">
             <view class="header">

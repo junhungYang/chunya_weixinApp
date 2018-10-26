@@ -93,62 +93,65 @@
         margin-top: 20rpx;
         background:#fff;
         padding: 0 6.4%;
-        .order {
-            display: flex;
-            position: relative;
-            padding-top: 22rpx;
-            padding-bottom: 20rpx;
-            image {
-                width: 124rpx;
-                height: 124rpx;
-            
-            }
-            .text {
-                flex: 1;
-                padding-left: 25rpx;
-                margin-top: 5rpx;
-                .name,.price {
-                    display:block;
-                    font-size: 28rpx;
-                    color: #313131;
+        .order-refund {
+              border-bottom: 2px solid #f7f7f7;
+            .order {
+                display: flex;
+                position: relative;
+                padding-top: 22rpx;
+                padding-bottom: 20rpx;
+                image {
+                    width: 124rpx;
+                    height: 124rpx;
+                
                 }
-                .price {
-                    margin-top: 10rpx;
-                }
-                .other {
-                    color: #d1051f;
-                    font-size: 20rpx;
-                    text:nth-of-type(2),text:last-of-type {
-                        margin-left: 20rpx;
+                .text {
+                    flex: 1;
+                    padding-left: 25rpx;
+                    margin-top: 5rpx;
+                    .name,.price {
+                        display:block;
+                        font-size: 28rpx;
+                        color: #313131;
+                    }
+                    .price {
+                        margin-top: 10rpx;
+                    }
+                    .other {
+                        color: #d1051f;
+                        font-size: 20rpx;
+                        text:nth-of-type(2),text:last-of-type {
+                            margin-left: 20rpx;
+                        }
                     }
                 }
+                .quantity {
+                        position: absolute;
+                        right: 0;
+                        bottom: 36rpx;
+                        font-size: 24rpx;
+                        color: #b2b2b2;
+                    }
             }
-            .quantity {
+            .refund {
+                height: 44rpx;
+                position: relative;
+                padding-bottom:30rpx;
+                text {
+                    width: 136rpx;
                     position: absolute;
                     right: 0;
-                    bottom: 36rpx;
-                    font-size: 24rpx;
-                    color: #b2b2b2;
+                    top: 0rpx;
+                    border-radius: 20rpx;
+                    border:1px solid #b2b2b2;
+                    font-size: 28rpx;
+                    color:#b2b2b2;
+                    text-align: center;
+                    line-height: 44rpx;
                 }
-        }
-        .refund {
-            height: 44rpx;
-            position: relative;
-            padding-bottom:30rpx;
-            border-bottom: 2px solid #f7f7f7;
-            text {
-                width: 136rpx;
-                position: absolute;
-                right: 0;
-                top: 0rpx;
-                border-radius: 20rpx;
-                border:1px solid #b2b2b2;
-                font-size: 28rpx;
-                color:#b2b2b2;
-                text-align: center;
-                line-height: 44rpx;
             }
         }
+        
         .freight {
             margin-top: 28rpx;
             padding-bottom: 20rpx;

@@ -90,52 +90,54 @@
   background: #fff;
   padding: 0 6.4%;
 }
-.template .main .order {
+.template .main .order-refund {
+  border-bottom: 2px solid #f7f7f7;
+}
+.template .main .order-refund .order {
   display: flex;
   position: relative;
   padding-top: 22rpx;
   padding-bottom: 20rpx;
 }
-.template .main .order image {
+.template .main .order-refund .order image {
   width: 124rpx;
   height: 124rpx;
 }
-.template .main .order .text {
+.template .main .order-refund .order .text {
   flex: 1;
   padding-left: 25rpx;
   margin-top: 5rpx;
 }
-.template .main .order .text .name,
-.template .main .order .text .price {
+.template .main .order-refund .order .text .name,
+.template .main .order-refund .order .text .price {
   display: block;
   font-size: 28rpx;
   color: #313131;
 }
-.template .main .order .text .price {
+.template .main .order-refund .order .text .price {
   margin-top: 10rpx;
 }
-.template .main .order .text .other {
+.template .main .order-refund .order .text .other {
   color: #d1051f;
   font-size: 20rpx;
 }
-.template .main .order .text .other text:nth-of-type(2),
-.template .main .order .text .other text:last-of-type {
+.template .main .order-refund .order .text .other text:nth-of-type(2),
+.template .main .order-refund .order .text .other text:last-of-type {
   margin-left: 20rpx;
 }
-.template .main .order .quantity {
+.template .main .order-refund .order .quantity {
   position: absolute;
   right: 0;
   bottom: 36rpx;
   font-size: 24rpx;
   color: #b2b2b2;
 }
-.template .main .refund {
+.template .main .order-refund .refund {
   height: 44rpx;
   position: relative;
   padding-bottom: 30rpx;
-  border-bottom: 2px solid #f7f7f7;
 }
-.template .main .refund text {
+.template .main .order-refund .refund text {
   width: 136rpx;
   position: absolute;
   right: 0;

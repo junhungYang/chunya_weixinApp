@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<!--<button bindtap="shangchuan">上传视频</button>-->
 <view class="container">
   <view class="input-box">
       <view class="mask {{searchText?'':'iconfont icon-search'}}">{{searchText?'':'搜索'}}</view>
@@ -10,7 +11,7 @@
           {{item.name}}
         </view> 
       </view>
-      <view class="noGoods" wx:else bindtap="test">
+      <view class="noGoods" wx:else >
         没有该商品
       </view>
     </view>

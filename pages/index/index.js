@@ -61,6 +61,17 @@ Page({
         });
       }
     });
+    // wx.chooseVideo({
+    //   success(res) {
+    //     console.log(res);
+    //       wx.uploadFile({
+    //         url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
+    //         filePath: res.tempFilePath,
+    //         name: "file",
+    //         success: res => {}
+    //       });
+    //   }
+    // })
   },
 
   bindGetUserInfo(res) {
@@ -137,10 +148,7 @@ Page({
         })
       })
     }
-  },
-  test() {
-    console.log(11)
-  },
+  }, 
   hidSearchList() {
       this.setData({
         searchListHid: true,
