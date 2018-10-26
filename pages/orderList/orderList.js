@@ -6,7 +6,8 @@ import {
   _CartAdd,
   _OrderConfirmOrder,
   _OrderCancelOrder,
-  _OrderDeleteOrder
+  _OrderDeleteOrder,
+  _TakeDelay
 } from "../../utils/request";
 const app = getApp();
 Page({
@@ -65,9 +66,6 @@ Page({
         this.setData({
           orderList: data.data
         });
-        wx.pageScrollTo({
-          scrollTop: 0
-        })
       } else {
         this.setData({
           orderList: [...this.data.orderList, ...data.data]
@@ -78,18 +76,26 @@ Page({
   orderControl(e) {
     let orderId = e.currentTarget.dataset.orderid;
     let controlStyle = e.currentTarget.dataset.str;
-    console.log(controlStyle);
     let promiseObj;
     switch (controlStyle) {
-      case 'delete':
-        promiseObj = _OrderDeleteOrder({ orderId})
+      case "delete":
+        promiseObj = _OrderDeleteOrder({ orderId });
         break;
-      case 'cancel':
-        promiseObj = _OrderCancelOrder({orderId})
+      case "cancel":
+        promiseObj = _OrderCancelOrder({ orderId });
         break;
-      case 'confirm':
-        promiseObj = _OrderConfirmOrder({orderId})
-        break
+      case "confirm":
+        promiseObj = _OrderConfirmOrder({ orderId });
+        break;
+      case "delay":
+        promiseObj = _TakeDelay({orderId})
+        break;
+      case "addReview":
+        break;
+      case "logistics":
+        break;
+      case "return":
+        break;
     }
       promiseObj.then(data => {
         wx.showToast({
@@ -118,6 +124,7 @@ Page({
       requestCode: e.currentTarget.dataset.requestcode,
       pageIndex: 1
     });
+    wx.pageScrollTo({ scrollTop: 0 });
     this.getOrderList();
   },
   pay(e) {

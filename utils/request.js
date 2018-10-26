@@ -316,6 +316,26 @@ const _OrderDetail = function(data) {
     });
   });
 };
+const _TakeDelay = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/delayOrder`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+}
 //个人中心订单数量(即最新物流)
 const _UserCenterOrderCount = function (data) {
   return new Promise((resolve, reject) => {
@@ -817,6 +837,7 @@ module.exports = {
     _OrderList,
     _OrderSubmit,
     _OrderCheckout,
+    _TakeDelay,
     _CollectAddorDelete,
     _CollectList,
     _CatalogIndex,

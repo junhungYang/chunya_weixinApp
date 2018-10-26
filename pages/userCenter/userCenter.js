@@ -9,7 +9,8 @@ Page({
   data: {
     userInfo: {},
     canIUse: false,
-    orderCount: {}
+    orderCount: {},
+    hasToken: false
   },
   onLoad() {
     that = this
@@ -18,11 +19,11 @@ Page({
       this.setData({
         hasToken: true
       })
-      this.setUserInfo();
     }
   },
   onShow() {
     if(app.globalData.token) {
+      this.setUserInfo();
       this.requestOrderList();
     }
   },

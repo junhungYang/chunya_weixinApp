@@ -45,22 +45,22 @@
             </view>
         </view>
         <view class="nav">
-            <view class="nav-item" bindtap="getOrderList" data-requestcode="{{0}}"  bindtap="navToOrderList">
+            <view class="nav-item" data-requestcode="{{0}}"  bindtap="navToOrderList">
                 <image src="../../img/userCenter/nav1.png"/>
                 <text>待付款</text>
                 <view wx:if="{{orderCount.dfk}}">{{orderCount.dfk>99?'99+':orderCount.dfk}}</view>
             </view>
-            <view class="nav-item" bindtap="getOrderList" data-requestcode="{{201}}" bindtap="navToOrderList">
+            <view class="nav-item"  data-requestcode="{{201}}" bindtap="navToOrderList">
                 <image src="../../img/userCenter/nav2.png" />
                 <text>待发货</text>
                 <view wx:if="{{orderCount.dfh}}">{{orderCount.dfh>99?'99+':orderCount.dfh}}</view>
             </view>
-            <view class="nav-item" data-index="{{300}}" bindtap="requestOrderList">
+            <view class="nav-item" data-requestcode="{{300}}" bindtap="navToOrderList">
                 <image src="../../img/userCenter/nav3.png" />
                 <text>待收货</text>
                 <view wx:if="{{orderCount.dsh}}">{{orderCount.dsh>99?'99+':orderCount.dsh}}</view>
             </view>
-            <view class="nav-item" bindtap="getOrderList" data-requestcode="{{301}}" bindtap="navToOrderList">
+            <view class="nav-item"  data-requestcode="{{301}}" bindtap="navToOrderList">
                 <image src="../../img/userCenter/nav4.png"/>
                 <text>待评价</text>
                 <view wx:if="{{orderCount.dpl}}">{{orderCount.dpl>99?'99+':orderCount.dpl}}</view>
@@ -77,16 +77,16 @@
                         <text>最新物流</text>
                         <text>{{orderCount.orderInfo.add_time}}</text>
                     </view>
-                    <view wx:for="{{orderCount.orderInfo.orderGoodsList}}">
+                    <view>
                         <view class="desc">
-                            <image src="{{item.product_pic_url}}" />
+                            <image src="{{orderCount.orderInfo.orderGoodsList[0].product_pic_url}}" />
                             <view class="desc-text">
                                 <view>
                                     <image src="../../img/userCenter/icon3.png" />
                                     <text>{{orderCount.orderInfo.order_status_text}}</text>
                                 </view>
                                 <view>
-                                    {{orderCount.orderInfo.tracesList.length!==0?orderCount.orderInfo.tracesList[0].AcceptStation:''}}
+                                    {{orderCount.orderInfo.tracesList.length!==0?orderCount.orderInfo.tracesList[0].AcceptStation:'暂无物流信息'}}
                                 </view>
                             </view>
                         </view>

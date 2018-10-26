@@ -11,23 +11,9 @@ Page({
     searchText:'',
     searchListHid:true,
     searchList:[],
-    hasToken: false
-  },
-  onLoad() {
-    that = this
-    app.setWatcher(app.globalData, this.watch);
   },
 
   onShow() {
-    if (app.globalData.token) {
-      this.setData({
-        hasToken: true
-      })
-    } else {
-      this.setData({
-        hasToken: false
-      })
-    }
     _GoodsList({
       page: 1,
       size: 10
@@ -49,10 +35,12 @@ Page({
     }
   },
   navToGoodDetail(e) {
-    let goodId = e.currentTarget.dataset.goodid;
-    wx.navigateTo({
-      url: `../goodDetail/goodDetail?goodId=${goodId}`
-    });
+    if(app.globalData.token) {
+      let goodId = e.currentTarget.dataset.goodid;
+      wx.navigateTo({
+        url: `../goodDetail/goodDetail?goodId=${goodId}`
+      });
+    }
   },
   scrollToTop() {
     wx.pageScrollTo({
@@ -150,24 +138,15 @@ Page({
       })
     }
   },
+  test() {
+    console.log(11)
+  },
   hidSearchList() {
-    setTimeout(() => {
       this.setData({
         searchListHid: true,
       });
-    }, 0);
   },
   onShareAppMessage: function() {
     wx.showShareMenu();
-  },
-  watch: {
-    token(newValue) {
-      if(newValue) {
-        console.log(newValue + 'aaa')
-        that.setData({
-          hasToken:true
-        })
-      }
-    }
   }
 });

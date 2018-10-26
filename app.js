@@ -9,13 +9,17 @@ import {
 App({
   onLaunch: function() {
     // 当打开app时需先判断当前登录态是否已过期
+  
     wx.checkSession({
       success: () => {
         //未过期
+        
         let userInfoJson = wx.getStorageSync("userInfo");
         wx.getSetting({
           success: res => {
+            
             if (res.authSetting["scope.userInfo"] && userInfoJson) {
+              
               this.wxappLogin(userInfoJson);
             } else {
               this.wxLoginApi();
@@ -39,7 +43,9 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         this.getSessionKey(res.code);
       },
-      fail: res => {}
+      fail: res => {
+        console.log(res)
+      }
     });
   },
   getSessionKey(code) {

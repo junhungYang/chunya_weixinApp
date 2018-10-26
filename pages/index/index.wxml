@@ -10,13 +10,13 @@
           {{item.name}}
         </view> 
       </view>
-      <view class="noGoods" wx:else>
+      <view class="noGoods" wx:else bindtap="test">
         没有该商品
       </view>
     </view>
   </view>
   <view class="swiper-box">
-    <my-swiper has-token="{{hasToken}}"></my-swiper>
+    <my-swiper></my-swiper>
   </view>
   <view class="nav">
     <view class="item">

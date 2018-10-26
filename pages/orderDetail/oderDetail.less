@@ -94,11 +94,10 @@
         background:#fff;
         padding: 0 6.4%;
         .order {
-            height: 210rpx;
             display: flex;
             position: relative;
-                padding-top: 22rpx;
-                border-bottom: 2px solid #f7f7f7;
+            padding-top: 22rpx;
+            padding-bottom: 20rpx;
             image {
                 width: 124rpx;
                 height: 124rpx;
@@ -127,23 +126,28 @@
             .quantity {
                     position: absolute;
                     right: 0;
-                    top: 82rpx;
+                    bottom: 36rpx;
                     font-size: 24rpx;
                     color: #b2b2b2;
                 }
-                .refund {
-                    width: 136rpx;
-                    height: 44rpx;
-                    border-radius: 20rpx;
-                    border:1px solid #b2b2b2;
-                    position: absolute;
-                    right: 0;
-                    top: 160rpx;
-                    font-size: 28rpx;
-                    color:#b2b2b2;
-                    text-align: center;
-                    line-height: 44rpx;
-                }
+        }
+        .refund {
+            height: 44rpx;
+            position: relative;
+            padding-bottom:30rpx;
+            border-bottom: 2px solid #f7f7f7;
+            text {
+                width: 136rpx;
+                position: absolute;
+                right: 0;
+                top: 0rpx;
+                border-radius: 20rpx;
+                border:1px solid #b2b2b2;
+                font-size: 28rpx;
+                color:#b2b2b2;
+                text-align: center;
+                line-height: 44rpx;
+            }
         }
         .freight {
             margin-top: 28rpx;
@@ -245,18 +249,29 @@
         .contact {
             height: 88rpx;
             border-top: 2px solid #f7f7f7;
-            display: flex;
-            image {
+            
+            button {
+                display: block;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                background:transparent;
+                display: flex;
+                image {
                 align-self: center;
                 width: 32rpx;
                 height: 27rpx;
+                }
+                text {
+                    align-self: center;
+                    line-height: 88rpx;
+                    padding-left: 10rpx;
+                    font-size: 24rpx;
+                    color: #b2b2b2;
+                }
             }
-            text {
-                align-self: center;
-                line-height: 88rpx;
-                padding-left: 10rpx;
-                font-size: 24rpx;
-                color: #b2b2b2;
+            button::after {
+                border: 0;
             }
         }
 

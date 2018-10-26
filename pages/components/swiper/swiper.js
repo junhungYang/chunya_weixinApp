@@ -1,21 +1,13 @@
 import { _SpreadList} from '../../../utils/request'
 const app = getApp();
 Component({
-    properties: {
-        hasToken: {
-            type: Boolean,
-            observer(newVal,oldVal,changedPath) {
-                console.log(newVal,oldVal,changedPath)
-            }
-        }
-    },
 
   data: {
     adList:[]
   }, // 私有数据，可用于模版渲染
   methods: {
     navToGoodDetail(e) {
-        if(this.properties.hasToken) {
+        if(app.globalData.token) {
             let url = e.currentTarget.dataset.item.link
             wx.navigateTo({
                 url

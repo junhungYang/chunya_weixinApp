@@ -31,21 +31,22 @@
     <view class="main">
         <view wx:for="{{data.orderGoods}}">
             <view class="order">
-            <image src="{{item.product_pic_url}}" />
-            <view class="text">
-                <text class="name">{{item.goods_name}}</text>
-                <text class="price">￥{{item.retail_price}}</text>
-                <view class="other">
-                    <text>公益捐赠0.95元</text>
-                    <text>坏单包赔</text>
-                    <text>48小时发</text>
+                <image src="{{item.product_pic_url}}" />
+                <view class="text">
+                    <text class="name">{{item.goods_name}}</text>
+                    <text class="price">￥{{item.retail_price}}</text>
+                    <view class="other">
+                        <text>公益捐赠0.95元</text>
+                        <text>坏单包赔</text>
+                        <text>48小时发</text>
+                    </view>
                 </view>
+                <text class="quantity">×{{item.number}}</text>        
             </view>
-            <text class="quantity">×{{item.number}}</text>
-            <view class="refund" wx:if="{{data.orderInfo.pay_time!==null?true:false}}">
-                退款
-            </view>          
         </view>
+        <view class="refund" wx:if="{{data.orderInfo.handleOption.cancel&&data.orderInfo.order_status===201}}"
+        bindtap="orderControl" data-orderid="{{data.orderInfo.id}}" data-str="cancel">
+            <text>退款</text>
         </view>
         <view class="freight" wx:if="{{data.orderInfo.pay_status!==0}}">
             <view class="header">
@@ -113,30 +114,40 @@
             </view>
         </view>
         <view class="contact">
-            <image src="../../img/orderDetail/icon4.png" />
-            <text>联系我们</text>
+            <button open-type="contact">
+                <image src="../../img/orderDetail/icon4.png" />
+                <text>联系我们</text>
+            </button>
         </view>
     </view>
     <view class="control">
         <view class="btn-group">
-            <view wx:if="{{data.orderInfo.handleOption.cancel}}">
-                <text wx:if="{{data.orderInfo.order_status===201}}">退款</text>
-                <text wx:else bindtap="orderControl" data-orderid="{{data.orderInfo.id}}" data-str="cancel">取消订单</text>
+            <view wx:if="{{data.orderInfo.handleOption.cancel&&data.orderInfo.order_status!==201}}"
+            bindtap="orderControl" data-orderid="{{data.orderInfo.id}}" data-str="cancel">
+                取消订单
             </view>
-            <view wx:if="{{data.orderInfo.handleOption.delete}}" data-orderid="{{data.orderInfo.id}}" data-str="delete" bindtap="orderControl">
+            <view wx:if="{{data.orderInfo.handleOption.delete}}" 
+            data-orderid="{{data.orderInfo.id}}" data-str="delete" bindtap="orderControl">
                 删除订单
             </view>
-            <view wx:if="{{data.orderInfo.handleOption.comment}}">
+            <view wx:if="{{data.orderInfo.handleOption.comment}}"
+            data-orderid="{{data.orderInfo.id}}" data-str="addReview" bindtap="orderControl">
                 添加评论
             </view>
-            <view wx:if="{{data.orderInfo.order_status===300||data.orderInfo.order_status===301}}">
+            <view wx:if="{{data.orderInfo.handleOption.kuaidi}}"
+             data-orderid="{{data.orderInfo.id}}" data-str="logistics" bindtap="orderControl">
                 查看物流
             </view>
-            <view wx:if="{{data.orderInfo.handleOption.return}}">
+            <view wx:if="{{data.orderInfo.handleOption.return}}"
+            data-orderid="{{data.orderInfo.id}}" data-str="return" bindtap="orderControl">
                 退换货
             </view>
             <view wx:if="{{data.orderInfo.handleOption.buy}}" data-goodslist="{{data.orderGoods}}" bindtap="buyAgain">
                 再次购买
+            </view>
+            <view wx:if="{{data.orderInfo.handleOption.delay}}" 
+            data-orderid="{{data.orderInfo.id}}" data-str="delay" bindtap="orderControl">
+                            延迟收货
             </view>
             <view wx:if="{{data.orderInfo.handleOption.confirm}}"
             data-orderid="{{data.orderInfo.id}}" data-str="confirm" bindtap="orderControl">
