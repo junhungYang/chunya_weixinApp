@@ -115,6 +115,9 @@
                 </view>
             </view>
         </view>
+        <view class="copy-btn" bindtap="copy">
+            复制
+        </view>
         <view class="contact">
             <button open-type="contact">
                 <image src="../../img/orderDetail/icon4.png" />

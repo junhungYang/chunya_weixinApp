@@ -9,9 +9,9 @@
         <view class="text">
             <text>{{userInfo.nickname}}</text>
         </view>
-        <view class="control">
+        <!--<view class="control">
             编辑
-        </view>
+        </view> -->
     </view>
     <view class="info" wx:else>
         <view class="pro-pic">
@@ -73,7 +73,7 @@
         </view>
         <view class="cont">
             <view class="list">
-                <view class="cont-item"  wx:if="{{orderCount.orderInfo}}">
+                <view class="cont-item"  wx:if="{{orderCount.orderInfo}}" data-orderid="{{orderCount.orderInfo.id}}" bindtap="navToGoodDetail">
                     <view class="cont-title">
                         <text>最新物流</text>
                         <text>{{orderCount.orderInfo.add_time}}</text>

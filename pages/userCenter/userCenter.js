@@ -76,6 +76,12 @@ Page({
       url
     });
   },
+  navToGoodDetail(e) {
+    let orderId = e.currentTarget.dataset.orderid;
+    wx.navigateTo({
+      url: `../orderDetail/orderDetail?orderId=${orderId}`
+    });
+  },
   navToAddressList() {
     wx.navigateTo({
       url: "../addressList/addressList?index=2"

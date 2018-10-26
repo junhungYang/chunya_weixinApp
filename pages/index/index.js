@@ -48,30 +48,30 @@ Page({
     });
   },
   shangchuan() {
-    wx.chooseImage({
-      success: res => {
-        let token = app.globalData.token;
-        wx.uploadFile({
-          url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-          filePath: res.tempFilePaths[0],
-          name: "file",
-          success: res => {
-            alert(res);
-          }
-        });
-      }
-    });
-    // wx.chooseVideo({
-    //   success(res) {
-    //     console.log(res);
-    //       wx.uploadFile({
-    //         url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-    //         filePath: res.tempFilePath,
-    //         name: "file",
-    //         success: res => {}
-    //       });
+    // wx.chooseImage({
+    //   success: res => {
+    //     let token = app.globalData.token;
+    //     wx.uploadFile({
+    //       url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
+    //       filePath: res.tempFilePaths[0],
+    //       name: "file",
+    //       success: res => {
+    //         alert(res);
+    //       }
+    //     });
     //   }
-    // })
+    // });
+    wx.chooseVideo({
+      success(res) {
+        console.log(res);
+          wx.uploadFile({
+            url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
+            filePath: res.tempFilePath,
+            name: "file",
+            success: res => {}
+          });
+      }
+    })
   },
 
   bindGetUserInfo(res) {

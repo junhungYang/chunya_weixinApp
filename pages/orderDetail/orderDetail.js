@@ -105,6 +105,18 @@ Page({
       });
     });
   },
+  copy() {
+    wx.setClipboardData({
+      data: `订单编号: ${this.data.data.orderInfo.order_sn}`,
+      success() {
+        wx.getClipboardData({
+          success(res) {
+            console.log(res.data)
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

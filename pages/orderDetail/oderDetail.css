@@ -213,6 +213,7 @@
   background: #fff;
   padding: 0 6.4%;
   padding-bottom: 100rpx;
+  position: relative;
 }
 .template .order-data .data {
   padding-bottom: 20rpx;
@@ -231,6 +232,17 @@
   font-size: 24rpx;
   color: #b2b2b2;
   line-height: 32rpx;
+}
+.template .order-data .copy-btn {
+  position: absolute;
+  right: 48rpx;
+  top: 22rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  border-radius: 5rpx;
+  border: 1px solid #B2B2B2;
+  color: #b2b2b2;
 }
 .template .order-data .code {
   height: 65rpx;
