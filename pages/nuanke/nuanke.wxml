@@ -104,14 +104,13 @@
     <view class="list" hidden="{{navIndex===3?false:true}}">
         <view class="item">
             <view class="title">
-                <view class="main">夜宴清欢</view>
+                <view class="main">传递种子力量《春芽》的诞生</view>
                 <view class="vice">
-                    <text>霜天水色浮云月，清冷山房夜宴中。</text>
-                    <text>一碟繁星三碟雾，半枝瘦竹卧秋风。</text>
+                    <text>传递种子力量《春芽》的诞生</text>
                 </view>
             </view>
             <view class="img">
-                <image src="../../img/nuanke/poster1.jpg" />
+                <image src="../../img/nuanke/poster4.jpg" />
             </view>
             <view class="control">
                 <view class="read" data-index="{{1}}" bindtap="navToDetail">

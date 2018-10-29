@@ -42,6 +42,16 @@ Page({
       });
     }
   },
+  navToNuanke() {
+    wx.navigateTo({
+        url: `../nuanke/nuanke`
+      });
+  },
+  navToPublic() {
+    wx.navigateTo({
+      url: `../public/public`
+    })
+  },
   scrollToTop() {
     wx.pageScrollTo({
       scrollTop: 0

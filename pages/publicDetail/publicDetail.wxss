@@ -1,0 +1,37 @@
+.template {
+  background: #f2f2f2;
+}
+.template .poster {
+  width: 100%;
+  height: 388rpx;
+}
+.template .poster image {
+  width: 100%;
+  height: 100%;
+}
+.template .num-info {
+  background: #fff;
+  padding: 41rpx  6.4% 32rpx 6.4%;
+  display: flex;
+}
+.template .num-info view:first-of-type {
+  width: 256rpx;
+}
+.template .num-info view:last-of-type {
+  flex: 1;
+}
+.template .num-info view text {
+  display: block;
+}
+.template .num-info view text:first-of-type {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: bold;
+  color: #d1051f;
+}
+.template .num-info view text:last-of-type {
+  font-size: 20rpx;
+  color: #b2b2b2;
+  line-height: 20rpx;
+  margin-top: 9rpx;
+}

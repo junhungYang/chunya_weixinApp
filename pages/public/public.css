@@ -1,0 +1,156 @@
+.template {
+  background: #f2f2f2;
+  min-height: 100vh;
+}
+.template .scroll-view {
+  height: 100vh;
+  overflow: hidden;
+}
+.template .scroll-view .bg {
+  height: 253rpx;
+  width: 100%;
+  background: linear-gradient(to right, #2ba152, #2da7cb);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.template .scroll-view .main {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.template .scroll-view .main .userInfo {
+  height: 132rpx;
+  display: flex;
+  margin: 0 6.4%;
+}
+.template .scroll-view .main .userInfo image {
+  border: 1px solid #fff;
+  width: 72rpx;
+  height: 72rpx;
+  align-self: center;
+  margin-left: 30rpx;
+  border-radius: 50%;
+}
+.template .scroll-view .main .userInfo view {
+  flex: 1;
+  align-self: center;
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 72rpx;
+  padding-left: 20rpx;
+}
+.template .scroll-view .main .public-info {
+  margin: 0 6.4%;
+  background: #fff;
+  box-shadow: 0 7rpx 16rpx rgba(122, 122, 122, 0.3);
+  border-radius: 10rpx;
+  padding: 30rpx;
+}
+.template .scroll-view .main .public-info .title {
+  color: #313131;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 28rpx;
+}
+.template .scroll-view .main .public-info .desc {
+  margin-top: 14rpx;
+  display: flex;
+}
+.template .scroll-view .main .public-info .desc .price {
+  width: 257rpx;
+}
+.template .scroll-view .main .public-info .desc .quantity {
+  flex: 1;
+}
+.template .scroll-view .main .public-info .desc .price text,
+.template .scroll-view .main .public-info .desc .quantity text {
+  display: block;
+  font-size: 28rpx;
+}
+.template .scroll-view .main .public-info .desc .price text:first-of-type,
+.template .scroll-view .main .public-info .desc .quantity text:first-of-type {
+  color: #313131;
+}
+.template .scroll-view .main .public-info .desc .price text:last-of-type,
+.template .scroll-view .main .public-info .desc .quantity text:last-of-type {
+  margin-top: 13rpx;
+  color: #d1051f;
+  font-weight: bold;
+}
+.template .scroll-view .main .public-list {
+  margin: 0 6.4%;
+  margin-top: 39rpx;
+}
+.template .scroll-view .main .public-list .item {
+  padding: 30rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  display: flex;
+  margin-top: 20rpx;
+}
+.template .scroll-view .main .public-list .item .img {
+  width: 198rpx;
+  height: 198rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.template .scroll-view .main .public-list .item .img image {
+  width: 100%;
+  height: 100%;
+}
+.template .scroll-view .main .public-list .item .cont {
+  flex: 1;
+  padding-left: 41rpx;
+}
+.template .scroll-view .main .public-list .item .cont view:first-of-type {
+  font-size: 28rpx;
+  color: #313131;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.template .scroll-view .main .public-list .item .cont view:nth-of-type(2) {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  color: #b2b2b2;
+  line-height: 32rpx;
+}
+.template .scroll-view .main .public-list .item .cont view:nth-of-type(3) {
+  margin-top: 12rpx;
+  font-size: 20rpx;
+  line-height: 24rpx;
+  color: #b2b2b2;
+}
+.template .scroll-view .main .public-list .item .cont view:nth-of-type(3) text:first-of-type {
+  color: #ff924f;
+}
+.template .scroll-view .main .public-list .item .cont view:last-of-type {
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.template .scroll-view .main .public-list .item .cont view:last-of-type text {
+  font-size: 24rpx;
+  line-height: 32rpx;
+  border: 1px solid #ff924f;
+  color: #ff924f;
+  padding: 0 11rpx;
+  text-align: center;
+  margin-left: 29rpx;
+  border-radius: 5rpx;
+}
+.template .scroll-view .main .public-list .item .cont view:last-of-type text:first-of-type {
+  margin-left: 0;
+}
+.template .scroll-view .main .public-list .item:first-of-type {
+  margin: 0;
+}
+::-webkit-scrollbar {
+  width: 0rpx;
+  height: 0rpx;
+  color: transparent;
+}

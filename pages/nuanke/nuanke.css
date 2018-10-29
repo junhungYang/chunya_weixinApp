@@ -47,13 +47,13 @@
   font-size: 28rpx;
 }
 .template .list .item .title .vice {
-  margin-top: 15rpx;
+  margin-top: 10rpx;
 }
 .template .list .item .title .vice text {
   display: block;
   color: #b2b2b2;
   font-size: 24rpx;
-  line-height: 26rpx;
+  line-height: 32rpx;
 }
 .template .list .item .img {
   margin-top: 18rpx;
