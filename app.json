@@ -1,5 +1,6 @@
 {
   "pages": [
+        "pages/nuanke/nuanke",
         "pages/index/index",
         "pages/orderDetail/orderDetail",
                 "pages/cart/cart",
@@ -8,7 +9,8 @@
         "pages/addressList/addressList",
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
-            "pages/goodDetail/goodDetail"
+            "pages/goodDetail/goodDetail",
+          "pages/nuankeDetail/nuankeDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

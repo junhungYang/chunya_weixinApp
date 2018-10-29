@@ -1,0 +1,140 @@
+<view class="template">
+    <view class="nav">
+        <text class="{{navIndex===1?'active':''}}" data-index="{{1}}" bindtap="changeNav">美文</text>
+        <text class="{{navIndex===2?'active':''}}" data-index="{{2}}" bindtap="changeNav">视觉</text>
+        <text class="{{navIndex===3?'active':''}}" data-index="{{3}}" bindtap="changeNav">影音</text>
+    </view>
+    <view class="list" hidden="{{navIndex===1?false:true}}">
+        <view class="item">
+            <view class="title">
+                <view class="main">夜宴清欢</view>
+                <view class="vice">
+                    <text>霜天水色浮云月，清冷山房夜宴中。</text>
+                    <text>一碟繁星三碟雾，半枝瘦竹卧秋风。</text>
+                </view>
+            </view>
+            <view class="img">
+                <image src="../../img/nuanke/poster1.jpg" />
+            </view>
+            <view class="control">
+                <view class="read" data-index="{{1}}" bindtap="navToDetail">
+                    <text>阅读全文</text>
+                </view>
+                <view class="other">
+                    <view>
+                        <image src="../../img/nuanke/person.png" />
+                        <text>233人阅读</text>
+                    </view>
+                    <view>
+                        <image src="../../img/nuanke/collect.png" />
+                        <text>收藏</text>
+                    </view>
+                    <view>
+                        <image src="../../img/nuanke/share.png" />
+                        <text>分享</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="item">
+            <view class="title">
+                <view class="main">西江月·痴情冢</view>
+                <view class="vice">
+                    <text>娶罢香烟绕指，拈来皓月煎茶。</text>
+                    <text>五千卷底老年华，多是轻狂上下。</text>
+                </view>
+            </view>
+            <view class="img">
+                <image src="../../img/nuanke/poster2.jpg" />
+            </view>
+            <view class="control">
+                <view class="read" data-index="{{1}}" bindtap="navToDetail">
+                    <text>阅读全文</text>
+                </view>
+                <view class="other">
+                    <view>
+                        <image src="../../img/nuanke/person.png" />
+                        <text>233人阅读</text>
+                    </view>
+                    <view>
+                        <image src="../../img/nuanke/collect.png" />
+                        <text>收藏</text>
+                    </view>
+                    <view>
+                        <image src="../../img/nuanke/share.png" />
+                        <text>分享</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="list" hidden="{{navIndex===2?false:true}}">
+        <view class="item">
+            <view class="title">
+                <view class="main">从源头开始</view>
+                <view class="vice">
+                    <text>水因柔而流万物，人因善而生良缘。</text>
+                    <text>用善心，种善米。</text>
+                </view>
+            </view>
+            <view class="img">
+                <image src="../../img/nuanke/poster3.jpg" />
+            </view>
+            <view class="control">
+                <view class="read" data-index="{{1}}" bindtap="navToDetail">
+                    <text>阅读全文</text>
+                </view>
+                <view class="other">
+                    <view>
+                        <image src="../../img/nuanke/person.png" />
+                        <text>233人阅读</text>
+                    </view>
+                    <view>
+                        <image src="../../img/nuanke/collect.png" />
+                        <text>收藏</text>
+                    </view>
+                    <view>
+                        <image src="../../img/nuanke/share.png" />
+                        <text>分享</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="list" hidden="{{navIndex===3?false:true}}">
+        <view class="item">
+            <view class="title">
+                <view class="main">夜宴清欢</view>
+                <view class="vice">
+                    <text>霜天水色浮云月，清冷山房夜宴中。</text>
+                    <text>一碟繁星三碟雾，半枝瘦竹卧秋风。</text>
+                </view>
+            </view>
+            <view class="img">
+                <image src="../../img/nuanke/poster1.jpg" />
+            </view>
+            <view class="control">
+                <view class="read" data-index="{{1}}" bindtap="navToDetail">
+                    <text>阅读全文</text>
+                </view>
+                <view class="other">
+                    <view>
+                        <image src="../../img/nuanke/person.png" />
+                        <text>233人阅读</text>
+                    </view>
+                    <view>
+                        <image src="../../img/nuanke/collect.png" />
+                        <text>收藏</text>
+                    </view>
+                    <view>
+                        <image src="../../img/nuanke/share.png" />
+                        <text>分享</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--<view class="pay">
+        支付￥1 即可阅读
+    </view>-->
+</view>

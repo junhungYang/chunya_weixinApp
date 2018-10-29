@@ -1,0 +1,4 @@
+<view class="template">
+    <image src="../../img/nuanke/detail1.jpg" />
+    <image src="../../img/nuanke/detail2.jpg" />
+</view>

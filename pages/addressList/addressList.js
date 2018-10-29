@@ -82,6 +82,9 @@ Page({
       id
     }).then(data => {
       this.getPositionList();
+      let pages = getCurrentPages();
+      let prevPage = pages[pages.length - 2];
+      prevPage.getOrderCheckout();
     }).catch(msg => {
       wx.showModal({
         title:msg

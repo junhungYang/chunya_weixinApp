@@ -51,15 +51,6 @@
             </view>
         </view>
         <view class="freight" wx:if="{{data.orderInfo.pay_status!==0}}">
-            <view class="header">
-                <image src="../../img/orderDetail/icon3.png" />
-                <view>
-                    <text>运费险</text>
-                    <text>确认收货前退货可理赔</text>
-                    <text>已出单</text>
-                </view>
-                <image src="../../img/redictTo.png" />
-            </view>
             <view class="desc">
                 <view>
                     <text>运费险</text>

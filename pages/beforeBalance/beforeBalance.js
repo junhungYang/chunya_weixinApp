@@ -8,35 +8,39 @@ Page({
   data: {
     data: {},
     allQuantity: "",
-    postscript:'',
+    postscript: ""
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  onShow: function (options) {
+    console.log(2);
+  },
+  onHide: function (options) {
+    console.log(3);
+  },
   onLoad: function(options) {
-    this.getOrderCheckout()
+    this.getOrderCheckout();
   },
   getOrderCheckout(fromIndex) {
-    _OrderCheckout().then(data => {
-      this.setData({
-        data
+    _OrderCheckout()
+      .then(data => {
+        this.setData({
+          data
+        });
+        this.getAllQuantity();
+        if (fromIndex) {
+          wx.stopPullDownRefresh();
+          setTimeout(() => {
+            wx.hideLoading();
+          }, 600);
+        }
       })
-      this.getAllQuantity();
-      if(fromIndex) {
-        wx.stopPullDownRefresh();
-        setTimeout(() => {
-          wx.hideLoading();
-        }, 600)
-      }
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
-    })
+      .catch(msg => {
+        wx.showModal({
+          title: msg
+        });
+      });
   },
   postscriptInput(e) {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       this.setData({
         postscript: e.detail.value
@@ -53,10 +57,10 @@ Page({
     });
   },
   navToAddressList() {
-      wx.navigateTo({ url: `../addressList/addressList?index=1` });
+    wx.navigateTo({ url: `../addressList/addressList?index=1` });
   },
   orderConfirm() {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       if (this.data.data.checkedAddress) {
         _OrderSubmit({
@@ -65,20 +69,22 @@ Page({
           fullCutCouponDec: this.data.data.fullCutCouponDec
         }).then(data => {
           let orderId = data.orderInfo.id;
-          _WeChatPay({ orderId }).then(data => {
-            app.pay(data)
-          }).catch(msg => {
-            wx.showModal({
-              title:msg
+          _WeChatPay({ orderId })
+            .then(data => {
+              app.pay(data);
             })
-          })
+            .catch(msg => {
+              wx.showModal({
+                title: msg
+              });
+            });
         });
       } else {
         wx.showModal({
-          title: '请先添加地址'
-        })
+          title: "请先添加地址"
+        });
       }
-    }, 500); 
+    }, 500);
   },
 
   /**
@@ -105,11 +111,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    console.log(123456)
+    console.log(123456);
     wx.showLoading({
-      title: '正在刷新'
-    })
-    this.getOrderCheckout('pullDown')
+      title: "正在刷新"
+    });
+    this.getOrderCheckout("pullDown");
   },
 
   /**

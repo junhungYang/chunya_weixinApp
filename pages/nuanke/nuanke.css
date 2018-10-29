@@ -1,0 +1,123 @@
+.template {
+  background: #f2f2f2;
+  min-height: 100vh;
+}
+.template .nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 88rpx;
+  background: #f2f2f2;
+  padding: 0 21%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e2e2;
+}
+.template .nav text {
+  line-height: 86rpx;
+  font-size: 32rpx;
+  color: #686868;
+  text-align: center;
+}
+.template .nav .active {
+  color: #2ca5ae;
+  border-bottom: 2px solid #2ca5ae;
+}
+.template .list {
+  width: 100%;
+  padding: 0 6.4%;
+  box-sizing: border-box;
+  margin-top: 88rpx;
+  padding-top: 40rpx;
+  padding-bottom: 140rpx;
+}
+.template .list .item {
+  margin-top: 40rpx;
+  height: 556rpx;
+  background: #fff;
+  border-radius: 15rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.template .list .item .title .main {
+  color: #313131;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+.template .list .item .title .vice {
+  margin-top: 15rpx;
+}
+.template .list .item .title .vice text {
+  display: block;
+  color: #b2b2b2;
+  font-size: 24rpx;
+  line-height: 26rpx;
+}
+.template .list .item .img {
+  margin-top: 18rpx;
+  height: 296rpx;
+}
+.template .list .item .img image {
+  width: 100%;
+  height: 100%;
+}
+.template .list .item .control {
+  margin-top: 27rpx;
+  display: flex;
+}
+.template .list .item .control .read {
+  flex: 1;
+}
+.template .list .item .control .read text {
+  display: block;
+  border: 1px solid #313131;
+  border-radius: 10rpx;
+  width: 156rpx;
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 28rpx;
+}
+.template .list .item .control .other {
+  display: flex;
+  width: 245rpx;
+  justify-content: space-between;
+}
+.template .list .item .control .other view:first-of-type image {
+  width: 28rpx;
+  height: 27rpx;
+}
+.template .list .item .control .other view:nth-of-type(2) image {
+  width: 25rpx;
+  height: 24rpx;
+}
+.template .list .item .control .other view:last-of-type image {
+  width: 25rpx;
+  height: 25rpx;
+}
+.template .list .item .control .other view image {
+  display: block;
+  margin: 0 auto;
+}
+.template .list .item .control .other view text {
+  margin-top: 9rpx;
+  display: block;
+  font-size: 16rpx;
+  color: #9f9f9f;
+  line-height: 18rpx;
+}
+.template .list .item:first-of-type {
+  margin-top: 0;
+}
+.template .pay {
+  background: #d1051f;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 28rpx;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
