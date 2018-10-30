@@ -1,7 +1,5 @@
-// pages/public/public.js
-import {
-  _GetUserInfo
-} from "../../utils/request"
+// pages/shippingList/shippingList.js
+import { _OrderDetail} from '../../utils/request'
 const app = getApp()
 Page({
 
@@ -9,28 +7,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+    orderId: '',
+    data:{},
+    timeList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      orderId: options.orderId
+    })
     if(app.globalData.token) {
-      this.getUserInfo()
+      this.getOrderDetail()
     }
   },
-  getUserInfo() {
-    _GetUserInfo().then(data => {
-      this.setData({
-        userInfo:data
+  getOrderDetail() {
+    _OrderDetail({ orderId: this.data.orderId })
+      .then(data => {
+        this.setData({ data });
       })
-    })
-  },
-  navToDetail() {
-    wx.navigateTo({
-      url: '../publicDetail/publicDetail'
-    })
+      .catch(msg => {
+        wx.showModal({ title: msg });
+      });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -64,7 +64,20 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.showLoading({
+      title: '正在刷新'
+    })
+    _OrderDetail({ orderId: this.data.orderId })
+      .then(data => {
+        this.setData({ data });
+        wx.stopPullDownRefresh();
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 600)
+      })
+      .catch(msg => {
+        wx.showModal({ title: msg });
+      });
   },
 
   /**

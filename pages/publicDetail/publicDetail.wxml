@@ -19,7 +19,7 @@
                 <text>我倾听你</text>
             </view>
             <view class="desc">
-                春芽携手Costa，举行我倾听你线下分享会，一起倾听抑郁症 的故事。
+                春芽携手Costa，举行我倾听你线下分享会，一起倾听抑郁症的故事。
             </view>
         </view>
         <view class="mission">
@@ -123,5 +123,31 @@
     </view>
     <view class="fixed-btn">
         温度捐
+    </view>
+    <view class="price-control">
+        <view class="bg"></view>
+        <view class="main-control">
+            <view class="cont">
+                <view class="title">
+                    <text>温度捐</text><text>让这个世界多一点温暖</text>
+                </view>
+                <view class="choose">
+                    <view class="active">5元</view>
+                    <view>10元</view>
+                    <view>20元</view>
+                    <view>50元</view>
+                </view>
+                <view class="input">
+                    自定义金额<input/>元
+                </view>
+                <view class="has-name">
+                    <view></view>
+                    <text>匿名捐助</text>
+                </view>
+            </view>
+            <view class="btn">
+                捐款
+            </view>
+        </view>
     </view>
 </view>

@@ -1,0 +1,51 @@
+<view class="template">
+    <view class="bg"></view>
+    <view class="main">
+        <view class="order-state">
+            <view>
+                <image src="{{data.orderGoods[0].product_pic_url}}" />
+                <text>{{data.orderInfo.order_status_text}}</text>
+            </view>
+            <view>
+                <button open-type="contact" class="custom-service">
+                    <image src="../../img/goodDetail/kefu_icon.png" />
+                    <text>联系客服</text>
+                </button>
+            </view>
+        </view>
+        <view class="address-info" >
+            <view class="text">
+                收件人：
+                <text>{{data.orderInfo.consignee}}</text>
+            </view>
+            <view class="text">
+                联系方式：
+                <text>{{data.orderInfo.mobile}}</text>
+            </view>
+            <view class="text">
+                订单号：
+                <text>{{data.orderInfo.shipping_name}}{{data.orderInfo.shipping_no}}</text>
+            </view>
+            <!--<view class="text">
+                收货地址：
+                <text>{{data.orderInfo.full_region}}{{data.orderInfo.address}}</text>
+            </view> -->
+        </view>
+        <view class="list">
+            <view class="item" wx:for="{{data.shippingList}}">
+                <view class="time">
+                    <text>{{item.AcceptTime}}</text>
+                </view>
+                <view class="icon">
+                    <view></view>
+                    <view></view>
+                </view>
+                
+                <view class="info">
+                    {{item.AcceptStation}}
+                </view>
+            </view>
+        </view>
+    </view>
+    
+</view>

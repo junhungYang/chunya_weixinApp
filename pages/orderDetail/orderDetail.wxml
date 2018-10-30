@@ -8,7 +8,7 @@
         </view>
     </view>
     <view class="logistics">
-        <view class="desc" wx:if="{{data.shippingList}}">
+        <view class="desc" wx:if="{{data.shippingList}}" bindtap="navToShippingList">
             <image src="../../img/orderDetail/icon1.png" />
             <view class="text" wx:if="{{data.shippingList.length!==0}}">
                 {{data.shippingList[0].AcceptStation}}

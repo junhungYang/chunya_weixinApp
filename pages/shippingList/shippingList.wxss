@@ -1,0 +1,135 @@
+.template {
+  min-height: 100vh;
+}
+.template .bg {
+  height: 253rpx;
+  width: 100%;
+  background: linear-gradient(to right, #2ba152, #2da7cb);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.template .main {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.template .main .order-state {
+  margin: 0 6.4%;
+  margin-top: 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 18rpx 30rpx;
+  display: flex;
+}
+.template .main .order-state view:first-of-type {
+  flex: 1;
+}
+.template .main .order-state view:first-of-type image {
+  width: 64rpx;
+  height: 64rpx;
+  vertical-align: middle;
+  border-radius: 10rpx;
+}
+.template .main .order-state view:first-of-type text {
+  font-size: 28rpx;
+  margin-left: 21rpx;
+  color: #2da7cb;
+  vertical-align: middle;
+}
+.template .main .order-state view:last-of-type {
+  border-left: 1px solid #f2f2f2;
+  padding-left: 30rpx;
+}
+.template .main .order-state view:last-of-type .custom-service {
+  display: block;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  line-height: 24rpx;
+}
+.template .main .order-state view:last-of-type .custom-service image {
+  width: 38rpx;
+  height: 32rpx;
+  display: block;
+  margin: 0 auto;
+}
+.template .main .order-state view:last-of-type .custom-service text {
+  display: block;
+  font-size: 24rpx;
+  color: #b2b2b2;
+  margin-top: 8rpx;
+}
+.template .main .order-state view:last-of-type .custom-service::after {
+  border: 0;
+}
+.template .main .address-info {
+  margin: 0 6.4%;
+  margin-top: 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 18rpx 30rpx;
+  box-shadow: 0 0 15rpx rgba(95, 95, 95, 0.5);
+}
+.template .main .address-info .text {
+  flex: 1;
+  font-size: 24rpx;
+  color: #313131;
+  line-height: 34rpx;
+}
+.template .main .list {
+  margin-top: 60rpx;
+  margin-bottom: 60rpx;
+}
+.template .main .list .item {
+  position: relative;
+  margin: 0 48rpx;
+  display: flex;
+}
+.template .main .list .item .time,
+.template .main .list .item .info {
+  align-self: center;
+}
+.template .main .list .item .time {
+  font-size: 20rpx;
+  color: #b2b2b2;
+  display: block;
+  width: 113rpx;
+  padding: 20rpx 0;
+}
+.template .main .list .item .time text {
+  display: block;
+}
+.template .main .list .item .icon {
+  position: relative;
+  margin: 0 20rpx;
+  width: 15rpx;
+}
+.template .main .list .item .icon view:first-of-type {
+  width: 15rpx;
+  height: 15rpx;
+  border: 6rpx solid #2da7cb;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  z-index: 2;
+}
+.template .main .list .item .icon view:last-of-type {
+  height: 100%;
+  width: 2px;
+  background: rgba(45, 167, 203, 0.5);
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+.template .main .list .item .info {
+  font-size: 24rpx;
+  color: #313131;
+  flex: 1;
+}

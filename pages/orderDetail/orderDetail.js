@@ -40,6 +40,13 @@ Page({
         wx.showModal({ title: msg });
       });
   },
+  navToShippingList() {
+    if(this.data.data.shippingList.length !== 0) {
+      wx.navigateTo({
+        url: `../shippingList/shippingList?orderId=${this.data.orderId}`
+      })
+    }
+  },
   pay(e) {
     clearTimeout(this.timer)
     this.timer = setTimeout(() => {

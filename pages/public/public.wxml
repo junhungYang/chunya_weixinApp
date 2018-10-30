@@ -22,7 +22,7 @@
                 </view>
             </view>
             <view class="public-list">
-                <view class="item">
+                <view class="item" bindtap="navToDetail">
                     <view class="img">
                         <image src="../../img/public/gongyi1.jpg" />
                     </view>
@@ -43,7 +43,7 @@
                         </view>
                     </view>
                 </view>
-                <view class="item">
+                <view class="item" bindtap="navToDetail">
                     <view class="img">
                         <image src="../../img/public/gongyi2.jpg" />
                     </view>

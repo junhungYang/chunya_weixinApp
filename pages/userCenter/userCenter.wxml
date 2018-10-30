@@ -76,7 +76,7 @@
                 <view class="cont-item"  wx:if="{{orderCount.orderInfo}}" data-orderid="{{orderCount.orderInfo.id}}" bindtap="navToGoodDetail">
                     <view class="cont-title">
                         <text>最新物流</text>
-                        <text>{{orderCount.orderInfo.add_time}}</text>
+                        <text>{{orderCount.orderInfo.delivery_time}}</text>
                     </view>
                     <view>
                         <view class="desc">
