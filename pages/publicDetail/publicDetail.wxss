@@ -9,29 +9,191 @@
   width: 100%;
   height: 100%;
 }
-.template .num-info {
+.template .main {
+  padding-bottom: 100rpx;
+}
+.template .main .num-info {
   background: #fff;
   padding: 41rpx  6.4% 32rpx 6.4%;
   display: flex;
 }
-.template .num-info view:first-of-type {
+.template .main .num-info view:first-of-type {
   width: 256rpx;
 }
-.template .num-info view:last-of-type {
+.template .main .num-info view:last-of-type {
   flex: 1;
 }
-.template .num-info view text {
+.template .main .num-info view text {
   display: block;
 }
-.template .num-info view text:first-of-type {
+.template .main .num-info view text:first-of-type {
   font-size: 28rpx;
   line-height: 28rpx;
   font-weight: bold;
   color: #d1051f;
 }
-.template .num-info view text:last-of-type {
+.template .main .num-info view text:last-of-type {
   font-size: 20rpx;
   color: #b2b2b2;
   line-height: 20rpx;
   margin-top: 9rpx;
+}
+.template .main .project-name,
+.template .main .mission,
+.template .main .project-cont,
+.template .main .project-plan,
+.template .main .help-person,
+.template .main .project-budget {
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 0 6.4%;
+}
+.template .main .project-name .title,
+.template .main .mission .title,
+.template .main .project-cont .title,
+.template .main .project-plan .title,
+.template .main .help-person .title,
+.template .main .project-budget .title {
+  padding-top: 13rpx;
+  line-height: 36rpx;
+}
+.template .main .project-name .title image,
+.template .main .mission .title image,
+.template .main .project-cont .title image,
+.template .main .project-plan .title image,
+.template .main .help-person .title image,
+.template .main .project-budget .title image {
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+}
+.template .main .project-name .title text,
+.template .main .mission .title text,
+.template .main .project-cont .title text,
+.template .main .project-plan .title text,
+.template .main .help-person .title text,
+.template .main .project-budget .title text {
+  vertical-align: middle;
+  font-size: 28rpx;
+  color: #313131;
+  margin-left: 12rpx;
+  margin-left: 13rpx;
+  font-weight: bold;
+}
+.template .main .project-name .desc,
+.template .main .mission .desc,
+.template .main .project-cont .desc,
+.template .main .project-plan .desc,
+.template .main .help-person .desc,
+.template .main .project-budget .desc {
+  padding-top: 7rpx;
+  padding-bottom: 32rpx;
+  font-size: 24rpx;
+  color: #b2b2b2;
+  line-height: 32rpx;
+}
+.template .main .project-cont {
+  position: relative;
+  overflow: hidden;
+}
+.template .main .project-cont .desc {
+  padding-top: 30rpx;
+}
+.template .main .project-cont-hidden {
+  height: 420rpx;
+}
+.template .main .project-cont-hidden .show-btn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.template .main .project-cont-hidden .show-btn .mask {
+  width: 100%;
+  height: 318rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.template .main .project-cont-hidden .show-btn .font {
+  position: absolute;
+  font-size: 24rpx;
+  color: #ff924f;
+  width: 100%;
+  text-align: center;
+  bottom: 35rpx;
+  left: 0;
+}
+.template .main .project-cont-hidden .show-btn .font image {
+  width: 24rpx;
+  height: 13rpx;
+  vertical-align: middle;
+  margin-left: 7rpx;
+}
+.template .main .heart-reviews {
+  background: #fff;
+  margin-top: 20rpx;
+}
+.template .main .heart-reviews .title {
+  padding: 0 6.4%;
+  font-size: 28rpx;
+  line-height: 68rpx;
+  color: #313131;
+}
+.template .main .heart-reviews .list .item {
+  padding: 15rpx 6.4%;
+  border-bottom: 1px solid #f2f2f2;
+  display: flex;
+}
+.template .main .heart-reviews .list .item image {
+  width: 44rpx;
+  height: 44rpx;
+}
+.template .main .heart-reviews .list .item .info-box {
+  flex: 1;
+  padding-left: 10rpx;
+}
+.template .main .heart-reviews .list .item .info-box text {
+  display: block;
+  font-size: 20rpx;
+  line-height: 20rpx;
+}
+.template .main .heart-reviews .list .item .info-box text:first-of-type {
+  color: #313131;
+}
+.template .main .heart-reviews .list .item .info-box text:last-of-type {
+  color: #b2b2b2;
+  margin-top: 10rpx;
+}
+.template .main .heart-reviews .list .item .time text {
+  display: block;
+  font-size: 20rpx;
+  color: #b2b2b2;
+  padding-top: 23rpx;
+}
+.template .main .heart-reviews .list .item:last-of-type {
+  border: 0;
+}
+.template .main .project-budget .desc {
+  padding-bottom: 62rpx;
+}
+.template .main .project-budget .desc view text:last-of-type {
+  margin-left: 20rpx;
+  color: #D1051F;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.template .fixed-btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 100rpx;
+  background: #d1051f;
+  text-align: center;
+  color: #fff;
+  line-height: 100rpx;
+  width: 100%;
+  font-size: 28rpx;
 }

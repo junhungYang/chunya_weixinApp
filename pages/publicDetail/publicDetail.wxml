@@ -2,98 +2,126 @@
     <view class="poster">
         <image src="../../img/publicDetail/poster1.jpg" />
     </view>
-    <view class="num-info">
-        <view>
-            <text>125500.16</text>
-            <text>用户捐款 (元)</text>
+    <view class="main">
+        <view class="num-info">
+            <view>
+                <text>125500.16</text>
+                <text>用户捐款 (元)</text>
+            </view>
+            <view>
+                <text>550,333</text>
+                <text>爱心 (份)</text>
+            </view>
         </view>
-        <view>
-            <text>550,333</text>
-            <text>爱心 (份)</text>
+        <view class="project-name">
+            <view class="title">
+                <image src="../../img/publicDetail/icon1.png" />
+                <text>我倾听你</text>
+            </view>
+            <view class="desc">
+                春芽携手Costa，举行我倾听你线下分享会，一起倾听抑郁症 的故事。
+            </view>
         </view>
-    </view>
-    <view class="project-name">
-        <view class="title">
-            <image src="" />
-            <text>我倾听你</text>
+        <view class="mission">
+            <view class="title">
+                <image src="../../img/publicDetail/icon2.png" />
+                <text>发起与善款接收机构</text>
+            </view>
+            <view class="desc">
+                春芽健康科技有限公司
+            </view>
         </view>
-        <view class="desc">
-            春芽携手Costa，举行我倾听你线下分享会，一起倾听抑郁症 的故事。
-        </view>
-    </view>
-    <view class="mission">
-        <view class="title">
-            <image src="" />
-            <text>发起与善款接收机构</text>
-        </view>
-        <view class="desc">
-            春芽健康科技有限公司
-        </view>
-    </view>
-    <view class="project-cont">
-        <view class="title">
-            <image src="" />
-            <text>项目说明</text>
-        </view>
-        <view class="desc">
-            <text>[项目介绍]</text>
-            <text>抑郁症又称抑郁障碍，以显著而持久的心境低落为主要临床特征，是心境障碍的主要类型。临床可见心境低落与其处境不相称，情绪的消沉可以从闷闷不乐到悲痛欲绝，自卑抑郁，甚至悲观厌世，可有自杀企图或行为；甚至发生木僵；严重者可出现幻觉、妄想等精神病性症状。每次发作持续至少2周以上、长者甚或数年。</text>       
-        </view>
-        <view>
-            <text>查看完整项目</text><image src="" />
-        </view>
-    </view>
-    <view class="heart-reviews">
-        <view class="title">
-            <text>爱心留言 (5条)</text>
-        </view>
-        <view class="list">
-            <view class="item">
-                <image src="" />
-                <view class="info-box">
-                    <text>chunya5566</text>
-                    <text>倾听是最好的治疗</text>
-                </view>
-                <view class="time">
-                    刚刚
+        <view class="project-cont {{contActive?'':'project-cont-hidden'}}">
+            <view class="title">
+                <image src="../../img/publicDetail/icon3.png" />
+                <text>项目说明</text>
+            </view>
+            <view class="desc">
+                <text>[项目介绍]</text>
+                <text>抑郁症又称抑郁障碍，以显著而持久的心境低落为主要临床特征，是心境障碍的主要类型。临床可见心境低落与其处境不相称，情绪的消沉可以从闷闷不乐到悲痛欲绝，自卑抑郁，甚至悲观厌世，可有自杀企图或行为；甚至发生木僵；严重者可出现幻觉、妄想等精神病性症状。每次发作持续至少2周以上、长者甚或数年。</text>       
+            </view>
+            <view class="show-btn" hidden="{{contActive}}" bindtap="contActiveManage">
+                <image class="mask" src="../../img/publicDetail/mask.png" />
+                <view class="font">
+                    <text>查看完整项目</text><image src="../../img/publicDetail/icon7.png" />
                 </view>
             </view>
         </view>
-    </view>
-    <view class="project-plan">
-        <view class="title">
-            <image src="" />
-            <text>项目计划</text>
-        </view>
-        <view class="plan-cont">
-            春芽健康科技联合Costa，在深圳各个抑郁症治疗机构，选出35名抑郁症患者，在Costa提供的场所举行‘我倾听你’活动主题分享会。场地及饮食由Costa提供，届时邀请心理专家作现场演讲。
-            后续将会为这35名患者提供后续的治疗资助。35名患者的故事最后会以影片的形式呈现。
-            春芽健康科技希望与您携手一起‘倾听’他们的故事，倾听这个世界的第三种声音。或许以前的你还不了解抑郁症这一个群体，但从现在开始，你可以试着去感受他们的世界。
-        </view>
-    </view>
-    <view class="help-person">
-        <view class="title">
-            <image src="" />
-            <text>受益对象</text>
-        </view>
-        <view class="help-cont">
-            由深圳各个2到5个抑郁症治疗机构推荐的一共35名患者。
-        </view>
-    </view>
-    <view class="project-budget">
-        <view class="title">
-            <image src="" />
-            <text>项目预算</text>
-        </view>
-        <view class="budget-cont">
-            <view>
-                <text>邀请心理专家费用</text>
-                <text>2000元</text>
+        <view class="heart-reviews">
+            <view class="title">
+                <text>爱心留言 (5条)</text>
             </view>
-            <view>
-                <text>后续治疗费用</text>
-                <text>100000元</text>
+            <view class="list">
+                <view class="item">
+                    <image src="../../img/publicDetail/propic.png" />
+                    <view class="info-box">
+                        <text>chunya5566</text>
+                        <text>倾听是最好的治疗</text>
+                    </view>
+                    <view class="time">
+                        <text>刚刚</text>
+                    </view>
+                </view>
+                <view class="item">
+                    <image src="../../img/publicDetail/propic.png" />
+                    <view class="info-box">
+                        <text>chunya5566</text>
+                        <text>倾听是最好的治疗</text>
+                    </view>
+                    <view class="time">
+                        <text>刚刚</text>
+                    </view>
+                </view>
+                <view class="item">
+                    <image src="../../img/publicDetail/propic.png" />
+                    <view class="info-box">
+                        <text>chunya5566</text>
+                        <text>倾听是最好的治疗</text>
+                    </view>
+                    <view class="time">
+                        <text>刚刚</text>
+                    </view>
+                </view>
             </view>
         </view>
+        <view class="project-plan">
+            <view class="title">
+                <image src="../../img/publicDetail/icon4.png" />
+                <text>项目计划</text>
+            </view>
+            <view class="desc">
+                春芽健康科技联合Costa，在深圳各个抑郁症治疗机构，选出35名抑郁症患者，在Costa提供的场所举行‘我倾听你’活动主题分享会。场地及饮食由Costa提供，届时邀请心理专家作现场演讲。
+                后续将会为这35名患者提供后续的治疗资助。35名患者的故事最后会以影片的形式呈现。
+                春芽健康科技希望与您携手一起‘倾听’他们的故事，倾听这个世界的第三种声音。或许以前的你还不了解抑郁症这一个群体，但从现在开始，你可以试着去感受他们的世界。
+            </view>
+        </view>
+        <view class="help-person">
+            <view class="title">
+                <image src="../../img/publicDetail/icon5.png" />
+                <text>受益对象</text>
+            </view>
+            <view class="desc">
+                由深圳各个2到5个抑郁症治疗机构推荐的一共35名患者。
+            </view>
+        </view>
+        <view class="project-budget">
+            <view class="title">
+                <image src="../../img/publicDetail/icon6.png" />
+                <text>项目预算</text>
+            </view>
+            <view class="desc">
+                <view>
+                    <text>邀请心理专家费用</text>
+                    <text>2000元</text>
+                </view>
+                <view>
+                    <text>后续治疗费用</text>
+                    <text>100000元</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="fixed-btn">
+        温度捐
     </view>
 </view>

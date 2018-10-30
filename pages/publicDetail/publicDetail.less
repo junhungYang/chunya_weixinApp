@@ -8,44 +8,179 @@
             height: 100%;
         }
     }
-    .num-info {
-        background: #fff;
-        padding:41rpx  6.4% 32rpx 6.4%;
-        display: flex;
-        view:first-of-type {
-            width: 256rpx;
-        }
-        view:last-of-type {
-            flex: 1;
-        }
-        view {
-            text {
-                display: block;
+    .main {
+        padding-bottom: 100rpx;
+        .num-info {
+            background: #fff;
+            padding:41rpx  6.4% 32rpx 6.4%;
+            display: flex;
+            view:first-of-type {
+                width: 256rpx;
             }
-            text:first-of-type {
+            view:last-of-type {
+                flex: 1;
+            }
+            view {
+                text {
+                    display: block;
+                }
+                text:first-of-type {
+                    font-size: 28rpx;
+                    line-height: 28rpx;
+                    font-weight: bold;
+                    color: #d1051f;
+                }
+                text:last-of-type {
+                    font-size: 20rpx;
+                    color: #b2b2b2;
+                    line-height: 20rpx;
+                    margin-top: 9rpx;
+                }
+            }
+        }
+        .project-name,.mission,.project-cont,.project-plan,.help-person,.project-budget {
+            background: #fff;
+            margin-top: 20rpx;
+            padding: 0 6.4%;
+            .title {
+                padding-top: 13rpx;
+                line-height: 36rpx;
+                image {
+                    width: 36rpx;
+                    height: 36rpx;
+                    vertical-align: middle;
+                }
+                text {
+                    vertical-align: middle;
+                    font-size: 28rpx;
+                    color: #313131;
+                    margin-left: 12rpx;
+                    margin-left: 13rpx;
+                    font-weight: bold;
+                }
+            }
+            .desc {
+                padding-top: 7rpx;
+                padding-bottom: 32rpx;
+                font-size: 24rpx;
+                color:#b2b2b2;
+                line-height: 32rpx;
+            }
+        }
+        .project-cont {
+            position: relative;
+            overflow: hidden;
+            .desc {
+                padding-top: 30rpx;
+            }
+            
+        }
+        .project-cont-hidden {
+            height: 420rpx;
+            .show-btn {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                overflow: hidden;
+                .mask {
+                    width: 100%;
+                    height: 318rpx;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+                .font {
+                    position: absolute;
+                    font-size: 24rpx;
+                    color: #ff924f;
+                    width: 100%;
+                    text-align: center;
+                    bottom: 35rpx;
+                    left: 0;
+                    image {
+                        width: 24rpx;
+                        height: 13rpx;
+                        vertical-align: middle;
+                        margin-left: 7rpx;
+                    }
+                }
+            }
+        }
+        .heart-reviews {
+            background: #fff;
+            margin-top: 20rpx;
+            .title {
+                padding: 0 6.4%;
                 font-size: 28rpx;
-                line-height: 28rpx;
-                font-weight: bold;
-                color: #d1051f;
+                line-height: 68rpx;
+                color:#313131;
             }
-            text:last-of-type {
-                font-size: 20rpx;
-                color: #b2b2b2;
-                line-height: 20rpx;
-                margin-top: 9rpx;
+            .list {
+                .item {
+                    padding: 15rpx 6.4%;
+                    border-bottom: 1px solid #f2f2f2;
+                    display: flex;
+                    image {
+                        width: 44rpx;
+                        height: 44rpx;
+                    }
+                    .info-box {
+                        flex: 1;
+                        padding-left: 10rpx;
+                        text {
+                            display: block;
+                            font-size: 20rpx;
+                            line-height: 20rpx;
+                        }
+                        text:first-of-type {
+                            color: #313131;  
+                        }
+                        text:last-of-type {
+                            color:#b2b2b2;
+                            margin-top: 10rpx;
+                        }
+                    }
+                    .time {
+                        text {
+                            display: block;
+                            font-size: 20rpx;
+                            color:#b2b2b2;
+                            padding-top: 23rpx;
+                        }  
+                    }
+                }
+                .item:last-of-type {
+                    border: 0;
+                }
+            }
+        }
+        .project-budget {
+            
+            .desc {
+                padding-bottom: 62rpx;
+                view {
+                    text:last-of-type {
+                        margin-left: 20rpx;
+                        color: #D1051F;
+                        font-size: 24rpx;
+                        font-weight: bold;
+                    }
+                }
             }
         }
     }
-    .project-name,.mission,.project-cont,.project-plan,.help-person,.budget-cont {
-        background: #fff;
-        margin-top: 20rpx;
-        .title {
-            text {
-                font-size: 28rpx;
-                color: #313131;
-                margin-left: 12rpx;
-                
-            }
-        }
+    .fixed-btn {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        height: 100rpx;
+        background: #d1051f;
+        text-align: center;
+        color:#fff;
+        line-height: 100rpx;
+        width: 100%;
+        font-size: 28rpx;
     }
 }
