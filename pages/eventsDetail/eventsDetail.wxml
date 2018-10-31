@@ -1,0 +1,34 @@
+<view class="template">
+    <view class="header">
+        <image class="bg" src="" />
+        <view class="cont">
+            <image src="" />
+            <text class="title">公益微电影《温度》开机仪式</text>
+        </view>
+    </view>
+    <view class="time-place">
+        <view class="info">
+            <text>2018.10.12</text>
+            <text>深圳-深圳古玩城</text>
+        </view>
+        <image src="../../img/map.png" />
+    </view>
+    <view class="cont">
+        <text>活动详情</text>
+        <text>活动介绍</text>
+        <text>2018年10月12日上午，由深圳市广电公益基金会“点亮星球文化基金”出品的公益微电影《温度》将在深圳怡景动漫基地举行了隆重的开机仪式。
+        《温度》是根据真实故事改编，中国首部关注稀有血型（熊猫血）志愿者的公益电影。影片从现实关怀出发，
+        讲述了稀有血型志愿者互助互救的感人故事，在他们身上让我们看到了一种精神，用自己的血液诠释着生命的意义。
+        </text>
+        <image src="" />
+    </view>
+    <view class="fixed-btn">
+        <view>
+            <image src="../../img/share1.png" />
+            <text>分享</text>
+        </view>
+        <view>
+            已结束
+        </view>
+    </view>
+</view>

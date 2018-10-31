@@ -1,0 +1,61 @@
+.template {
+  min-height: 100vh;
+  background: #f2f2f2;
+}
+.template .list {
+  margin: 0 6.4%;
+  padding-top: 40rpx;
+}
+.template .list .item {
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 10rpx;
+  margin-top: 14rpx;
+  display: flex;
+}
+.template .list .item:first-of-type {
+  margin-top: 0;
+}
+.template .list .item image {
+  width: 198rpx;
+  height: 198rpx;
+  border: 1px solid #b2b2b2;
+  border-radius: 10rpx;
+}
+.template .list .item .info {
+  flex: 1;
+  padding-left: 41rpx;
+}
+.template .list .item .info .title,
+.template .list .item .info .city,
+.template .list .item .info .date,
+.template .list .item .info .place {
+  display: block;
+  font-size: 28rpx;
+  line-height: 34rpx;
+}
+.template .list .item .info .title {
+  font-weight: bold;
+  color: #313131;
+}
+.template .list .item .info .city,
+.template .list .item .info .date,
+.template .list .item .info .place {
+  color: #b2b2b2;
+}
+.template .list .item .info view {
+  line-height: 28rpx;
+  margin-top: 12rpx;
+}
+.template .list .item .info view text {
+  font-size: 24rpx;
+  line-height: 28rpx;
+  padding: 0 4rpx;
+  border: 1px solid #ff924f;
+  color: #ff924f;
+  border-radius: 5rpx;
+  margin-left: 29rpx;
+}
+.template .list .item .info view text:first-of-type {
+  margin-left: 0;
+}

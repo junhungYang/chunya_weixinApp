@@ -133,3 +133,9 @@
   color: #313131;
   flex: 1;
 }
+.template .main .noInfo {
+  margin-top: 100rpx;
+  font-size: 24rpx;
+  color: #b2b2b2;
+  text-align: center;
+}

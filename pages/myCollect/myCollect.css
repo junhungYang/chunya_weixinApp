@@ -1,0 +1,66 @@
+.template {
+  background: #f2f2f2;
+  min-height: 100vh;
+}
+.template .list {
+  margin: 0rpx 6.4% 100rpx 6.4%;
+  padding-top: 30rpx;
+}
+.template .list .item {
+  background: #fff;
+  padding: 20rpx 20rpx;
+  display: flex;
+  margin-top: 18rpx;
+}
+.template .list .item:first-of-type {
+  margin-top: 0;
+}
+.template .list .item image {
+  width: 168rpx;
+  height: 168rpx;
+  border: 1px solid #f2f2f2;
+}
+.template .list .item .info {
+  flex: 1;
+  padding-left: 26rpx;
+  position: relative;
+}
+.template .list .item .info .introduct {
+  min-height: 120rpx;
+}
+.template .list .item .info .introduct text {
+  display: block;
+}
+.template .list .item .info .introduct text:first-of-type {
+  padding-top: 5rpx;
+  color: #313131;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+.template .list .item .info .introduct text:last-of-type {
+  color: #b7b7b7;
+  font-size: 16rpx;
+  margin-top: 6rpx;
+}
+.template .list .item .info .price text {
+  font-size: 24rpx;
+}
+.template .list .item .info .price text:first-of-type {
+  color: #d1051f;
+  font-weight: bold;
+}
+.template .list .item .info .price text:last-of-type {
+  color: #b7b7b7;
+  text-decoration: line-through;
+}
+.template .list .item .info .btn {
+  color: #d1051f;
+  font-weight: bold;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  padding: 0 4rpx;
+  border: 1px solid #d1051f;
+  position: absolute;
+  right: 0;
+  bottom: 5rpx;
+}

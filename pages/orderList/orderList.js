@@ -76,27 +76,7 @@ Page({
   orderControl(e) {
     let orderId = e.currentTarget.dataset.orderid;
     let controlStyle = e.currentTarget.dataset.str;
-    let promiseObj;
-    switch (controlStyle) {
-      case "delete":
-        promiseObj = _OrderDeleteOrder({ orderId });
-        break;
-      case "cancel":
-        promiseObj = _OrderCancelOrder({ orderId });
-        break;
-      case "confirm":
-        promiseObj = _OrderConfirmOrder({ orderId });
-        break;
-      case "delay":
-        promiseObj = _TakeDelay({orderId})
-        break;
-      case "addReview":
-        break;
-      case "logistics":
-        break;
-      case "return":
-        break;
-    }
+    let promiseObj = app.orderControl(orderId,controlStyle);
       promiseObj.then(data => {
         wx.showToast({
           icon: "success",
@@ -118,6 +98,12 @@ Page({
     wx.navigateTo({
       url: `../orderDetail/orderDetail?orderId=${orderId}`
     });
+  },
+  navToShippingList(e) {
+    let orderId = e.currentTarget.dataset.orderid
+    wx.navigateTo({
+      url: `../shippingList/shippingList?orderId=${orderId}`
+    })
   },
   changeActive(e) {
     this.setData({

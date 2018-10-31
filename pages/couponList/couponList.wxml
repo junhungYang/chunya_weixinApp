@@ -1,0 +1,50 @@
+<view class="template">
+    <view class="list">
+        <view class="item">
+            <view class="top">
+                <view class="main">
+                    <image src="" />
+                    <view>
+                        <text>善缘米100G</text>
+                        <text>优惠券</text>
+                        <text>有效期至2018.10.30</text>
+                    </view>
+                </view>
+                <view class="price">
+                    <text>￥</text>
+                    <text>35</text>
+                </view>
+            </view>
+            <view class="bottom">
+                <text class="condition">不可与满减/折扣商品/第二份半价活动优惠同时享受。在线支付享受。</text>
+                <view>
+                    <text>去使用</text>
+                    <image src="../../img/rediceTo_red.png" />
+                </view>
+            </view>
+        </view>
+        <view class="item">
+            <view class="top">
+                <view class="main">
+                    <image src="" />
+                    <view>
+                        <text>善缘米100G</text>
+                        <text>优惠券</text>
+                        <text>有效期至2018.10.30</text>
+                    </view>
+                </view>
+                <view class="price">
+                    <text>￥</text>
+                    <text>35</text>
+                </view>
+            </view>
+            <view class="bottom">
+                <text class="condition">不可与满减/折扣商品/第二份半价活动优惠同时享受。在线支付享受。</text>
+                <view>
+                    <text>去使用</text>
+                    <image src="../../img/rediceTo_red.png" />
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

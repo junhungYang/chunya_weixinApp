@@ -40,12 +40,19 @@
                 <text>[项目介绍]</text>
                 <text>抑郁症又称抑郁障碍，以显著而持久的心境低落为主要临床特征，是心境障碍的主要类型。临床可见心境低落与其处境不相称，情绪的消沉可以从闷闷不乐到悲痛欲绝，自卑抑郁，甚至悲观厌世，可有自杀企图或行为；甚至发生木僵；严重者可出现幻觉、妄想等精神病性症状。每次发作持续至少2周以上、长者甚或数年。</text>       
             </view>
-            <view class="show-btn" hidden="{{contActive}}" bindtap="contActiveManage">
-                <image class="mask" src="../../img/publicDetail/mask.png" />
-                <view class="font">
+            <view class="read" bindtap="contActiveManage">
+                <view wx:if="{{!contActive}}">
                     <text>查看完整项目</text><image src="../../img/publicDetail/icon7.png" />
                 </view>
+                <view wx:else>
+                    <text>收起</text><image src="../../img/publicDetail/icon8.png" />
+                </view>
             </view>
+            <view class="mask" hidden="{{contActive}}"></view>
+            <!--<view class="show-btn" bindtap="contActiveManage">
+                <image class="mask" src="../../img/publicDetail/mask.png"  hidden="{{contActive}}"/>
+                
+            </view>-->
         </view>
         <view class="heart-reviews">
             <view class="title">
@@ -121,26 +128,31 @@
             </view>
         </view>
     </view>
-    <view class="fixed-btn">
+    <view class="fixed-btn" data-index="{{1}}" bindtap="priceStateManage">
         温度捐
     </view>
-    <view class="price-control">
-        <view class="bg"></view>
+    <view class="price-control" hidden="{{priceState}}">
+        <view class="bg" data-index="{{2}}" bindtap="priceStateManage"></view>
         <view class="main-control">
             <view class="cont">
                 <view class="title">
                     <text>温度捐</text><text>让这个世界多一点温暖</text>
                 </view>
                 <view class="choose">
-                    <view class="active">5元</view>
-                    <view>10元</view>
-                    <view>20元</view>
-                    <view>50元</view>
+                    <view class="{{activePrice===1?'active':''}}"
+                    data-index="{{1}}" bindtap="changeActivePrice">5元</view>
+                    <view class="{{activePrice===2?'active':''}}"
+                     data-index="{{2}}" bindtap="changeActivePrice">10元</view>
+                    <view class="{{activePrice===3?'active':''}}"
+                     data-index="{{3}}" bindtap="changeActivePrice">20元</view>
+                    <view class="{{activePrice===4?'active':''}}"
+                     data-index="{{4}}" bindtap="changeActivePrice">50元</view>
                 </view>
-                <view class="input">
-                    自定义金额<input/>元
+                <view class="input {{activePrice===5?'active':''}}" 
+                 data-index="{{5}}" bindtap="changeActivePrice">
+                    <input placeholder-class="placeholder" placeholder="自定义金额" /> 元
                 </view>
-                <view class="has-name">
+                <view class="has-name {{hiddenName?'hidden':''}}" bindtap="hiddenNameStateManage">
                     <view></view>
                     <text>匿名捐助</text>
                 </view>

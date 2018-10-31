@@ -41,11 +41,9 @@ Page({
       });
   },
   navToShippingList() {
-    if(this.data.data.shippingList.length !== 0) {
       wx.navigateTo({
         url: `../shippingList/shippingList?orderId=${this.data.orderId}`
       })
-    }
   },
   pay(e) {
     clearTimeout(this.timer)
@@ -68,26 +66,7 @@ Page({
   orderControl(e) {
     let orderId = e.currentTarget.dataset.orderid;
     let controlStyle = e.currentTarget.dataset.str;
-    let promiseObj;
-    switch (controlStyle) {
-      case "delete":
-        promiseObj = _OrderDeleteOrder({ orderId });
-        break;
-      case "cancel":
-        promiseObj = _OrderCancelOrder({ orderId });
-        break;
-      case "confirm":
-        promiseObj = _OrderConfirmOrder({ orderId });
-        break;
-      case "delay":
-        break;
-      case "addReview":
-        break;
-      case "logistics":
-        break;
-      case "return":
-        break;
-    }
+    let promiseObj = app.orderControl(orderId, controlStyle);
     promiseObj.then(data => {
       wx.showToast({
         icon: "success",

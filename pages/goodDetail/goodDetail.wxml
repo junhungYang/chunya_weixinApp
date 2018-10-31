@@ -223,4 +223,105 @@
             </view>
         </view>
     </view>
+    <view class="coupon-list">
+        <view class="bg"></view>
+        <view class="main">
+            <view class="title">店铺优惠券</view>
+            <scroll-view scroll-y class="list">
+                <view class="item">
+                    <image src="../../img/gradient1.jpg" />
+                    <view class="box">
+                        <view class="info">
+                            <view>
+                                <text>￥</text>
+                                <text>35</text>
+                            </view>
+                            <view>
+                                <text>订单金额满699元可使用</text>
+                                <text>有效期2018.10.30-2019.10.31</text>
+                            </view>
+                        </view>
+                        <view class="btn">
+                            立即领取
+                        </view>
+                    </view>
+                </view>
+                <view class="item">
+                    <image src="../../img/gradient1.jpg" />
+                    <view class="box">
+                        <view class="info">
+                            <view>
+                                <text>￥</text>
+                                <text>35</text>
+                            </view>
+                            <view>
+                                <text>订单金额满699元可使用</text>
+                                <text>有效期2018.10.30-2019.10.31</text>
+                            </view>
+                        </view>
+                        <view class="btn">
+                            立即领取
+                        </view>
+                    </view>
+                </view>
+                <view class="item">
+                    <image src="../../img/gradient1.jpg" />
+                    <view class="box">
+                        <view class="info">
+                            <view>
+                                <text>￥</text>
+                                <text>35</text>
+                            </view>
+                            <view>
+                                <text>订单金额满699元可使用</text>
+                                <text>有效期2018.10.30-2019.10.31</text>
+                            </view>
+                        </view>
+                        <view class="btn">
+                            立即领取
+                        </view>
+                    </view>
+                </view>
+                <view class="item">
+                    <image src="../../img/gradient1.jpg" />
+                    <view class="box">
+                        <view class="info">
+                            <view>
+                                <text>￥</text>
+                                <text>35</text>
+                            </view>
+                            <view>
+                                <text>订单金额满699元可使用</text>
+                                <text>有效期2018.10.30-2019.10.31</text>
+                            </view>
+                        </view>
+                        <view class="btn">
+                            立即领取
+                        </view>
+                    </view>
+                </view>
+                <view class="item">
+                    <image src="../../img/gradient1.jpg" />
+                    <view class="box">
+                        <view class="info">
+                            <view>
+                                <text>￥</text>
+                                <text>35</text>
+                            </view>
+                            <view>
+                                <text>订单金额满699元可使用</text>
+                                <text>有效期2018.10.30-2019.10.31</text>
+                            </view>
+                        </view>
+                        <view class="btn">
+                            立即领取
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="confirm">
+            完成
+        </view>
+    </view>
 </view>

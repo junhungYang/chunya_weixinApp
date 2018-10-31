@@ -1,0 +1,68 @@
+.template {
+    background: #f2f2f2;
+    min-height: 100vh;
+    .list {
+        margin: 0rpx 6.4% 100rpx 6.4%;
+        padding-top: 30rpx;
+        .item {
+            background:#fff;
+            padding: 20rpx 20rpx;
+            display: flex;
+            margin-top: 18rpx;
+            &:first-of-type {
+                margin-top: 0;
+            }
+            image {
+                width: 168rpx;
+                height: 168rpx;
+                border: 1px solid #f2f2f2;
+            }
+            .info {
+                flex: 1;
+                padding-left: 26rpx;
+                position: relative;
+                .introduct {
+                    min-height: 120rpx;
+                    text {
+                        display: block;
+                    }
+                    text:first-of-type {
+                        padding-top: 5rpx;
+                        color:#313131;
+                        font-size: 24rpx;
+                        line-height: 28rpx;
+                    }
+                    text:last-of-type {
+                        color: #b7b7b7;
+                        font-size: 16rpx;
+                        margin-top: 6rpx;
+                    }
+                }
+                .price {
+                    text {
+                        font-size: 24rpx;
+                    }
+                    text:first-of-type {
+                        color:#d1051f;
+                        font-weight: bold;
+                    }
+                    text:last-of-type {
+                        color:#b7b7b7;
+                        text-decoration: line-through;
+                    }
+                }
+                .btn {
+                    color:#d1051f;
+                    font-weight: bold;
+                    font-size: 20rpx;
+                    line-height: 28rpx;
+                    padding: 0 4rpx;
+                    border: 1px solid #d1051f;
+                    position: absolute;
+                    right: 0;
+                    bottom: 5rpx;
+                }
+            }
+        }
+    }
+}

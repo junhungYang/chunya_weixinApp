@@ -1,11 +1,13 @@
 {
   "pages": [
+        "pages/goodDetail/goodDetail",
+      "pages/couponList/couponList",
+        "pages/myCollect/myCollect",
+            "pages/index/index",
+      "pages/eventsDetail/eventsDetail",
+        "pages/eventsList/eventsList",
         "pages/publicDetail/publicDetail",
-        "pages/index/index",
-    
-    
-            "pages/shippingList/shippingList",
-            
+            "pages/shippingList/shippingList",        
         "pages/public/public",
         "pages/orderDetail/orderDetail",
                 "pages/cart/cart",
@@ -14,9 +16,9 @@
         "pages/addressList/addressList",
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
-            "pages/goodDetail/goodDetail",
+       
           "pages/nuankeDetail/nuankeDetail",
-          "pages/nuanke/nuanke"     
+          "pages/nuanke/nuanke"
   ],
   "window": {
     "backgroundTextStyle": "light",

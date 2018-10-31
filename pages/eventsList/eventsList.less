@@ -1,0 +1,56 @@
+.template {
+    min-height: 100vh;
+    background:#f2f2f2;
+    .list {
+        margin: 0 6.4%;
+        padding-top: 40rpx; 
+        .item {
+            background:#fff;
+            padding: 30rpx;
+            border-radius: 10rpx;
+            margin-top: 14rpx;
+            display: flex;
+            &:first-of-type {
+                margin-top: 0;
+            }
+            image {
+                width: 198rpx;
+                height: 198rpx;
+                border: 1px solid #b2b2b2;
+                border-radius: 10rpx;
+            }
+            .info {
+                flex: 1;
+                padding-left: 41rpx;
+                .title,.city,.date,.place {
+                    display: block;
+                    font-size: 28rpx;
+                    line-height: 34rpx;
+                }
+                .title {
+                    font-weight: bold;
+                    color: #313131;
+                }
+                .city,.date,.place {
+                    color: #b2b2b2;
+                }
+                view {
+                    line-height: 28rpx;
+                    margin-top: 12rpx;
+                    text {
+                        font-size: 24rpx;
+                        line-height: 28rpx;
+                        padding: 0 4rpx;
+                        border: 1px solid #ff924f;
+                        color:#ff924f;
+                        border-radius: 5rpx; 
+                        margin-left: 29rpx;
+                    }
+                    text:first-of-type {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+}

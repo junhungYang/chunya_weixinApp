@@ -1,43 +1,13 @@
-// pages/publicDetail/publicDetail.js
+// pages/eventsDetail/eventsDetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    contActive: false,
-    priceState: true,
-    hiddenName: false,
-    activePrice: 1
+
   },
-  contActiveManage() {
-    this.setData({
-      contActive: !this.data.contActive
-    })
-  },
-  priceStateManage(e) {
-    let index = e.currentTarget.dataset.index
-    if(index === 1) {
-      this.setData({
-        priceState: false
-      })
-    }else  {
-      this.setData({
-        priceState: true
-      })
-    }
-  },
-  hiddenNameStateManage() {
-    this.setData({
-      hiddenName: !this.data.hiddenName
-    })
-  },
-  changeActivePrice(e) {
-    let index = e.currentTarget.dataset.index
-    this.setData({
-      activePrice: index
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

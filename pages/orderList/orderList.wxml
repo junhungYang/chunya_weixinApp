@@ -51,7 +51,7 @@
                     <view wx:if="{{item.handleOption.comment}}" data-orderid="{{item.id}}" data-str="addReview" bindtap="orderControl">
                         添加评论
                     </view>
-                    <view wx:if="{{item.handleOption.kuaidi}}" data-orderid="{{item.id}}" data-str="logistics" bindtap="orderControl">
+                    <view wx:if="{{item.handleOption.kuaidi}}" data-orderid="{{item.id}}" bindtap="navToShippingList">
                         查看物流
                     </view>
                     <view wx:if="{{item.handleOption.return}}" data-orderid="{{item.id}}" data-str="return" bindtap="orderControl">

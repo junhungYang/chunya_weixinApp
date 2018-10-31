@@ -31,7 +31,7 @@
                 <text>{{data.orderInfo.full_region}}{{data.orderInfo.address}}</text>
             </view> -->
         </view>
-        <view class="list">
+        <view class="list" wx:if="{{data.shippingList.length!==0}}">
             <view class="item" wx:for="{{data.shippingList}}">
                 <view class="time">
                     <text>{{item.AcceptTime}}</text>
@@ -45,6 +45,9 @@
                     {{item.AcceptStation}}
                 </view>
             </view>
+        </view>
+        <view class="noInfo" wx:else>
+            暂无物流信息
         </view>
     </view>
     

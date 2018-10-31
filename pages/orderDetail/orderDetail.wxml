@@ -131,7 +131,7 @@
                 添加评论
             </view>
             <view wx:if="{{data.orderInfo.handleOption.kuaidi}}"
-             data-orderid="{{data.orderInfo.id}}" data-str="logistics" bindtap="orderControl">
+             bindtap="navToShippingList">
                 查看物流
             </view>
             <view wx:if="{{data.orderInfo.handleOption.return}}"

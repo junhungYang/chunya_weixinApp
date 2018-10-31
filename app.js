@@ -4,7 +4,11 @@ import {
   _GetSensitiveInfo,
   _WxappLogin,
   _SetToken,
-  _CartAdd
+  _CartAdd,
+  _OrderDeleteOrder,
+  _OrderCancelOrder,
+  _OrderConfirmOrder,
+  _TakeDelay
 } from "./utils/request";
 App({
   onLaunch: function() {
@@ -151,6 +155,30 @@ App({
           wx.showModal({ title: msg });
         });
     });
+  },
+  orderControl(orderId,controlStyle) {
+    let promiseObj;
+    switch (controlStyle) {
+      case "delete":
+        promiseObj = _OrderDeleteOrder({ orderId });
+        break;
+      case "cancel":
+        promiseObj = _OrderCancelOrder({ orderId });
+        break;
+      case "confirm":
+        promiseObj = _OrderConfirmOrder({ orderId });
+        break;
+      case "delay":
+        promiseObj = _TakeDelay({ orderId })
+        break;
+      case "addReview":
+        break;
+      case "logistics":
+        break;
+      case "return":
+        break;
+    }
+    return promiseObj
   },
   showMod(msg) {
     wx.showModal({

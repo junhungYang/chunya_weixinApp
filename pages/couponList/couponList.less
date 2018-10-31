@@ -1,0 +1,114 @@
+.template {
+    background:#f2f2f2;
+    min-height: 100vh;
+    .list {
+        margin: 0 6.4%;
+        padding-top: 40rpx;
+        .item {
+            background:#fff;
+            padding: 27rpx;
+            margin-top: 30rpx;
+            position: relative;
+            &:first-of-type {
+                margin-top: 0;
+            }
+            .top {
+                border-bottom: 1px dotted #b2b2b2;
+                padding-bottom: 24rpx;
+                display: flex;
+                .main {
+                    flex: 1;
+                    display: flex;
+                    image {
+                        width: 100rpx;
+                        height: 100rpx;
+                        border: 1px solid #f2f2f2;
+                    }
+                    view {
+                        padding-left: 28rpx;
+                        text {
+                            display: block;
+                        }
+                        text:first-of-type {
+                            font-size: 24rpx;
+                            color:#313131;
+                            line-height: 28rpx;
+                        }
+                        text:nth-of-type(2) {
+                            margin-top: 12rpx;
+                            line-height: 24rpx;
+                            border: 1px solid #d1051f;
+                            border-radius: 5rpx;
+                            font-size: 16rpx;
+                            color:#d1051f;
+                            width: 68rpx;
+                            text-align: center;
+                        }
+                        text:last-of-type {
+                            margin-top: 13rpx;
+                            color: #b7b7b7;
+                            font-size: 18rpx;
+                            line-height: 18rpx;
+                        }
+                    }
+                }
+                .price {
+                    align-self: center;
+                    text {
+                        color:#d1051f;
+                    }
+                    text:first-of-type {
+                        font-size: 28rpx;
+                    }
+                    text:last-of-type {
+                        font-size: 50rpx;
+                        margin-left: 6rpx;
+                    }
+                }
+            }
+            .bottom {
+                margin-top: 13rpx;
+                display: flex;
+                .condition {
+                    flex: 1;
+                    font-size: 18rpx;
+                    color:#b7b7b7;
+                    line-height: 28rpx;
+                }
+                view {
+                    align-self: center;
+                    padding-left: 15rpx;
+                    text {
+                        font-size: 18rpx;
+                        color:#d1051f;
+                        vertical-align: middle;
+                        line-height: 18rpx;
+                    }
+                    image {
+                        margin-left: 12rpx;
+                        vertical-align: middle;
+                        width: 9rpx;
+                        height: 18rpx;
+                    }
+                }
+            }
+        }
+        .item::before,.item::after {
+              content: '';
+                display: block;
+                width: 10px;
+                height: 6px;
+                border-radius: 3px;
+                background: #f2f2f2;
+                position: absolute;
+               
+                bottom: 22%;
+        }
+        .item::before {
+             left: -5px;
+        }
+        .item::after {
+            right: -5px;
+        }
+    }
+}

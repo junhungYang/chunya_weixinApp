@@ -1,0 +1,32 @@
+<view class="template">
+    <view class="list">
+        <view class="item">
+            <image src="" />
+            <view class="info">
+                <view class="introduct">
+                    <text>送礼佳节善缘米100G</text>
+                    <text>月售100 好评率100%</text>
+                </view>
+                <view class="price">
+                    <text>￥950</text>
+                    <text>￥1180</text>
+                </view>
+                <view class="btn">马上买</view>
+            </view>
+        </view>
+        <view class="item">
+            <image src="" />
+            <view class="info">
+                <view class="introduct">
+                    <text>送礼佳节善缘米100G</text>
+                    <text>月售100 好评率100%</text>
+                </view>
+                <view class="price">
+                    <text>￥950</text>
+                    <text>￥1180</text>
+                </view>
+                <view class="btn">马上买</view>
+            </view>
+        </view>
+    </view>
+</view>

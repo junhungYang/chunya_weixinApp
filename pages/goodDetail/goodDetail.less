@@ -652,3 +652,116 @@
         }
     }
 }
+.coupon-list {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 88rpx;
+    bottom: 0;
+    .bg {
+        height: 100%;
+        background:rgba(0,0,0,0.6)
+    }
+    .main {
+        position: absolute;
+        top: 158rpx;
+        bottom:100rpx;
+        left: 0;
+        right: 0;
+        background:#fff;
+        box-sizing: border-box;
+        padding: 0 6.4%;
+        .title {
+            height: 105rpx;
+            line-height: 105rpx;
+            text-align: center;
+            font-size: 28rpx;
+            font-weight: bold;
+            color:#313131;
+        } 
+        .list {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 105rpx;
+            bottom: 0;
+            overflow: hidden;
+            padding: 0 6.4%;
+            box-sizing: border-box;
+            padding-bottom: 48rpx;
+            .item {
+               height: 180rpx;
+               display: flex;
+               position: relative;
+               margin-top: 19rpx;
+               &:first-of-type {
+                   margin-top: 0;
+               }
+               &:last-of-type {
+                   margin-bottom: 150rpx;
+               }
+               image {
+                   width: 100%;
+                   height: 100%;
+               }
+               .box {
+                   position: absolute;
+                   left: 0;
+                   top: 0;
+                   width: 100%;
+                   height: 100%;
+                   display: flex;
+                    .info {
+                        flex: 1;
+                        padding: 24rpx 28rpx;
+                        view {
+                            color:#fff;
+                                
+                        }
+                        view:first-of-type {
+                            text:first-of-type {
+                                font-size: 28rpx;
+                            }
+                            text:last-of-type {
+                                font-size: 50rpx;
+                            }
+                        }
+                        view:last-of-type {
+                            margin-top: 8rpx;
+                            line-height: 24rpx;
+                            font-size: 20rpx;
+                            text{
+                                display: block;
+                            }
+                        }
+                    }
+                    .btn {
+                        width: 134rpx;
+                        border-left: 1px dotted #fff;
+                        line-height: 180rpx;
+                        text-align: center;
+                        font-size:  24rpx;
+                        color:#fff;
+                    }
+               }
+            }
+        }
+    }
+    .confirm {
+        height: 100rpx;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #d1051f;
+        color:#fff;
+        line-height: 100rpx;
+        font-size: 28rpx;
+        text-align: center;
+    }
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
