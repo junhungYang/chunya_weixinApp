@@ -1,9 +1,14 @@
 {
   "pages": [
+      "pages/invoice/invoice",
+            "pages/writeStory/writeStory",
+        "pages/haowuList/haowuList",
+            "pages/index/index",
+        "pages/reviewsList/reviewsList",
         "pages/goodDetail/goodDetail",
       "pages/couponList/couponList",
         "pages/myCollect/myCollect",
-            "pages/index/index",
+      
       "pages/eventsDetail/eventsDetail",
         "pages/eventsList/eventsList",
         "pages/publicDetail/publicDetail",
@@ -16,7 +21,6 @@
         "pages/addressList/addressList",
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
-       
           "pages/nuankeDetail/nuankeDetail",
           "pages/nuanke/nuanke"
   ],

@@ -363,13 +363,9 @@
                     }
                     .pic-group {
                         font-size: 0;
-                        image {
-                            margin-top: 20rpx;
-                            width: 224rpx;
-                            height: 236rpx;
-                        }
-                        image:nth-child(even) {
-                            margin-left: 12rpx;
+                         image {
+                            margin: 14rpx 7rpx 0 7rpx;
+                            width: 204rpx;
                         }
                     }
                 }
@@ -652,7 +648,7 @@
         }
     }
 }
-.coupon-list {
+.coupon-list,.service-detail {
     position: fixed;
     left: 0;
     right: 0;
@@ -679,6 +675,37 @@
             font-weight: bold;
             color:#313131;
         } 
+        .service-cont {
+            .item {
+                padding: 0 6.4%;
+                border-bottom: 1px solid #f2f2f2;
+                height: 87rpx;
+                view:first-of-type {
+                    image {
+                        width: 24rpx;
+                        height: 24rpx;
+                        vertical-align: middle;
+                    }
+                    text {
+                        vertical-align: middle;
+                        font-size: 24rpx;
+                        line-height: 24rpx;
+                        margin-left: 39rpx;
+                        color:#313131;
+                    }
+                } 
+                .desc {
+                    margin-left: 63rpx;
+                    color: #b2b2b2;
+                    font-size: 20rpx;
+                    line-height: 20rpx;
+                    margin-top:6rpx;
+                }
+            }
+            .item:nth-of-type(3),.item:last-of-type {
+                line-height: 87rpx;
+            }
+        }
         .list {
             position: absolute;
             left: 0;
@@ -746,6 +773,9 @@
                }
             }
         }
+    }
+    .no-padding {
+        padding: 0;
     }
     .confirm {
         height: 100rpx;

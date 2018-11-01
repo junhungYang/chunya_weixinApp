@@ -20,7 +20,9 @@ Page({
     goodId:'',
     reviews:[],
     domPosTop:{},
-    navActive:1
+    navActive:1,
+    couponHidState:true,
+    serviceHidState:true
   },
   onLoad: function(options) {
     that = this;
@@ -50,6 +52,23 @@ Page({
         fromid,
         openid
       })
+    }
+  },
+  couponStateManage(e) {
+    let index = e.currentTarget.dataset.index
+    
+    if(index) {
+      this.setData({ couponHidState:true });
+    }else {
+      this.setData({ couponHidState: false });
+    }
+  },
+  serviceStateManage(e) {
+    let index = e.currentTarget.dataset.index
+    if (index) {
+      this.setData({ serviceHidState: true });
+    } else {
+      this.setData({ serviceHidState: false });
     }
   },
   chooseProduct(e) {
@@ -126,6 +145,23 @@ Page({
     }).catch(msg => {
       wx.showModal({ title: msg });
     });
+  },
+  previewImg(e) {
+    let picList = e.currentTarget.dataset.piclist
+    let index = e.currentTarget.dataset.index
+    let arr = []
+    picList.forEach(item => {
+      arr.push(item.pic_url)
+    })
+    wx.previewImage({
+      urls: arr,
+      current: arr[index]
+    })
+  },
+  navToReviewsList(e) {
+    wx.navigateTo({
+      url:`../reviewsList/reviewsList?goodId=${this.data.goodId}`
+    })
   },
   //数量操作
   quantityControl(e) {

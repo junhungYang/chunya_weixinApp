@@ -1,0 +1,49 @@
+<view class="template">
+    <view class="list">
+        <view class="big-item">
+            <view class="goods-item">
+            <view class="header">
+                <image src="../../img/index/good_banner.jpg" />
+                <text>贴心｜爱意｜惊喜｜舒心</text>
+            </view>
+            <view class="list">
+                <view class="list-item"  wx:for="{{goodsList}}">
+                <form bindsubmit="formSubmit_collect" report-submit="true">
+                    <button  formType="submit"  hover-class="none" class='invisibleclass' data-goodId="{{item.id}}" bindtap="navToGoodDetail">
+                        <image src="../../img/index/good_main1.jpg" />
+                        <text>{{item.name}}格里高利+礼盒装卫生巾 棉柔透气日夜用组合</text>
+                        <view class="price">
+                            <text class="now-price">￥{{item.retail_price}}0.1</text>
+                            <text class="old-price">￥{{item.market_price}}1</text>
+                        </view>
+                    </button>
+                </form>      
+                </view>
+            </view>
+            </view>
+        </view>
+        <view class="big-item">
+            <view class="goods-item">
+            <view class="header">
+                <image src="../../img/index/good_banner.jpg" />
+                <text>贴心｜爱意｜惊喜｜舒心</text>
+            </view>
+            <view class="list">
+                <view class="list-item"  wx:for="{{goodsList}}">
+                <form bindsubmit="formSubmit_collect" report-submit="true">
+                    <button  formType="submit"  hover-class="none" class='invisibleclass' data-goodId="{{item.id}}" bindtap="navToGoodDetail">
+                        <image src="../../img/index/good_main1.jpg" />
+                        <text>{{item.name}}格里高利+礼盒装卫生巾 棉柔透气日夜用组合</text>
+                        <view class="price">
+                            <text class="now-price">￥{{item.retail_price}}0.1</text>
+                            <text class="old-price">￥{{item.market_price}}1</text>
+                        </view>
+                    </button>
+                </form>      
+                </view>
+            </view>
+            </view>
+        </view>
+    </view>
+    
+</view>

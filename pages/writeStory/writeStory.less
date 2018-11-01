@@ -1,0 +1,103 @@
+.template {
+    min-height: 100vh;
+    background: #f2f2f2;
+    .main {
+        .title,.content,.img-group {
+            background: #fff;
+            padding: 0 6.4%;
+        }
+        .title,.content {
+            padding-top: 30rpx;
+            padding-bottom: 30rpx;
+            .scroll-view {
+                height: 100%;
+                overflow: hidden;
+                textarea {
+                    font-size: 24rpx;
+                    line-height: 28rpx;
+                    color: #313131;
+                }
+            }
+        }
+        .title {
+            height: 162rpx;
+            box-sizing: border-box;
+            border-bottom:1px solid #f2f2f2;
+        }
+        .content {
+            height: 222rpx;
+            box-sizing: border-box;
+        }
+        .placeHolder {
+            font-size: 24rpx;
+            color: #c1c1c1;
+        }
+        .img-group {
+            height: 120rpx;
+            padding-bottom: 20rpx;
+            view {
+                width: 120rpx;
+                height: 120rpx;
+                overflow: hidden;
+                position: relative;
+                image {
+                    width: 120rpx;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+    .toTop {
+        margin-top: 20rpx;
+        background:#fff;
+        padding: 0 6.4%;
+        display: flex;
+        height: 82rpx;
+        image {
+            width: 38rpx;
+            height: 38rpx;
+            align-self: center;
+        }
+        text {
+            line-height: 82rpx;
+            font-size: 28rpx;
+            padding-left: 21rpx;
+            flex: 1;
+        }
+        view {
+            padding-top: 11rpx;
+        }
+        .wx-switch-input{
+            width:82rpx !important;
+            height:36rpx !important;
+            background: #2ca5ae !important;
+            border: #2ca5ae !important; 
+        }
+        /*白色样式（false的样式）*/
+        .wx-switch-input::before{
+            width:82rpx !important;
+            height: 36rpx !important;
+        }
+        /*绿色样式（true的样式）*/
+        .wx-switch-input::after{
+            width: 40rpx !important;
+            height: 36rpx !important;
+        }
+    }
+    .fixed-btn {
+        position: fixed;
+        width: 380rpx;
+        line-height: 80rpx;
+        text-align: center;
+        color:#fff;
+        background: #2ca5ae;
+        border-radius: 40rpx;
+        bottom: 100rpx;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 28rpx;
+    }
+}

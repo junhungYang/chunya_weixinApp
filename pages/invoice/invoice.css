@@ -1,0 +1,74 @@
+.template {
+  background: #f2f2f2;
+  min-height: 100vh;
+  padding-top: 21rpx;
+}
+.template .header {
+  margin: 0 6.4%;
+  border-radius: 10rpx;
+  background: #fff;
+}
+.template .header view:first-of-type {
+  display: flex;
+  padding: 0 100rpx;
+  padding-top: 26rpx;
+  justify-content: space-between;
+}
+.template .header view:first-of-type text {
+  line-height: 43rpx;
+  border: 2px solid #d2d2d2;
+  color: #d2d2d2;
+  font-size: 24rpx;
+  padding: 0 32rpx;
+  border-radius: 22rpx;
+}
+.template .header view:first-of-type .active {
+  border-color: #2ca4a4;
+  color: #2ca4a4;
+}
+.template .header view:last-of-type {
+  line-height: 62rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color: #d2d2d2;
+}
+.template .main {
+  background: #fff;
+  margin: 0 6.4%;
+  margin-top: 20rpx;
+}
+.template .main .style,
+.template .main .taitou-name,
+.template .main .default-taitou,
+.template .main .content,
+.template .main .noInvoice {
+  height: 88rpx;
+  padding: 29rpx;
+  border-bottom: 1px solid #f2f2f2;
+  display: flex;
+}
+.template .main .style .title,
+.template .main .taitou-name .title,
+.template .main .default-taitou .title,
+.template .main .content .title,
+.template .main .noInvoice .title {
+  font-size: 24rpx;
+  line-height: 88rpx;
+}
+.template .main .style .choose {
+  flex: 1;
+  position: relative;
+  font-size: 0;
+  text-align: right;
+}
+.template .main .style .choose view {
+  display: inline-block;
+}
+.template .main .style .choose view image {
+  width: 26rpx;
+  height: 26rpx;
+  border: 1px solid red;
+}
+.template .main .style .choose view text {
+  font-size: 20rpx;
+}

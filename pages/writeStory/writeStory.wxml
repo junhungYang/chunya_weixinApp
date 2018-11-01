@@ -1,0 +1,29 @@
+<view class="template">
+    <view class="main">
+        <view class="title">
+            <scroll-view class="scroll-view" scroll-y>
+                <textarea auto-height placeholder="输入你要发布的主题" maxlength="{{-1}}"/>
+            </scroll-view>
+        </view>
+        <view class="content">
+            <scroll-view class="scroll-view" scroll-y>
+                <textarea auto-height placeholder="输入你要发布的内容" maxlength="{{-1}}"/>
+            </scroll-view>
+        </view>
+        <view class="img-group">
+            <view>
+                <image src="../../img/camere.png" mode="widthFix"/>
+            </view>
+        </view>
+    </view>
+    <view class="toTop">
+        <image src="../../img/toTop.png" />
+        <text>我要置顶</text>
+        <view>
+            <switch checked="false" />
+        </view>
+    </view>
+    <view class="fixed-btn">
+        立即发布
+    </view>
+</view>

@@ -366,12 +366,8 @@
   font-size: 0;
 }
 .goodMod .reviews .list .item .item-cont .pic-group image {
-  margin-top: 20rpx;
-  width: 224rpx;
-  height: 236rpx;
-}
-.goodMod .reviews .list .item .item-cont .pic-group image:nth-child(even) {
-  margin-left: 12rpx;
+  margin: 14rpx 7rpx 0 7rpx;
+  width: 204rpx;
 }
 .goodMod .reviews .list .item:last-of-type {
   border: 0;
@@ -638,18 +634,21 @@
   border-top-right-radius: 8rpx;
   border-bottom-right-radius: 8rpx;
 }
-.coupon-list {
+.coupon-list,
+.service-detail {
   position: fixed;
   left: 0;
   right: 0;
   top: 88rpx;
   bottom: 0;
 }
-.coupon-list .bg {
+.coupon-list .bg,
+.service-detail .bg {
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }
-.coupon-list .main {
+.coupon-list .main,
+.service-detail .main {
   position: absolute;
   top: 158rpx;
   bottom: 100rpx;
@@ -659,7 +658,8 @@
   box-sizing: border-box;
   padding: 0 6.4%;
 }
-.coupon-list .main .title {
+.coupon-list .main .title,
+.service-detail .main .title {
   height: 105rpx;
   line-height: 105rpx;
   text-align: center;
@@ -667,7 +667,42 @@
   font-weight: bold;
   color: #313131;
 }
-.coupon-list .main .list {
+.coupon-list .main .service-cont .item,
+.service-detail .main .service-cont .item {
+  padding: 0 6.4%;
+  border-bottom: 1px solid #f2f2f2;
+  height: 87rpx;
+}
+.coupon-list .main .service-cont .item view:first-of-type image,
+.service-detail .main .service-cont .item view:first-of-type image {
+  width: 24rpx;
+  height: 24rpx;
+  vertical-align: middle;
+}
+.coupon-list .main .service-cont .item view:first-of-type text,
+.service-detail .main .service-cont .item view:first-of-type text {
+  vertical-align: middle;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  margin-left: 39rpx;
+  color: #313131;
+}
+.coupon-list .main .service-cont .item .desc,
+.service-detail .main .service-cont .item .desc {
+  margin-left: 63rpx;
+  color: #b2b2b2;
+  font-size: 20rpx;
+  line-height: 20rpx;
+  margin-top: 6rpx;
+}
+.coupon-list .main .service-cont .item:nth-of-type(3),
+.service-detail .main .service-cont .item:nth-of-type(3),
+.coupon-list .main .service-cont .item:last-of-type,
+.service-detail .main .service-cont .item:last-of-type {
+  line-height: 87rpx;
+}
+.coupon-list .main .list,
+.service-detail .main .list {
   position: absolute;
   left: 0;
   right: 0;
@@ -678,23 +713,28 @@
   box-sizing: border-box;
   padding-bottom: 48rpx;
 }
-.coupon-list .main .list .item {
+.coupon-list .main .list .item,
+.service-detail .main .list .item {
   height: 180rpx;
   display: flex;
   position: relative;
   margin-top: 19rpx;
 }
-.coupon-list .main .list .item:first-of-type {
+.coupon-list .main .list .item:first-of-type,
+.service-detail .main .list .item:first-of-type {
   margin-top: 0;
 }
-.coupon-list .main .list .item:last-of-type {
+.coupon-list .main .list .item:last-of-type,
+.service-detail .main .list .item:last-of-type {
   margin-bottom: 150rpx;
 }
-.coupon-list .main .list .item image {
+.coupon-list .main .list .item image,
+.service-detail .main .list .item image {
   width: 100%;
   height: 100%;
 }
-.coupon-list .main .list .item .box {
+.coupon-list .main .list .item .box,
+.service-detail .main .list .item .box {
   position: absolute;
   left: 0;
   top: 0;
@@ -702,28 +742,35 @@
   height: 100%;
   display: flex;
 }
-.coupon-list .main .list .item .box .info {
+.coupon-list .main .list .item .box .info,
+.service-detail .main .list .item .box .info {
   flex: 1;
   padding: 24rpx 28rpx;
 }
-.coupon-list .main .list .item .box .info view {
+.coupon-list .main .list .item .box .info view,
+.service-detail .main .list .item .box .info view {
   color: #fff;
 }
-.coupon-list .main .list .item .box .info view:first-of-type text:first-of-type {
+.coupon-list .main .list .item .box .info view:first-of-type text:first-of-type,
+.service-detail .main .list .item .box .info view:first-of-type text:first-of-type {
   font-size: 28rpx;
 }
-.coupon-list .main .list .item .box .info view:first-of-type text:last-of-type {
+.coupon-list .main .list .item .box .info view:first-of-type text:last-of-type,
+.service-detail .main .list .item .box .info view:first-of-type text:last-of-type {
   font-size: 50rpx;
 }
-.coupon-list .main .list .item .box .info view:last-of-type {
+.coupon-list .main .list .item .box .info view:last-of-type,
+.service-detail .main .list .item .box .info view:last-of-type {
   margin-top: 8rpx;
   line-height: 24rpx;
   font-size: 20rpx;
 }
-.coupon-list .main .list .item .box .info view:last-of-type text {
+.coupon-list .main .list .item .box .info view:last-of-type text,
+.service-detail .main .list .item .box .info view:last-of-type text {
   display: block;
 }
-.coupon-list .main .list .item .box .btn {
+.coupon-list .main .list .item .box .btn,
+.service-detail .main .list .item .box .btn {
   width: 134rpx;
   border-left: 1px dotted #fff;
   line-height: 180rpx;
@@ -731,7 +778,12 @@
   font-size: 24rpx;
   color: #fff;
 }
-.coupon-list .confirm {
+.coupon-list .no-padding,
+.service-detail .no-padding {
+  padding: 0;
+}
+.coupon-list .confirm,
+.service-detail .confirm {
   height: 100rpx;
   position: absolute;
   bottom: 0;

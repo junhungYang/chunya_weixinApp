@@ -1,0 +1,48 @@
+<view class="template">
+    <view class="header">
+        <view>
+            <text class="active">电子发票</text>
+            <text>纸质发票</text>
+        </view>
+        <view>
+            默认开具普票，如需专票请填写完整购方信息并联系商家
+        </view>
+    </view>
+    <view class="main">
+        <view class="style">
+            <text class="title">抬头类型</text>
+            <view class="choose">
+                <view>
+                    <image src="" />
+                    <text>个人或事业单位</text>
+                </view>
+                <view>
+                    <image src="" />
+                    <text>企业</text>
+                </view>
+            </view>
+        </view>
+        <view class="taitou-name">
+            <text class="title">发票抬头</text>
+            <input type="text" placeholder="抬头类型" />
+        </view>
+        <view class="default-taitou">
+            <text class="title">默认抬头</text>
+            <view>
+                <image src="" />
+            </view>
+        </view>
+        <view class="content">
+            <text class="title">发票内容</text>
+            <image src="" />
+            <input type="" placeholder="" auto-focus password />
+        </view>
+        <view class="noInvoice">
+            <text>本次不开具发票，继续下单</text>
+            <image src="" />
+        </view>
+    </view>
+    <view class="fixed-btn">
+        完成
+    </view>
+</view>

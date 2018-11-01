@@ -22,7 +22,7 @@
                     <text class="new">￥{{detail.info.retail_price_range}}</text>
                     <text class="old">￥{{detail.info.market_price_range}}</text>
                 </view>
-                <!--<view class="coupon">
+                <view class="coupon" bindtap="couponStateManage">
                     <view>
                         <image src="../../img/goodDetail/hongbao.png" />
                         <text>150元新人红包</text>
@@ -31,7 +31,7 @@
                         <text>立即领取</text>
                         <image src="../../img/redictTo.png" />
                     </view>
-                </view> -->
+                </view>
                 <view class="collect-share">
                     <view bindtap="collect">
                         <image src="{{collectState === 'add' ? '../../img/goodDetail/collect1.png' : '../../img/goodDetail/collect.png'}}" />
@@ -53,7 +53,7 @@
                <image src="../../img/redictTo.png" />
            </view> 
         </view>
-        <view class="service">
+        <view class="service" bindtap="serviceStateManage">
             <view class="up">
                 <text>服务：</text>
                 <text>支持7天无理由退货</text>
@@ -92,7 +92,7 @@
                       <image src="../../img/goodDetail/start.png" />
                        <image src="../../img/goodDetail/start.png" />
                 </view>
-                <view class="quantity">
+                <view class="quantity" bindtap="navToReviewsList">
                     <text>{{reviews.count}}条评论</text>
                     <image src="../../img/redictTo.png" />
                 </view>
@@ -115,8 +115,8 @@
                             {{item.content}}
                         </view>
                         <view class="pic-group">
-                            <image src="{{item1.pic_url}}" wx:for-item="item1" wx:for="{{item.pic_list}}" />
-                    
+                            <image src="{{item1.pic_url}}" wx:for-item="item1" wx:for-index="index" mode="widthFix"
+                            wx:for="{{item.pic_list}}" data-piclist="{{item.pic_list}}" data-index="{{index}}"  bindtap="previewImg"/>
                         </view>
                     </view>
                 </view>
@@ -223,8 +223,8 @@
             </view>
         </view>
     </view>
-    <view class="coupon-list">
-        <view class="bg"></view>
+    <view class="coupon-list" hidden="{{couponHidState}}">
+        <view class="bg" data-index="{{1}}" bindtap="couponStateManage"></view>
         <view class="main">
             <view class="title">店铺优惠券</view>
             <scroll-view scroll-y class="list">
@@ -321,6 +321,47 @@
             </scroll-view>
         </view>
         <view class="confirm">
+            完成
+        </view>
+    </view>
+    <view class="service-detail" hidden="{{serviceHidState}}">
+         <view class="bg" data-index="{{1}}" bindtap="serviceStateManage"></view>
+         <view class="main no-padding">
+            <view class="title">服务说明</view>
+            <view class="service-cont">
+                <view class="item">
+                    <view>
+                        <image src="../../img/goodDetail/icon.png" />
+                        <text>15天退货</text>
+                    </view>
+                    <view class="desc">
+                        15天退货，退货邮费卖家承担
+                    </view>
+                </view>
+                <view class="item">
+                    <view>
+                        <image src="../../img/goodDetail/icon.png" />
+                        <text>订单险</text>
+                    </view>
+                    <view class="desc">
+                        保险公司全程担保赔付该商品每笔交易的售后
+                    </view>
+                </view>
+                <view class="item">
+                    <view>
+                        <image src="../../img/goodDetail/icon.png" />
+                        <text>运费险</text>
+                    </view>
+                </view>
+                <view class="item">
+                    <view>
+                        <image src="../../img/goodDetail/icon.png" />
+                        <text>24小时内发货</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="confirm" data-index="{{1}}" bindtap="serviceStateManage">
             完成
         </view>
     </view>
