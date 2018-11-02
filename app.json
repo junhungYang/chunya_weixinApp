@@ -1,9 +1,13 @@
 {
   "pages": [
+        "pages/story/story",
+        "pages/publicReviewsList/publicReviewsList",
+                "pages/index/index",
+  
       "pages/invoice/invoice",
             "pages/writeStory/writeStory",
         "pages/haowuList/haowuList",
-            "pages/index/index",
+
         "pages/reviewsList/reviewsList",
         "pages/goodDetail/goodDetail",
       "pages/couponList/couponList",
@@ -22,7 +26,9 @@
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
           "pages/nuankeDetail/nuankeDetail",
-          "pages/nuanke/nuanke"
+          "pages/nuanke/nuanke",
+        
+          "pages/storyDetail/storyDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,99 @@
+.template {
+    height: 100vh;
+    background:#f2f2f2;
+    .list {
+        background:#fff;
+        .item {
+            padding: 0 6.4%;
+            border-bottom: 1px solid #f2f2f2;
+            .info {
+                .my-info {
+                    display: flex;
+                    padding: 20rpx 0;
+                    display: flex;
+                    image {
+                        width: 58rpx;
+                        height: 58rpx;
+                        border-radius: 50%;
+                    }
+                    text {
+                        margin-left: 10rpx;
+                        line-height: 58rpx;
+                        color:#313131;
+                        font-size: 24rpx;
+                    }
+                }
+                .time-info {
+                    margin-top: 9rpx;
+                    line-height: 20rpx;
+                    font-size: 20rpx;
+                    color: #b7b7b7;
+                    text:nth-of-type(2) {
+                        margin-left: 10rpx;
+                    }
+                }
+            }
+            .cont {
+                margin-top: 23rpx;
+                .text {
+                    font-size: 28rpx;
+                    line-height: 38rpx;
+                }
+                .pic-group {
+                    font-size: 0;
+                    image {
+                        margin: 14rpx 7rpx 0 7rpx;
+                        width: 204rpx;
+                    }
+
+                }
+            }
+            .quantity {
+                margin-top: 26rpx;
+                margin-bottom: 30rpx;
+                font-size: 20rpx;
+                line-height: 20rpx;
+                color: #b2b2b2;
+            }
+        }
+    }
+    .release {
+        height: 107rpx;
+        background:#fff;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        .chooseImg,input {
+            margin: 0 6.4%;
+        }
+        input {
+            display: block;
+        }
+        .chooseImg {
+            height: 45rpx;
+            line-height: 45rpx;
+            image:first-of-type {
+                width: 25rpx;
+                height: 25rpx;
+            }
+            image:last-of-type {
+                width: 23rpx;
+                height: 23rpx;
+
+            }
+        }
+        input {
+            height: 42rpx;
+            background:#f2f2f2;
+            color:#b2b2b2;
+            line-height: 42rpx;
+            box-sizing: border-box;
+            padding: 0 18rpx;
+            font-size: 18rpx;
+        }
+        .placeholder {
+            color:#b2b2b2;
+        }
+    }
+}

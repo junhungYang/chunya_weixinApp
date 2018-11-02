@@ -1,0 +1,176 @@
+.template {
+    height: 100vh;
+    background:#f2f2f2;
+    .nav {
+        height: 88rpx;
+        background:#f2f2f2;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        width: 74%;
+        padding: 0 13%;
+        z-index: 2;
+        text {
+            font-size: 32rpx;
+            line-height: 86rpx;
+            color: #686868;
+            font-weight: 400;
+        }
+        .nav-active {
+            color:#2ca5ae;
+            border-bottom: 2px solid #2ca5ae; 
+        }
+    }
+    .content {
+        position: absolute;
+        width: 100%;
+        top: 88rpx;
+        bottom: 0;
+        background: #fff;
+        .tuiJian,.reMen,.wenDu,.collect {
+            overflow: hidden;
+            height: 100%;
+            .list {
+                .item {
+                    margin: 0 6.4%;
+                    padding-top: 39rpx;
+                    padding-bottom: 29rpx;
+                    border-bottom: 1px solid #f2f2f2;
+                    position: relative;
+                    .user-info {
+                        display: flex;
+                        image {
+                            width: 58rpx;
+                            height: 58rpx;
+                            border:1px solid red;
+                            border-radius: 50%;
+                        }
+                        view {
+                            position: relative;
+                            flex: 1;
+                            padding-left: 21rpx;
+                            text {
+                                position: absolute;
+                                left: 21rpx;
+                                width: 100%;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                               white-space: nowrap;
+                            }
+                            text:first-of-type {
+                                font-size: 24rpx;
+                                color:#313131;
+                                top: 0;
+                                line-height: 24rpx;
+                            }
+                            text:last-of-type {
+                                font-size: 20rpx;
+                                color: #b2b2b2;
+                                bottom: 0;
+                                line-height: 24rpx;
+                            }
+                        }
+                    }
+                    .cont {
+                        display: flex;
+                        margin-top: 22rpx;
+                        view:first-of-type {
+                            width: 58rpx;
+                            image {
+                                width: 34rpx;
+                                height: 34rpx;
+                                margin: 0 12rpx;
+                                margin-top: 10rpx;
+                            }
+                        }
+                        view:last-of-type {
+                            flex: 1;
+                            padding-left: 21rpx;
+                            text {
+                                display: block;
+                            }
+                            text:first-of-type {
+                                font-size: 28rpx;
+                                line-height: 34rpx;
+                            }
+                            text:nth-of-type(2) {
+                                margin-top: 12rpx;
+                                font-size: 20rpx;
+                                color: #b7b7b7;
+                                line-height: 28rpx;
+                            }
+                            text:last-of-type {
+                                font-size: 20rpx;
+                                color: #b7b7b7;
+                                margin-top: 25rpx;
+                            }
+                        }
+
+                    }
+                    .control {
+                        position: absolute;
+                        bottom: 29rpx;
+                        right: 0;
+                        font-size: 0;
+                        view {
+                            margin-left: 25rpx;
+                            display: inline-block;
+                            image,text {
+                                vertical-align: middle;
+                            }
+                            text {
+                                color:#b2b2b2;
+                                font-size: 20rpx;
+                                margin-left: 9rpx;
+                            }
+                        }
+                        view:first-of-type {
+                            margin-left: 0;
+                            image {
+                                width: 32rpx;
+                                height: 28rpx;
+                            }
+                        }
+                        view:nth-of-type(2) {
+                            image {
+                                width: 32rpx;
+                                height: 32rpx;
+                            }
+                        }
+                        view:nth-of-type(3) {
+                            image {
+                                width: 31rpx;
+                                height: 30rpx;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .tuiJian {
+            .swiper-box {
+                height: 395rpx;
+                background:rgb(238, 238, 238);
+                position: relative
+            }
+        }
+    }
+    .fixed-bottom {
+        background:#f2f2f2;
+        height: 58rpx;
+        line-height: 58rpx;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        font-size: 17rpx;
+        color:#797878;
+        text-align: center;
+    }
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

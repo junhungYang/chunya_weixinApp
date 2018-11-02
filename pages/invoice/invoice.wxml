@@ -13,33 +13,33 @@
             <text class="title">抬头类型</text>
             <view class="choose">
                 <view>
-                    <image src="" />
+                    <image src="../../img/checked.png" />
                     <text>个人或事业单位</text>
                 </view>
                 <view>
-                    <image src="" />
+                    <image src="../../img/noCheck.png" />
                     <text>企业</text>
                 </view>
             </view>
         </view>
         <view class="taitou-name">
             <text class="title">发票抬头</text>
-            <input type="text" placeholder="抬头类型" />
+            <input type="text" placeholder="抬头名称" />
         </view>
         <view class="default-taitou">
             <text class="title">默认抬头</text>
             <view>
-                <image src="" />
+                <image src="../../img/noCheck.png" />
             </view>
         </view>
         <view class="content">
             <text class="title">发票内容</text>
-            <image src="" />
-            <input type="" placeholder="" auto-focus password />
+            <image src="../../img/attention.png" />
+            <input type="text" placeholder="请填写发票内容"/>
         </view>
         <view class="noInvoice">
             <text>本次不开具发票，继续下单</text>
-            <image src="" />
+            <image src="../../img/redictTo.png" />
         </view>
     </view>
     <view class="fixed-btn">

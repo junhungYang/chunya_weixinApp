@@ -1,0 +1,95 @@
+.template {
+  height: 100vh;
+  background: #f2f2f2;
+}
+.template .list {
+  background: #fff;
+}
+.template .list .item {
+  padding: 0 6.4%;
+  border-bottom: 1px solid #f2f2f2;
+}
+.template .list .item .info .my-info {
+  padding: 20rpx 0;
+  display: flex;
+}
+.template .list .item .info .my-info image {
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: 50%;
+}
+.template .list .item .info .my-info text {
+  margin-left: 10rpx;
+  line-height: 58rpx;
+  color: #313131;
+  font-size: 24rpx;
+}
+.template .list .item .info .time-info {
+  margin-top: 9rpx;
+  line-height: 20rpx;
+  font-size: 20rpx;
+  color: #b7b7b7;
+}
+.template .list .item .info .time-info text:nth-of-type(2) {
+  margin-left: 10rpx;
+}
+.template .list .item .cont {
+  margin-top: 23rpx;
+}
+.template .list .item .cont .text {
+  font-size: 28rpx;
+  line-height: 38rpx;
+}
+.template .list .item .cont .pic-group {
+  font-size: 0;
+}
+.template .list .item .cont .pic-group image {
+  margin: 14rpx 7rpx 0 7rpx;
+  width: 204rpx;
+}
+.template .list .item .quantity {
+  margin-top: 26rpx;
+  margin-bottom: 30rpx;
+  font-size: 20rpx;
+  line-height: 20rpx;
+  color: #b2b2b2;
+}
+.template .release {
+  height: 107rpx;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.template .release .chooseImg,
+.template .release input {
+  margin: 0 6.4%;
+}
+.template .release input {
+  display: block;
+}
+.template .release .chooseImg {
+  height: 45rpx;
+  line-height: 45rpx;
+}
+.template .release .chooseImg image:first-of-type {
+  width: 25rpx;
+  height: 25rpx;
+}
+.template .release .chooseImg image:last-of-type {
+  width: 23rpx;
+  height: 23rpx;
+}
+.template .release input {
+  height: 42rpx;
+  background: #f2f2f2;
+  color: #b2b2b2;
+  line-height: 42rpx;
+  box-sizing: border-box;
+  padding: 0 18rpx;
+  font-size: 18rpx;
+}
+.template .release .placeholder {
+  color: #b2b2b2;
+}

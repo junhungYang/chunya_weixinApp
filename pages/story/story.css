@@ -1,0 +1,242 @@
+.template {
+  height: 100vh;
+  background: #f2f2f2;
+}
+.template .nav {
+  height: 88rpx;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 74%;
+  padding: 0 13%;
+  z-index: 2;
+}
+.template .nav text {
+  font-size: 32rpx;
+  line-height: 86rpx;
+  color: #686868;
+  font-weight: 400;
+}
+.template .nav .nav-active {
+  color: #2ca5ae;
+  border-bottom: 2px solid #2ca5ae;
+}
+.template .content {
+  position: absolute;
+  width: 100%;
+  top: 88rpx;
+  bottom: 0;
+  background: #fff;
+}
+.template .content .tuiJian,
+.template .content .reMen,
+.template .content .wenDu,
+.template .content .collect {
+  overflow: hidden;
+  height: 100%;
+}
+.template .content .tuiJian .list .item,
+.template .content .reMen .list .item,
+.template .content .wenDu .list .item,
+.template .content .collect .list .item {
+  margin: 0 6.4%;
+  padding-top: 39rpx;
+  padding-bottom: 29rpx;
+  border-bottom: 1px solid #f2f2f2;
+  position: relative;
+}
+.template .content .tuiJian .list .item .user-info,
+.template .content .reMen .list .item .user-info,
+.template .content .wenDu .list .item .user-info,
+.template .content .collect .list .item .user-info {
+  display: flex;
+}
+.template .content .tuiJian .list .item .user-info image,
+.template .content .reMen .list .item .user-info image,
+.template .content .wenDu .list .item .user-info image,
+.template .content .collect .list .item .user-info image {
+  width: 58rpx;
+  height: 58rpx;
+  border: 1px solid red;
+  border-radius: 50%;
+}
+.template .content .tuiJian .list .item .user-info view,
+.template .content .reMen .list .item .user-info view,
+.template .content .wenDu .list .item .user-info view,
+.template .content .collect .list .item .user-info view {
+  position: relative;
+  flex: 1;
+  padding-left: 21rpx;
+}
+.template .content .tuiJian .list .item .user-info view text,
+.template .content .reMen .list .item .user-info view text,
+.template .content .wenDu .list .item .user-info view text,
+.template .content .collect .list .item .user-info view text {
+  position: absolute;
+  left: 21rpx;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.template .content .tuiJian .list .item .user-info view text:first-of-type,
+.template .content .reMen .list .item .user-info view text:first-of-type,
+.template .content .wenDu .list .item .user-info view text:first-of-type,
+.template .content .collect .list .item .user-info view text:first-of-type {
+  font-size: 24rpx;
+  color: #313131;
+  top: 0;
+  line-height: 24rpx;
+}
+.template .content .tuiJian .list .item .user-info view text:last-of-type,
+.template .content .reMen .list .item .user-info view text:last-of-type,
+.template .content .wenDu .list .item .user-info view text:last-of-type,
+.template .content .collect .list .item .user-info view text:last-of-type {
+  font-size: 20rpx;
+  color: #b2b2b2;
+  bottom: 0;
+  line-height: 24rpx;
+}
+.template .content .tuiJian .list .item .cont,
+.template .content .reMen .list .item .cont,
+.template .content .wenDu .list .item .cont,
+.template .content .collect .list .item .cont {
+  display: flex;
+  margin-top: 22rpx;
+}
+.template .content .tuiJian .list .item .cont view:first-of-type,
+.template .content .reMen .list .item .cont view:first-of-type,
+.template .content .wenDu .list .item .cont view:first-of-type,
+.template .content .collect .list .item .cont view:first-of-type {
+  width: 58rpx;
+}
+.template .content .tuiJian .list .item .cont view:first-of-type image,
+.template .content .reMen .list .item .cont view:first-of-type image,
+.template .content .wenDu .list .item .cont view:first-of-type image,
+.template .content .collect .list .item .cont view:first-of-type image {
+  width: 34rpx;
+  height: 34rpx;
+  margin: 0 12rpx;
+  margin-top: 10rpx;
+}
+.template .content .tuiJian .list .item .cont view:last-of-type,
+.template .content .reMen .list .item .cont view:last-of-type,
+.template .content .wenDu .list .item .cont view:last-of-type,
+.template .content .collect .list .item .cont view:last-of-type {
+  flex: 1;
+  padding-left: 21rpx;
+}
+.template .content .tuiJian .list .item .cont view:last-of-type text,
+.template .content .reMen .list .item .cont view:last-of-type text,
+.template .content .wenDu .list .item .cont view:last-of-type text,
+.template .content .collect .list .item .cont view:last-of-type text {
+  display: block;
+}
+.template .content .tuiJian .list .item .cont view:last-of-type text:first-of-type,
+.template .content .reMen .list .item .cont view:last-of-type text:first-of-type,
+.template .content .wenDu .list .item .cont view:last-of-type text:first-of-type,
+.template .content .collect .list .item .cont view:last-of-type text:first-of-type {
+  font-size: 28rpx;
+  line-height: 34rpx;
+}
+.template .content .tuiJian .list .item .cont view:last-of-type text:nth-of-type(2),
+.template .content .reMen .list .item .cont view:last-of-type text:nth-of-type(2),
+.template .content .wenDu .list .item .cont view:last-of-type text:nth-of-type(2),
+.template .content .collect .list .item .cont view:last-of-type text:nth-of-type(2) {
+  margin-top: 12rpx;
+  font-size: 20rpx;
+  color: #b7b7b7;
+  line-height: 28rpx;
+}
+.template .content .tuiJian .list .item .cont view:last-of-type text:last-of-type,
+.template .content .reMen .list .item .cont view:last-of-type text:last-of-type,
+.template .content .wenDu .list .item .cont view:last-of-type text:last-of-type,
+.template .content .collect .list .item .cont view:last-of-type text:last-of-type {
+  font-size: 20rpx;
+  color: #b7b7b7;
+  margin-top: 25rpx;
+}
+.template .content .tuiJian .list .item .control,
+.template .content .reMen .list .item .control,
+.template .content .wenDu .list .item .control,
+.template .content .collect .list .item .control {
+  position: absolute;
+  bottom: 29rpx;
+  right: 0;
+  font-size: 0;
+}
+.template .content .tuiJian .list .item .control view,
+.template .content .reMen .list .item .control view,
+.template .content .wenDu .list .item .control view,
+.template .content .collect .list .item .control view {
+  margin-left: 25rpx;
+  display: inline-block;
+}
+.template .content .tuiJian .list .item .control view image,
+.template .content .reMen .list .item .control view image,
+.template .content .wenDu .list .item .control view image,
+.template .content .collect .list .item .control view image,
+.template .content .tuiJian .list .item .control view text,
+.template .content .reMen .list .item .control view text,
+.template .content .wenDu .list .item .control view text,
+.template .content .collect .list .item .control view text {
+  vertical-align: middle;
+}
+.template .content .tuiJian .list .item .control view text,
+.template .content .reMen .list .item .control view text,
+.template .content .wenDu .list .item .control view text,
+.template .content .collect .list .item .control view text {
+  color: #b2b2b2;
+  font-size: 20rpx;
+  margin-left: 9rpx;
+}
+.template .content .tuiJian .list .item .control view:first-of-type,
+.template .content .reMen .list .item .control view:first-of-type,
+.template .content .wenDu .list .item .control view:first-of-type,
+.template .content .collect .list .item .control view:first-of-type {
+  margin-left: 0;
+}
+.template .content .tuiJian .list .item .control view:first-of-type image,
+.template .content .reMen .list .item .control view:first-of-type image,
+.template .content .wenDu .list .item .control view:first-of-type image,
+.template .content .collect .list .item .control view:first-of-type image {
+  width: 32rpx;
+  height: 28rpx;
+}
+.template .content .tuiJian .list .item .control view:nth-of-type(2) image,
+.template .content .reMen .list .item .control view:nth-of-type(2) image,
+.template .content .wenDu .list .item .control view:nth-of-type(2) image,
+.template .content .collect .list .item .control view:nth-of-type(2) image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.template .content .tuiJian .list .item .control view:nth-of-type(3) image,
+.template .content .reMen .list .item .control view:nth-of-type(3) image,
+.template .content .wenDu .list .item .control view:nth-of-type(3) image,
+.template .content .collect .list .item .control view:nth-of-type(3) image {
+  width: 31rpx;
+  height: 30rpx;
+}
+.template .content .tuiJian .swiper-box {
+  height: 395rpx;
+  background: #eeeeee;
+  position: relative;
+}
+.template .fixed-bottom {
+  background: #f2f2f2;
+  height: 58rpx;
+  line-height: 58rpx;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  font-size: 17rpx;
+  color: #797878;
+  text-align: center;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

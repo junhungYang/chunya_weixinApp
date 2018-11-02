@@ -1,0 +1,35 @@
+<view class="template">
+    <view class="list">
+        <view class="item" wx:for="{{reviewsList}}">
+            <view class="info">
+                <view class="my-info">
+                    <image src="{{item.user_info.avatar}}" />
+                    <text>{{item.user_info.nickname}}</text>
+                </view>
+                <view class="time-info">
+                    <text>{{item.add_time}}</text>
+                    <text>善缘大米：50G</text>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="text">
+                    {{item.content}}
+                </view>
+                <view class="pic-group">
+                    <image src="{{item1.pic_url}}" wx:for-item="item1" wx:for-index="index" mode="widthFix"
+                    wx:for="{{item.pic_list}}" data-piclist="{{item.pic_list}}" data-index="{{index}}"  bindtap="previewImg"/>
+                </view>
+            </view>
+            <view class="quantity">
+                浏览153次
+            </view>
+        </view>
+    </view>
+    <view class="release">
+        <view class="chooseImg">
+            <!--<image src="../../img/biaoqing.png" /> -->
+            <image src="../../img/chooseImg.png" />
+        </view>
+        <input placeholder="点击评论留言..." placeholder-class="placeholder"/>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "社区故事",
+    "usingComponents": {
+        "my-swiper": "../components/storySwiper/storySwiper"
+    }
+}
