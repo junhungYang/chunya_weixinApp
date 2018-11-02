@@ -5,6 +5,139 @@ const _SetToken = function(token) {
   Token = token;
   console.log(Token)
 };
+//公益模块
+const _CommonwealList = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/commonweal/list`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+const _CommonwealDetail = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/commonweal/detail`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+const _CommonwealDonation = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/commonweal/warmDonation`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+
+
+
+//暖课模块
+const _WarmclassPay = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/warmclass/pay`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+const _WarmclassDetail = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/warmclass/detail`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+const _WarmclassList = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/warmclass/list`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+
+
 const _GetUserInfo = function (data) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -816,6 +949,12 @@ const _CouponList = function () {
     });
 }
 module.exports = {
+  _CommonwealDonation,
+  _CommonwealDetail,
+  _CommonwealList,
+  _WarmclassPay,
+  _WarmclassList,
+  _WarmclassDetail,
   _UserSignin,
   _GetUserInfo,
   _SendFormid,

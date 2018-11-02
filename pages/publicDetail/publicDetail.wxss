@@ -278,22 +278,43 @@
   height: 108rpx;
   line-height: 108rpx;
 }
-.template .price-control .main-control .cont .has-name view {
+.template .price-control .main-control .cont .has-name .hasName-btn {
+  display: inline-block;
+  vertical-align: middle;
+}
+.template .price-control .main-control .cont .has-name .hasName-btn view {
   display: inline-block;
   height: 14rpx;
   width: 14rpx;
   border-radius: 50%;
   border: 2px solid #b2b2b2;
 }
-.template .price-control .main-control .cont .has-name text {
+.template .price-control .main-control .cont .has-name .hasName-btn text {
   font-size: 28rpx;
   color: #b2b2b2;
   margin-left: 20rpx;
 }
-.template .price-control .main-control .cont .hidden view {
+.template .price-control .main-control .cont .has-name .inputName {
+  vertical-align: middle;
+  margin-left: 20rpx;
+  display: inline-block;
+  width: 250rpx;
+  height: 108rpx;
+}
+.template .price-control .main-control .cont .has-name .inputName input {
+  margin-top: 29rpx;
+  width: 100%;
+  height: 50rpx;
+  box-sizing: border-box;
+  border: 1px solid #b2b2b2;
+  font-size: 24rpx;
+  color: #b3b3b3;
+  padding-left: 20rpx;
+}
+.template .price-control .main-control .cont .has-name .hidden view {
   border: 2px solid #ff660c;
 }
-.template .price-control .main-control .cont .hidden text {
+.template .price-control .main-control .cont .has-name .hidden text {
   color: #ff660c;
 }
 .template .price-control .main-control .btn {

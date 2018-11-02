@@ -1,23 +1,30 @@
 // pages/public/public.js
 import {
-  _GetUserInfo
+  _GetUserInfo,
+  _CommonwealList
 } from "../../utils/request"
 const app = getApp()
+var that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+    userInfo: {},
+    activePage: 1,
+    commonList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this
+    app.setWatcher(app.globalData,this.watch)
     if(app.globalData.token) {
       this.getUserInfo()
+      this.getCommonList()
     }
   },
   getUserInfo() {
@@ -25,11 +32,48 @@ Page({
       this.setData({
         userInfo:data
       })
+    }).catch(msg => {
+      this.showModal(msg);
     })
   },
-  navToDetail() {
+  getCommonList(style) {
+    _CommonwealList({
+      page: this.data.activePage,
+      size: 10
+    }).then(data => {
+      data.data.forEach( item => {
+        let arr = item.tags.split(',')
+        item.tags = arr
+      })
+      if(style) {
+        let arr = [...this.data.commonList, data.data]
+        this.setData({
+          commonList: arr
+        })
+      }else {
+        this.setData({
+          commonList: data.data
+        })
+      }
+    }).catch(msg => {
+      this.showModal(msg)
+    })
+  },
+  onReachBottom: function () {
+    this.setData({
+      activePage: this.data.activePage +1
+    })
+    this.getCommonList('byScroll')
+  },
+  showModal(msg) {
+    wx.showModal({
+      title: msg
+    })
+  },
+  navToDetail(e) {
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../publicDetail/publicDetail'
+      url: `../publicDetail/publicDetail?id=${id}`
     })
   },
   /**
@@ -67,17 +111,20 @@ Page({
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
 
-  },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
 
+  },
+  watch: {
+    token(newValue) {
+      if (newValue) {
+        that.getUserInfo()
+        that.getCommonList()
+      }
+    }
   }
 })

@@ -1,2 +1,86 @@
-<!--pages/storyDetail/storyDetail.wxml-->
-<text>pages/storyDetail/storyDetail.wxml</text>
+<view class="template">
+    <view class="item">
+        <view class="user-info">
+            <image src="" />
+            <view>
+                <text>匿名用户</text>
+                <text>1分钟前-杭州市-浏览622</text>
+            </view>
+        </view>
+        <view class="cont">
+            <view>
+                <text>姨妈期间，男友的哪些举动会让你抓狂？</text>
+                <text>HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。</text>
+                <text>2天前</text>
+            </view>
+        </view>
+    </view>
+    <view class="reviewsList">
+        <view class="quantity">
+            全部评论 3
+        </view>
+        <view class="list">
+            <view class="item">
+                <view class="propic">
+                    <image src="" />
+                </view>
+                <view class="content">
+                    <view>
+                        <text>匿名用户</text>
+                        <text>5小时前</text>
+                    </view>
+                    <view>
+                        每次姨妈期间，感觉跟男朋友吵架的几率都会大大上升，男朋友直男癌比较严重，完全不懂女生那几天的痛苦，每次都会说我乱发脾气，大家有我类似的苦恼吗？
+                    </view>
+                </view>
+            </view>
+            <view class="item">
+                <view class="propic">
+                    <image src="" />
+                </view>
+                <view class="content">
+                    <view>
+                        <text>匿名用户</text>
+                        <text>5小时前</text>
+                    </view>
+                    <view>
+                        每次姨妈期间，感觉跟男朋友吵架的几率都会大大上升，男朋友直男癌比较严重，完全不懂女生那几天的痛苦，每次都会说我乱发脾气，大家有我类似的苦恼吗？
+                    </view>
+                </view>
+            </view>
+            <view class="item">
+                <view class="propic">
+                    <image src="" />
+                </view>
+                <view class="content">
+                    <view>
+                        <text>匿名用户</text>
+                        <text>5小时前</text>
+                    </view>
+                    <view>
+                        每次姨妈期间，感觉跟男朋友吵架的几率都会大大上升，男朋友直男癌比较严重，完全不懂女生那几天的痛苦，每次都会说我乱发脾气，大家有我类似的苦恼吗？
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="write-review">
+        <view class="box">
+            <input placeholder="说点什么吧..."/>
+            <view class="btn-group">
+                <view>
+                    <image src="../../img/reviewsIcon.png" />
+                    <text>4</text>
+                </view>
+                <view>
+                    <image src="../../img/zan.png" />
+                    <text>4</text>
+                </view>
+                <view>
+                    <image src="../../img/collect.png" />
+                    <text>4</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -13,54 +13,32 @@
                 <view class="desc">
                     <view class="price">
                         <text>捐赠金额</text>
-                        <text>0.01</text>
+                        <text>{{userInfo.my_donation}}</text>
                     </view>
                     <view class="quantity">
                         <text>爱心次数(笔)</text>
-                        <text>1</text>
+                        <text>{{userInfo.love_count}}</text>
                     </view>
                 </view>
             </view>
             <view class="public-list">
-                <view class="item" bindtap="navToDetail">
+                <view class="item" data-id="{{item.id}}" bindtap="navToDetail" wx:for="{{commonList}}">
                     <view class="img">
-                        <image src="../../img/public/gongyi1.jpg" />
+                        <image src="{{item.coverUrl}}" />
                     </view>
                     <view class="cont">
                         <view>
-                            用行动守护家园
+                            {{item.title}}
                         </view>
                         <view>
-                            与春芽携手，用环保小事换取 地球更好的明天。
+                            {{item.brief}}
                         </view>
                         <view>
-                            <text>237</text>
+                            <text>{{item.loveCount}}</text>
                             <text>份用户捐款</text>
                         </view>
                         <view>
-                            <text>全国</text>
-                            <text>地球环保</text>
-                        </view>
-                    </view>
-                </view>
-                <view class="item" bindtap="navToDetail">
-                    <view class="img">
-                        <image src="../../img/public/gongyi2.jpg" />
-                    </view>
-                    <view class="cont">
-                        <view>
-                            用行动守护家园
-                        </view>
-                        <view>
-                            与春芽携手，用环保小事换取 地球更好的明天。
-                        </view>
-                        <view>
-                            <text>237</text>
-                            <text>份用户捐款</text>
-                        </view>
-                        <view>
-                            <text>全国</text>
-                            <text>地球环保</text>
+                            <text wx:for="{{item.tags}}" wx:for-item="item1">{{item1}}</text>
                         </view>
                     </view>
                 </view>

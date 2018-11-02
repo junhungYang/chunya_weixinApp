@@ -1,10 +1,18 @@
 // pages/nuanke/nuanke.js
+import { _WarmclassList } from '../../utils/request'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     navIndex: 1
+  },
+  onLoad: function () { 
+    _WarmclassList({
+      type:1
+    }).then(data => {
+      
+    })
   },
   navToDetail(e) {
     let index = e.currentTarget.dataset.index;
@@ -23,10 +31,7 @@ Page({
       navIndex: index
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {},
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

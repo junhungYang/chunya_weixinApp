@@ -11,7 +11,47 @@
                 <my-swiper></my-swiper>
             </view>
             <view class="list">
-                <view class="item">
+                <view class="item" wx:for="{{tuiJianList}}">
+                    <view class="user-info">
+                        <image src="" />
+                        <view>
+                            <text>匿名用户</text>
+                            <text>1分钟前-杭州市-浏览622</text>
+                        </view>
+                    </view>
+                    <view class="cont">
+                        <view>
+                            <image src="../../img/tuijian.png" />
+                        </view>
+                        <view>
+                            <text>姨妈期间，男友的哪些举动会让你抓狂？</text>
+                            <text>HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。</text>
+                            <text>2天前</text>
+                        </view>
+                    </view>
+                    <view class="control">
+                        <view>
+                            <image src="../../img/reviewsIcon.png" />
+                            <text>4</text>
+                        </view>
+                        <view>
+                            <image src="../../img/zan.png" />
+                            <text>4</text>
+                        </view>
+                        <view>
+                            <image src="../../img/collect.png" />
+                            <text>4</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="fixed-bottom">
+                深圳市春芽健康科技有限公司
+            </view>
+        </scroll-view>
+        <scroll-view scroll-y hidden="{{navActive===2?false:true}}" class="reMen">
+            <view class="list">
+                 <view class="item" wx:for="{{reMenList}}">
                     <view class="user-info">
                         <image src="" />
                         <view>
@@ -46,20 +86,88 @@
                 </view>
             </view>
         </scroll-view>
-        <scroll-view scroll-y hidden="{{navActive===2?false:true}}" class="reMen">
-            <view></view>
-             <view></view>
-        </scroll-view>
         <scroll-view scroll-y hidden="{{navActive===3?false:true}}" class="wenDu">
-            <view></view>
-             <view></view>
+            <view class="list">
+                <view class="item" wx:for="{{wenDuList}}">
+                    <view class="user-info">
+                        <image src="" />
+                        <view>
+                            <text>匿名用户</text>
+                            <text>1分钟前-杭州市-浏览622</text>
+                        </view>
+                    </view>
+                    <view class="cont">
+                        <view>
+                            <image src="../../img/tuijian.png" />
+                        </view>
+                        <view>
+                            <text>姨妈期间，男友的哪些举动会让你抓狂？</text>
+                            <text>HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。</text>
+                            <text>2天前</text>
+                        </view>
+                    </view>
+                    <view class="control">
+                        <view>
+                            <image src="../../img/reviewsIcon.png" />
+                            <text>4</text>
+                        </view>
+                        <view>
+                            <image src="../../img/zan.png" />
+                            <text>4</text>
+                        </view>
+                        <view>
+                            <image src="../../img/collect.png" />
+                            <text>4</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
         </scroll-view>
         <scroll-view scroll-y hidden="{{navActive===4?false:true}}" class="collect">
-            <view></view>
-             <view></view>
+            <view class="cancel">
+                <text>清空</text>
+                <view>
+                    
+                </view>
+                <text>首页</text>
+            </view>
+            <view class="list">
+                <view class="item" wx:for="{{collectList}}">
+                    <view class="user-info">
+                        <image src="" />
+                        <view>
+                            <text>匿名用户</text>
+                            <view></view>
+                            <text>1分钟前-杭州市-浏览622</text>
+                        </view>
+                    </view>
+                    <view class="cont">
+                        <view>
+                            <image src="../../img/tuijian.png" />
+                        </view>
+                        <view>
+                            <text>姨妈期间，男友的哪些举动会让你抓狂？</text>
+                            <text>HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。</text>
+                            <text>2天前</text>
+                        </view>
+                    </view>
+                    <view class="control">
+                        <view>
+                            <image src="../../img/reviewsIcon.png" />
+                            <text>4</text>
+                        </view>
+                        <view>
+                            <image src="../../img/zan.png" />
+                            <text>4</text>
+                        </view>
+                        <view>
+                            <image src="../../img/collect.png" />
+                            <text>4</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
         </scroll-view>
     </view>
-    <view class="fixed-bottom">
-        深圳市春芽健康科技有限公司
-    </view>
+
 </view>

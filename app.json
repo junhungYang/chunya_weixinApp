@@ -1,9 +1,12 @@
 {
   "pages": [
+        "pages/publicDetail/publicDetail",
+        "pages/public/public",
+            "pages/index/index",
         "pages/story/story",
         "pages/publicReviewsList/publicReviewsList",
-                "pages/index/index",
-  
+            
+        "pages/storyDetail/storyDetail",
       "pages/invoice/invoice",
             "pages/writeStory/writeStory",
         "pages/haowuList/haowuList",
@@ -15,9 +18,7 @@
       
       "pages/eventsDetail/eventsDetail",
         "pages/eventsList/eventsList",
-        "pages/publicDetail/publicDetail",
             "pages/shippingList/shippingList",        
-        "pages/public/public",
         "pages/orderDetail/orderDetail",
                 "pages/cart/cart",
                 "pages/addressInput/addressInput",
@@ -26,9 +27,7 @@
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
           "pages/nuankeDetail/nuankeDetail",
-          "pages/nuanke/nuanke",
-        
-          "pages/storyDetail/storyDetail"
+          "pages/nuanke/nuanke"
   ],
   "window": {
     "backgroundTextStyle": "light",

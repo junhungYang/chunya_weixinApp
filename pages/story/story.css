@@ -40,9 +40,7 @@
 .template .content .reMen .list .item,
 .template .content .wenDu .list .item,
 .template .content .collect .list .item {
-  margin: 0 6.4%;
-  padding-top: 39rpx;
-  padding-bottom: 29rpx;
+  padding: 39rpx 6.4% 29rpx 6.4%;
   border-bottom: 1px solid #f2f2f2;
   position: relative;
 }
@@ -222,6 +220,30 @@
   height: 395rpx;
   background: #eeeeee;
   position: relative;
+}
+.template .content .collect .cancel {
+  height: 56rpx;
+  font-size: 0;
+  text-align: right;
+  padding: 0 6.4%;
+  border-bottom: 1px solid #f2f2f2;
+}
+.template .content .collect .cancel text {
+  line-height: 56rpx;
+  font-size: 20rpx;
+}
+.template .content .collect .cancel text:first-of-type {
+  color: #b2b2b2;
+}
+.template .content .collect .cancel text:last-of-type {
+  color: #2ca5ae;
+}
+.template .content .collect .cancel view {
+  display: inline-block;
+  margin: 0 17rpx;
+  width: 2px;
+  height: 15rpx;
+  background: #b2b2b2;
 }
 .template .fixed-bottom {
   background: #f2f2f2;

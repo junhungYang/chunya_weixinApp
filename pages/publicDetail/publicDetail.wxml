@@ -5,21 +5,21 @@
     <view class="main">
         <view class="num-info">
             <view>
-                <text>125500.16</text>
+                <text>{{data.totalFundraising}}</text>
                 <text>用户捐款 (元)</text>
             </view>
             <view>
-                <text>550,333</text>
+                <text>{{data.loveCount}}</text>
                 <text>爱心 (份)</text>
             </view>
         </view>
         <view class="project-name">
             <view class="title">
                 <image src="../../img/publicDetail/icon1.png" />
-                <text>我倾听你</text>
+                <text>{{data.title}}</text>
             </view>
             <view class="desc">
-                春芽携手Costa，举行我倾听你线下分享会，一起倾听抑郁症的故事。
+                {{data.brief}}
             </view>
         </view>
         <view class="mission">
@@ -28,7 +28,7 @@
                 <text>发起与善款接收机构</text>
             </view>
             <view class="desc">
-                春芽健康科技有限公司
+                {{data.organizer}}
             </view>
         </view>
         <view class="project-cont {{contActive?'':'project-cont-hidden'}}">
@@ -37,8 +37,7 @@
                 <text>项目说明</text>
             </view>
             <view class="desc">
-                <text>[项目介绍]</text>
-                <text>抑郁症又称抑郁障碍，以显著而持久的心境低落为主要临床特征，是心境障碍的主要类型。临床可见心境低落与其处境不相称，情绪的消沉可以从闷闷不乐到悲痛欲绝，自卑抑郁，甚至悲观厌世，可有自杀企图或行为；甚至发生木僵；严重者可出现幻觉、妄想等精神病性症状。每次发作持续至少2周以上、长者甚或数年。</text>       
+                <rich-text nodes="{{data.contentDesc}}"></rich-text>
             </view>
             <view class="read" bindtap="contActiveManage">
                 <view wx:if="{{!contActive}}">
@@ -97,9 +96,7 @@
                 <text>项目计划</text>
             </view>
             <view class="desc">
-                春芽健康科技联合Costa，在深圳各个抑郁症治疗机构，选出35名抑郁症患者，在Costa提供的场所举行‘我倾听你’活动主题分享会。场地及饮食由Costa提供，届时邀请心理专家作现场演讲。
-                后续将会为这35名患者提供后续的治疗资助。35名患者的故事最后会以影片的形式呈现。
-                春芽健康科技希望与您携手一起‘倾听’他们的故事，倾听这个世界的第三种声音。或许以前的你还不了解抑郁症这一个群体，但从现在开始，你可以试着去感受他们的世界。
+                <rich-text nodes="{{data.projectPlan}}" ></rich-text>
             </view>
         </view>
         <view class="help-person">
@@ -108,7 +105,7 @@
                 <text>受益对象</text>
             </view>
             <view class="desc">
-                由深圳各个2到5个抑郁症治疗机构推荐的一共35名患者。
+                {{data.beneficiary}}
             </view>
         </view>
         <view class="project-budget">
@@ -117,14 +114,7 @@
                 <text>项目预算</text>
             </view>
             <view class="desc">
-                <view>
-                    <text>邀请心理专家费用</text>
-                    <text>2000元</text>
-                </view>
-                <view>
-                    <text>后续治疗费用</text>
-                    <text>100000元</text>
-                </view>
+                <rich-text nodes="{{data.projectBudget}}"></rich-text>
             </view>
         </view>
     </view>
@@ -140,24 +130,29 @@
                 </view>
                 <view class="choose">
                     <view class="{{activePrice===1?'active':''}}"
-                    data-index="{{1}}" bindtap="changeActivePrice">5元</view>
+                    data-index="{{1}}" data-price="{{5}}" bindtap="changeActivePrice">5元</view>
                     <view class="{{activePrice===2?'active':''}}"
-                     data-index="{{2}}" bindtap="changeActivePrice">10元</view>
+                     data-index="{{2}}" data-price="{{10}}" bindtap="changeActivePrice">10元</view>
                     <view class="{{activePrice===3?'active':''}}"
-                     data-index="{{3}}" bindtap="changeActivePrice">20元</view>
+                     data-index="{{3}}" data-price="{{20}}" bindtap="changeActivePrice">20元</view>
                     <view class="{{activePrice===4?'active':''}}"
-                     data-index="{{4}}" bindtap="changeActivePrice">50元</view>
+                     data-index="{{4}}" data-price="{{50}}" bindtap="changeActivePrice">50元</view>
                 </view>
                 <view class="input {{activePrice===5?'active':''}}" 
                  data-index="{{5}}" bindtap="changeActivePrice">
-                    <input placeholder-class="placeholder" placeholder="自定义金额" /> 元
+                    <input placeholder-class="placeholder" placeholder="自定义金额" bindinput="inputPrice"/> 元
                 </view>
-                <view class="has-name {{hiddenName?'hidden':''}}" bindtap="hiddenNameStateManage">
-                    <view></view>
-                    <text>匿名捐助</text>
+                <view class="has-name" bindtap="hiddenNameStateManage">
+                    <view class="hasName-btn {{hiddenName?'hidden':''}}">
+                        <view></view>
+                        <text>匿名捐助</text>
+                    </view>
+                    <view class="inputName" wx:if="{{!hiddenName}}">
+                        <input placeholder="请输入您的姓名" placeholder-style="color:#b2b2b2"/>
+                    </view>
                 </view>
             </view>
-            <view class="btn">
+            <view class="btn" bindtap="donation">
                 捐款
             </view>
         </view>

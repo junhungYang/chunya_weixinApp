@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navActive: 1
+    navActive: 1,
+    tuiJianList:[1,2,3,4,5],
+    reMenList: [1, 2, 3, 4, 5],
+    wenDuList:[1,2,3,4,5],
+    collectList: [1, 2, 3, 4, 5]
   },
 
   /**

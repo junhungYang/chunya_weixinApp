@@ -1,0 +1,181 @@
+.template {
+  min-height: 100vh;
+  background:#f2f2f2;
+  .item {
+    padding: 39rpx 6.4% 29rpx 6.4%;
+    background:#fff;
+    position: relative;
+    .user-info {
+      display: flex;
+      image {
+        width: 58rpx;
+        height: 58rpx;
+        border: 1px solid red;
+        border-radius: 50%;
+      }
+      view {
+        position: relative;
+        flex: 1;
+        padding-left: 21rpx;
+        text {
+          position: absolute;
+          left: 21rpx;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        text:first-of-type {
+          font-size: 24rpx;
+          color: #313131;
+          top: 0;
+          line-height: 24rpx;
+        }
+        text:last-of-type {
+          font-size: 20rpx;
+          color: #b2b2b2;
+          bottom: 0;
+          line-height: 24rpx;
+        }
+      }
+    }
+    .cont {
+      margin-top: 22rpx;
+      view {
+        text {
+          display: block;
+        }
+        text:first-of-type {
+          font-size: 28rpx;
+          line-height: 34rpx;
+        }
+        text:nth-of-type(2) {
+          margin-top: 12rpx;
+          font-size: 20rpx;
+          color: #b7b7b7;
+          line-height: 28rpx;
+        }
+        text:last-of-type {
+          font-size: 20rpx;
+          color: #b7b7b7;
+          margin-top: 25rpx;
+        }
+      }
+    }
+  }
+  .reviewsList {
+    background: #fff;
+    margin-top: 20rpx;
+    .quantity {
+          padding: 0 6.4%;
+      height: 46rpx;
+      line-height: 46rpx;
+      font-size: 28rpx;
+      color: #313131;
+      border-bottom: 1px solid #f2f2f2;
+    }
+    .list {
+      .item {
+        padding: 0 6.4%;
+        padding-top: 22rpx;
+        display: flex;
+        border-bottom: 1px solid #f2f2f2;
+        .propic {
+          image {
+            width: 58rpx;
+            height: 58rpx;
+            border-radius: 50%;
+            border: 1px solid red;
+          }
+        }
+        .content {
+          padding-left: 20rpx;
+          padding-bottom: 32rpx;
+          view:first-of-type {
+            height: 58rpx;
+            display: flex;
+            line-height: 58rpx;
+            text:first-of-type {
+              flex: 1;
+              font-size: 24rpx;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+            text:last-of-type {
+              font-size: 20rpx;
+              color: #bdbdbd
+            }
+          }
+          view:last-of-type {
+            color: #c1c1c1;
+            line-height: 28rpx;
+            font-size: 20rpx;
+          }
+        }
+      }
+    }
+  }
+  .write-review {
+    position: fixed;
+    width: 87.2%;
+    left: 0;
+    bottom: 0;
+    background:#fff;
+    padding: 9rpx 6.4%;
+    box-shadow: 0 -5rpx 10rpx rgba(177, 177, 177, 0.37);
+    .box {
+      height: 70rpx;
+      border: 1px solid #b5b5b5;
+      border-radius: 13rpx;
+      display: flex;
+      padding: 0 11rpx;
+      input {
+        flex: 1;
+        background: #f2f2f2;
+        font-size: 20rpx;
+        color:#afafaf;
+        background: #f2f2f2;
+        height: 40rpx;
+        line-height: 40rpx;
+        align-self: center;
+        padding-left: 14rpx;
+      }
+      .btn-group {
+        font-size: 0;
+        align-self: center;
+        view {
+            margin-left: 20rpx;
+            display: inline-block;
+            image,text {
+                vertical-align: middle;
+            }
+            text {
+                color:#b2b2b2;
+                font-size: 20rpx;
+                margin-left: 9rpx;
+            }
+        }
+        view:first-of-type {
+            margin-left: 12rpx;
+            image {
+                width: 32rpx;
+                height: 28rpx;
+            }
+        }
+        view:nth-of-type(2) {
+            image {
+                width: 32rpx;
+                height: 32rpx;
+            }
+        }
+        view:nth-of-type(3) {
+            image {
+                width: 31rpx;
+                height: 30rpx;
+            }
+        }
+      }
+    }
+  }
+}
