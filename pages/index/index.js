@@ -57,6 +57,16 @@ Page({
       scrollTop: 0
     });
   },
+  navToHaowu() {
+    wx.navigateTo({
+      url: "../haowuList/haowuList"
+    })
+  },
+  navToStory() {
+    wx.navigateTo({
+      url: "../story/story"
+    })
+  },
   shangchuan() {
     // wx.chooseImage({
     //   success: res => {

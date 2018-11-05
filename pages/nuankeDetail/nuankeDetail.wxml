@@ -1,4 +1,3 @@
 <view class="template">
-    <image src="../../img/nuanke/detail1.jpg" />
-    <image src="../../img/nuanke/detail2.jpg" />
+    <rich-text nodes="{{contentDesc}}"></rich-text>
 </view>

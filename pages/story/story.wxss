@@ -56,7 +56,6 @@
 .template .content .collect .list .item .user-info image {
   width: 58rpx;
   height: 58rpx;
-  border: 1px solid red;
   border-radius: 50%;
 }
 .template .content .tuiJian .list .item .user-info view,
@@ -161,7 +160,7 @@
 .template .content .collect .list .item .control {
   position: absolute;
   bottom: 29rpx;
-  right: 0;
+  right: 6.4%;
   font-size: 0;
 }
 .template .content .tuiJian .list .item .control view,

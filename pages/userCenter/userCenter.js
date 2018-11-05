@@ -87,6 +87,11 @@ Page({
       url: "../addressList/addressList?index=2"
     });
   },
+  navToMyEventsList() {
+    wx.navigateTo({
+      url:"../eventsList/eventsList"
+    })
+  },
   onPullDownRefresh: function () {
     wx.showLoading({
       title: '正在刷新'

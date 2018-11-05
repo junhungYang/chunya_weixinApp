@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/index/index",
+    
+            "pages/story/story",
+        "pages/eventsList/eventsList",
         "pages/publicDetail/publicDetail",
         "pages/public/public",
-            "pages/index/index",
-        "pages/story/story",
         "pages/publicReviewsList/publicReviewsList",
             
         "pages/storyDetail/storyDetail",
@@ -17,7 +19,7 @@
         "pages/myCollect/myCollect",
       
       "pages/eventsDetail/eventsDetail",
-        "pages/eventsList/eventsList",
+ 
             "pages/shippingList/shippingList",        
         "pages/orderDetail/orderDetail",
                 "pages/cart/cart",

@@ -19,7 +19,6 @@
 .template .list .item image {
   width: 198rpx;
   height: 198rpx;
-  border: 1px solid #b2b2b2;
   border-radius: 10rpx;
 }
 .template .list .item .info {

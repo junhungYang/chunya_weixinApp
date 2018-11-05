@@ -4,6 +4,7 @@ import {
   _CommonwealDonation
 } from '../../utils/request'
 const app = getApp()
+var that;
 Page({
   /**
    * 页面的初始数据
@@ -15,24 +16,31 @@ Page({
     activePrice: 1,
     data: {},
     price: 0,
-    isAnonymous: true,
-    donorName: ''
+    id: '',
+    donorName: '请输入您的姓名'
   },
   onLoad: function(options) {
-    let id = Number(options.id);
+    that = this
+    app.setWatcher(app.globalData,this.watch)
+    this.setData({
+      id: Number(options.id)
+    })
     if (app.globalData.token) {
-      _CommonwealDetail({
-        id
-      })
-        .then(data => {
-          this.setData({
-            data
-          });
-        })
-        .catch(msg => {
-          this.showModal(msg);
-        });
+      this.getCommonwealDetail()
     }
+  },
+  getCommonwealDetail() {
+    _CommonwealDetail({
+      id: this.data.id
+    })
+    .then(data => {
+      this.setData({
+        data
+      });
+    })
+    .catch(msg => {
+      this.showModal(msg);
+    });
   },
   contActiveManage() {
     this.setData({
@@ -55,7 +63,6 @@ Page({
     this.setData({
       hiddenName: !this.data.hiddenName
     });
-    console.log(this.data.hiddenName)
   },
   changeActivePrice(e) {
     let index = e.currentTarget.dataset.index;
@@ -83,29 +90,68 @@ Page({
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       let donorAmount = this.data.price;
-      if (Number(donorAmount) && Number(donorAmount) > 0) {
+      if (Number(donorAmount) && Number(donorAmount) >= 0.01) {
         _CommonwealDonation({
           donorAmount,
+          isAnonymous: this.data.hiddenName ? 1 : 0,
           commonwealId: this.data.data.id,
-          donorName: "junxing"
+          donorName: this.data.hiddenName ? "匿名" : this.data.donorName
+        }).then(data => {
+          this.publicPay(data)
         });
       }else {
-  
+        wx.showModal({
+          title: '金额错误',
+          content: '请输入正确金额',
+          showCancel: false
+        })
       }
     }, 250);
+  },
+  getDonorName(e) {
+    this.setData({
+      donorName: e.detail.value
+    })
+  },
+  publicPay(data) {
+    wx.requestPayment({
+      timeStamp: data.timeStamp,
+      appId: data.appId,
+      nonceStr: data.nonceStr,
+      package: data.package,
+      signType: data.signType,
+      paySign: data.paySign,
+      success: (res) => {
+        wx.showToast({
+          title: "捐款成功"
+        });
+        this.setData({
+          priceState: true
+        })
+        this.getCommonwealDetail()
+        this.refreshPrevPage()
+      }
+    });
+  },
+  refreshPrevPage() {
+    let pages = getCurrentPages()
+    let prevPage = pages[pages.length - 2];
+    prevPage.getUserInfo()
+    prevPage.getCommonList()
   },
   showModal(msg) {
     wx.showModal({
       title: msg
     });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  watch: {
+    token(newValue) {
+      if(newValue) {
+        that.getCommonwealDetail()
+      }
+    }
+  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function() {},
 
   /**

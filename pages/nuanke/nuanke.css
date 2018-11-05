@@ -29,9 +29,11 @@
   width: 100%;
   padding: 0 6.4%;
   box-sizing: border-box;
-  margin-top: 88rpx;
-  padding-top: 40rpx;
-  padding-bottom: 140rpx;
+  position: absolute;
+  top: 88rpx;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
 }
 .template .list .item {
   margin-top: 40rpx;
@@ -107,8 +109,8 @@
   color: #9f9f9f;
   line-height: 18rpx;
 }
-.template .list .item:first-of-type {
-  margin-top: 0;
+.template .list .item:last-of-type {
+  margin-bottom: 140rpx;
 }
 .template .pay {
   background: #d1051f;
@@ -120,4 +122,9 @@
   position: fixed;
   width: 100%;
   bottom: 0;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }

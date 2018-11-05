@@ -1,20 +1,59 @@
 // pages/eventsDetail/eventsDetail.js
+const App = getApp()
+import { _ActivityDetail} from '../../utils/request'
+var that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    id: '',
+    detail: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    this.setData({
+      id: Number(options.id)
+    })
+    if(App.globalData.token) {
+      this.getDetail()
+    }
+    App.setWatcher(App.globalData, this.watch)
   },
-
+  getDetail() {
+    _ActivityDetail({
+      id:this.data.id
+    }).then(data => {
+      let dateObj = new Date(data.activityStartTime);
+      data.activityStartTime = `${dateObj.getFullYear()}.${dateObj.getMonth()+1}.${dateObj.getDate()}`
+      this.setData({
+        detail: data
+      })
+    }).catch(msg => this.showModal(msg))
+  },
+  showModal(msg) {
+    wx.showModal({
+      title:msg
+    })
+  },
+  openMap() {
+    wx.openLocation({
+      latitude: Number(this.data.detail.latitude),
+      longitude: Number(this.data.detail.longitude)
+    })
+  },
+  watch: {
+    token(newValue) {
+      if(newValue) {
+        that.getDetail()
+      }
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

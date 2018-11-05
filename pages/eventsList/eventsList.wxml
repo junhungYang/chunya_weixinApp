@@ -1,28 +1,14 @@
 <view class="template">
     <view class="list">
-        <view class="item">
-            <image src="" />
+        <view class="item" wx:for="{{list}}" data-id="{{item.id}}" bindtap="navToDetail">
+            <image src="{{item.listCoverUrl}}" />
             <view class="info">
-                <text class="title">公益微电影《温度》开机仪式</text>
-                <text class="city">深圳</text>
+                <text class="title">{{item.title}}</text>
+                <text class="city">{{item.activityCity}}</text>
                 <text class="date">2018.10.12</text>
                 <text class="place">深圳古玩城</text>
                 <view>
-                    <text>深圳</text>
-                    <text>开机仪式</text>
-                </view>
-            </view>
-        </view>
-        <view class="item">
-            <image src="" />
-            <view class="info">
-                <text class="title">公益微电影《温度》开机仪式</text>
-                <text class="city">深圳</text>
-                <text class="date">2018.10.12</text>
-                <text class="place">深圳古玩城</text>
-                <view>
-                   <text>深圳</text>
-                    <text>开机仪式</text>
+                    <text wx:for="{{item.tags}}" wx:for-item="item1">{{item1}}</text>
                 </view>
             </view>
         </view>

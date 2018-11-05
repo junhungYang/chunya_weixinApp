@@ -6,41 +6,42 @@
         <text bindtap="changeActive" class="{{navActive===4?'nav-active':''}}" data-index="{{4}}">收藏</text>
     </view>
     <view class="content">
-        <scroll-view scroll-y hidden="{{navActive===1?false:true}}" class="tuiJian">
+        <scroll-view scroll-y hidden="{{navActive===1?false:true}}"
+         bindscrolltolower="getListByScroll" class="tuiJian">
             <view class="swiper-box">
                 <my-swiper></my-swiper>
             </view>
             <view class="list">
                 <view class="item" wx:for="{{tuiJianList}}">
                     <view class="user-info">
-                        <image src="" />
+                        <image src="{{item.userInfo.avatar}}" />
                         <view>
-                            <text>匿名用户</text>
-                            <text>1分钟前-杭州市-浏览622</text>
+                            <text>{{item.userInfo.nickName}}</text>
+                            <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
                         </view>
                     </view>
-                    <view class="cont">
+                    <view class="cont" data-id="{{item.id}}" bindtap="navToDetail">
                         <view>
-                            <image src="../../img/tuijian.png" />
+                            <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
                         </view>
                         <view>
-                            <text>姨妈期间，男友的哪些举动会让你抓狂？</text>
-                            <text>HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。</text>
-                            <text>2天前</text>
+                            <text>{{item.title}}</text>
+                            <text>{{item.contentDesc}}</text>
+                            <text>{{item.relativeDate}}</text>
                         </view>
                     </view>
                     <view class="control">
                         <view>
                             <image src="../../img/reviewsIcon.png" />
-                            <text>4</text>
+                            <text>{{item.commentCount}}</text>
                         </view>
                         <view>
                             <image src="../../img/zan.png" />
-                            <text>4</text>
+                            <text>{{item.likeCount}}</text>
                         </view>
                         <view>
                             <image src="../../img/collect.png" />
-                            <text>4</text>
+                            <text>{{item.collectCount}}</text>
                         </view>
                     </view>
                 </view>
@@ -49,120 +50,120 @@
                 深圳市春芽健康科技有限公司
             </view>
         </scroll-view>
-        <scroll-view scroll-y hidden="{{navActive===2?false:true}}" class="reMen">
+        <scroll-view scroll-y hidden="{{navActive===2?false:true}}"
+        bindscrolltolower="getListByScroll" class="reMen">
             <view class="list">
                  <view class="item" wx:for="{{reMenList}}">
                     <view class="user-info">
-                        <image src="" />
+                        <image src="{{item.userInfo.avatar}}" />
                         <view>
-                            <text>匿名用户</text>
-                            <text>1分钟前-杭州市-浏览622</text>
+                            <text>{{item.userInfo.nickName}}</text>
+                            <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
                         </view>
                     </view>
-                    <view class="cont">
+                    <view class="cont" data-id="{{item.id}}" bindtap="navToDetail">
                         <view>
-                            <image src="../../img/tuijian.png" />
+                            <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
                         </view>
                         <view>
-                            <text>姨妈期间，男友的哪些举动会让你抓狂？</text>
-                            <text>HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。</text>
-                            <text>2天前</text>
+                            <text>{{item.title}}</text>
+                            <text>{{item.contentDesc}}</text>
+                            <text>{{item.relativeDate}}</text>
                         </view>
                     </view>
                     <view class="control">
                         <view>
                             <image src="../../img/reviewsIcon.png" />
-                            <text>4</text>
+                            <text>{{item.commentCount}}</text>
                         </view>
                         <view>
                             <image src="../../img/zan.png" />
-                            <text>4</text>
+                            <text>{{item.likeCount}}</text>
                         </view>
                         <view>
                             <image src="../../img/collect.png" />
-                            <text>4</text>
+                            <text>{{item.collectCount}}</text>
                         </view>
                     </view>
                 </view>
             </view>
         </scroll-view>
-        <scroll-view scroll-y hidden="{{navActive===3?false:true}}" class="wenDu">
+        <scroll-view scroll-y hidden="{{navActive===3?false:true}}"
+        bindscrolltolower="getListByScroll" class="wenDu">
             <view class="list">
-                <view class="item" wx:for="{{wenDuList}}">
+                 <view class="item" wx:for="{{wenDuList}}">
                     <view class="user-info">
-                        <image src="" />
+                        <image src="{{item.userInfo.avatar}}" />
                         <view>
-                            <text>匿名用户</text>
-                            <text>1分钟前-杭州市-浏览622</text>
+                            <text>{{item.userInfo.nickname}}</text>
+                            <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
                         </view>
                     </view>
-                    <view class="cont">
+                    <view class="cont" data-id="{{item.id}}" bindtap="navToDetail">
                         <view>
-                            <image src="../../img/tuijian.png" />
+                            <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
                         </view>
                         <view>
-                            <text>姨妈期间，男友的哪些举动会让你抓狂？</text>
-                            <text>HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。</text>
-                            <text>2天前</text>
+                            <text>{{item.title}}</text>
+                            <text>{{item.contentDesc}}</text>
+                            <text>{{item.relativeDate}}</text>
                         </view>
                     </view>
                     <view class="control">
                         <view>
                             <image src="../../img/reviewsIcon.png" />
-                            <text>4</text>
+                            <text>{{item.commentCount}}</text>
                         </view>
                         <view>
                             <image src="../../img/zan.png" />
-                            <text>4</text>
+                            <text>{{item.likeCount}}</text>
                         </view>
                         <view>
                             <image src="../../img/collect.png" />
-                            <text>4</text>
+                            <text>{{item.collectCount}}</text>
                         </view>
                     </view>
                 </view>
             </view>
         </scroll-view>
-        <scroll-view scroll-y hidden="{{navActive===4?false:true}}" class="collect">
+        <scroll-view scroll-y hidden="{{navActive===4?false:true}}"
+        bindscrolltolower="getListByScroll" class="collect">
             <view class="cancel">
                 <text>清空</text>
-                <view>
-                    
-                </view>
+                <view></view>
                 <text>首页</text>
             </view>
             <view class="list">
                 <view class="item" wx:for="{{collectList}}">
                     <view class="user-info">
-                        <image src="" />
+                        <image src="{{item.userInfo.avatar}}" />
                         <view>
-                            <text>匿名用户</text>
-                            <view></view>
-                            <text>1分钟前-杭州市-浏览622</text>
+                            <text>{{item.userInfo.nickname}}</text>
+                            <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
                         </view>
                     </view>
-                    <view class="cont">
+                    <view class="cont" data-id="{{item.id}}" bindtap="navToDetail">
                         <view>
-                            <image src="../../img/tuijian.png" />
+                            <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
                         </view>
                         <view>
-                            <text>姨妈期间，男友的哪些举动会让你抓狂？</text>
-                            <text>HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。HOLDALL:他每次说多喝热水我都想拍死他。</text>
-                            <text>2天前</text>
+                            <text>{{item.title}}</text>
+                            <text>{{item.contentDesc}}</text>
+                            <text>{{item.relativeDate}}</text>
                         </view>
                     </view>
                     <view class="control">
                         <view>
                             <image src="../../img/reviewsIcon.png" />
-                            <text>4</text>
+                            <text>{{item.commentCount}}</text>
                         </view>
                         <view>
                             <image src="../../img/zan.png" />
-                            <text>4</text>
+                            <text>{{item.likeCount}}</text>
                         </view>
                         <view>
                             <image src="../../img/collect.png" />
-                            <text>4</text>
+                            <text>{{item.collectCount}}</text>
                         </view>
                     </view>
                 </view>

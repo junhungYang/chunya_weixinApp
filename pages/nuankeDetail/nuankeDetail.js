@@ -1,20 +1,39 @@
 // pages/nuankeDetail/nuankeDetail.js
+const App = getApp()
+import { _WarmclassDetail} from '../../utils/request'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    id:'',
+    contentDesc:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(App.globalData.token) {
+      this.setData({
+        id: Number(options.id)
+      })
+      this.getDetail()
+    }
   },
-
+  getDetail() {
+    _WarmclassDetail({
+      id:this.data.id
+    }).then(data => {
+      wx.setNavigationBarTitle({
+        title: data.title
+      })
+      this.setData({
+        contentDesc: data.contentDesc
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

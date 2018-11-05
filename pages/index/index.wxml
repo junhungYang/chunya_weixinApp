@@ -21,7 +21,7 @@
   </view>
   <view class="nav">
     <view class="item">
-      <image src="../../img/index/haowu.png" />
+      <image src="../../img/index/haowu.png" bindtap="navToHaowu"/>
       <text>好物</text>
     </view>
     <view class="item">
@@ -32,7 +32,7 @@
       <image src="../../img/index/gongyi.png" bindtap="navToPublic"/>
       <text>公益</text>
     </view>
-    <view class="item">
+    <view class="item" bindtap="navToStory">
       <image src="../../img/index/gushi.png" />
       <text>故事</text>
     </view>

@@ -1,5 +1,4 @@
-.template image {
-  display: block;
-  width: 100%;
-  height: 1000rpx;
+.template {
+  font-size: 24rpx;
+  color: #313131;
 }

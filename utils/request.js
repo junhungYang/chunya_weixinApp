@@ -5,6 +5,158 @@ const _SetToken = function(token) {
   Token = token;
   console.log(Token)
 };
+//故事模块
+const _PostsList = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/posts/list`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+const _PostsDetail = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/posts/detail`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+const _PostsAddComment = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/posts/addComment`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+const _PostsGetCommentList = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/posts/getCommentList`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+const _PostsAdd = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/posts/add`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/json",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+
+
+
+
+//活动模块
+const _ActivityList = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/activity/list`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+const _ActivityDetail = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/activity/detail`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+
+
+
+
 //公益模块
 const _CommonwealList = function(data) {
   return new Promise((resolve, reject) => {
@@ -949,6 +1101,13 @@ const _CouponList = function () {
     });
 }
 module.exports = {
+  _PostsList,
+  _PostsDetail,
+  _PostsAddComment,
+  _PostsGetCommentList,
+  _PostsAdd,
+  _ActivityList,
+  _ActivityDetail,
   _CommonwealDonation,
   _CommonwealDetail,
   _CommonwealList,

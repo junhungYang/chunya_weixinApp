@@ -28,9 +28,11 @@
         width: 100%;
         padding: 0 6.4%;
         box-sizing: border-box;
-        margin-top: 88rpx;
-        padding-top: 40rpx;
-        padding-bottom: 140rpx;
+        position: absolute;
+        top: 88rpx;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
         .item {
             margin-top: 40rpx;
             height: 556rpx;
@@ -115,8 +117,8 @@
                 }
             }
         }
-        .item:first-of-type {
-            margin-top: 0;
+        .item:last-of-type {
+             margin-bottom: 140rpx;
         }
     }
     .pay {
@@ -130,4 +132,10 @@
         width: 100%;
         bottom: 0;
     }
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }
