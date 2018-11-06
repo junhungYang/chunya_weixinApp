@@ -1,8 +1,9 @@
 .template {
     min-height: 100vh;
     background: #f2f2f2;
+         padding-bottom: 100rpx;
     .main {
-        .title,.content,.img-group {
+        .title,.content,.img-group,.video {
             background: #fff;
             padding: 0 6.4%;
         }
@@ -32,20 +33,54 @@
             font-size: 24rpx;
             color: #c1c1c1;
         }
-        .img-group {
-            height: 120rpx;
+        .img-group,.video {
+            background: #fff;
             padding-bottom: 20rpx;
-            view {
-                width: 120rpx;
-                height: 120rpx;
+            position: relative;
+            .img-item {
+                display: inline-block;
+                width: 206rpx;
+                height: 206rpx;
                 overflow: hidden;
                 position: relative;
-                image {
-                    width: 120rpx;
+                margin-left: 7rpx;
+                margin-right: 7rpx;
+                background:rgb(0,0,0);
+                .contImage {
+                    width: 120%;
                     position: absolute;
-                    left: 0;
+                    left: 50%;
                     top: 50%;
-                    transform: translateY(-50%);
+                    transform: translate(-50%,-50%);
+                    
+                }
+                .delIcon {
+                    width: 35rpx;
+                    height: 35rpx;
+                    position: absolute;
+                    right:5rpx;
+                    top: 5rpx;
+                    z-index: 2
+                }
+            }
+            .video-box {
+                position: relative;
+                video {
+                    width: 100%;
+                }
+                .delIcon-video {
+                    width: 35rpx;
+                    height: 35rpx;
+                    position: absolute;
+                    right:12rpx;
+                    top: 12rpx;
+                    z-index: 2
+                }
+            }
+
+            .addImage {
+                image {
+                    width: 100%;
                 }
             }
         }
@@ -89,15 +124,46 @@
     }
     .fixed-btn {
         position: fixed;
-        width: 380rpx;
+        width: 100%;
         line-height: 80rpx;
         text-align: center;
         color:#fff;
         background: #2ca5ae;
-        border-radius: 40rpx;
-        bottom: 100rpx;
-        left: 50%;
-        transform: translateX(-50%);
+        bottom: 0;
+        left: 0;
         font-size: 28rpx;
+    }
+    .imageOrVideo {
+        position: fixed;
+        z-index: 99;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        .bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0,0,0,0.5)
+        }
+        .btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            view {
+                height: 100rpx;
+                background:#2ca5ae;
+                line-height: 100rpx;
+                text-align: center;
+                font-size: 28rpx;
+                color:#fff;
+            }
+            view:first-of-type {
+                border-bottom: 1px solid #fff;
+            }
+        }
     }
 }

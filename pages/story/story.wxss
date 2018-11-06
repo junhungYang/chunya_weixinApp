@@ -256,6 +256,15 @@
   color: #797878;
   text-align: center;
 }
+.template .add {
+  position: fixed;
+  right: 18rpx;
+  bottom: 60rpx;
+}
+.template .add image {
+  width: 159rpx;
+  height: 162rpx;
+}
 ::-webkit-scrollbar {
   width: 0;
   height: 0;

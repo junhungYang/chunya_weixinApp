@@ -1,10 +1,12 @@
 .template {
   min-height: 100vh;
   background: #f2f2f2;
+  padding-bottom: 100rpx;
 }
 .template .main .title,
 .template .main .content,
-.template .main .img-group {
+.template .main .img-group,
+.template .main .video {
   background: #fff;
   padding: 0 6.4%;
 }
@@ -37,22 +39,60 @@
   font-size: 24rpx;
   color: #c1c1c1;
 }
-.template .main .img-group {
-  height: 120rpx;
+.template .main .img-group,
+.template .main .video {
+  background: #fff;
   padding-bottom: 20rpx;
-}
-.template .main .img-group view {
-  width: 120rpx;
-  height: 120rpx;
-  overflow: hidden;
   position: relative;
 }
-.template .main .img-group view image {
-  width: 120rpx;
+.template .main .img-group .img-item,
+.template .main .video .img-item {
+  display: inline-block;
+  width: 206rpx;
+  height: 206rpx;
+  overflow: hidden;
+  position: relative;
+  margin-left: 7rpx;
+  margin-right: 7rpx;
+  background: #000000;
+}
+.template .main .img-group .img-item .contImage,
+.template .main .video .img-item .contImage {
+  width: 120%;
   position: absolute;
-  left: 0;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
+}
+.template .main .img-group .img-item .delIcon,
+.template .main .video .img-item .delIcon {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  right: 5rpx;
+  top: 5rpx;
+  z-index: 2;
+}
+.template .main .img-group .video-box,
+.template .main .video .video-box {
+  position: relative;
+}
+.template .main .img-group .video-box video,
+.template .main .video .video-box video {
+  width: 100%;
+}
+.template .main .img-group .video-box .delIcon-video,
+.template .main .video .video-box .delIcon-video {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  right: 12rpx;
+  top: 12rpx;
+  z-index: 2;
+}
+.template .main .img-group .addImage image,
+.template .main .video .addImage image {
+  width: 100%;
 }
 .template .toTop {
   margin-top: 20rpx;
@@ -93,14 +133,45 @@
 }
 .template .fixed-btn {
   position: fixed;
-  width: 380rpx;
+  width: 100%;
   line-height: 80rpx;
   text-align: center;
   color: #fff;
   background: #2ca5ae;
-  border-radius: 40rpx;
-  bottom: 100rpx;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0;
+  left: 0;
   font-size: 28rpx;
+}
+.template .imageOrVideo {
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+}
+.template .imageOrVideo .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.template .imageOrVideo .btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.template .imageOrVideo .btn view {
+  height: 100rpx;
+  background: #2ca5ae;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+}
+.template .imageOrVideo .btn view:first-of-type {
+  border-bottom: 1px solid #fff;
 }

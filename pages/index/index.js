@@ -1,6 +1,12 @@
 //index.js
 //获取应用实例
-import { _GoodsList, _GetSensitiveInfo, _SendFormid, _UserSignin} from '../../utils/request'
+import {
+  _GoodsList,
+  _GetSensitiveInfo,
+  _SendFormid,
+  _UserSignin,
+  _SpreadList
+} from "../../utils/request";
 const app = getApp()
 var that;
 Page({
@@ -11,9 +17,10 @@ Page({
     searchText:'',
     searchListHid:true,
     searchList:[],
+    commonwealList: []
   },
 
-  onShow() {
+  onLoad() {
     _GoodsList({
       page: 1,
       size: 10
@@ -21,7 +28,28 @@ Page({
       this.setData({
         goodsList: data.data
       });
-    });
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
+    _SpreadList({
+      id: 6
+    }).then(data => {
+      this.setData({
+        commonwealList: data.adList
+      })
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
+  },
+  navToPublicDetail(e) {
+    let url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url
+    })
   },
   formSubmit_collect: function (e) {
     let fromid = `${e.detail.formId}`;
@@ -65,32 +93,6 @@ Page({
   navToStory() {
     wx.navigateTo({
       url: "../story/story"
-    })
-  },
-  shangchuan() {
-    // wx.chooseImage({
-    //   success: res => {
-    //     let token = app.globalData.token;
-    //     wx.uploadFile({
-    //       url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-    //       filePath: res.tempFilePaths[0],
-    //       name: "file",
-    //       success: res => {
-    //         alert(res);
-    //       }
-    //     });
-    //   }
-    // });
-    wx.chooseVideo({
-      success(res) {
-        console.log(res);
-          wx.uploadFile({
-            url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-            filePath: res.tempFilePath,
-            name: "file",
-            success: res => {}
-          });
-      }
     })
   },
 

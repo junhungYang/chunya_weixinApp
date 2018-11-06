@@ -45,12 +45,10 @@
       <view class="hot-events">
         <view class="hotEvents-title">
           <text>热门活动</text>
-          <text>02/03</text>
+          <text></text>
         </view>
         <scroll-view class="events-cont" scroll-x="{{true}}">
-          <image src="../../img/index/event2.jpg" />
-          <image src="../../img/index/event1.jpg" />
-          <image src="../../img/index/event3.jpg" />
+          <image wx:for="{{commonwealList}}" src="{{item.image_url}}" data-url="{{item.link}}" bindtap="navToPublicDetail"/>
         </scroll-view>
       </view>
       <view class="hot-goods">

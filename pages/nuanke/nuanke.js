@@ -62,8 +62,7 @@ Page({
     })
   },
   showPayBtn(e) {
-    let isPay = e.currentTarget.dataset
-    console.log(isPay)
+    let isPay = e.currentTarget.dataset.ispay
     this.setData({
       payId: e.currentTarget.dataset.id
     })
@@ -76,6 +75,11 @@ Page({
         payBtnHidden: false,
       });
     }
+  },
+  hiddenPayBtn() {
+    this.setData({
+      payBtnHidden: true
+    })
   },
   collect(e) {
     let valueId = e.currentTarget.dataset.id;

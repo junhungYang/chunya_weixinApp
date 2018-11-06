@@ -2,16 +2,33 @@
     <view class="main">
         <view class="title">
             <scroll-view class="scroll-view" scroll-y>
-                <textarea auto-height placeholder="输入你要发布的主题" maxlength="{{-1}}"/>
+                <textarea auto-height placeholder="输入你要发布的主题" maxlength="{{-1}}"
+                    bindinput="getTitleText"/>
             </scroll-view>
         </view>
         <view class="content">
             <scroll-view class="scroll-view" scroll-y>
-                <textarea auto-height placeholder="输入你要发布的内容" maxlength="{{-1}}"/>
+                <textarea auto-height placeholder="输入你要发布的内容" maxlength="{{-1}}"
+                    bindinput="getContentText"/>
             </scroll-view>
         </view>
-        <view class="img-group">
-            <view>
+        <view wx:if="{{upLoadFile==='image'}}" class="img-group">
+            <view class="img-item" wx:for="{{imageList}}" wx:for-index="index">
+                    <image src="../../img/deleteRed.png" class="delIcon" data-index="{{index}}" bindtap="deleteImg"/>
+                <image src="{{item}}" mode="widthFix" class="contImage" data-index="{{index}}" bindtap="viewPic"/>
+            </view>
+            <view bindtap="upLoadHiddenManage" class="img-item addImage" wx:if="{{imageList.length!==9}}">
+                <image src="../../img/camere.png" mode="widthFix"/>
+            </view>
+        </view>
+        <view wx:else class="video">
+            
+            <view class="video-box">
+                <image src="../../img/deleteRed.png" class="delIcon-video" bindtap="deleteVideo"/>
+                <video wx:if="{{videoInfo.poster}}" src="{{videoInfo.src}}" poster="{{videoInfo.poster}}" ></video>
+            </view>
+            
+            <view bindtap="upLoadHiddenManage" class="img-item addImage" wx:if="{{!videoInfo.poster}}">
                 <image src="../../img/camere.png" mode="widthFix"/>
             </view>
         </view>
@@ -20,10 +37,17 @@
         <image src="../../img/toTop.png" />
         <text>我要置顶</text>
         <view>
-            <switch checked="false" />
+            <switch checked="true" bindchange="changeIsTop"/>
         </view>
     </view>
-    <view class="fixed-btn">
+    <view class="fixed-btn" bindtap="postsAdd">
         立即发布
+    </view>
+    <view class="imageOrVideo" hidden="{{upLoadHidden}}">
+        <view class="bg" data-index="{{1}}" bindtap="upLoadHiddenManage"></view>
+        <view class="btn">
+            <view bindtap="addVideo">上传视频</view>
+            <view bindtap="addImage">上传图片</view>
+        </view>
     </view>
 </view>

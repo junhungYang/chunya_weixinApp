@@ -15,7 +15,7 @@ Page({
     hiddenName: false,
     activePrice: 1,
     data: {},
-    price: 0,
+    price: 5,
     id: '',
     donorName: '请输入您的姓名'
   },

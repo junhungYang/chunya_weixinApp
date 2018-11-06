@@ -103,7 +103,12 @@
             </view>
         </view>
     </scroll-view>
-    <view class="pay" hidden="{{payBtnHidden}}" bindtap="nuankePay">
-        支付￥1 即可阅读
+    <view class="toPay" hidden="{{payBtnHidden}}">
+        <view class="bg" bindtap="hiddenPayBtn">
+            
+        </view>
+        <view class="pay"  bindtap="nuankePay">
+            支付￥1 即可阅读
+        </view>
     </view>
 </view>

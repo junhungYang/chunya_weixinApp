@@ -28,6 +28,7 @@ Page({
       this.getStoryList('recommend')
       this.getStoryList('hot')
       this.getStoryList()
+      this.getStoryList('collect')
     }
     App.setWatcher(App.globalData,this.watch)
   },
@@ -35,33 +36,49 @@ Page({
   
     if(style === 'recommend') {
       _PostsList({
-        isRecommend: 1,
+        type: 1,
         page: this.data.tuiJianPage,
         size: 10
       }).then(data => {
+        let arr = [...this.data.tuiJianList,...data.data]
         this.setData({
-          tuiJianList: data.data
+          tuiJianList: arr
         })
       })
       .catch(msg => this.showModal(msg))
     }else if(style === 'hot') {
       _PostsList({
-        isHot: 1,
+        type: 2,
         page: this.data.reMenPage,
         size: 10
       }).then(data => {
+        let arr = [...this.data.reMenList, ...data.data]
         this.setData({
-          reMenList: data.data
+          reMenList: arr
+        })
+      })
+      .catch(msg => this.showModal(msg))
+    }else if(style === 'collect') {
+      _PostsList({
+        type: 3,
+        page: this.data.reMenPage,
+        size: 10
+      }).then(data => {
+        let arr = [...this.data.collectList, ...data.data];
+        this.setData({
+          collectList: arr
         })
       })
       .catch(msg => this.showModal(msg))
     }else {
       _PostsList({
+        type: 0,
         page: this.data.wenDuPage,
         size: 10
       }).then(data => { 
+        let arr = [...this.data.wenDuList, ...data.data]
         this.setData({
-          wenDuList: data.data
+          wenDuList: arr
         })
       })
       .catch(msg => this.showModal(msg))
@@ -94,6 +111,12 @@ Page({
         })
         this.getStoryList()
         break;
+      case 4: 
+        this.setData({
+          collectPage: this.data.collectPage +1
+        })
+        this.getStoryList('collect')
+        break;
       }
   },
   navToDetail(e) {
@@ -102,12 +125,18 @@ Page({
       url: `../storyDetail/storyDetail?id=${id}`
     })
   },
+  navToWriteStory() {
+    wx.navigateTo({
+      url: '../writeStory/writeStory'
+    })
+  },
   watch: {
     token(newValue) {
       if(newValue) {
         that.getStoryList('recommend')
         that.getStoryList('hot')
         that.getStoryList()
+        that.getStoryList('collect')
       }
     }
   },

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
-    
+        "pages/index/index",
+        "pages/writeStory/writeStory",
             "pages/story/story",
         "pages/eventsList/eventsList",
         "pages/publicDetail/publicDetail",
@@ -10,7 +10,6 @@
             
         "pages/storyDetail/storyDetail",
       "pages/invoice/invoice",
-            "pages/writeStory/writeStory",
         "pages/haowuList/haowuList",
 
         "pages/reviewsList/reviewsList",

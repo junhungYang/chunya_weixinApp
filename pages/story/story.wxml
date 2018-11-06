@@ -170,5 +170,7 @@
             </view>
         </scroll-view>
     </view>
-
+    <view class="add" bindtap="navToWriteStory">
+        <image src="../../img/add.png" />
+    </view>
 </view>
