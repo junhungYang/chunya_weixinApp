@@ -19,11 +19,11 @@ Page({
     id: '',
     donorName: '请输入您的姓名'
   },
-  onLoad: function(options) {
+  onLoad: function(options) {  
     that = this
     app.setWatcher(app.globalData,this.watch)
     this.setData({
-      id: Number(options.id)
+      id: Number(options.commonwealId)
     })
     if (app.globalData.token) {
       this.getCommonwealDetail()
@@ -85,6 +85,11 @@ Page({
         price: e.detail.value
       });
     }, 200);
+  },
+  inputFocus(e) {
+    this.setData({
+      price: e.detail.value
+    })
   },
   donation() {
     clearTimeout(this.timer);

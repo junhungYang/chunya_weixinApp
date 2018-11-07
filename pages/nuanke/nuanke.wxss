@@ -143,3 +143,12 @@
   height: 0;
   color: transparent;
 }
+.share-btn {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  background: transparent;
+}
+.share-btn::after {
+  border: 0;
+}

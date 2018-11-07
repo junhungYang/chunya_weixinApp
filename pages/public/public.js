@@ -73,8 +73,28 @@ Page({
   navToDetail(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `../publicDetail/publicDetail?id=${id}`
+      url: `../publicDetail/publicDetail?commonwealId=${id}`
+    });
+  },
+  onPullDownRefresh: function () {
+    wx.showLoading({
+      title: '正在刷新'
     })
+    _GetUserInfo().then(data => {
+      this.setData({
+        userInfo: data
+      })
+      wx.stopPullDownRefresh();
+      this.getCommonList()
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 600);
+    }).catch(msg => {
+      this.showModal(msg);
+    })
+    
+
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -107,9 +127,6 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
 
 
 

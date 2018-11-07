@@ -133,7 +133,11 @@
                 <view></view>
                 <text>首页</text>
             </view>
-            <view class="list">
+            <view wx:if="{{collectList.length===0}}" class="mask">
+                <image src="../../img/collectPic.jpg" />
+                <text>啥都没有~</text>
+            </view>
+            <view wx:else class="list">
                 <view class="item" wx:for="{{collectList}}">
                     <view class="user-info">
                         <image src="{{item.userInfo.avatar}}" />

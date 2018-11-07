@@ -5,7 +5,7 @@
         <text class="{{navIndex===3?'active':''}}" data-index="{{3}}" bindtap="changeNav">影音</text>
     </view>
     <scroll-view scroll-y class="list" hidden="{{navIndex===1?false:true}}">
-        <view class="item" wx:for="{{meiWenList}}">
+        <view class="item" wx:for="{{meiWenList}}" wx:for-index="index">
             <view class="title">
                 <view class="main">{{item.title}}</view>
                 <view class="vice">
@@ -25,13 +25,15 @@
                         <image src="../../img/nuanke/person.png" />
                         <text>{{item.viewCount}}人阅读</text>
                     </view>
-                    <view data-id="{{item.id}}" bindtap="collect">
-                        <image src="../../img/nuanke/collect.png" />
-                        <text>收藏</text>
+                    <view data-id="{{item.id}}" data-index="{{index}}" bindtap="collect">
+                        <image src="{{item.isCollected?'../../img/goodDetail/collect1.png':'../../img/goodDetail/collect.png'}}" />
+                        <text>{{item.isCollected?'已收藏':'收藏'}}</text>
                     </view>
                     <view>
-                        <image src="../../img/nuanke/share.png" />
-                        <text>分享</text>
+                        <button open-type="share" class="share-btn">
+                            <image src="../../img/nuanke/share.png" />
+                            <text>分享</text>
+                        </button>
                     </view>
                 </view>
             </view>
@@ -58,9 +60,9 @@
                         <image src="../../img/nuanke/person.png" />
                         <text>{{item.viewCount}}人阅读</text>
                     </view>
-                    <view data-id="{{item.id}}" bindtap="collect">
-                        <image src="../../img/nuanke/collect.png" />
-                        <text>收藏</text>
+                    <view data-id="{{item.id}}" data-index="{{index}}" bindtap="collect">
+                        <image src="{{item.isCollected?'../../img/goodDetail/collect1.png':'../../img/goodDetail/collect.png'}}" />
+                        <text>{{item.isCollected?'已收藏':'收藏'}}</text>
                     </view>
                     <view>
                         <image src="../../img/nuanke/share.png" />
@@ -91,9 +93,9 @@
                         <image src="../../img/nuanke/person.png" />
                         <text>{{item.viewCount}}人阅读</text>
                     </view>
-                    <view data-id="{{item.id}}" bindtap="collect">
-                        <image src="../../img/nuanke/collect.png" />
-                        <text>收藏</text>
+                    <view data-id="{{item.id}}" data-index="{{index}}" bindtap="collect">
+                        <image src="{{item.isCollected?'../../img/goodDetail/collect1.png':'../../img/goodDetail/collect.png'}}" />
+                        <text>{{item.isCollected?'已收藏':'收藏'}}</text>
                     </view>
                     <view>
                         <image src="../../img/nuanke/share.png" />

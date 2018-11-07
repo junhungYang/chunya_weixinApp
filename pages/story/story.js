@@ -33,55 +33,36 @@ Page({
     App.setWatcher(App.globalData,this.watch)
   },
   getStoryList(style) {
-  
+    let res
+    let postsList = (type,page,targetStr) => {
+      wx.showLoading({
+        title: '正在加载'
+      })
+      return _PostsList({
+        type,
+        page,
+        size: 10
+      }).then(data => {
+        let arr = [...this.data[targetStr], ...data.data]
+        let obj ={}
+        obj[targetStr] = arr
+        this.setData(obj)
+          wx.hideLoading()
+      })
+        .catch(msg => {
+          this.showModal(msg)
+        })
+    }
     if(style === 'recommend') {
-      _PostsList({
-        type: 1,
-        page: this.data.tuiJianPage,
-        size: 10
-      }).then(data => {
-        let arr = [...this.data.tuiJianList,...data.data]
-        this.setData({
-          tuiJianList: arr
-        })
-      })
-      .catch(msg => this.showModal(msg))
+      postsList(1,this.data.tuiJianPage,'tuiJianList')
+
     }else if(style === 'hot') {
-      _PostsList({
-        type: 2,
-        page: this.data.reMenPage,
-        size: 10
-      }).then(data => {
-        let arr = [...this.data.reMenList, ...data.data]
-        this.setData({
-          reMenList: arr
-        })
-      })
-      .catch(msg => this.showModal(msg))
+      postsList(2, this.data.reMenPage, "reMenList");
+
     }else if(style === 'collect') {
-      _PostsList({
-        type: 3,
-        page: this.data.reMenPage,
-        size: 10
-      }).then(data => {
-        let arr = [...this.data.collectList, ...data.data];
-        this.setData({
-          collectList: arr
-        })
-      })
-      .catch(msg => this.showModal(msg))
+      postsList(3, this.data.collectPage, "collectList");
     }else {
-      _PostsList({
-        type: 0,
-        page: this.data.wenDuPage,
-        size: 10
-      }).then(data => { 
-        let arr = [...this.data.wenDuList, ...data.data]
-        this.setData({
-          wenDuList: arr
-        })
-      })
-      .catch(msg => this.showModal(msg))
+       postsList(0, this.data.wenDuPage, "wenDuList");
     }
   },
   changeActive(e) {
@@ -92,30 +73,24 @@ Page({
   },
   getListByScroll() {
     let index = this.data.navActive
+    let fn = (pageStr,modStr) => {
+      let obj = {}
+      obj[pageStr] = this.data[pageStr] +1
+      this.setData(obj)
+      this.getStoryList(modStr)
+    }
     switch (index) {
       case 1:
-        this.setData({
-          tuiJianPage: this.data.tuiJianPage +1
-        })
-        this.getStoryList("recommend");
+        fn('tuiJianPage','recommend')
         break;
       case 2:
-        this.setData({
-          reMenPage: this.data.reMenPage + 1
-        })
-        this.getStoryList("hot");
+        fn("reMenPage", "hot");
         break;
       case 3:
-        this.setData({
-          wenDuPage: this.data.wenDuPage + 1
-        })
-        this.getStoryList()
+        fn("wenDuPage");
         break;
       case 4: 
-        this.setData({
-          collectPage: this.data.collectPage +1
-        })
-        this.getStoryList('collect')
+        fn("collectPage", "collect");
         break;
       }
   },

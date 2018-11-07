@@ -21,20 +21,14 @@ Page({
 
   },
   getTitleText(e) {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(() => {
       this.setData({
         titleText: e.detail.value
       })
-    }, 250);
   },
   getContentText(e) {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(() => {
       this.setData({
         contentText: e.detail.value
       })
-    }, 250);
   },
   changeIsTop(e) {
     this.setData({
@@ -127,7 +121,15 @@ Page({
           obj.imagesList = []
         }
       }
-      _PostsAdd(obj);
+      _PostsAdd(obj).then(data => {
+        wx.showToast({
+          title: '发布成功'
+        })
+      }).catch(msg => {
+        wx.showModal({
+          title: msg
+        })
+      })
     }else {
       wx.showModal({
         title: '请填写完整内容',

@@ -5,6 +5,7 @@ import {
   _CollectAddorDelete
 } from "../../utils/request";
 const App = getApp()
+var that
 Page({
   /**
    * 页面的初始数据
@@ -18,8 +19,17 @@ Page({
     payId: ''
   },
   onLoad: function () {
+    that= this
+    App.setWatcher(App.globalData,this.watch)
     if(App.globalData.token) {
       this.getList()
+    }
+  },
+  watch: {
+    token(newValue) {
+      if(newValue) {
+        that.getList();
+      }  
     }
   },
   getList() {
@@ -83,10 +93,43 @@ Page({
   },
   collect(e) {
     let valueId = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    let data = this.data
+    let list;
+    function isCollectRefresh(list,index) {
+      if (list[index].isCollected) {
+        list[index].isCollected = 0
+      } else {
+        list[index].isCollected = 1
+      }
+      return list
+    }
     _CollectAddorDelete({
       typeId: 1,
       valueId
-    }).catch(msg => this.showModal(msg))
+    }).then(() => {
+      switch (data.navIndex) {
+        case 1:
+          list = isCollectRefresh(data.meiWenList,index)
+          this.setData({
+            meiWenList: list
+          })
+          break;
+        case 2:
+          list = isCollectRefresh(data.visualList, index)
+          this.setData({
+            visualList: list
+          })
+          break;
+        case 3:
+          list = isCollectRefresh(data.radioList, index);
+          this.setData({
+            radioList: list
+          })
+          break;
+      }
+    })
+    .catch(msg => this.showModal(msg))
   },
   nuankePay(e) {
     clearTimeout(this.timer)
@@ -156,5 +199,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {}
+  onShareAppMessage: function() {
+    wx.showShareMenu();
+  }
 });

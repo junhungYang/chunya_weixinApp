@@ -35,6 +35,7 @@
 .template .content .collect {
   overflow: hidden;
   height: 100%;
+  position: relative;
 }
 .template .content .tuiJian .list .item,
 .template .content .reMen .list .item,
@@ -214,6 +215,43 @@
 .template .content .collect .list .item .control view:nth-of-type(3) image {
   width: 31rpx;
   height: 30rpx;
+}
+.template .content .tuiJian .mask,
+.template .content .reMen .mask,
+.template .content .wenDu .mask,
+.template .content .collect .mask {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.template .content .tuiJian .mask image,
+.template .content .reMen .mask image,
+.template .content .wenDu .mask image,
+.template .content .collect .mask image,
+.template .content .tuiJian .mask text,
+.template .content .reMen .mask text,
+.template .content .wenDu .mask text,
+.template .content .collect .mask text {
+  display: block;
+}
+.template .content .tuiJian .mask image,
+.template .content .reMen .mask image,
+.template .content .wenDu .mask image,
+.template .content .collect .mask image {
+  width: 177rpx;
+  height: 193rpx;
+}
+.template .content .tuiJian .mask text,
+.template .content .reMen .mask text,
+.template .content .wenDu .mask text,
+.template .content .collect .mask text {
+  font-size: 24rpx;
+  color: #313131;
+  margin: 0 auto;
+  margin-top: 35rpx;
 }
 .template .content .tuiJian .swiper-box {
   height: 395rpx;

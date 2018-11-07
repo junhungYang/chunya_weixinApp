@@ -85,7 +85,31 @@ Page({
         icon: 'success',
         title: data
       })
+      this.refreshCommentList(content)
     })
+  },
+  refreshCommentList(content) {
+    let userInfo = JSON.parse(wx.getStorageSync("userInfo"))
+    let obj = {}
+    obj.userInfo = {}
+    obj.userInfo.avatar = userInfo.avatarUrl
+    obj.userInfo.nickname = userInfo.nickName
+    obj.relativeDate = "刚刚"
+    obj.contentDesc = content
+    let arr = this.data.commentList;
+    arr.unshift(obj)
+    this.setData({
+      commentList: arr
+    })
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+  },
+  dianZan() {
+
+  },
+  collect() {
+    
   },
   watch: {
     token(newValue) {

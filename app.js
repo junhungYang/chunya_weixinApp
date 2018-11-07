@@ -103,7 +103,12 @@ App({
           _SetToken(data.token);
           this.globalData.token = data.token;
         })
-        .catch(msg => this.showMod(msg));
+        .catch(msg => {
+          this.showMod(msg);
+          wx.switchTab({
+            url: '../cart/cart'
+          })
+        });
   },
   pay(data) {
     wx.requestPayment({

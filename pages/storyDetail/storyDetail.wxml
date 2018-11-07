@@ -44,11 +44,11 @@
                     <image src="../../img/reviewsIcon.png" />
                     <text>{{detail.commentCount}}</text>
                 </view>
-                <view>
+                <view bindtap="dianZan">
                     <image src="../../img/zan.png" />
                     <text>{{detail.likeCount}}</text>
                 </view>
-                <view>
+                <view bindtap="collect">
                     <image src="../../img/collect.png" />
                     <text>{{detail.collectCount}}</text>
                 </view>

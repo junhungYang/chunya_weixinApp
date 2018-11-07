@@ -406,7 +406,8 @@ const _WxappLogin = function(data) {
       success: res => {
         if (res.data.errno === 0) {
           resolve(res.data.data);
-        } else {
+        } 
+         else {
           reject(res.data.msg);
         }
       }
