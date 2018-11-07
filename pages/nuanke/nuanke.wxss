@@ -44,9 +44,17 @@
   box-sizing: border-box;
 }
 .template .list .item .title .main {
+  display: flex;
+}
+.template .list .item .title .main text:first-of-type {
   color: #313131;
   font-weight: bold;
   font-size: 28rpx;
+  flex: 1;
+}
+.template .list .item .title .main text:last-of-type {
+  font-size: 24rpx;
+  color: #b2b2b2;
 }
 .template .list .item .title .vice {
   margin-top: 10rpx;

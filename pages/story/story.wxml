@@ -2,143 +2,22 @@
     <view class="nav">
         <text bindtap="changeActive" class="{{navActive===1?'nav-active':''}}" data-index="{{1}}">推荐</text>
         <text bindtap="changeActive" class="{{navActive===2?'nav-active':''}}" data-index="{{2}}">热门</text>
-        <text bindtap="changeActive" class="{{navActive===3?'nav-active':''}}" data-index="{{3}}">温度</text>
-        <text bindtap="changeActive" class="{{navActive===4?'nav-active':''}}" data-index="{{4}}">收藏</text>
+        <text bindtap="changeActive" class="{{navActive===0?'nav-active':''}}" data-index="{{0}}">温度</text>
+        <text bindtap="changeActive" class="{{navActive===3?'nav-active':''}}" data-index="{{3}}">收藏</text>
     </view>
     <view class="content">
-        <scroll-view scroll-y hidden="{{navActive===1?false:true}}"
-         bindscrolltolower="getListByScroll" class="tuiJian">
-            <view class="swiper-box">
+        <scroll-view scroll-y 
+         bindscrolltolower="getListByScroll" class="tuiJian" scroll-top="{{tuiJianTop}}">
+            <view hidden="{{navActive!==1}}" class="swiper-box">
                 <my-swiper></my-swiper>
             </view>
-            <view class="list">
-                <view class="item" wx:for="{{tuiJianList}}">
-                    <view class="user-info">
-                        <image src="{{item.userInfo.avatar}}" />
-                        <view>
-                            <text>{{item.userInfo.nickName}}</text>
-                            <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
-                        </view>
-                    </view>
-                    <view class="cont" data-id="{{item.id}}" bindtap="navToDetail">
-                        <view>
-                            <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
-                        </view>
-                        <view>
-                            <text>{{item.title}}</text>
-                            <text>{{item.contentDesc}}</text>
-                            <text>{{item.relativeDate}}</text>
-                        </view>
-                    </view>
-                    <view class="control">
-                        <view>
-                            <image src="../../img/reviewsIcon.png" />
-                            <text>{{item.commentCount}}</text>
-                        </view>
-                        <view>
-                            <image src="../../img/zan.png" />
-                            <text>{{item.likeCount}}</text>
-                        </view>
-                        <view>
-                            <image src="../../img/collect.png" />
-                            <text>{{item.collectCount}}</text>
-                        </view>
-                    </view>
-                </view>
-            </view>
-            <view class="fixed-bottom">
-                深圳市春芽健康科技有限公司
-            </view>
-        </scroll-view>
-        <scroll-view scroll-y hidden="{{navActive===2?false:true}}"
-        bindscrolltolower="getListByScroll" class="reMen">
-            <view class="list">
-                 <view class="item" wx:for="{{reMenList}}">
-                    <view class="user-info">
-                        <image src="{{item.userInfo.avatar}}" />
-                        <view>
-                            <text>{{item.userInfo.nickName}}</text>
-                            <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
-                        </view>
-                    </view>
-                    <view class="cont" data-id="{{item.id}}" bindtap="navToDetail">
-                        <view>
-                            <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
-                        </view>
-                        <view>
-                            <text>{{item.title}}</text>
-                            <text>{{item.contentDesc}}</text>
-                            <text>{{item.relativeDate}}</text>
-                        </view>
-                    </view>
-                    <view class="control">
-                        <view>
-                            <image src="../../img/reviewsIcon.png" />
-                            <text>{{item.commentCount}}</text>
-                        </view>
-                        <view>
-                            <image src="../../img/zan.png" />
-                            <text>{{item.likeCount}}</text>
-                        </view>
-                        <view>
-                            <image src="../../img/collect.png" />
-                            <text>{{item.collectCount}}</text>
-                        </view>
-                    </view>
-                </view>
-            </view>
-        </scroll-view>
-        <scroll-view scroll-y hidden="{{navActive===3?false:true}}"
-        bindscrolltolower="getListByScroll" class="wenDu">
-            <view class="list">
-                 <view class="item" wx:for="{{wenDuList}}">
-                    <view class="user-info">
-                        <image src="{{item.userInfo.avatar}}" />
-                        <view>
-                            <text>{{item.userInfo.nickname}}</text>
-                            <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
-                        </view>
-                    </view>
-                    <view class="cont" data-id="{{item.id}}" bindtap="navToDetail">
-                        <view>
-                            <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
-                        </view>
-                        <view>
-                            <text>{{item.title}}</text>
-                            <text>{{item.contentDesc}}</text>
-                            <text>{{item.relativeDate}}</text>
-                        </view>
-                    </view>
-                    <view class="control">
-                        <view>
-                            <image src="../../img/reviewsIcon.png" />
-                            <text>{{item.commentCount}}</text>
-                        </view>
-                        <view>
-                            <image src="../../img/zan.png" />
-                            <text>{{item.likeCount}}</text>
-                        </view>
-                        <view>
-                            <image src="../../img/collect.png" />
-                            <text>{{item.collectCount}}</text>
-                        </view>
-                    </view>
-                </view>
-            </view>
-        </scroll-view>
-        <scroll-view scroll-y hidden="{{navActive===4?false:true}}"
-        bindscrolltolower="getListByScroll" class="collect">
-            <view class="cancel">
-                <text>清空</text>
+            <view wx:if="{{navActive===3}}" class="cancel">
+                <text bindtap="cancelCollect">清空</text>
                 <view></view>
                 <text>首页</text>
             </view>
-            <view wx:if="{{collectList.length===0}}" class="mask">
-                <image src="../../img/collectPic.jpg" />
-                <text>啥都没有~</text>
-            </view>
-            <view wx:else class="list">
-                <view class="item" wx:for="{{collectList}}">
+            <view class="list">
+                <view class="item" wx:for="{{list}}" wx:for-index="index" wx:key="{{item.id}}">
                     <view class="user-info">
                         <image src="{{item.userInfo.avatar}}" />
                         <view>
@@ -146,7 +25,7 @@
                             <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
                         </view>
                     </view>
-                    <view class="cont" data-id="{{item.id}}" bindtap="navToDetail">
+                    <view class="cont" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
                         <view>
                             <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
                         </view>
@@ -161,16 +40,19 @@
                             <image src="../../img/reviewsIcon.png" />
                             <text>{{item.commentCount}}</text>
                         </view>
-                        <view>
-                            <image src="../../img/zan.png" />
+                        <view data-index="{{index}}" data-isliked="{{item.isLiked}}" data-id="{{item.id}}" data-type="{{'zan'}}"  bindtap="zanControl">
+                            <image src="{{item.isLiked?'../../img/zanOrange.png':'../../img/zan.png'}}" />
                             <text>{{item.likeCount}}</text>
                         </view>
-                        <view>
-                            <image src="../../img/collect.png" />
+                        <view data-index="{{index}}" data-iscollected="{{item.isCollected}}" data-id="{{item.id}}" data-type="{{'collect'}}" bindtap="zanControl">
+                            <image src="{{item.isCollected?'../../img/collectOrange.png':'../../img/collect.png'}}" />
                             <text>{{item.collectCount}}</text>
                         </view>
                     </view>
                 </view>
+            </view>
+            <view wx:if="{{navActive===1}}" class="fixed-bottom">
+                深圳市春芽健康科技有限公司
             </view>
         </scroll-view>
     </view>

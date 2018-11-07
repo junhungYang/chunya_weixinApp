@@ -1,171 +1,183 @@
 // pages/story/story.js
 const App = getApp()
-import {_PostsList} from '../../utils/request'
+import { _PostsList, _LikeAddOrDelete, _CollectAddorDelete} from '../../utils/request'
 var that;
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     navActive: 1,
-    tuiJianList:[],
-    reMenList: [],
-    wenDuList:[],
-    collectList: [],
-    tuiJianPage: 1,
-    reMenPage:1,
-    wenDuPage: 1,
-    collectPage: 1
+    list:[],
+    page: 1,
+    top: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     that = this;
-    if(App.globalData.token) {
-      this.getStoryList('recommend')
-      this.getStoryList('hot')
-      this.getStoryList()
-      this.getStoryList('collect')
+    App.setWatcher(App.globalData, this.watch);
+    if (App.globalData.token) {
+      this.getStoryList(this.data.navActive);
     }
-    App.setWatcher(App.globalData,this.watch)
   },
-  getStoryList(style) {
-    let res
-    let postsList = (type,page,targetStr) => {
+  getStoryList(type,scroll) {
+    if (scroll) {
       wx.showLoading({
-        title: '正在加载'
-      })
-      return _PostsList({
-        type,
-        page,
-        size: 10
-      }).then(data => {
-        let arr = [...this.data[targetStr], ...data.data]
-        let obj ={}
-        obj[targetStr] = arr
-        this.setData(obj)
-          wx.hideLoading()
-      })
-        .catch(msg => {
-          this.showModal(msg)
-        })
+        title: "正在加载"
+      });
     }
-    if(style === 'recommend') {
-      postsList(1,this.data.tuiJianPage,'tuiJianList')
+    _PostsList({
+      type,
+      page: this.data.page,
+      size: 10
+    })
+      .then(data => {
+        let arr;
+        if (scroll) {
+          arr = [...this.data.list, ...data.data];
+        } else {
+          arr = data.data
+        }
+        this.setData({
+          list: arr
+        });
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 600);
+      })
+      .catch(msg => {
+        // console.log(msg)
+        this.showModal(msg);
+      });
+  },
+  zanControl(e) {
+    let index = e.currentTarget.dataset.index
+    let valueId = e.currentTarget.dataset.id
+    let isLiked = e.currentTarget.dataset.isliked
+    let isCollected = e.currentTarget.dataset.iscollected
+    let type = e.currentTarget.dataset.type
+    let promiseObj
 
-    }else if(style === 'hot') {
-      postsList(2, this.data.reMenPage, "reMenList");
-
-    }else if(style === 'collect') {
-      postsList(3, this.data.collectPage, "collectList");
+    if(type === 'collect') {
+      promiseObj = _CollectAddorDelete({
+        typeId: 2,
+        valueId
+      })
     }else {
-       postsList(0, this.data.wenDuPage, "wenDuList");
+      promiseObj = _LikeAddOrDelete({
+        typeId: 0,
+        valueId
+      })
     }
+    promiseObj.then(() => {
+      let arr = this.data.list
+      if (type === 'zan') {
+        if (isLiked) {
+          arr[index].likeCount--
+          arr[index].isLiked = 0
+        } else {
+          arr[index].likeCount++
+          arr[index].isLiked = 1
+        }
+        this.setData({
+          list: arr
+        })
+      } else {
+        if (this.data.navActive !== 3) {
+          if (isCollected) {
+            arr[index].collectCount--;
+            arr[index].isCollected = 0;
+          } else {
+            arr[index].collectCount++;
+            arr[index].isCollected = 1;
+          }
+          this.setData({
+            list: arr
+          })
+        } else {
+          this.setData({
+            page:1
+          })
+          this.getStoryList(3);
+        }
+      }
+    }).catch(msg => this.showModal(msg))
   },
   changeActive(e) {
     let index = e.currentTarget.dataset.index;
     this.setData({
-      navActive: index
-    })
+      navActive: index,
+      page: 1
+    });
+    this.getStoryList(index)
+
   },
   getListByScroll() {
-    let index = this.data.navActive
-    let fn = (pageStr,modStr) => {
-      let obj = {}
-      obj[pageStr] = this.data[pageStr] +1
-      this.setData(obj)
-      this.getStoryList(modStr)
-    }
-    switch (index) {
-      case 1:
-        fn('tuiJianPage','recommend')
-        break;
-      case 2:
-        fn("reMenPage", "hot");
-        break;
-      case 3:
-        fn("wenDuPage");
-        break;
-      case 4: 
-        fn("collectPage", "collect");
-        break;
-      }
+    let index = this.data.navActive;
+    this.setData({
+      page: this.data.page +1
+    })
+    this.getStoryList(index,'scroll')
   },
   navToDetail(e) {
-    let id = e.currentTarget.dataset.id
+    let id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index
     wx.navigateTo({
-      url: `../storyDetail/storyDetail?id=${id}`
-    })
+      url: `../storyDetail/storyDetail?id=${id}&index=${index}`
+    });
   },
   navToWriteStory() {
     wx.navigateTo({
-      url: '../writeStory/writeStory'
-    })
+      url: "../writeStory/writeStory"
+    });
   },
   watch: {
     token(newValue) {
-      if(newValue) {
-        that.getStoryList('recommend')
-        that.getStoryList('hot')
-        that.getStoryList()
-        that.getStoryList('collect')
+      if (newValue) {
+        that.getStoryList(that.data.navActive);
       }
     }
   },
   showModal(msg) {
     wx.showModal({
       title: msg
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
-})
+  onShareAppMessage: function() {}
+});

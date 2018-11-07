@@ -18,7 +18,6 @@ Page({
   },
 
   onLoad: function (options) {
-
   },
   getTitleText(e) {
       this.setData({
@@ -123,8 +122,12 @@ Page({
       }
       _PostsAdd(obj).then(data => {
         wx.showToast({
-          title: '发布成功'
+          title: '发布成功',
+          mask: true
         })
+        setTimeout(() => {
+          this.refreshPrevPage(data)
+        }, 700);
       }).catch(msg => {
         wx.showModal({
           title: msg
@@ -136,6 +139,18 @@ Page({
         content: '请填写您要发布的内容或标题'
       })
     }
+  },
+  refreshPrevPage(data) {
+    let pages = getCurrentPages()
+    let prevPage = pages[pages.length - 2];
+    let arr = prevPage.data.list
+    arr.unshift(data)
+    prevPage.setData({
+      list: arr
+    })
+    wx.navigateBack({
+      delta: 1
+    })
   },
   upLoadHiddenManage(e) {
     let index = e.currentTarget.dataset.index
@@ -153,7 +168,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let arr = [];
     this.data.imageList.forEach(item => {
-      arr.push(item.path)
+      arr.push(item)
     })
     wx.previewImage({
       current: arr[index],

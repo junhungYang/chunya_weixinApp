@@ -2,3 +2,32 @@
   font-size: 24rpx;
   color: #313131;
 }
+.template .payMask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+}
+.template .payMask view:first-of-type {
+  font-size: 28rpx;
+  line-height: 34rpx;
+  color: #b2b2b2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.template .payMask view:last-of-type {
+  height: 100rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #d1051f;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 100rpx;
+  text-align: center;
+}

@@ -85,7 +85,7 @@
   font-size: 24rpx;
   color: #313131;
   top: 0;
-  line-height: 24rpx;
+  line-height: 32rpx;
 }
 .template .content .tuiJian .list .item .user-info view text:last-of-type,
 .template .content .reMen .list .item .user-info view text:last-of-type,
@@ -258,24 +258,24 @@
   background: #eeeeee;
   position: relative;
 }
-.template .content .collect .cancel {
+.template .content .cancel {
   height: 56rpx;
   font-size: 0;
   text-align: right;
   padding: 0 6.4%;
   border-bottom: 1px solid #f2f2f2;
 }
-.template .content .collect .cancel text {
+.template .content .cancel text {
   line-height: 56rpx;
   font-size: 20rpx;
 }
-.template .content .collect .cancel text:first-of-type {
+.template .content .cancel text:first-of-type {
   color: #b2b2b2;
 }
-.template .content .collect .cancel text:last-of-type {
+.template .content .cancel text:last-of-type {
   color: #2ca5ae;
 }
-.template .content .collect .cancel view {
+.template .content .cancel view {
   display: inline-block;
   margin: 0 17rpx;
   width: 2px;

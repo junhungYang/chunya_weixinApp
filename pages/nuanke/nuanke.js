@@ -12,9 +12,8 @@ Page({
    */
   data: {
     navIndex: 1,
-    meiWenList:[],
-    visualList:[],
-    radioList:[],
+    list:[],
+    page:1,
     payBtnHidden: true,
     payId: ''
   },
@@ -22,41 +21,35 @@ Page({
     that= this
     App.setWatcher(App.globalData,this.watch)
     if(App.globalData.token) {
-      this.getList()
+      this.getList();
     }
   },
   watch: {
     token(newValue) {
       if(newValue) {
-        that.getList();
+        that.getList(1,1,'meiWenList');
+        that.getList(2,1,'visualList');
+        that.getList(3,1,"radioList");
       }  
     }
   },
   getList() {
+      wx.showLoading({
+        title: '正在加载'
+      })
     let size= 10
     _WarmclassList({
-      type: 1,
+      page: this.data.page,
+      type: this.data.navIndex,
       size
     }).then(data => {
+      let arr = [...this.data.list,...data.data]
       this.setData({
-        meiWenList: data.data
+        list:arr
       })
-    }).catch(msg => this.showModal(msg))
-    _WarmclassList({
-      type: 2,
-      size
-    }).then(data => {
-      this.setData({
-        visualList: data.data
-      })
-    }).catch(msg => this.showModal(msg))
-    _WarmclassList({
-      type: 3,
-      size
-    }).then(data =>  {
-      this.setData({
-        radioList: data.data
-      })
+        setTimeout(() => {
+          wx.hideLoading()
+        }, 600);
     }).catch(msg => this.showModal(msg))
   },
   navToDetail(e) {
@@ -68,8 +61,11 @@ Page({
   changeNav(e) {
     let index = e.currentTarget.dataset.index
     this.setData({
-      navIndex: index
+      navIndex: index,
+      page:1,
+      list:[]
     })
+    this.getList()
   },
   showPayBtn(e) {
     let isPay = e.currentTarget.dataset.ispay
@@ -91,43 +87,28 @@ Page({
       payBtnHidden: true
     })
   },
+  scrollRefreshList(e) {
+    this.setData({
+      page: this.data.page +1
+    })
+    this.getList();
+   },
   collect(e) {
     let valueId = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;
-    let data = this.data
-    let list;
-    function isCollectRefresh(list,index) {
-      if (list[index].isCollected) {
+    let list = this.data.list
+    _CollectAddorDelete({
+      typeId: 1,
+      valueId
+    }).then((data) => {
+      if (data.type==="delete") {
         list[index].isCollected = 0
       } else {
         list[index].isCollected = 1
       }
-      return list
-    }
-    _CollectAddorDelete({
-      typeId: 1,
-      valueId
-    }).then(() => {
-      switch (data.navIndex) {
-        case 1:
-          list = isCollectRefresh(data.meiWenList,index)
-          this.setData({
-            meiWenList: list
-          })
-          break;
-        case 2:
-          list = isCollectRefresh(data.visualList, index)
-          this.setData({
-            visualList: list
-          })
-          break;
-        case 3:
-          list = isCollectRefresh(data.radioList, index);
-          this.setData({
-            radioList: list
-          })
-          break;
-      }
+      this.setData({
+        list
+      })
     })
     .catch(msg => this.showModal(msg))
   },
@@ -194,7 +175,6 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享

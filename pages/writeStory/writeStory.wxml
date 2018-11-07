@@ -3,13 +3,13 @@
         <view class="title">
             <scroll-view class="scroll-view" scroll-y>
                 <textarea auto-height placeholder="输入你要发布的主题" maxlength="{{-1}}"
-                    bindinput="getTitleText"/>
+                    bindinput="getTitleText" bindconfirm="getTitleText"/>
             </scroll-view>
         </view>
         <view class="content">
             <scroll-view class="scroll-view" scroll-y>
                 <textarea auto-height placeholder="输入你要发布的内容" maxlength="{{-1}}"
-                    bindinput="getContentText"/>
+                    bindinput="getContentText" bindconfirm="getContentText"/>
             </scroll-view>
         </view>
         <view wx:if="{{upLoadFile==='image'}}" class="img-group">

@@ -6,6 +6,26 @@ const _SetToken = function(token) {
   console.log(Token)
 };
 //故事模块
+const _LikeAddOrDelete = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/like/addordelete`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
 const _PostsList = function(data) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -1102,6 +1122,7 @@ const _CouponList = function () {
     });
 }
 module.exports = {
+  _LikeAddOrDelete,
   _PostsList,
   _PostsDetail,
   _PostsAddComment,

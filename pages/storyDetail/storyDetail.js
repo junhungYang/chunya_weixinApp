@@ -16,6 +16,7 @@ Page({
     detail: {},
     pageIndex: 1,
     commentList: [],
+    indxe: null
   },
 
   /**
@@ -25,7 +26,8 @@ Page({
     that = this
     if(App.globalData.token) {
       this.setData({
-        id: Number(options.id)
+        id: Number(options.id),
+        index: Number(options.index)
       })
       this.getStoryDetail()
       this.getCommentList()
@@ -83,26 +85,29 @@ Page({
     }).then(data => {
       wx.showToast({
         icon: 'success',
-        title: data
+        title: '添加成功'
       })
-      this.refreshCommentList(content)
+      this.refreshCommentList(data)
     })
   },
-  refreshCommentList(content) {
-    let userInfo = JSON.parse(wx.getStorageSync("userInfo"))
-    let obj = {}
-    obj.userInfo = {}
-    obj.userInfo.avatar = userInfo.avatarUrl
-    obj.userInfo.nickname = userInfo.nickName
-    obj.relativeDate = "刚刚"
-    obj.contentDesc = content
+  refreshCommentList(data) {
+    let detail = this.data.detail
+    detail.commentCount ++
     let arr = this.data.commentList;
-    arr.unshift(obj)
+    arr.unshift(data)
     this.setData({
-      commentList: arr
+      commentList: arr,
+      detail
     })
     wx.pageScrollTo({
       scrollTop: 0
+    })
+    let pages = getCurrentPages()
+    let prevPage = pages[pages.length - 2];
+    let arrPrevPage = prevPage.data.list
+    arrPrevPage[this.data.index].commentCount++;
+    prevPage.setData({
+      list: arrPrevPage
     })
   },
   dianZan() {

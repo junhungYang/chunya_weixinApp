@@ -20,9 +20,10 @@
     <my-swiper></my-swiper>
   </view>
   <view class="nav">
+    
     <view class="item">
-      <image src="../../img/index/haowu.png" bindtap="navToHaowu"/>
-      <text>好物</text>
+            <image src="../../img/index/haowu.png"/>
+            <text>好物</text>
     </view>
     <view class="item">
       <image src="../../img/index/nuanke.png" bindtap="navToNuanke"/>

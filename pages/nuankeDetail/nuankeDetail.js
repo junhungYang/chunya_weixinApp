@@ -1,6 +1,6 @@
 // pages/nuankeDetail/nuankeDetail.js
 const App = getApp()
-import { _WarmclassDetail} from '../../utils/request'
+import { _WarmclassDetail, _WarmclassPay} from '../../utils/request'
 Page({
 
   /**
@@ -8,7 +8,8 @@ Page({
    */
   data: {
     id:'',
-    contentDesc:''
+    contentDesc:'',
+    isPay:false
   },
 
   /**
@@ -30,9 +31,44 @@ Page({
         title: data.title
       })
       this.setData({
-        contentDesc: data.contentDesc
+        contentDesc: data.contentDesc,
+        isPay: data.isPay
+      })
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
       })
     })
+  },
+  nuankePay(e) {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      _WarmclassPay({
+        id: this.data.payId
+      }).then(data => {
+        this.wxPay(data)
+      }).catch(msg => {
+        wx.showModal({
+          title: msg
+        })
+      })
+    }, 250);
+  },
+  wxPay(data) {
+    wx.requestPayment({
+      timeStamp: data.timeStamp,
+      appId: data.appId,
+      nonceStr: data.nonceStr,
+      package: data.package,
+      signType: data.signType,
+      paySign: data.paySign,
+      success: (res) => {
+        wx.showToast({
+          title: "成功结算"
+        });
+        this.getDetail();
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

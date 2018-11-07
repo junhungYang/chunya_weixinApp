@@ -46,10 +46,15 @@ Page({
     })
   },
   navToPublicDetail(e) {
-    let url = e.currentTarget.dataset.url
-    wx.navigateTo({
-      url
-    })
+    if(app.globalData.token) {
+      let url = e.currentTarget.dataset.url
+      wx.navigateTo({
+        url
+      })
+    }else {
+      this.switchToLogin()
+    }
+
   },
   formSubmit_collect: function (e) {
     let fromid = `${e.detail.formId}`;
@@ -62,40 +67,83 @@ Page({
       })
     }
   },
+  switchToLogin() {
+    wx.showModal({
+      title: '无法跳转',
+      content: '请先进行登录操作',
+      success: (res) => {
+        if (res.confirm) {
+          wx.switchTab({
+            url: '../cart/cart'
+          })
+        }
+      }
+    })
+  },
   navToGoodDetail(e) {
     if(app.globalData.token) {
       let goodId = e.currentTarget.dataset.goodid;
       wx.navigateTo({
         url: `../goodDetail/goodDetail?goodId=${goodId}`
       });
+    }else {
+      this.switchToLogin()
     }
   },
   navToNuanke() {
-    wx.navigateTo({
+    if(app.globalData.token) {
+      wx.navigateTo({
         url: `../nuanke/nuanke`
       });
+    } else {
+      this.switchToLogin()
+    }
   },
   navToPublic() {
-    wx.navigateTo({
-      url: `../public/public`
-    })
-  },
-  scrollToTop() {
-    wx.pageScrollTo({
-      scrollTop: 0
-    });
+    if(app.globalData.token) {
+      wx.navigateTo({
+        url: `../public/public`
+      })
+    } else {
+      this.switchToLogin()
+    }
   },
   navToHaowu() {
-    wx.navigateTo({
-      url: "../haowuList/haowuList"
-    })
+    if (app.globalData.token) {
+      wx.navigateTo({ url: "../haowuList/haowuList" });
+    } else {
+      this.switchToLogin();
+    }
   },
   navToStory() {
-    wx.navigateTo({
-      url: "../story/story"
-    })
+    if (app.globalData.token) {
+      wx.navigateTo({ url: "../story/story" });
+    } else {
+      this.switchToLogin();
+    }
   },
-
+  toSign() {
+    if (app.globalData.token) {
+      _UserSignin()
+        .then(data => {
+          wx.showModal({
+            title: "签到成功",
+            content: data,
+            showCancel: false,
+            confirmColor: "#2d2d2d"
+          });
+        })
+        .catch(msg => {
+          wx.showModal({
+            title: msg,
+            showCancel: false,
+            confirmColor: "#2d2d2d"
+          });
+        });
+    } else {
+      this.switchToLogin();
+    }
+  },
   bindGetUserInfo(res) {
     if (res.detail.userInfo) {
       //用户点击了授权
@@ -152,29 +200,16 @@ Page({
         });
       });
     }, 500);
-  },
-  toSign() {
-    if(app.globalData.token) {
-      _UserSignin().then(data => {
-        wx.showModal({
-          title: "签到成功",
-          content: data,
-          showCancel: false,
-          confirmColor: '#2d2d2d'
-        });
-      }).catch(msg => {
-        wx.showModal({
-          title:msg,
-          showCancel:false,
-          confirmColor: '#2d2d2d'
-        })
-      })
-    }
   }, 
   hidSearchList() {
       this.setData({
         searchListHid: true,
       });
+  },
+  scrollToTop() {
+    wx.pageScrollTo({
+      scrollTop: 0
+    });
   },
   onShareAppMessage: function() {
     wx.showShareMenu();
