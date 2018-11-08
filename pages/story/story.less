@@ -27,7 +27,7 @@
         top: 88rpx;
         bottom: 0;
         background: #fff;
-        .tuiJian,.reMen,.wenDu,.collect {
+        .tuiJian {
             overflow: hidden;
             height: 100%;
             position: relative;
@@ -46,7 +46,7 @@
                         view {
                             position: relative;
                             flex: 1;
-                            padding-left: 21rpx;
+                            padding-left: 14rpx;
                             text {
                                 position: absolute;
                                 left: 21rpx;
@@ -54,6 +54,7 @@
                                 overflow: hidden;
                                 text-overflow: ellipsis;
                                white-space: nowrap;
+                               margin-left: 7rpx;
                             }
                             text:first-of-type {
                                 font-size: 24rpx;
@@ -72,7 +73,7 @@
                     .cont {
                         display: flex;
                         margin-top: 22rpx;
-                        view:first-of-type {
+                        .isRecommend {
                             width: 58rpx;
                             image {
                                 width: 34rpx;
@@ -81,64 +82,106 @@
                                 margin-top: 10rpx;
                             }
                         }
-                        view:last-of-type {
+                        .desc {
                             flex: 1;
-                            padding-left: 21rpx;
-                            text {
-                                display: block;
+                            padding-left: 14rpx;
+                            .text {
+                                margin-left: 7rpx;
+                                text {
+                                    display: block;
+                                }
+                                text:first-of-type {
+                                    font-size: 28rpx;
+                                    line-height: 34rpx;
+                                }
+                                text:nth-of-type(2) {
+                                    margin-top: 12rpx;
+                                    font-size: 20rpx;
+                                    color: #b7b7b7;
+                                    line-height: 28rpx;
+                                }
+                                text:last-of-type {
+                                    font-size: 20rpx;
+                                    color: #b7b7b7;
+                                    margin-top: 25rpx;
+                                }
                             }
-                            text:first-of-type {
-                                font-size: 28rpx;
-                                line-height: 34rpx;
+                            .img-group {
+                                margin-top: 4rpx;
+                                font-size: 0;
+                                .img {
+                                    margin-top: 14rpx;
+                                    display: inline-block;
+                                    width: 178rpx;
+                                    height: 178rpx;
+                                    margin-left: 7rpx;
+                                    margin-right: 7rpx;
+                                    overflow: hidden;
+                                    background: black;
+                                    position: relative;
+                                    image {
+                                        width: 120%;
+                                        position: absolute;
+                                        left: 50%;
+                                        top: 50%;
+                                        transform: translate(-50%,-50%);
+                                    }
+                                }
+                                image {
+                                    width: 100rpx;
+                                    height: 100rpx;
+                                }
                             }
-                            text:nth-of-type(2) {
-                                margin-top: 12rpx;
-                                font-size: 20rpx;
-                                color: #b7b7b7;
-                                line-height: 28rpx;
-                            }
-                            text:last-of-type {
-                                font-size: 20rpx;
-                                color: #b7b7b7;
-                                margin-top: 25rpx;
-                            }
-                        }
-
-                    }
-                    .control {
-                        position: absolute;
-                        bottom: 29rpx;
-                        right: 6.4%;
-                        font-size: 0;
-                        view {
-                            margin-left: 25rpx;
-                            display: inline-block;
-                            image,text {
-                                vertical-align: middle;
-                            }
-                            text {
-                                color:#b2b2b2;
-                                font-size: 20rpx;
-                                margin-left: 9rpx;
-                            }
-                        }
-                        view:first-of-type {
-                            margin-left: 0;
-                            image {
-                                width: 32rpx;
-                                height: 28rpx;
-                            }
-                        }
-                        view:nth-of-type(2) {
-                            image {
-                                width: 32rpx;
-                                height: 32rpx;
-                            }
-                        }
-                        view:nth-of-type(3) {
-                            image {
-                                width: 31rpx;
-                                height: 30rpx;
+                            .timeAndControl {
+                                margin-top: 20rpx;
+                                height:40rpx;
+                                display: flex;
+                                margin-left: 7rpx;
+                                .time {
+                                    flex: 1;
+                                    align-self: center;
+                                    text {
+                                        font-size: 20rpx;
+                                        color: #b7b7b7;
+                                    }
+                                }
+                                .control {
+                                    align-self: center;
+                                    text-align: right;
+                                    font-size: 0;
+                                    display: flex;
+                                    view {
+                                        margin: 0 12rpx;
+                                        display: inline-block;
+                                        image,text {
+                                            vertical-align: middle;
+                                        }
+                                        text {
+                                            color:#b2b2b2;
+                                            font-size: 20rpx;
+                                            margin-left: 9rpx;
+                                        }
+                                    }
+                                    view:first-of-type {
+                                        margin-left: 0;
+                                        image {
+                                            width: 32rpx;
+                                            height: 28rpx;
+                                        }
+                                    }
+                                    view:nth-of-type(2) {
+                                        image {
+                                            width: 32rpx;
+                                            height: 32rpx;
+                                        }
+                                    }
+                                    view:nth-of-type(3) {
+                                        image {
+                                            width: 31rpx;
+                                            height: 30rpx;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

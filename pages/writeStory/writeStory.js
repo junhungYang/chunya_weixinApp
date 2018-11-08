@@ -12,22 +12,32 @@ Page({
      imageList:[],
      upLoadHidden:true,
      upLoadFile: 'image',
-     videoInfo: {
-
-     }
+     videoSrc: ''
   },
 
   onLoad: function (options) {
   },
   getTitleText(e) {
+    if(e.detail.value===' ') {
+      this.setData({
+        titleText:''
+      })
+    }else {
       this.setData({
         titleText: e.detail.value
       })
+    }
   },
   getContentText(e) {
+    if (e.detail.value === ' ') {
+      this.setData({
+        contentText: ''
+      })
+    }else {
       this.setData({
         contentText: e.detail.value
       })
+    }
   },
   changeIsTop(e) {
     this.setData({
@@ -41,9 +51,8 @@ Page({
     wx.chooseImage({
       sizeType: 'compressed',
       success: res => {
-        console.log(res)
         this.setData({
-          videoInfo: {}
+          videoSrc: ''
         })
         res.tempFiles.forEach((item,index) => {
           if (item.size > 5000000) {
@@ -51,18 +60,48 @@ Page({
               title: '图片过大',
               content: '个别图片过大，请重新选择'
             })
-            res.tempFilePaths.splice(index,1)
+          }else {
+            this.unloadImgOrVideo("image", res.tempFiles, index);
           }
-        })
-        let arr = [...this.data.imageList, ...res.tempFilePaths];
-        if(arr.length > 9) {
-          arr.splice(9)
-        }
-        this.setData({
-          imageList: arr
         })
       }
     })
+  },
+  unloadImgOrVideo(type,list,index) {
+    let path;
+    type === 'image' ? path=list[index].path : path = list
+    wx.showLoading({
+      title: '正在上传',
+      mask: true
+    })
+    wx.uploadFile({
+      url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
+      filePath: path,
+      name: "file",
+      success: res => {
+        let data = JSON.parse(res.data)
+        if (data.errno === 0) {
+          wx.hideLoading()
+          if(type === "image") {
+            let arr = [...this.data.imageList, data.data];
+            if (arr.length > 9) {
+              arr.splice(9)
+            }
+            this.setData({
+              imageList: arr
+            })
+          }else {
+            this.setData({
+              videoSrc: data.data
+            })
+          }
+        } else {
+          wx.showModal({
+            title: data.msg
+          })
+        }
+      }
+    });
   },
   addVideo() {
     this.setData({
@@ -70,23 +109,13 @@ Page({
     })
     wx.chooseVideo({
       success:(res) => {
-        console.log(res);
         if (res.size > 20970000) {
           wx.showModal({
             title: '视频过大',
             content: '视频过大，请进行裁剪或上传其他视频'
           })
         }else {
-          this.setData({
-            imageList:[]
-          })
-          let videoInfo = {
-            src: res.tempFilePath,
-            poster: res.thumbTempFilePath
-          }
-          this.setData({
-            videoInfo
-          })
+          this.unloadImgOrVideo('video',res.tempFilePath)
         }
       }
     })
@@ -101,7 +130,7 @@ Page({
   },
   deleteVideo() {
     this.setData({
-      videoInfo: {}
+      videoSrc: ''
     })
   },
   postsAdd() {
@@ -114,8 +143,8 @@ Page({
       if (this.data.upLoadFile === 'image') {
         obj.imagesList = this.data.imageList
       }else {
-        if(this.data.videoInfo.src) {
-          obj.imagesList = [this.data.videoInfo.src]
+        if(this.data.videoSrc) {
+          obj.imagesList = [this.data.videoSrc]
         }else {
           obj.imagesList = []
         }
@@ -125,9 +154,10 @@ Page({
           title: '发布成功',
           mask: true
         })
-        setTimeout(() => {
-          this.refreshPrevPage(data)
-        }, 700);
+          this.refreshPrevPage()
+          wx.navigateTo({
+            url: `../story/story`
+          });
       }).catch(msg => {
         wx.showModal({
           title: msg
@@ -140,17 +170,14 @@ Page({
       })
     }
   },
-  refreshPrevPage(data) {
+  refreshPrevPage() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2];
-    let arr = prevPage.data.list
-    arr.unshift(data)
     prevPage.setData({
-      list: arr
+      page:1,
+      list:[]
     })
-    wx.navigateBack({
-      delta: 1
-    })
+    prevPage.getStoryList()
   },
   upLoadHiddenManage(e) {
     let index = e.currentTarget.dataset.index

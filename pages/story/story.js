@@ -1,6 +1,6 @@
 // pages/story/story.js
 const App = getApp()
-import { _PostsList, _LikeAddOrDelete, _CollectAddorDelete} from '../../utils/request'
+import { _PostsList, _LikeAddOrDelete, _CollectAddorDelete, _CollectDeleteAll} from '../../utils/request'
 var that;
 Page({
   /**
@@ -20,29 +20,22 @@ Page({
     that = this;
     App.setWatcher(App.globalData, this.watch);
     if (App.globalData.token) {
-      this.getStoryList(this.data.navActive);
+      this.getStoryList();
     }
   },
-  getStoryList(type,scroll) {
-    if (scroll) {
+  getStoryList() {
       wx.showLoading({
         title: "正在加载"
       });
-    }
     _PostsList({
-      type,
+      type: this.data.navActive,
       page: this.data.page,
       size: 10
     })
       .then(data => {
-        let arr;
-        if (scroll) {
-          arr = [...this.data.list, ...data.data];
-        } else {
-          arr = data.data
-        }
+        let list = [...this.data.list, ...data.data];
         this.setData({
-          list: arr
+          list
         });
         setTimeout(() => {
           wx.hideLoading();
@@ -52,6 +45,35 @@ Page({
         // console.log(msg)
         this.showModal(msg);
       });
+  },
+  previewImg(e) {
+    let index= e.currentTarget.dataset.index
+    let imgIndex = e.currentTarget.dataset.imgindex
+    let arr = this.data.list[index].postsPictureVos;
+    let pathArr = []
+    arr.forEach(item => {
+      pathArr.push(item.picUrl)
+    })
+    wx.previewImage({
+      current: pathArr[imgIndex],
+      urls: pathArr
+    })
+  },
+  cancelCollectAll() {
+    _CollectDeleteAll({
+      typeId: 2
+    }).then(() => {
+      this.setData({
+        navActive: 3,
+        page: 1,
+        list: []
+      })
+      this.getStoryList()
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
   },
   zanControl(e) {
     let index = e.currentTarget.dataset.index
@@ -110,23 +132,23 @@ Page({
     let index = e.currentTarget.dataset.index;
     this.setData({
       navActive: index,
-      page: 1
+      page: 1,
+      list:[]
     });
     this.getStoryList(index)
 
   },
   getListByScroll() {
-    let index = this.data.navActive;
     this.setData({
       page: this.data.page +1
     })
-    this.getStoryList(index,'scroll')
+    this.getStoryList()
   },
   navToDetail(e) {
     let id = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index
     wx.navigateTo({
-      url: `../storyDetail/storyDetail?id=${id}&index=${index}`
+      url: `../storyDetail/storyDetail?id=${id}&from=list`
     });
   },
   navToWriteStory() {

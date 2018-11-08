@@ -12,41 +12,54 @@
                 <my-swiper></my-swiper>
             </view>
             <view wx:if="{{navActive===3}}" class="cancel">
-                <text bindtap="cancelCollect">清空</text>
+                <text bindtap="cancelCollectAll">清空</text>
                 <view></view>
                 <text>首页</text>
             </view>
             <view class="list">
                 <view class="item" wx:for="{{list}}" wx:for-index="index" wx:key="{{item.id}}">
-                    <view class="user-info">
+                    <view class="user-info" bindtap="navToDetail">
                         <image src="{{item.userInfo.avatar}}" />
                         <view>
                             <text>{{item.userInfo.nickname}}</text>
                             <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
                         </view>
                     </view>
-                    <view class="cont" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
-                        <view>
+                    <view class="cont" data-id="{{item.id}}" data-index="{{index}}">
+                        <view class="isRecommend" bindtap="navToDetail">
                             <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
                         </view>
-                        <view>
-                            <text>{{item.title}}</text>
-                            <text>{{item.contentDesc}}</text>
-                            <text>{{item.relativeDate}}</text>
-                        </view>
-                    </view>
-                    <view class="control">
-                        <view>
-                            <image src="../../img/reviewsIcon.png" />
-                            <text>{{item.commentCount}}</text>
-                        </view>
-                        <view data-index="{{index}}" data-isliked="{{item.isLiked}}" data-id="{{item.id}}" data-type="{{'zan'}}"  bindtap="zanControl">
-                            <image src="{{item.isLiked?'../../img/zanOrange.png':'../../img/zan.png'}}" />
-                            <text>{{item.likeCount}}</text>
-                        </view>
-                        <view data-index="{{index}}" data-iscollected="{{item.isCollected}}" data-id="{{item.id}}" data-type="{{'collect'}}" bindtap="zanControl">
-                            <image src="{{item.isCollected?'../../img/collectOrange.png':'../../img/collect.png'}}" />
-                            <text>{{item.collectCount}}</text>
+                        <view class="desc">
+                            <view class="text" bindtap="navToDetail">
+                                 <text>{{item.title}}</text>
+                                <text>{{item.contentDesc}}</text>
+                           
+                            </view>
+                            <view wx:if="{{item.postsPictureVos!==0}}" class="img-group">
+                                <view class="img" wx:for="{{item.postsPictureVos}}" wx:for-item="imgItem" 
+                                wx:for-index="imgindex" data-imgindex="{{imgindex}}" data-index="{{index}}" bindtap="previewImg">
+                                    <image src="{{imgItem.picUrl}}" mode="widthFix"/>
+                                </view>
+                            </view>
+                            <view class="timeAndControl">
+                                <view class="time">
+                                    <text>{{item.relativeDate}}</text>
+                                </view>
+                                <view class="control">
+                                    <view>
+                                        <image src="../../img/reviewsIcon.png" />
+                                        <text>{{item.commentCount}}</text>
+                                    </view>
+                                    <view data-index="{{index}}" data-isliked="{{item.isLiked}}" data-id="{{item.id}}" data-type="{{'zan'}}"  bindtap="zanControl">
+                                        <image src="{{item.isLiked?'../../img/zanOrange.png':'../../img/zan.png'}}" />
+                                        <text>{{item.likeCount}}</text>
+                                    </view>
+                                    <view data-index="{{index}}" data-iscollected="{{item.isCollected}}" data-id="{{item.id}}" data-type="{{'collect'}}" bindtap="zanControl">
+                                        <image src="{{item.isCollected?'../../img/collectOrange.png':'../../img/collect.png'}}" />
+                                        <text>{{item.collectCount}}</text>
+                                    </view>
+                                </view>
+                            </view>
                         </view>
                     </view>
                 </view>

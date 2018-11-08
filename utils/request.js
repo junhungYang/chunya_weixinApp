@@ -5,6 +5,28 @@ const _SetToken = function(token) {
   Token = token;
   console.log(Token)
 };
+//故事模块清空所有收藏
+const _CollectDeleteAll = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/collect/deleteAll`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+}
+
 //故事模块
 const _LikeAddOrDelete = function (data) {
   return new Promise((resolve, reject) => {
@@ -1122,6 +1144,7 @@ const _CouponList = function () {
     });
 }
 module.exports = {
+  _CollectDeleteAll,
   _LikeAddOrDelete,
   _PostsList,
   _PostsDetail,

@@ -64,6 +64,7 @@
 .template .reviewsList {
   background: #fff;
   margin-top: 20rpx;
+  min-height: 70vh;
   padding-bottom: 85rpx;
 }
 .template .reviewsList .quantity {

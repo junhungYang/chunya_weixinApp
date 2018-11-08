@@ -16,7 +16,7 @@ Page({
     detail: {},
     pageIndex: 1,
     commentList: [],
-    indxe: null
+    from:''
   },
 
   /**
@@ -27,10 +27,9 @@ Page({
     if(App.globalData.token) {
       this.setData({
         id: Number(options.id),
-        index: Number(options.index)
+        from: options.from
       })
-      this.getStoryDetail()
-      this.getCommentList()
+      this.getCommentList();
     }
     App.setWatcher(App.globalData,this.watch)
   },
@@ -46,6 +45,7 @@ Page({
       page: this.data.pageIndex,
       size: 10
     }).then(data => {
+      this.getStoryDetail()
         if(type) {
           let arr = [...this.data.commentList, ...data.data]
           setTimeout(() => {
@@ -53,7 +53,7 @@ Page({
             this.setData({
               commentList: arr
             })
-          }, 1000);
+          }, 500);
         }else {
           this.setData({
             commentList:data.data
@@ -91,24 +91,42 @@ Page({
     })
   },
   refreshCommentList(data) {
-    let detail = this.data.detail
-    detail.commentCount ++
-    let arr = this.data.commentList;
-    arr.unshift(data)
     this.setData({
-      commentList: arr,
-      detail
+      pageIndex:1
     })
-    wx.pageScrollTo({
-      scrollTop: 0
-    })
+    this.getCommentList();
     let pages = getCurrentPages()
-    let prevPage = pages[pages.length - 2];
-    let arrPrevPage = prevPage.data.list
-    arrPrevPage[this.data.index].commentCount++;
+    let prevPage
+    console.log(this.data.from)
+    if(this.data.from === 'list') {
+      prevPage = pages[pages.length - 2];
+    } else if(this.data.from === 'write') {
+      prevPage = pages[pages.length - 3]
+    }
+    console.log(prevPage) 
     prevPage.setData({
-      list: arrPrevPage
+      page: 1,
+      list: []
     })
+    prevPage.getStoryList()
+    // let detail = this.data.detail
+    // detail.commentCount ++
+    // let arr = this.data.commentList;
+    // arr.unshift(data)
+    // this.setData({
+    //   commentList: arr,
+    //   detail
+    // })
+    // wx.pageScrollTo({
+    //   scrollTop: 0
+    // })
+    // let pages = getCurrentPages()
+    // let prevPage = pages[pages.length - 2];
+    // let arrPrevPage = prevPage.data.list
+    // arrPrevPage[this.data.index].commentCount++;
+    // prevPage.setData({
+    //   list: arrPrevPage
+    // })
   },
   dianZan() {
 
