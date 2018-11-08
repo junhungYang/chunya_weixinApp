@@ -25,11 +25,9 @@
         position: absolute;
         width: 100%;
         top: 88rpx;
-        bottom: 0;
+        min-height: 70vh;
         background: #fff;
         .tuiJian {
-            overflow: hidden;
-            height: 100%;
             position: relative;
             .list {
                 .item {
@@ -130,6 +128,12 @@
                                 image {
                                     width: 100rpx;
                                     height: 100rpx;
+                                }
+                            }
+                            .video-group {
+                                margin-top: 18rpx;
+                                video {
+                                    width: 100%;
                                 }
                             }
                             .timeAndControl {
@@ -254,7 +258,7 @@
         color:#797878;
         text-align: center;
     }
-    .add {
+    .writeStory-add {
         position: fixed;
         right: 18rpx;
         bottom: 60rpx;
@@ -263,10 +267,4 @@
             height: 162rpx;
         }
     }
-}
-
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
 }

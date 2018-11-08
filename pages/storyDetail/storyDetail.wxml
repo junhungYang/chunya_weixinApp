@@ -38,18 +38,18 @@
     </view>
     <view class="write-review">
         <view class="box">
-            <input placeholder="说点什么吧..." bindconfirm="confirmComment"/>
+            <input placeholder="说点什么吧..." value="{{value}}" bindinput="inputComment" bindconfirm="confirmComment"/>
             <view class="btn-group">
                 <view>
                     <image src="../../img/reviewsIcon.png" />
                     <text>{{detail.commentCount}}</text>
                 </view>
                 <view bindtap="dianZan">
-                    <image src="../../img/zan.png" />
+                    <image src="{{detail.isLiked?'../../img/zanOrange.png':'../../img/zan.png'}}" />
                     <text>{{detail.likeCount}}</text>
                 </view>
                 <view bindtap="collect">
-                    <image src="../../img/collect.png" />
+                    <image src="{{detail.isCollected?'../../img/collectOrange.png':'../../img/collect.png'}}" />
                     <text>{{detail.collectCount}}</text>
                 </view>
             </view>

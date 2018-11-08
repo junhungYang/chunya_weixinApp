@@ -77,7 +77,7 @@
         <view class="shop-nav" bindtap="navToIndex">
             <image src="../../img/logo.png" />
             <view>
-                <text>春芽健康科技</text>
+                <text>种子生活</text>
                 <text>chunya Health Technology</text>
                 <text>官方</text>
                 <view class="btn">进店</view>

@@ -1,6 +1,6 @@
 <view class="template">
     <view class="poster">
-        <image src="../../img/publicDetail/poster1.jpg" />
+        <image src="{{data.coverUrl}}" />
     </view>
     <view class="main">
         <view class="num-info">
@@ -55,37 +55,17 @@
         </view>
         <view class="heart-reviews">
             <view class="title">
-                <text>爱心留言 (5条)</text>
+                <text>爱心留言 ({{commonData.count}})</text>
             </view>
             <view class="list">
-                <view class="item">
-                    <image src="../../img/publicDetail/propic.png" />
+                <view class="item" wx:for="{{commonData.data}}" wx:key="{{item.id}}">
+                    <image src="{{item.user_info.avatar}}" />
                     <view class="info-box">
-                        <text>chunya5566</text>
-                        <text>倾听是最好的治疗</text>
+                        <text>{{item.user_info.nickname}}</text>
+                        <text>{{item.content}}</text>
                     </view>
                     <view class="time">
-                        <text>刚刚</text>
-                    </view>
-                </view>
-                <view class="item">
-                    <image src="../../img/publicDetail/propic.png" />
-                    <view class="info-box">
-                        <text>chunya5566</text>
-                        <text>倾听是最好的治疗</text>
-                    </view>
-                    <view class="time">
-                        <text>刚刚</text>
-                    </view>
-                </view>
-                <view class="item">
-                    <image src="../../img/publicDetail/propic.png" />
-                    <view class="info-box">
-                        <text>chunya5566</text>
-                        <text>倾听是最好的治疗</text>
-                    </view>
-                    <view class="time">
-                        <text>刚刚</text>
+                        <text>{{item.add_time}}</text>
                     </view>
                 </view>
             </view>
@@ -118,8 +98,14 @@
             </view>
         </view>
     </view>
-    <view class="fixed-btn" data-index="{{1}}" bindtap="priceStateManage">
-        温度捐
+    <view class="fixed-btn">
+        <view>
+            <image src="../../img/reviewsIcon.png" />
+            <text>评论</text>
+        </view>
+        <view data-index="{{1}}" bindtap="priceStateManage">
+            温度捐
+        </view>
     </view>
     <view class="price-control" hidden="{{priceState}}">
         <view class="bg" data-index="{{2}}" bindtap="priceStateManage"></view>
@@ -140,7 +126,7 @@
                 </view>
                 <view class="input {{activePrice===5?'active':''}}" 
                  data-index="{{5}}" bindtap="changeActivePrice">
-                    <input placeholder-class="placeholder" placeholder="自定义金额" bindinput="inputPrice" bindfocus="inputFocus"/> 元
+                    <input placeholder-class="placeholder" placeholder="自定义金额" bindinput="inputPrice" type="digit" bindfocus="inputFocus"/> 元
                 </view>
                 <view class="has-name">
                     <view class="hasName-btn {{hiddenName?'hidden':''}}"
@@ -149,7 +135,7 @@
                         <text>匿名捐助</text>
                     </view>
                     <view class="inputName" wx:if="{{!hiddenName}}">
-                        <input placeholder="请输入您的姓名" placeholder-style="color:#b2b2b2" bindinput="getDonorName"/>
+                        <input placeholder="请输入您的姓名" placeholder-style="color:#b2b2b2" value="{{donorName}}" bindinput="getDonorName"/>
                     </view>
                 </view>
             </view>

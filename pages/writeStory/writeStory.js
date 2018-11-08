@@ -155,8 +155,8 @@ Page({
           mask: true
         })
           this.refreshPrevPage()
-          wx.navigateTo({
-            url: `../story/story`
+          wx.navigateBack({
+            delta: 1
           });
       }).catch(msg => {
         wx.showModal({

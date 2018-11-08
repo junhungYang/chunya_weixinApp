@@ -45,11 +45,13 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "selectedColor":"#000",
     "list":[{
       "pagePath": "pages/index/index",
       "text": "首页",
       "iconPath":"img/homeIcon.png",
       "selectedIconPath": "img/homeActiveIcon.png"
+   
     },{
       "pagePath": "pages/cart/cart",
       "text": "购物车",

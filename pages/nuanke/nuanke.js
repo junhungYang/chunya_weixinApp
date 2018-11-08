@@ -15,7 +15,8 @@ Page({
     list:[],
     page:1,
     payBtnHidden: true,
-    payId: ''
+    payId: '',
+    activePrice: 0
   },
   onLoad: function () {
     that= this
@@ -27,9 +28,7 @@ Page({
   watch: {
     token(newValue) {
       if(newValue) {
-        that.getList(1,1,'meiWenList');
-        that.getList(2,1,'visualList');
-        that.getList(3,1,"radioList");
+        that.getList();
       }  
     }
   },
@@ -69,6 +68,7 @@ Page({
   },
   showPayBtn(e) {
     let isPay = e.currentTarget.dataset.ispay
+    let activePrice = e.currentTarget.dataset.price
     this.setData({
       payId: e.currentTarget.dataset.id
     })
@@ -79,6 +79,7 @@ Page({
     }else {
       this.setData({
         payBtnHidden: false,
+        activePrice
       });
     }
   },

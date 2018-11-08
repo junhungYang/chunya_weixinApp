@@ -3,7 +3,7 @@
   background: #f2f2f2;
 }
 .input-box {
-  background: linear-gradient(to right, #2ba152, #2da7cb);
+  background: #000;
   height: 88rpx;
   position: relative;
 }
@@ -81,6 +81,17 @@
   background: transparent;
   text-align: left;
   line-height: 0;
+}
+.getFromId {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+  line-height: 50rpx;
+}
+.getFromId::after {
+  border: 0;
 }
 .form {
   width: 100%;

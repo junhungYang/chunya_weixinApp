@@ -1,8 +1,9 @@
 // pages/publicDetail/publicDetail.js
-import { 
+import {
   _CommonwealDetail,
-  _CommonwealDonation
-} from '../../utils/request'
+  _CommonwealDonation,
+  _CommentList
+} from "../../utils/request";
 const app = getApp()
 var that;
 Page({
@@ -17,7 +18,8 @@ Page({
     data: {},
     price: 5,
     id: '',
-    donorName: '请输入您的姓名'
+    donorName: '',
+    commonData: {}
   },
   onLoad: function(options) {  
     that = this
@@ -27,7 +29,20 @@ Page({
     })
     if (app.globalData.token) {
       this.getCommonwealDetail()
+      this.getCommonList()
     }
+  },
+  getCommonList() {
+    _CommentList({
+      typeId: 2,
+      valueId: this.data.id,
+      showType: 0
+    }).then(data => {
+      this.setData({
+        commonData: data
+      })
+      console.log(this.data.commonData);
+    }).catch(msg => this.showModal(msg))
   },
   getCommonwealDetail() {
     _CommonwealDetail({
@@ -96,14 +111,18 @@ Page({
     this.timer = setTimeout(() => {
       let donorAmount = this.data.price;
       if (Number(donorAmount) && Number(donorAmount) >= 0.01) {
-        _CommonwealDonation({
-          donorAmount,
-          isAnonymous: this.data.hiddenName ? 1 : 0,
-          commonwealId: this.data.data.id,
-          donorName: this.data.hiddenName ? "匿名" : this.data.donorName
-        }).then(data => {
-          this.publicPay(data)
-        });
+        if (!this.data.hiddenName && !this.data.donorName) {
+          wx.showModal({ title: "请输入姓名" });
+        } else {
+          _CommonwealDonation({
+            donorAmount,
+            isAnonymous: this.data.hiddenName ? 1 : 0,
+            commonwealId: this.data.data.id,
+            donorName: this.data.hiddenName ? "匿名" : this.data.donorName
+          }).then(data => {
+            this.publicPay(data)
+          });
+        }
       }else {
         wx.showModal({
           title: '金额错误',
@@ -114,9 +133,15 @@ Page({
     }, 250);
   },
   getDonorName(e) {
-    this.setData({
-      donorName: e.detail.value
-    })
+    if(e.detail.value === ' ') {
+      this.setData({
+        donorName:''
+      })
+    }else {
+      this.setData({
+        donorName: e.detail.value
+      })
+    }
   },
   publicPay(data) {
     wx.requestPayment({

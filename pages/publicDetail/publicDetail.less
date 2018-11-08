@@ -121,6 +121,7 @@
                     image {
                         width: 44rpx;
                         height: 44rpx;
+                        border-radius: 50%;
                     }
                     .info-box {
                         flex: 1;
@@ -171,13 +172,38 @@
         position: fixed;
         left: 0;
         bottom: 0;
+        right: 0;
         height: 100rpx;
-        background: #d1051f;
-        text-align: center;
-        color:#fff;
-        line-height: 100rpx;
-        width: 100%;
-        font-size: 28rpx;
+        display: flex;
+        view:first-of-type {
+            width: 150rpx;
+            background: #f2f2f2;
+              text-align: center;
+                image,text {
+                    display: block;
+                }
+                image {
+                    width: 32rpx;
+                    height: 28rpx;
+                    margin: 0 auto;
+                    margin-top: 15rpx;
+                }
+                text {
+                    font-size: 20rpx;
+                    color:#999;
+                    line-height: 20rpx;
+                    margin-top: 14rpx;
+                }
+        }
+        view:last-of-type {
+            flex: 1;
+            text-align: center;
+            color:#fff;
+            line-height: 100rpx;
+            width: 100%;
+            font-size: 28rpx;
+            background: #d1051f;
+        }
     }
     .price-control {
         width: 100%;

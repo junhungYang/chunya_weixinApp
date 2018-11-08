@@ -19,8 +19,8 @@
     <view class="content">
         <view class="item" wx:for="{{orderList}}">
             <view class="title">
-                <image src="../../img/orderList/icon1.png" />
-                <text>春芽好物</text>
+                <image src="../../img/logo.png" />
+                <text>种子生活</text>
                 <text>{{item.order_status_text}}</text>
             </view>
             <view wx:for="{{item.orderGoodsList}}" wx:for-item="item1" data-item="{{item}}" bindtap="navToOrderDetail">

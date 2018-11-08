@@ -3,112 +3,130 @@ const App = getApp()
 import {
   _PostsDetail,
   _PostsGetCommentList,
-  _PostsAddComment
+  _PostsAddComment,
+  _LikeAddOrDelete,
+  _CollectAddorDelete
 } from "../../utils/request";
 var that
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    id:'',
+    id: "",
     detail: {},
     pageIndex: 1,
     commentList: [],
-    from:''
+    from: "",
+    value: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    that = this
-    if(App.globalData.token) {
+  onLoad: function(options) {
+    that = this;
+    if (App.globalData.token) {
       this.setData({
         id: Number(options.id),
         from: options.from
-      })
+      });
       this.getCommentList();
     }
-    App.setWatcher(App.globalData,this.watch)
+    App.setWatcher(App.globalData, this.watch);
   },
   getCommentList(type) {
-    if(type) {
+    if (type) {
       wx.showLoading({
-        title: '正在加载',
-        mask:true
-      })
+        title: "正在加载",
+        mask: true
+      });
     }
     _PostsGetCommentList({
-      postId:this.data.id,
+      postId: this.data.id,
       page: this.data.pageIndex,
       size: 10
-    }).then(data => {
-      this.getStoryDetail()
-        if(type) {
-          let arr = [...this.data.commentList, ...data.data]
+    })
+      .then(data => {
+        this.getStoryDetail();
+        if (type) {
+          let arr = [...this.data.commentList, ...data.data];
           setTimeout(() => {
-            wx.hideLoading()
+            wx.hideLoading();
             this.setData({
               commentList: arr
-            })
+            });
           }, 500);
-        }else {
+        } else {
           this.setData({
-            commentList:data.data
-          })
+            commentList: data.data
+          });
         }
-    }).catch(msg => this.showModal(msg))
+      })
+      .catch(msg => this.showModal(msg));
   },
   getStoryDetail() {
     _PostsDetail({
       id: this.data.id
-    }).then(data => {
-      this.setData({
-        detail: data
+    })
+      .then(data => {
+        this.setData({
+          detail: data
+        });
       })
-    })
-    .catch(msg => this.showModal(msg))
+      .catch(msg => this.showModal(msg));
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
     this.setData({
-      pageIndex: this.data.pageIndex +1
-    })
-    this.getCommentList('scroll')
+      pageIndex: this.data.pageIndex + 1
+    });
+    this.getCommentList("scroll");
+  },
+  inputComment(e) {
+    if (e.detail.value === " ") {
+      this.setData({
+        value: ""
+      });
+    } else {
+      this.setData({
+        value: e.detail.value
+      });
+    }
   },
   confirmComment(e) {
-    let content = e.detail.value;
-    _PostsAddComment({
-      postId: this.data.id,
-      content
-    }).then(data => {
-      wx.showToast({
-        icon: 'success',
-        title: '添加成功'
-      })
-      this.refreshCommentList(data)
-    })
+    if (this.data.value) {
+      _PostsAddComment({
+        postId: this.data.id,
+        content: this.data.value
+      }).then(data => {
+        wx.showToast({
+          icon: "success",
+          title: "添加成功"
+        });
+        this.setData({
+          value: ""
+        });
+        this.refreshCommentList(data);
+      });
+    }
   },
   refreshCommentList(data) {
     this.setData({
-      pageIndex:1
-    })
+      pageIndex: 1
+    });
     this.getCommentList();
-    let pages = getCurrentPages()
-    let prevPage
-    console.log(this.data.from)
-    if(this.data.from === 'list') {
+    let pages = getCurrentPages();
+    let prevPage;
+    if (this.data.from === "list") {
       prevPage = pages[pages.length - 2];
-    } else if(this.data.from === 'write') {
-      prevPage = pages[pages.length - 3]
+    } else if (this.data.from === "write") {
+      prevPage = pages[pages.length - 3];
     }
-    console.log(prevPage) 
     prevPage.setData({
       page: 1,
       list: []
-    })
-    prevPage.getStoryList()
+    });
+    prevPage.getStoryList();
     // let detail = this.data.detail
     // detail.commentCount ++
     // let arr = this.data.commentList;
@@ -129,64 +147,68 @@ Page({
     // })
   },
   dianZan() {
-
+    _LikeAddOrDelete({
+      typeId: 0,
+      valueId: this.data.id
+    }).then( () => {
+      this.getCommentList();
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
   },
   collect() {
-    
+    _CollectAddorDelete({
+      typeId: 2,
+      valueId:this.data.id
+    }).then(() => {
+      this.getCommentList()
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
   },
   watch: {
     token(newValue) {
-      if(newValue) {
-        that.getStoryDetail()
-        that.getCommentList()
+      if (newValue) {
+        that.getCommentList();
       }
     }
   },
   showModal(msg) {
     wx.showModal({
       title: msg
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
-
+  onPullDownRefresh: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
-})
+  onShareAppMessage: function() {}
+});

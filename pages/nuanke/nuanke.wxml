@@ -15,11 +15,11 @@
                     <text>{{item.brief}}</text>
                 </view>
             </view>
-            <view class="img" data-id="{{item.id}}" data-ispay="{{item.isPay}}" bindtap="showPayBtn">
+            <view class="img" data-id="{{item.id}}" data-ispay="{{item.isPay}}"  data-price="{{item.contentPrice}}" bindtap="showPayBtn">
                 <image src="{{item.listCoverUrl}}" />
             </view>
             <view class="control">
-                <view class="read" data-id="{{item.id}}" data-ispay="{{item.isPay}}" bindtap="showPayBtn">
+                <view class="read" data-id="{{item.id}}" data-ispay="{{item.isPay}}" data-price="{{item.contentPrice}}" bindtap="showPayBtn">
                     <text>阅读全文</text>
                 </view>
                 
@@ -47,7 +47,7 @@
             
         </view>
         <view class="pay"  bindtap="nuankePay">
-            支付￥1 即可阅读
+            支付￥{{activePrice}} 即可阅读
         </view>
     </view>
 </view>

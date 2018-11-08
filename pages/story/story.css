@@ -26,12 +26,10 @@
   position: absolute;
   width: 100%;
   top: 88rpx;
-  bottom: 0;
+  min-height: 70vh;
   background: #fff;
 }
 .template .content .tuiJian {
-  overflow: hidden;
-  height: 100%;
   position: relative;
 }
 .template .content .tuiJian .list .item {
@@ -136,6 +134,12 @@
 .template .content .tuiJian .list .item .cont .desc .img-group image {
   width: 100rpx;
   height: 100rpx;
+}
+.template .content .tuiJian .list .item .cont .desc .video-group {
+  margin-top: 18rpx;
+}
+.template .content .tuiJian .list .item .cont .desc .video-group video {
+  width: 100%;
 }
 .template .content .tuiJian .list .item .cont .desc .timeAndControl {
   margin-top: 20rpx;
@@ -248,17 +252,12 @@
   color: #797878;
   text-align: center;
 }
-.template .add {
+.template .writeStory-add {
   position: fixed;
   right: 18rpx;
   bottom: 60rpx;
 }
-.template .add image {
+.template .writeStory-add image {
   width: 159rpx;
   height: 162rpx;
-}
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
 }

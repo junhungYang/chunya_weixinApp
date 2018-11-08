@@ -75,6 +75,11 @@ Page({
       })
     })
   },
+  navToIndex() {
+    wx.switchTab({
+      url: '../index/index'
+    })
+  },
   zanControl(e) {
     let index = e.currentTarget.dataset.index
     let valueId = e.currentTarget.dataset.id
@@ -123,7 +128,12 @@ Page({
           this.setData({
             page:1
           })
-          this.getStoryList(3);
+          if(this.data.navActive === 3) {
+            this.setData({
+              list: []
+            })
+          }
+          this.getStoryList();
         }
       }
     }).catch(msg => this.showModal(msg))
@@ -196,7 +206,9 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function() {
+    this.getListByScroll()
+  },
 
   /**
    * 用户点击右上角分享

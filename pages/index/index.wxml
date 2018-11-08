@@ -20,26 +20,45 @@
     <my-swiper></my-swiper>
   </view>
   <view class="nav">
-    
     <view class="item">
-            <image src="../../img/index/haowu.png"/>
-            <text>好物</text>
+      <form bindsubmit="formSubmit_collect" report-submit="true">
+          <button  formType="submit"  hover-class="none" class="getFromId" bindtap="navToHaowu">
+              <image src="../../img/index/haowu.png"/>
+              <text>好物</text>
+          </button>
+      </form>  
     </view>
     <view class="item">
-      <image src="../../img/index/nuanke.png" bindtap="navToNuanke"/>
-      <text>暖课</text>
+       <form bindsubmit="formSubmit_collect" report-submit="true">
+          <button  formType="submit"  hover-class="none" class="getFromId" bindtap="navToNuanke">
+              <image src="../../img/index/nuanke.png"/>
+              <text>暖课</text>
+          </button>
+      </form>  
     </view>
     <view class="item">
-      <image src="../../img/index/gongyi.png" bindtap="navToPublic"/>
-      <text>公益</text>
+      <form bindsubmit="formSubmit_collect" report-submit="true">
+          <button  formType="submit"  hover-class="none" class="getFromId" bindtap="navToPublic">
+            <image src="../../img/index/gongyi.png" />
+            <text>公益</text>
+        </button>
+      </form>  
     </view>
-    <view class="item" bindtap="navToStory">
-      <image src="../../img/index/gushi.png" />
-      <text>故事</text>
+    <view class="item">
+      <form bindsubmit="formSubmit_collect" report-submit="true">
+        <button  formType="submit"  hover-class="none" class="getFromId" bindtap="navToStory">
+          <image src="../../img/index/gushi.png" />
+          <text>故事</text>
+        </button>
+      </form> 
     </view>
-    <view class="item" bindtap="toSign">
-      <image src="../../img/index/qiandao.png" />
-      <text>签到</text>
+    <view class="item">
+      <form bindsubmit="formSubmit_collect" report-submit="true">
+        <button  formType="submit"  hover-class="none" class="getFromId" bindtap="toSign">
+          <image src="../../img/index/qiandao.png" />
+          <text>签到</text>
+        </button>
+      </form> 
     </view>
   </view>
   <view class="index-cont">
