@@ -76,6 +76,13 @@ Page({
       url
     });
   },
+  navToNuanke(e) {
+    if(app.globalData.token) {
+      wx.navigateTo({
+        url: '../nuanke/nuanke'
+      })
+    }
+  },
   navToGoodDetail(e) {
     let orderId = e.currentTarget.dataset.orderid;
     wx.navigateTo({

@@ -1,6 +1,6 @@
 <view class="template">
     <rich-text wx:if="{{isPay}}" nodes="{{contentDesc}}"></rich-text>
-    <view wx:else class="payMask">
+    <view wx:if="{{isPay===0}}" class="payMask">
         <view>
             <text>春芽暖课</text>
             <text>支付￥1元即可阅读</text>

@@ -27,6 +27,7 @@
                     <view class="cont">
                         <view class="isRecommend" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
                             <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
+                            <text wx:if="{{item.isTop===1}}">置顶</text>
                         </view>
                         <view class="desc">
                             <view class="text" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
@@ -40,10 +41,9 @@
                                     <image src="{{imgItem.picUrl}}" mode="widthFix"/>
                                 </view>
                             </view>
-                            <view wx:if="{{item.resourceType!==1&&item.postsPictureVos.length!==0}}" class="video-group">
-                                <video src="{{item.postsPictureVos[0].picUrl}}">
-
-                                </video>
+                            <view wx:if="{{item.resourceType!==1&&item.postsPictureVos.length!==0}}" class="video-group" data-src="{{item.postsPictureVos[0].picUrl}}" bindtap="navToWatchVideo">
+                                 <image class="poster" src="{{item.postsPictureVos[0].videoCoverUrl}}" mode="widthFix"/>
+                                 <image class="playIcon" src="../../img/play.svg" mode="widthFix"/>
                             </view>
                             <view class="timeAndControl">
                                 <view class="time">

@@ -28,7 +28,7 @@
           font-size: 24rpx;
           color: #313131;
           top: 0;
-          line-height: 24rpx;
+          line-height: 30rpx;
         }
         text:last-of-type {
           font-size: 20rpx;
@@ -40,7 +40,6 @@
     }
     .cont {
       margin-top: 22rpx;
-      view {
         text {
           display: block;
         }
@@ -58,6 +57,49 @@
           font-size: 20rpx;
           color: #b7b7b7;
           margin-top: 25rpx;
+        }
+      .visual {
+        .video {
+          margin-top: 18rpx;
+          height: 400rpx;
+          background: #000;
+          position: relative;
+          overflow: hidden;
+          .poster {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%)
+          }
+          .playIcon {
+            width: 70rpx;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+          }
+        }
+        .img {
+            position: relative;
+            margin-top: 18rpx;
+            .img-item {
+                display: inline-block;
+                width: 206rpx;
+                height: 206rpx;
+                overflow: hidden;
+                position: relative;
+                margin-left: 7rpx;
+                margin-right: 7rpx;
+                background:rgb(0,0,0);
+                image {
+                    width: 120%;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);  
+                }
+            }
         }
       }
     }

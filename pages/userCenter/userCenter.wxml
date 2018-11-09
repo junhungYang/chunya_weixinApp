@@ -114,7 +114,7 @@
                 <text>我的活动</text>
             </view>
             <view class="item">
-                <image src="../../img/userCenter/share.png" />
+                <image src="../../img/userCenter/share.png" bindtap="navToNuanke"/>
                 <text>课堂分享</text>
             </view>
             <view class="item">

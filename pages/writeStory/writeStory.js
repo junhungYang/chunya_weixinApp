@@ -41,6 +41,7 @@ Page({
     }
   },
   changeIsTop(e) {
+    console.log(e.detail.value)
     this.setData({
       isTop: e.detail.value
     })
@@ -172,9 +173,10 @@ Page({
   },
   postsAdd() {
     if(this.data.titleText&&this.data.contentText) {
+      let isTop = this.data.isTop ? 0 : 2
       let obj = {
         title: this.data.titleText,
-        isTop: this.data.isTop,
+        isTop,
         content: this.data.contentText,
         videoCoverUrl: ''
       }

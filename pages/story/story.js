@@ -147,13 +147,18 @@ Page({
       list:[]
     });
     this.getStoryList(index)
-
   },
   getListByScroll() {
     this.setData({
       page: this.data.page +1
     })
     this.getStoryList()
+  },
+  navToWatchVideo(e) {
+    let src = e.currentTarget.dataset.src
+    wx.navigateTo({
+      url: `../watchVideo/watchVideo?src=${src}`
+    })
   },
   navToDetail(e) {
     let id = e.currentTarget.dataset.id;

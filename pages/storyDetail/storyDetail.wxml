@@ -8,11 +8,20 @@
             </view>
         </view>
         <view class="cont">
-            <view>
                 <text>{{detail.title}}</text>
                 <text>{{detail.contentDesc}}</text>
+                <view class="visual">
+                    <view class="img" wx:if="{{detail.resourceType===1}}">
+                        <view class="img-item" wx:for="{{detail.postsPictureVos}}" wx:key="{{item.id}}">
+                            <image src="{{item.picUrl}}" mode="widthFix"  data-index="{{index}}" data-list="{{detail.postsPictureVos}}" bindtap="viewPic"/>
+                        </view>
+                    </view>
+                    <view  class="video" wx:if="{{detail.resourceType===2}}" bindtap="navToWatchVideo" data-src="{{detail.postsPictureVos[0].picUrl}}">
+                        <image class="poster" src="{{detail.postsPictureVos[0].videoCoverUrl}}" mode="widthFix"/>
+                        <image class="playIcon" src="../../img/play.svg" mode="widthFix"/>
+                    </view>
+                </view>
                 <text>{{detail.relativeDate}}</text>
-            </view>
         </view>
     </view>
     <view class="reviewsList">
@@ -38,7 +47,7 @@
     </view>
     <view class="write-review">
         <view class="box">
-            <input placeholder="说点什么吧..." value="{{value}}" bindinput="inputComment" bindconfirm="confirmComment"/>
+            <input placeholder="说点什么吧..." value="{{value}}" type="text" bindinput="inputComment" bindconfirm="confirmComment"/>
             <view class="btn-group">
                 <view>
                     <image src="../../img/reviewsIcon.png" />

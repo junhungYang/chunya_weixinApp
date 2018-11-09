@@ -35,6 +35,24 @@ Page({
     }
     App.setWatcher(App.globalData, this.watch);
   },
+  navToWatchVideo(e) {
+    let src = e.currentTarget.dataset.src
+    wx.navigateTo({
+      url: `../watchVideo/watchVideo?src=${src}`
+    })
+  },
+  viewPic(e) {
+    let index = e.currentTarget.dataset.index;
+    let list = e.currentTarget.dataset.list
+    let arr = [];
+    list.forEach(item => {
+      arr.push(item.picUrl)
+    })
+    wx.previewImage({
+      current: arr[index],
+      urls: arr
+    })
+  },
   getCommentList(type) {
     if (type) {
       wx.showLoading({

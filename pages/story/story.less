@@ -30,6 +30,7 @@
         .tuiJian {
             position: relative;
             .list {
+                min-height: 90vh;
                 .item {
                     padding: 39rpx 6.4% 29rpx 6.4%;
                     border-bottom: 1px solid #f2f2f2;
@@ -73,16 +74,24 @@
                         margin-top: 22rpx;
                         .isRecommend {
                             width: 58rpx;
+                            text-align: center;
                             image {
+                                display: block;
                                 width: 34rpx;
                                 height: 34rpx;
                                 margin: 0 12rpx;
                                 margin-top: 10rpx;
                             }
+                            text {
+                                font-size: 22rpx;
+                                line-height: 28rpx;
+                                color: #d1051f;
+
+                            }
                         }
                         .desc {
                             flex: 1;
-                            padding-left: 14rpx;
+                            padding-left: 18rpx;
                             .text {
                                 margin-left: 7rpx;
                                 text {
@@ -132,8 +141,23 @@
                             }
                             .video-group {
                                 margin-top: 18rpx;
-                                video {
+                                height: 350rpx;
+                                background: #000;
+                                position: relative;
+                                overflow: hidden;
+                                .poster {
                                     width: 100%;
+                                    position: absolute;
+                                    left: 0;
+                                    top: 50%;
+                                    transform: translateY(-50%)
+                                }
+                                .playIcon {
+                                    width: 55rpx;
+                                    position: absolute;
+                                    left: 50%;
+                                    top: 50%;
+                                    transform: translate(-50%,-50%);
                                 }
                             }
                             .timeAndControl {

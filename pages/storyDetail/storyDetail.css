@@ -32,7 +32,7 @@
   font-size: 24rpx;
   color: #313131;
   top: 0;
-  line-height: 24rpx;
+  line-height: 30rpx;
 }
 .template .item .user-info view text:last-of-type {
   font-size: 20rpx;
@@ -43,23 +43,65 @@
 .template .item .cont {
   margin-top: 22rpx;
 }
-.template .item .cont view text {
+.template .item .cont text {
   display: block;
 }
-.template .item .cont view text:first-of-type {
+.template .item .cont text:first-of-type {
   font-size: 28rpx;
   line-height: 34rpx;
 }
-.template .item .cont view text:nth-of-type(2) {
+.template .item .cont text:nth-of-type(2) {
   margin-top: 12rpx;
   font-size: 20rpx;
   color: #b7b7b7;
   line-height: 28rpx;
 }
-.template .item .cont view text:last-of-type {
+.template .item .cont text:last-of-type {
   font-size: 20rpx;
   color: #b7b7b7;
   margin-top: 25rpx;
+}
+.template .item .cont .visual .video {
+  margin-top: 18rpx;
+  height: 400rpx;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+.template .item .cont .visual .video .poster {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.template .item .cont .visual .video .playIcon {
+  width: 70rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.template .item .cont .visual .img {
+  position: relative;
+  margin-top: 18rpx;
+}
+.template .item .cont .visual .img .img-item {
+  display: inline-block;
+  width: 206rpx;
+  height: 206rpx;
+  overflow: hidden;
+  position: relative;
+  margin-left: 7rpx;
+  margin-right: 7rpx;
+  background: #000000;
+}
+.template .item .cont .visual .img .img-item image {
+  width: 120%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .template .reviewsList {
   background: #fff;

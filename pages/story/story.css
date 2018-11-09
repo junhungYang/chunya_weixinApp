@@ -32,6 +32,9 @@
 .template .content .tuiJian {
   position: relative;
 }
+.template .content .tuiJian .list {
+  min-height: 90vh;
+}
 .template .content .tuiJian .list .item {
   padding: 39rpx 6.4% 29rpx 6.4%;
   border-bottom: 1px solid #f2f2f2;
@@ -77,16 +80,23 @@
 }
 .template .content .tuiJian .list .item .cont .isRecommend {
   width: 58rpx;
+  text-align: center;
 }
 .template .content .tuiJian .list .item .cont .isRecommend image {
+  display: block;
   width: 34rpx;
   height: 34rpx;
   margin: 0 12rpx;
   margin-top: 10rpx;
 }
+.template .content .tuiJian .list .item .cont .isRecommend text {
+  font-size: 22rpx;
+  line-height: 28rpx;
+  color: #d1051f;
+}
 .template .content .tuiJian .list .item .cont .desc {
   flex: 1;
-  padding-left: 14rpx;
+  padding-left: 18rpx;
 }
 .template .content .tuiJian .list .item .cont .desc .text {
   margin-left: 7rpx;
@@ -137,9 +147,24 @@
 }
 .template .content .tuiJian .list .item .cont .desc .video-group {
   margin-top: 18rpx;
+  height: 350rpx;
+  background: #000;
+  position: relative;
+  overflow: hidden;
 }
-.template .content .tuiJian .list .item .cont .desc .video-group video {
+.template .content .tuiJian .list .item .cont .desc .video-group .poster {
   width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.template .content .tuiJian .list .item .cont .desc .video-group .playIcon {
+  width: 55rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .template .content .tuiJian .list .item .cont .desc .timeAndControl {
   margin-top: 20rpx;
