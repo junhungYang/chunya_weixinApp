@@ -23,11 +23,13 @@
         </view>
         <view wx:else class="video">
             <view class="video-box" hidden="{{videoSrc===''}}">
-                <video src="{{videoSrc}}" >
-                    <cover-view class="delIcon-video" bindtap="deleteVideo">
-                         <cover-image src="../../img/deleteRed.png" />
-                    </cover-view>
-                </video>
+                
+                <view bindtap="navToWatchVideo">
+                    <image class="poster" src="{{videoPoster}}" mode="widthFix"/>
+                    <image class="playIcon" src="../../img/play.svg" mode="widthFix"/>
+                </view>
+                <image class="delIcon-video" src="../../img/deleteRed.png" bindtap="deleteVideo"/>
+                
             </view>
             <view bindtap="upLoadHiddenManage" class="img-item addImage" wx:if="{{videoSrc===''}}">
                 <image src="../../img/camere.png" mode="widthFix"/>

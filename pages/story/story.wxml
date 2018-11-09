@@ -54,11 +54,11 @@
                                         <image src="../../img/reviewsIcon.png" />
                                         <text>{{item.commentCount}}</text>
                                     </view>
-                                    <view data-index="{{index}}" data-isliked="{{item.isLiked}}" data-id="{{item.id}}" data-type="{{'zan'}}"  bindtap="zanControl">
+                                    <view data-index="{{index}}" data-isliked="{{item.isLiked}}" data-id="{{item.id}}" data-type="{{'zan'}}" data-count="{{item.likeCount}}"  bindtap="zanControl">
                                         <image src="{{item.isLiked?'../../img/zanOrange.png':'../../img/zan.png'}}" />
                                         <text>{{item.likeCount}}</text>
                                     </view>
-                                    <view data-index="{{index}}" data-iscollected="{{item.isCollected}}" data-id="{{item.id}}" data-type="{{'collect'}}" bindtap="zanControl">
+                                    <view data-index="{{index}}" data-iscollected="{{item.isCollected}}" data-id="{{item.id}}" data-type="{{'collect'}}" data-count="{{item.collectCount}}" bindtap="zanControl">
                                         <image src="{{item.isCollected?'../../img/collectOrange.png':'../../img/collect.png'}}" />
                                         <text>{{item.collectCount}}</text>
                                     </view>
@@ -69,8 +69,10 @@
                 </view>
             </view>
             <view wx:if="{{navActive===3&&list.length===0}}" class="mask">
-                <image src="../../img/collectPic.jpg" />
-                <text>啥都没有~</text>
+                <view>
+                    <image src="../../img/collectPic.jpg" />
+                    <text>啥都没有~</text>
+                </view>
             </view>
         </view>
     </view>

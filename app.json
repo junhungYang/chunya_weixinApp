@@ -1,15 +1,8 @@
 {
   "pages": [
-        "pages/index/index",
-        "pages/writeStory/writeStory",
-    
+            "pages/index/index",
+            "pages/writeStory/writeStory",
 
-            
-       
-      
-     
- 
-     
             "pages/story/story",
         "pages/eventsList/eventsList",
         "pages/publicDetail/publicDetail",
@@ -36,7 +29,8 @@
         "pages/beforeBalance/beforeBalance",
                 "pages/userCenter/userCenter",
           "pages/nuankeDetail/nuankeDetail",
-          "pages/nuanke/nuanke"
+          "pages/nuanke/nuanke",
+          "pages/watchVideo/watchVideo"
   ],
   "window": {
     "backgroundTextStyle": "light",

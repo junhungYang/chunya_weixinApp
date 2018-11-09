@@ -76,19 +76,34 @@
 .template .main .img-group .video-box,
 .template .main .video .video-box {
   position: relative;
+  background: #000;
+  height: 400rpx;
+  overflow: hidden;
 }
-.template .main .img-group .video-box video,
-.template .main .video .video-box video {
+.template .main .img-group .video-box .poster,
+.template .main .video .video-box .poster {
   width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .template .main .img-group .video-box .delIcon-video,
 .template .main .video .video-box .delIcon-video {
-  width: 35rpx;
-  height: 35rpx;
+  width: 43rpx;
+  height: 43rpx;
   position: absolute;
   right: 12rpx;
   top: 12rpx;
   z-index: 2;
+}
+.template .main .img-group .video-box .playIcon,
+.template .main .video .video-box .playIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70rpx;
 }
 .template .main .img-group .addImage image,
 .template .main .video .addImage image {

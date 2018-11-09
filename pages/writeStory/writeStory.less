@@ -65,16 +65,30 @@
             }
             .video-box {
                 position: relative;
-                video {
+                background: #000;
+                height: 400rpx;
+                overflow: hidden;
+                .poster {
                     width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
                 }
                 .delIcon-video {
-                    width: 35rpx;
-                    height: 35rpx;
+                    width: 43rpx;
+                    height: 43rpx;
                     position: absolute;
                     right:12rpx;
                     top: 12rpx;
                     z-index: 2
+                }
+                .playIcon {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    width: 70rpx;
                 }
             }
 

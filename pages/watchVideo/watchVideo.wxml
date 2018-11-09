@@ -1,0 +1,3 @@
+<view class="template">
+    <video src="{{src}}" autoplay="true" loop="true"></video>
+</view>

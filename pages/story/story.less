@@ -192,24 +192,28 @@
                 }
             }
             .mask {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%,-50%);
-                image,text {
-                    display: block;
-                }
-                image {
-                    width: 177rpx;
-                    height: 193rpx;
-                }
-                text {
-                    font-size: 24rpx;
-                    color:#313131;
-                    margin: 0 auto;
-                    margin-top: 35rpx;
+                height: 90vh;
+                position: relative;
+                view {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                     display: flex;
+                    flex-direction: column;
+                    transform: translate(-50%,-50%);
+                    image,text {
+                        display: block;
+                    }
+                    image {
+                        width: 177rpx;
+                        height: 193rpx;
+                    }
+                    text {
+                        font-size: 24rpx;
+                        color:#313131;
+                        margin: 0 auto;
+                        margin-top: 35rpx;
+                    }
                 }
             }
         }

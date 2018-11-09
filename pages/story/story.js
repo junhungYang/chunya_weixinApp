@@ -86,6 +86,7 @@ Page({
     let isLiked = e.currentTarget.dataset.isliked
     let isCollected = e.currentTarget.dataset.iscollected
     let type = e.currentTarget.dataset.type
+    let count = e.currentTarget.dataset.count
     let promiseObj
 
     if(type === 'collect') {
@@ -102,7 +103,7 @@ Page({
     promiseObj.then(() => {
       let arr = this.data.list
       if (type === 'zan') {
-        if (isLiked) {
+        if (isLiked&&count>0) {
           arr[index].likeCount--
           arr[index].isLiked = 0
         } else {
@@ -114,7 +115,7 @@ Page({
         })
       } else {
         if (this.data.navActive !== 3) {
-          if (isCollected) {
+          if (isCollected && count > 0) {
             arr[index].collectCount--;
             arr[index].isCollected = 0;
           } else {

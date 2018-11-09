@@ -190,22 +190,26 @@
   height: 30rpx;
 }
 .template .content .tuiJian .mask {
-  display: flex;
-  flex-direction: column;
+  height: 90vh;
+  position: relative;
+}
+.template .content .tuiJian .mask view {
   position: absolute;
   left: 50%;
   top: 50%;
+  display: flex;
+  flex-direction: column;
   transform: translate(-50%, -50%);
 }
-.template .content .tuiJian .mask image,
-.template .content .tuiJian .mask text {
+.template .content .tuiJian .mask view image,
+.template .content .tuiJian .mask view text {
   display: block;
 }
-.template .content .tuiJian .mask image {
+.template .content .tuiJian .mask view image {
   width: 177rpx;
   height: 193rpx;
 }
-.template .content .tuiJian .mask text {
+.template .content .tuiJian .mask view text {
   font-size: 24rpx;
   color: #313131;
   margin: 0 auto;
