@@ -2,6 +2,5 @@
     "usingComponents": {
         "good-swiper": "../components/goodSwiper/goodSwiper"
     },
-    "navigationBarTitleText": "商品详情",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "商品详情"
 }

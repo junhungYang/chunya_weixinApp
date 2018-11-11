@@ -8,7 +8,7 @@ Page({
   data: {
     reviewsList: [],
     pageIndex: 1,
-    goodId: 0
+    id: 0
   },
 
   /**
@@ -16,14 +16,14 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      goodId: Number(options.goodId)
+      id: Number(options.id)
     })
     this.getCommentList()
   },
   getCommentList(style) {
     _CommentList({
-      typeId: 0,
-      valueId: 1181007,
+      typeId: 2,
+      valueId: this.data.id,
       showType: 0,
       page: this.data.pageIndex,
       sort: "desc"

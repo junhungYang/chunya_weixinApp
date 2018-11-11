@@ -99,7 +99,7 @@
         </view>
     </view>
     <view class="fixed-btn">
-        <view>
+        <view bindtap="navToReviews">
             <image src="../../img/reviewsIcon.png" />
             <text>评论</text>
         </view>

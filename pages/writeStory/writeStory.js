@@ -69,42 +69,52 @@ Page({
       }
     })
   },
-  upLoadVideo(list) {
+  upLoadVideo(videoSrc,videoPoster) {
+    console.log(videoPoster)
     wx.showLoading({
       title: '正在上传',
-      mask: true
+      // mask: true
     })
+    let promiseObj = new Promise((resolve,reject) => {
       wx.uploadFile({
         url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-        filePath: list[0],
+        filePath: videoSrc,
         name: "file",
         success: res => {
           let data = JSON.parse(res.data)
           if (data.errno === 0) {
             this.setData({
-              videoSrc: data.data
+              videoSrc: data.data,
             })
-            wx.uploadFile({
-              url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-              filePath: list[1],
-              name: "file",
-              success: res => {
-                let data = JSON.parse(res.data)
-                if (data.errno === 0) {
-                  console.log(data.data)
-                  this.setData({ videoPoster: data.data });
-                  wx.hideLoading()
-                } else {
-                  wx.showModal({ title: data.msg })
-                }
-              }
-            });
+            resolve()
           } else {
-            wx.showModal({title:data.msg})
+            wx.showModal({ title: data.msg })
+            reject()
           }
         }
       });
-    
+    }).then(() => {
+      //  wx.uploadFile({
+      //   url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
+      //   filePath: videoPoster,
+      //   name: "file",
+      //   success: res => {
+      //     console.log(res)
+      //     let data = JSON.parse(res.data)
+      //     if (data.errno === 0) {
+      //       this.setData({
+      //         videoPoster: data.data,
+      //         upLoadHidden: true
+      //       })
+      //       wx.hideLoading()
+      //     } else {
+      //       wx.showModal({ title: data.msg })
+      //     }
+      //   }
+      // });
+    })
+
+
   },
   upLoadImg(list,index) {
     let path = list[index].path
@@ -125,7 +135,8 @@ Page({
             arr.splice(9)
           }
           this.setData({
-            imageList: arr
+            imageList: arr,
+            upLoadHidden: true
           })
         }else {
           wx.showModal({
@@ -147,7 +158,8 @@ Page({
             content: '视频过大，请进行裁剪或上传其他视频'
           })
         }else {
-          this.upLoadVideo([res.tempFilePath, res.thumbTempFilePath]);
+          console.log(res);
+          this.upLoadVideo(res.tempFilePath, res.thumbTempFilePath);
         }
       }
     })

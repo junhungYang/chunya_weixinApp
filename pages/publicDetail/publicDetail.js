@@ -32,6 +32,11 @@ Page({
       this.getCommonList()
     }
   },
+  navToReviews() {
+    wx.navigateTo({
+      url: `../publicReviewsList/publicReviewsList?id=${this.data.id}`
+    })
+  },
   getCommonList() {
     _CommentList({
       typeId: 2,

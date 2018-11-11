@@ -8,7 +8,7 @@
                 </view>
                 <view class="time-info">
                     <text>{{item.add_time}}</text>
-                    <text>善缘大米：50G</text>
+                    <text></text>
                 </view>
             </view>
             <view class="cont">
@@ -28,7 +28,7 @@
     <view class="release">
         <view class="chooseImg">
             <!--<image src="../../img/biaoqing.png" /> -->
-            <image src="../../img/chooseImg.png" />
+            <!--<image src="../../img/chooseImg.png" /> -->
         </view>
         <input placeholder="点击评论留言..." placeholder-class="placeholder"/>
     </view>

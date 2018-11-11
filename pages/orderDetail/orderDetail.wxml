@@ -1,7 +1,7 @@
 
 <view class="template">
     <view class="state">
-        <image src="../../img/orderDetail/bg.jpg" />
+        <image src="../../img/orderDetailBg.jpg" />
         <view>
             <text>{{data.orderInfo.order_status_text}}</text>
             <text></text>
