@@ -233,6 +233,7 @@ Page({
     prevPage.getStoryList()
   },
   upLoadHiddenManage(e) {
+    console.log(11111)
     let index = e.currentTarget.dataset.index
     if(index === 1) {
       this.setData({

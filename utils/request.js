@@ -154,6 +154,26 @@ const _PostsAdd = function (data) {
 
 
 //活动模块
+const _ActivitySignUp = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/activity/signUp`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+} 
 const _ActivityList = function (data) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -1153,6 +1173,7 @@ module.exports = {
   _PostsAdd,
   _ActivityList,
   _ActivityDetail,
+  _ActivitySignUp,
   _CommonwealDonation,
   _CommonwealDetail,
   _CommonwealList,

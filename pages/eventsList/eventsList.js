@@ -9,7 +9,8 @@ Page({
    */
   data: {
     list: [],
-    pageIndex: 1
+    pageIndex: 1,
+    navActive: 1,
   },
 
   /**
@@ -22,12 +23,18 @@ Page({
       this.getActivityList()
     }
   },
+  changeActive(e) {
+    this.setData({
+      navActive: e.currentTarget.dataset.index
+    })
+  },
   getActivityList(scroll) {
     _ActivityList({
       page: this.data.pageIndex,
       size: 10
     }).then(data => {
       this.dataTranslate(data.data,scroll)
+      wx.hideLoading()
     })
   },
   dataTranslate(dataList,scroll) {
@@ -65,7 +72,7 @@ Page({
       title: '正在加载',
       mask: true
     })
-    this.getActivityList();
+    this.getActivityList('scroll');
   },
 
   watch: {

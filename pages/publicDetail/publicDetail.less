@@ -117,35 +117,59 @@
                 .item {
                     padding: 15rpx 6.4%;
                     border-bottom: 1px solid #f2f2f2;
-                    display: flex;
-                    image {
-                        width: 44rpx;
-                        height: 44rpx;
-                        border-radius: 50%;
+                    .info {
+                        display: flex; 
+                        image {
+                            width: 44rpx;
+                            height: 44rpx;
+                            border-radius: 50%;
+                        }
+                        .info-box {
+                            flex: 1;
+                            padding-left: 10rpx;
+                            text {
+                                display: block;
+                                font-size: 20rpx;
+                                line-height: 20rpx;
+                            }
+                            text:first-of-type {
+                                color: #313131;  
+                            }
+                            text:last-of-type {
+                                color:#b2b2b2;
+                                margin-top: 10rpx;
+                            }
+                        }
+                        .time {
+                            text {
+                                display: block;
+                                font-size: 20rpx;
+                                color:#b2b2b2;
+                                padding-top: 23rpx;
+                            }  
+                        }
                     }
-                    .info-box {
-                        flex: 1;
-                        padding-left: 10rpx;
-                        text {
-                            display: block;
-                            font-size: 20rpx;
-                            line-height: 20rpx;
+                    .img-group {
+                        margin-top: 20rpx;
+                        .img-item {
+                            display: inline-block;
+                            width: 206rpx;
+                            height: 206rpx;
+                            overflow: hidden;
+                            position: relative;
+                            margin-left: 7rpx;
+                            margin-right: 7rpx;
+                            background:rgb(0,0,0);
+                            image {
+                                width: 120%;
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%,-50%);
+                                
+                            }
                         }
-                        text:first-of-type {
-                            color: #313131;  
-                        }
-                        text:last-of-type {
-                            color:#b2b2b2;
-                            margin-top: 10rpx;
-                        }
-                    }
-                    .time {
-                        text {
-                            display: block;
-                            font-size: 20rpx;
-                            color:#b2b2b2;
-                            padding-top: 23rpx;
-                        }  
+
                     }
                 }
                 .item:last-of-type {

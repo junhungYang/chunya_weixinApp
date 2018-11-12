@@ -17,7 +17,8 @@
                 </view>
                 <view class="pic-group">
                     <image src="{{item1.pic_url}}" wx:for-item="item1" wx:for-index="index" mode="widthFix"
-                    wx:for="{{item.pic_list}}" data-piclist="{{item.pic_list}}" data-index="{{index}}"  bindtap="previewImg"/>
+                    wx:for="{{item.pic_list}}" data-piclist="{{item.pic_list}}"
+                     data-type="cont" data-index="{{index}}"  bindtap="previewImg"/>
                 </view>
             </view>
             <view class="quantity">
@@ -26,10 +27,38 @@
         </view>
     </view>
     <view class="release">
-        <view class="chooseImg">
-            <!--<image src="../../img/biaoqing.png" /> -->
-            <!--<image src="../../img/chooseImg.png" /> -->
+        <view class="emoji" hidden="{{emojiState}}">
+            <view class="bg" bindtap="emojiStateManage"></view>
+            <scroll-view scroll-y class="emoji-group" >
+                <view>
+                    <text wx:for="{{emojiList}}" wx:for-index="index" wx:key="{{index+1}}"
+                    bindtap="inputEmoji" data-index="{{index}}">{{item}}</text>
+                </view>
+            </scroll-view>
         </view>
-        <input placeholder="点击评论留言..." placeholder-class="placeholder"/>
+        <view class="choose-img" hidden="{{imageState}}">
+            <view class="bg" bindtap="imageStateManage"></view>
+            <scroll-view scroll-y class="img-group">
+                <view class="wrap">
+                    <view wx:for="{{imageList}}" wx:for-index="index" wx:key="{{index+1}}">
+                         <image src="../../img/deleteRed.png" class="delIcon" data-index="{{index}}" bindtap="deleteImg"/>
+                        <image class="contImage" src="{{item}}" mode="widthFix"data-index="{{index}}" data-type="post"   bindtap="previewImg"/>
+                    </view>
+                    <view bindtap="addImage" wx:if="{{imageList.length!==9}}">
+                        <image class="add-image" src="../../img/camere.png" mode="widthFix"/>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="control">
+            <view bindtap="emojiStateManage">
+                <image src="../../img/biaoqing.png"/>
+            </view>
+            <view bindtap="imageStateManage">
+                <image src="../../img/chooseImg.png" />
+            </view>
+        </view>
+        <input placeholder="点击评论留言..." value="{{commentValue}}" type="text" bindinput="inputComment" bindconfirm="postComment" placeholder-class="placeholder"/>
+        
     </view>
 </view>

@@ -1,0 +1,57 @@
+<view class="template">
+    <view class="event-info">
+        <view class="poster">
+            <image src="{{detail.listCoverUrl}}" mode="widthFix"/>
+        </view>
+        <view class="text">
+            <text>{{detail.title}}</text>
+            <text>{{detail.activityStartTime}}</text>
+            <text>{{detail.activityCity}}·{{detail.activityPlace}}</text>
+        </view>
+    </view>
+    <view class="input-info">
+        <view class="base-info">
+            <view class="title">报名信息</view>
+            <view class="input-box">
+                <input type="text" bindinput="inputName" value="{{name}}" placeholder="姓名" placeholder-style="color:#b2b2b2;"/>
+                <view class="sex">
+                    <view class="label">性别</view>
+                    <view class="choose-sex">
+                        <view data-sex="{{1}}" bindtap="chooseSex">
+                            <image src="{{sex===1?'../../img/checked.png':'../../img/noCheck.png'}}" />
+                            <text>先生</text>
+                        </view>
+                        <view data-sex="{{2}}" bindtap="chooseSex">
+                            <image src="{{sex===2?'../../img/checked.png':'../../img/noCheck.png'}}" />
+                            <text>女士</text>
+                        </view>
+                    </view>
+                </view>
+                <input type="text" bindinput="inputPhone" value="{{phone}}" placeholder="手机号码" placeholder-style="color:#b2b2b2;"/>
+            </view>
+        </view>
+        <view class="desc-info">
+            <view class="title">报名留言</view>
+            <scroll-view scroll-y class="input-box">
+                <textarea placeholder="请留言..." bindinput="inputDesc" value="{{desc}}" maxlength="{{-1}}" placeholder-style="color:#b2b2b2;"/>
+            </scroll-view>
+        </view>
+    </view>
+    <view class="enter-btn" bindtap="signupEnter">
+        立即报名
+    </view>
+    <view class="enter-success" hidden="{{enterSucState}}">
+        <view class="success-info">
+            <view class="header">
+                恭喜您报名成功！
+            </view>
+            <view class="qr-code">
+                <text>了解更多活动请关注我们！</text>
+                <image src="../../img/code.jpg" />
+            </view>
+            <view class="nav-back" bindtap="navBackToEventDetail">
+                我知道了
+            </view>
+        </view>
+    </view>
+</view>

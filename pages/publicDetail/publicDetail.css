@@ -142,34 +142,56 @@
 .template .main .heart-reviews .list .item {
   padding: 15rpx 6.4%;
   border-bottom: 1px solid #f2f2f2;
+}
+.template .main .heart-reviews .list .item .info {
   display: flex;
 }
-.template .main .heart-reviews .list .item image {
+.template .main .heart-reviews .list .item .info image {
   width: 44rpx;
   height: 44rpx;
   border-radius: 50%;
 }
-.template .main .heart-reviews .list .item .info-box {
+.template .main .heart-reviews .list .item .info .info-box {
   flex: 1;
   padding-left: 10rpx;
 }
-.template .main .heart-reviews .list .item .info-box text {
+.template .main .heart-reviews .list .item .info .info-box text {
   display: block;
   font-size: 20rpx;
   line-height: 20rpx;
 }
-.template .main .heart-reviews .list .item .info-box text:first-of-type {
+.template .main .heart-reviews .list .item .info .info-box text:first-of-type {
   color: #313131;
 }
-.template .main .heart-reviews .list .item .info-box text:last-of-type {
+.template .main .heart-reviews .list .item .info .info-box text:last-of-type {
   color: #b2b2b2;
   margin-top: 10rpx;
 }
-.template .main .heart-reviews .list .item .time text {
+.template .main .heart-reviews .list .item .info .time text {
   display: block;
   font-size: 20rpx;
   color: #b2b2b2;
   padding-top: 23rpx;
+}
+.template .main .heart-reviews .list .item .img-group {
+  margin-top: 20rpx;
+}
+.template .main .heart-reviews .list .item .img-group .img-item {
+  display: inline-block;
+  width: 206rpx;
+  height: 206rpx;
+  overflow: hidden;
+  position: relative;
+  margin-left: 7rpx;
+  margin-right: 7rpx;
+  background: #000000;
+}
+.template .main .heart-reviews .list .item .img-group .img-item image {
+  width: 120%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .template .main .heart-reviews .list .item:last-of-type {
   border: 0;

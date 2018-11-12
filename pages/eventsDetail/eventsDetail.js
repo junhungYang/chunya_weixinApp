@@ -36,6 +36,18 @@ Page({
       })
     }).catch(msg => this.showModal(msg))
   },
+  navToEnter() {
+    if(this.data.detail.isFinish === 1) {
+      wx.showModal({
+        title: '提示',
+        content: '该活动已结束'
+      })
+    }else {
+      wx.navigateTo({
+        url: `../eventEnter/eventEnter?id=${this.data.id}`
+      })
+    }
+  },
   showModal(msg) {
     wx.showModal({
       title:msg

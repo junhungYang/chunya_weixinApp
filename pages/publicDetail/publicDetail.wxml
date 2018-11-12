@@ -59,13 +59,20 @@
             </view>
             <view class="list">
                 <view class="item" wx:for="{{commonData.data}}" wx:key="{{item.id}}">
-                    <image src="{{item.user_info.avatar}}" />
-                    <view class="info-box">
-                        <text>{{item.user_info.nickname}}</text>
-                        <text>{{item.content}}</text>
+                    <view class="info">
+                        <image src="{{item.user_info.avatar}}" />
+                        <view class="info-box">
+                            <text>{{item.user_info.nickname}}</text>
+                            <text>{{item.content}}</text>
+                        </view>
+                        <view class="time">
+                            <text>{{item.add_time}}</text>
+                        </view>
                     </view>
-                    <view class="time">
-                        <text>{{item.add_time}}</text>
+                    <view class="img-group">
+                        <view class="img-item" wx:for="{{item.pic_list}}" wx:for-item="item1" wx:key="{{item1.id}}">
+                            <image src="{{item1.pic_url}}" mode="widthFix"/>  
+                        </view>
                     </view>
                 </view>
             </view>

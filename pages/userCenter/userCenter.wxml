@@ -100,7 +100,7 @@
         <view class="title">
             必备工具
         </view>
-        <view class="list">
+        <view class="list" bindtap="navToCouponList">
             <view class="item">
                 <image src="../../img/userCenter/coupon.png" />
                 <text>优惠券</text>

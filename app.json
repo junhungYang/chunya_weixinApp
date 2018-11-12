@@ -1,28 +1,24 @@
 {
   "pages": [
         "pages/index/index",
-    "pages/publicReviewsList/publicReviewsList",
-       
-            "pages/writeStory/writeStory",
+        
+        "pages/eventEnter/eventEnter",
 
+           
+                "pages/publicReviewsList/publicReviewsList",
+            "pages/writeStory/writeStory",
             "pages/story/story",
         "pages/eventsList/eventsList",
         "pages/publicDetail/publicDetail",
         "pages/public/public",
-       
-            
         "pages/storyDetail/storyDetail",
       "pages/invoice/invoice",
         "pages/haowuList/haowuList",
         "pages/reviewsList/reviewsList",
- 
- 
         "pages/goodDetail/goodDetail",
       "pages/couponList/couponList",
         "pages/myCollect/myCollect",
-      
       "pages/eventsDetail/eventsDetail",
- 
             "pages/shippingList/shippingList",        
         "pages/orderDetail/orderDetail",
                 "pages/cart/cart",

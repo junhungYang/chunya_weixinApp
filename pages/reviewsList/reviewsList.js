@@ -29,6 +29,9 @@ Page({
       sort: "desc"
     }).then(data => {
       if(!style) {
+        wx.setNavigationBarTitle({
+          title: `评价(${data.count})`
+        })
         this.setData({
           reviewsList: data.data
         })

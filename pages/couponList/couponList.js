@@ -1,20 +1,49 @@
 // pages/couponList/couponList.js
+import {_CouponList} from '../../utils/request'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list:[],
+    page: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getCouponList()
   },
-
+  getCouponList() {
+    wx.showLoading({
+      title: '正在加载'
+    })
+    _CouponList({
+      page: this.data.page,
+      size: 10
+    }).then(data => {
+      let arr = [...this.data.list, ...data]
+      this.setData({
+        list: data
+      })
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 600);
+    }).catch(msg => {
+      wx.hideLoading()
+      wx.showModal({
+        title: msg
+      })
+    })
+  },
+  onReachBottom: function () {
+    this.setData({
+      page: this.data.page +1
+    })
+    this.getCouponList()
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -53,9 +82,6 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
 
   /**
    * 用户点击右上角分享

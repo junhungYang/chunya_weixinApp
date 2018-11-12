@@ -69,12 +69,21 @@ Page({
         })
       })    
   },
+  navToCouponList() {
+    if(app.globalData.token) {
+      wx.navigateTo({
+        url: '../couponList/couponList'
+      })
+    }
+  },
   navToOrderList(e) {
-    let requestCode = e.currentTarget.dataset.requestcode
-    let url = requestCode !== undefined ? `../orderList/orderList?requestCode=${requestCode}` : `../orderList/orderList`;
-    wx.navigateTo({
-      url
-    });
+    if(app.globalData.token) {
+      let requestCode = e.currentTarget.dataset.requestcode
+      let url = requestCode !== undefined ? `../orderList/orderList?requestCode=${requestCode}` : `../orderList/orderList`;
+      wx.navigateTo({
+        url
+      });
+    }
   },
   navToNuanke(e) {
     if(app.globalData.token) {
@@ -84,20 +93,26 @@ Page({
     }
   },
   navToGoodDetail(e) {
-    let orderId = e.currentTarget.dataset.orderid;
-    wx.navigateTo({
-      url: `../orderDetail/orderDetail?orderId=${orderId}`
-    });
+    if(app.globalData.token) {
+      let orderId = e.currentTarget.dataset.orderid;
+      wx.navigateTo({
+        url: `../orderDetail/orderDetail?orderId=${orderId}`
+      });
+    }
   },
   navToAddressList() {
-    wx.navigateTo({
-      url: "../addressList/addressList?index=2"
-    });
+    if(app.globalData.token) {
+      wx.navigateTo({
+        url: "../addressList/addressList?index=2"
+      });
+    }
   },
   navToMyEventsList() {
-    wx.navigateTo({
-      url:"../eventsList/eventsList"
-    })
+    if(app.globalData.token) {
+      wx.navigateTo({
+        url: "../eventsList/eventsList"
+      })
+    }
   },
   onPullDownRefresh: function () {
     wx.showLoading({

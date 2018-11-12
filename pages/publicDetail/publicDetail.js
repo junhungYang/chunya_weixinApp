@@ -41,12 +41,12 @@ Page({
     _CommentList({
       typeId: 2,
       valueId: this.data.id,
-      showType: 0
+      showType: 0,
+      size: 6
     }).then(data => {
       this.setData({
         commonData: data
       })
-      console.log(this.data.commonData);
     }).catch(msg => this.showModal(msg))
   },
   getCommonwealDetail() {
