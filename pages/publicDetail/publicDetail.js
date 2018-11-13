@@ -42,7 +42,7 @@ Page({
       typeId: 2,
       valueId: this.data.id,
       showType: 0,
-      size: 6
+      size: 3
     }).then(data => {
       this.setData({
         commonData: data

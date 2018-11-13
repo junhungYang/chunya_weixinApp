@@ -69,8 +69,7 @@ Page({
       }
     })
   },
-  upLoadVideo(videoSrc,videoPoster) {
-    console.log(videoPoster)
+  upLoadVideo(videoSrc) {
     wx.showLoading({
       title: '正在上传',
       // mask: true
@@ -93,27 +92,7 @@ Page({
           }
         }
       });
-    }).then(() => {
-      //  wx.uploadFile({
-      //   url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-      //   filePath: videoPoster,
-      //   name: "file",
-      //   success: res => {
-      //     console.log(res)
-      //     let data = JSON.parse(res.data)
-      //     if (data.errno === 0) {
-      //       this.setData({
-      //         videoPoster: data.data,
-      //         upLoadHidden: true
-      //       })
-      //       wx.hideLoading()
-      //     } else {
-      //       wx.showModal({ title: data.msg })
-      //     }
-      //   }
-      // });
     })
-
 
   },
   upLoadImg(list,index) {
@@ -159,7 +138,7 @@ Page({
           })
         }else {
           console.log(res);
-          this.upLoadVideo(res.tempFilePath, res.thumbTempFilePath);
+          this.upLoadVideo(res.tempFilePath);
         }
       }
     })

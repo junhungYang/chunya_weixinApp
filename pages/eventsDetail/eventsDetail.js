@@ -37,10 +37,10 @@ Page({
     }).catch(msg => this.showModal(msg))
   },
   navToEnter() {
-    if(this.data.detail.isFinish === 1) {
+    if(this.data.detail.isSignUp === 1) {
       wx.showModal({
         title: '提示',
-        content: '该活动已结束'
+        content: '您已报名'
       })
     }else {
       wx.navigateTo({

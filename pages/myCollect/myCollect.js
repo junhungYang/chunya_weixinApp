@@ -1,48 +1,61 @@
 // pages/myCollect/myCollect.js
+import { _CollectList, _CollectAddorDelete} from '../../utils/request'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    page: 1,
+    list: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getMyCollect()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getMyCollect() {
+    _CollectList({
+      typeId: 0,
+      page: this.data.page,
+      size: 10
+    }).then(data => {
+      let arr = [...this.data.list,...data.data]
+      this.setData({
+        list: arr
+      })
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  navToGoodDetail(e) {
+    let goodId = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `../goodDetail/goodDetail?goodId=${goodId}&from=${'collect'}`
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  delete(e) {
+    let valueId = e.currentTarget.dataset.id
+    _CollectAddorDelete({
+      typeId: 0,
+      valueId
+    }).then(data => {
+      this.setData({
+        page: 1,
+        list: []
+      });
+      this.getMyCollect()
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    })
+     
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

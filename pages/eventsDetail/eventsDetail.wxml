@@ -23,8 +23,11 @@
                 <text>分享</text>
             </button>
         </view>
-        <view bindtap="navToEnter">
-            {{detail.isFinish===1?'已结束':'我要报名'}}
+        <view wx:if="{{detail.isFinish===1}}">
+            已结束
+        </view>
+        <view wx:else bindtap="navToEnter">
+            {{detail.isSignUp===0?'我要报名':'您已报名'}}
         </view>
     </view>
 </view>

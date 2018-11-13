@@ -1,11 +1,11 @@
 <view class="template">
     <view class="nav">
-        <text class="{{navActive===1?'nav-active':''}}" data-index="{{1}}" bindtap="changeActive">全部活动</text>
-        <text  class="{{navActive===2?'nav-active':''}}" data-index="{{2}}" bindtap="changeActive">已报名</text>
+        <text class="{{navActive===0?'nav-active':''}}" data-index="{{0}}" bindtap="changeActive">全部活动</text>
+        <text  class="{{navActive===1?'nav-active':''}}" data-index="{{1}}" bindtap="changeActive">已报名</text>
         
     </view>
-    <view class="line" hidden="{{navActive===1}}"></view>
-    <view class="signup-list" hidden="{{navActive===1}}">
+    <view class="line" hidden="{{navActive===0}}"></view>
+    <view class="signup-list" hidden="{{navActive===0}}">
         <view class="item" wx:for="{{list}}" data-id="{{item.id}}" bindtap="navToDetail">
             <image src="{{item.listCoverUrl}}" />
             <view class="info">
@@ -19,12 +19,12 @@
             </view>
         </view>
     </view>
-    <view class="noSignup-list" hidden="{{navActive===2}}">
+    <view class="noSignup-list" hidden="{{navActive===1}}">
         <view class="item" wx:for="{{list}}" data-id="{{item.id}}" bindtap="navToDetail">
             <image src="{{item.listCoverUrl}}" />
             <view class="info">
                 <text class="title">{{item.title}}</text>
-                <text class="desc">2018年10月12日上午，由深圳市广电公益基金会“点亮星球文化基金”出品的公益微电影《温度》将在深圳怡景动漫基地举行了隆重的开机仪式。</text>
+                <text class="desc">{{item.brief}}</text>
                 <text class="place">{{item.activityStartTime}} {{item.activityPlace}}</text>
                 <view>
                     <text wx:for="{{item.tags}}" wx:for-item="item1">{{item1}}</text>

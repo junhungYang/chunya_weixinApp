@@ -1,8 +1,12 @@
 {
   "pages": [
         "pages/index/index",
+      "pages/invoice/invoice",
         
         "pages/eventEnter/eventEnter",
+
+        
+   
 
            
                 "pages/publicReviewsList/publicReviewsList",
@@ -12,7 +16,6 @@
         "pages/publicDetail/publicDetail",
         "pages/public/public",
         "pages/storyDetail/storyDetail",
-      "pages/invoice/invoice",
         "pages/haowuList/haowuList",
         "pages/reviewsList/reviewsList",
         "pages/goodDetail/goodDetail",
@@ -29,7 +32,8 @@
                 "pages/userCenter/userCenter",
           "pages/nuankeDetail/nuankeDetail",
           "pages/nuanke/nuanke",
-          "pages/watchVideo/watchVideo"
+          "pages/watchVideo/watchVideo",
+          "pages/aboutChunya/aboutChunya"
   ],
   "window": {
     "backgroundTextStyle": "light",

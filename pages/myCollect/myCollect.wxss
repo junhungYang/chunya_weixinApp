@@ -3,57 +3,81 @@
   min-height: 100vh;
 }
 .template .list {
-  margin: 0rpx 6.4% 100rpx 6.4%;
+  margin: 0rpx 48rpx 100rpx 48rpx;
   padding-top: 30rpx;
 }
-.template .list .item {
-  background: #fff;
-  padding: 20rpx 20rpx;
-  display: flex;
-  margin-top: 18rpx;
+.template .list .scroll-box {
+  width: 654rpx;
+  overflow: hidden;
+  font-size: 0;
+  margin-top: 20rpx;
 }
-.template .list .item:first-of-type {
+.template .list .scroll-box .item {
+  background: #fff;
+  margin-top: 18rpx;
+  width: 808rpx;
+  display: flex;
+}
+.template .list .scroll-box .item:first-of-type {
   margin-top: 0;
 }
-.template .list .item image {
+.template .list .scroll-box .item .img,
+.template .list .scroll-box .item .delete {
+  align-self: center;
+}
+.template .list .scroll-box .item .img {
+  margin: 15rpx 0;
   width: 168rpx;
   height: 168rpx;
-  border: 1px solid #f2f2f2;
+  margin-left: 20rpx;
+  background: #f2f2f2;
+  position: relative;
+  overflow: hidden;
 }
-.template .list .item .info {
-  flex: 1;
+.template .list .scroll-box .item .img image {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.template .list .scroll-box .item .info {
+  display: inline-block;
+  width: 469rpx;
+  box-sizing: border-box;
+  padding: 15rpx 0;
   padding-left: 26rpx;
+  padding-right: 20rpx;
   position: relative;
 }
-.template .list .item .info .introduct {
-  min-height: 120rpx;
+.template .list .scroll-box .item .info .introduct {
+  margin-top: 10rpx;
+  max-height: 100rpx;
 }
-.template .list .item .info .introduct text {
-  display: block;
-}
-.template .list .item .info .introduct text:first-of-type {
+.template .list .scroll-box .item .info .introduct text:first-of-type {
   padding-top: 5rpx;
   color: #313131;
   font-size: 24rpx;
   line-height: 28rpx;
 }
-.template .list .item .info .introduct text:last-of-type {
-  color: #b7b7b7;
-  font-size: 16rpx;
-  margin-top: 6rpx;
+.template .list .scroll-box .item .info .price {
+  position: absolute;
+  left: 26rpx;
+  bottom: 25rpx;
 }
-.template .list .item .info .price text {
+.template .list .scroll-box .item .info .price text {
   font-size: 24rpx;
 }
-.template .list .item .info .price text:first-of-type {
+.template .list .scroll-box .item .info .price text:first-of-type {
   color: #d1051f;
   font-weight: bold;
 }
-.template .list .item .info .price text:last-of-type {
+.template .list .scroll-box .item .info .price text:last-of-type {
+  margin-left: 15rpx;
   color: #b7b7b7;
   text-decoration: line-through;
 }
-.template .list .item .info .btn {
+.template .list .scroll-box .item .info .btn {
   color: #d1051f;
   font-weight: bold;
   font-size: 20rpx;
@@ -61,6 +85,16 @@
   padding: 0 4rpx;
   border: 1px solid #d1051f;
   position: absolute;
-  right: 0;
-  bottom: 5rpx;
+  right: 20rpx;
+  bottom: 25rpx;
+}
+.template .list .scroll-box .item .delete {
+  display: inline-block;
+  background: #d1051f;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 180rpx;
+  text-align: center;
+  flex: 1;
+  padding: 15rpx 0;
 }

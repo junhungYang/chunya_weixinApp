@@ -5,6 +5,28 @@ const _SetToken = function(token) {
   Token = token;
   console.log(Token)
 };
+//关于我们
+const _AboutChunya = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/official/commonArticle`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+
 //故事模块清空所有收藏
 const _CollectDeleteAll = function (data) {
   return new Promise((resolve, reject) => {
@@ -1152,6 +1174,9 @@ const _CouponList = function () {
     return new Promise((resolve, reject) => {
         wx.request({
           url: `${GlobalUrl}api/coupon/list`,
+          header: {
+            "X-Nideshop-Token": Token
+          },
           method: "GET",
           success: res => {
             if (res.data.errno === 0) {
@@ -1164,6 +1189,7 @@ const _CouponList = function () {
     });
 }
 module.exports = {
+  _AboutChunya,
   _CollectDeleteAll,
   _LikeAddOrDelete,
   _PostsList,

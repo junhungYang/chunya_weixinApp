@@ -10,7 +10,7 @@ Page({
   data: {
     list: [],
     pageIndex: 1,
-    navActive: 1,
+    navActive: 0,
   },
 
   /**
@@ -25,19 +25,23 @@ Page({
   },
   changeActive(e) {
     this.setData({
-      navActive: e.currentTarget.dataset.index
+      navActive: e.currentTarget.dataset.index,
+      page: 1,
+      list: []
     })
+    this.getActivityList()
   },
-  getActivityList(scroll) {
+  getActivityList() {
     _ActivityList({
       page: this.data.pageIndex,
+      type: this.data.navActive,
       size: 10
     }).then(data => {
-      this.dataTranslate(data.data,scroll)
+      this.dataTranslate(data.data)
       wx.hideLoading()
     })
   },
-  dataTranslate(dataList,scroll) {
+  dataTranslate(dataList) {
     dataList.forEach(item => {
       let tagsArr = item.tags.split(',');
       item.tags = tagsArr
@@ -45,19 +49,13 @@ Page({
       let year =  dateObj.getFullYear()
       let month = dateObj.getMonth() + 1
       let date = dateObj.getDate()
-      let activityStartTime = `${year},${month},${date}`
+      let activityStartTime = `${year}.${month}.${date}`
       item.activityStartTime = activityStartTime;
     })
-    if(scroll) {
-      let arr = [...this.data.lsit,...dataList]
+      let arr = [...this.data.list,...dataList]
       this.setData({
         list: arr
       })
-    }else {
-      this.setData({
-        list: dataList
-      })
-    }
   },
   navToDetail(e) {
     wx.navigateTo({
@@ -72,7 +70,7 @@ Page({
       title: '正在加载',
       mask: true
     })
-    this.getActivityList('scroll');
+    this.getActivityList();
   },
 
   watch: {

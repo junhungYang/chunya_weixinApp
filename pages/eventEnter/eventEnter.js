@@ -14,7 +14,8 @@ Page({
     name: "",
     sex: 1,
     phone: "",
-    desc: ""
+    desc: "",
+    eventState: '我要报名'
   },
 
   /**
@@ -32,8 +33,7 @@ Page({
     })
       .then(data => {
         let dateObj = new Date(data.activityStartTime);
-        data.activityStartTime = `${dateObj.getFullYear()}.${dateObj.getMonth() +
-          1}.${dateObj.getDate()}`;
+        data.activityStartTime = `${dateObj.getFullYear()}.${dateObj.getMonth() +1}.${dateObj.getDate()}`;
         this.setData({
           detail: data
         });
@@ -126,8 +126,16 @@ Page({
     }
   },
   navBackToEventDetail() {
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 3];
+    prevPage.setData({
+      pageIndex:1,
+      navActive: 1,
+      list:[]
+    })
+    prevPage.getActivityList()
     wx.navigateBack({
-      delta: 1
+      delta: 2
     })
   },
   /**

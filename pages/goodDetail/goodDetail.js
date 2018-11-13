@@ -22,13 +22,15 @@ Page({
     domPosTop:{},
     navActive:1,
     couponHidState:true,
-    serviceHidState:true
+    serviceHidState:true,
+    from: ''
   },
   onLoad: function(options) {
     that = this;
     app.setWatcher(app.globalData, this.watch);
     this.setData({
-      goodId: options.goodId
+      goodId: options.goodId,
+      from: options.from ? options.from : ''
     })
     if(app.globalData.token) {
       this.getGoodDetail()
@@ -81,13 +83,14 @@ Page({
   },
   getDomPosTop() {
     let query = wx.createSelectorQuery();
+    query.select("#reviews").boundingClientRect();
     query.select("#good-detail").boundingClientRect();
-    query.select(".reviews").boundingClientRect();
+  
     let obj = {}
     obj.allTop = 0;
     query.exec(function (res) {
-      obj.detailTop = res[0].top -44
-      obj.reviewsTop = res[1].top -44
+      obj.reviewsTop = res[0].top -44
+      obj.detailTop = res[1].top -44
     })
     this.setData({
       domPosTop: obj
@@ -140,7 +143,6 @@ Page({
         detail: data,
         activeProduct: data.productList[0],
       })
-      this.collect();
       this.getDomPosTop();
     }).catch(msg => {
       wx.showModal({ title: msg });
@@ -204,6 +206,15 @@ Page({
       this.setData({
         collectState: data.type
       });
+      if(this.data.from==='collect') {
+        let pages = getCurrentPages()
+        let prevPage = pages[pages.length - 2];
+        prevPage.setData({
+          page: 1,
+          list: []
+        })
+        prevPage.getMyCollect()
+      }
     });
   },
   //跳转至首页

@@ -69,11 +69,29 @@ Page({
         })
       })    
   },
-  navToCouponList() {
+  navToOtherMod(e) {
+    let type = e.currentTarget.dataset.type
     if(app.globalData.token) {
-      wx.navigateTo({
-        url: '../couponList/couponList'
-      })
+      switch (type) {
+        case "couList":
+          wx.navigateTo({ url: "../couponList/couponList" });
+          break;
+        case "collect":
+          wx.navigateTo({ url: "../myCollect/myCollect" });
+          break;
+        case "events":
+          wx.navigateTo({ url: "../eventsList/eventsList" });
+          break;
+        case "nuanke":
+          wx.navigateTo({ url: "../nuanke/nuanke" });
+          break;
+        case "address":
+          wx.navigateTo({ url: "../addressList/addressList?index=2" });
+          break;
+        case "about":
+          wx.navigateTo({ url: "../aboutChunya/aboutChunya" });
+          break;
+      }
     }
   },
   navToOrderList(e) {
@@ -85,33 +103,12 @@ Page({
       });
     }
   },
-  navToNuanke(e) {
-    if(app.globalData.token) {
-      wx.navigateTo({
-        url: '../nuanke/nuanke'
-      })
-    }
-  },
-  navToGoodDetail(e) {
+  navToOrderDetail(e) {
     if(app.globalData.token) {
       let orderId = e.currentTarget.dataset.orderid;
       wx.navigateTo({
         url: `../orderDetail/orderDetail?orderId=${orderId}`
       });
-    }
-  },
-  navToAddressList() {
-    if(app.globalData.token) {
-      wx.navigateTo({
-        url: "../addressList/addressList?index=2"
-      });
-    }
-  },
-  navToMyEventsList() {
-    if(app.globalData.token) {
-      wx.navigateTo({
-        url: "../eventsList/eventsList"
-      })
     }
   },
   onPullDownRefresh: function () {

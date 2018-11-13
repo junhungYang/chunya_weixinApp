@@ -28,6 +28,7 @@
 }
 .template .list .item .cont {
   margin-top: 23rpx;
+  margin-bottom: 30rpx;
 }
 .template .list .item .cont .text {
   font-size: 28rpx;
@@ -39,11 +40,4 @@
 .template .list .item .cont .pic-group image {
   margin: 14rpx 7rpx 0 7rpx;
   width: 204rpx;
-}
-.template .list .item .quantity {
-  margin-top: 26rpx;
-  margin-bottom: 30rpx;
-  font-size: 20rpx;
-  line-height: 20rpx;
-  color: #b2b2b2;
 }

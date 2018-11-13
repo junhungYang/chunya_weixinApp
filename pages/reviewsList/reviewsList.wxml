@@ -20,9 +20,6 @@
                     wx:for="{{item.pic_list}}" data-piclist="{{item.pic_list}}" data-index="{{index}}"  bindtap="previewImg"/>
                 </view>
             </view>
-            <view class="quantity">
-                浏览153次
-            </view>
         </view>
     </view>
 </view>

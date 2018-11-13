@@ -83,7 +83,7 @@
                 <view class="btn">进店</view>
             </view>
         </view>
-        <view class="reviews">
+        <view class="reviews" id="reviews">
             <view class="title">
                 <text>用户评价:</text>
                 <view class="start-list">
@@ -122,14 +122,7 @@
                 </view>
             </view>
         </view>
-        <view class="promise">
-            <image src="../../img/goodDetail/promise.png" />
-        </view>
         <view class="good-detail" id="good-detail">
-            <view class="text">
-                <text>— 商品详情 —</text>
-                <text>COMMODITY DETAILS</text>
-            </view>
             <view class="image">
                 <rich-text nodes="{{detail.info.goods_desc}}"></rich-text>
             </view>

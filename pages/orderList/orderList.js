@@ -89,7 +89,8 @@ Page({
         this.getOrderList();
       }).catch(msg => {
         wx.showModal({
-          title: msg
+          title: '提示',
+          content: msg
         });
       });
   },

@@ -27,7 +27,8 @@
   align-self: center;
 }
 .template .about-address .info {
-  padding-bottom: 15rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
   position: relative;
 }
 .template .about-address .info .text {
@@ -43,7 +44,7 @@
   font-size: 28rpx;
   color: #3283fa;
   right: 0rpx;
-  top: 5rpx;
+  top: 20rpx;
 }
 .template .desc {
   margin-top: 20rpx;
