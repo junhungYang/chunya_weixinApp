@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    invStyle: 'e-inv',
+    invTitleStyle: 'person',
+    invTitleText: '',
+    invContText:''
   },
 
   /**
@@ -14,7 +17,45 @@ Page({
   onLoad: function (options) {
 
   },
-
+  changeInvStyle(e) {
+    let  invStyle = e.currentTarget.dataset.style
+    this.setData({
+      invStyle
+    })
+  },
+  changeInvTitleStyle(e) {
+    let invTitleStyle = e.currentTarget.dataset.style
+    this.setData({
+      invTitleStyle
+    })
+  },
+  inputInvTitle(e) {
+    if(e.detail.value === ' ') {
+      this.setData({
+        invTitleText: ''
+      })
+    }else {
+      this.setData({
+        invTitleText: e.detail.value
+      })
+    }
+  },
+  inputInvCont(e) {
+    if (e.detail.value === ' ') {
+      this.setData({
+        invContText: ''
+      })
+    } else {
+      this.setData({
+        invContText: e.detail.value
+      })
+    }
+  },
+  navBack() {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

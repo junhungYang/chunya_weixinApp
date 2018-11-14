@@ -36,11 +36,10 @@ Page({
       wx.showLoading({
         title: '正在加载'
       })
-    let size= 10
     _WarmclassList({
       page: this.data.page,
       type: this.data.navIndex,
-      size
+      size: 10
     }).then(data => {
       let arr = [...this.data.list,...data.data]
       this.setData({
@@ -102,14 +101,21 @@ Page({
       typeId: 1,
       valueId
     }).then((data) => {
-      if (data.type==="delete") {
-        list[index].isCollected = 0
-      } else {
-        list[index].isCollected = 1
+      if(this.data.navIndex !== 4) {
+        if (data.type === "delete") {
+          list[index].isCollected = 0
+        } else {
+          list[index].isCollected = 1
+        }
+        this.setData({
+          list
+        })
+      }else {
+        list.splice(index, 1);
+        this.setData({
+          list
+        })
       }
-      this.setData({
-        list
-      })
     })
     .catch(msg => this.showModal(msg))
   },

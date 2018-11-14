@@ -216,7 +216,10 @@
 }
 .template .content .tuiJian .mask {
   height: 90vh;
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 .template .content .tuiJian .mask view {
   position: absolute;

@@ -3,6 +3,7 @@
         <text class="{{navIndex===1?'active':''}}" data-index="{{1}}" bindtap="changeNav">美文</text>
         <text class="{{navIndex===2?'active':''}}" data-index="{{2}}" bindtap="changeNav">视觉</text>
         <text class="{{navIndex===3?'active':''}}" data-index="{{3}}" bindtap="changeNav">影音</text>
+        <text class="{{navIndex===4?'active':''}}" data-index="{{4}}" bindtap="changeNav">收藏</text>
     </view>
     <scroll-view scroll-y class="list" bindscrolltolower="scrollRefreshList">
         <view class="item" wx:for="{{list}}" wx:for-index="index">

@@ -1,14 +1,11 @@
 {
   "pages": [
         "pages/index/index",
-      "pages/invoice/invoice",
+            "pages/invoice/invoice",
+    
+
         
         "pages/eventEnter/eventEnter",
-
-        
-   
-
-           
                 "pages/publicReviewsList/publicReviewsList",
             "pages/writeStory/writeStory",
             "pages/story/story",

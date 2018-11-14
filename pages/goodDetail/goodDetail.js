@@ -14,59 +14,59 @@ Page({
     detail: {},
     htmlStr: "",
     cartShowFlag: true,
-    collectState: "",
+    userHasCollect: 0,
     quantity: 1,
     activeProduct: {},
-    goodId:'',
-    reviews:[],
-    domPosTop:{},
-    navActive:1,
-    couponHidState:true,
-    serviceHidState:true,
-    from: ''
+    goodId: "",
+    reviews: [],
+    domPosTop: {},
+    navActive: 1,
+    couponHidState: true,
+    serviceHidState: true,
+    from: ""
   },
   onLoad: function(options) {
     that = this;
     app.setWatcher(app.globalData, this.watch);
     this.setData({
       goodId: options.goodId,
-      from: options.from ? options.from : ''
-    })
-    if(app.globalData.token) {
-      this.getGoodDetail()
-      this.getReviews()
+      from: options.from ? options.from : ""
+    });
+    if (app.globalData.token) {
+      this.getGoodDetail();
+      this.getReviews();
     }
   },
   watch: {
     token(newValue) {
       if (newValue) {
-        that.getGoodDetail()
-        that.getReviews()
+        that.getGoodDetail();
+        that.getReviews();
       }
     }
   },
-  formSubmit_collect: function (e) {
+  formSubmit_collect: function(e) {
     let fromid = `${e.detail.formId}`;
-    let userInfoStorage = wx.getStorageSync('userInfo')
+    let userInfoStorage = wx.getStorageSync("userInfo");
     if (fromid && userInfoStorage) {
-      let openid = JSON.parse(userInfoStorage).openId
+      let openid = JSON.parse(userInfoStorage).openId;
       _SendFormid({
         fromid,
         openid
-      })
+      });
     }
   },
   couponStateManage(e) {
-    let index = e.currentTarget.dataset.index
-    
-    if(index) {
-      this.setData({ couponHidState:true });
-    }else {
+    let index = e.currentTarget.dataset.index;
+
+    if (index) {
+      this.setData({ couponHidState: true });
+    } else {
       this.setData({ couponHidState: false });
     }
   },
   serviceStateManage(e) {
-    let index = e.currentTarget.dataset.index
+    let index = e.currentTarget.dataset.index;
     if (index) {
       this.setData({ serviceHidState: true });
     } else {
@@ -85,38 +85,38 @@ Page({
     let query = wx.createSelectorQuery();
     query.select("#reviews").boundingClientRect();
     query.select("#good-detail").boundingClientRect();
-  
-    let obj = {}
+
+    let obj = {};
     obj.allTop = 0;
-    query.exec(function (res) {
-      obj.reviewsTop = res[0].top -44
-      obj.detailTop = res[1].top -44
-    })
+    query.exec(function(res) {
+      obj.reviewsTop = res[0].top - 44;
+      obj.detailTop = res[1].top - 44;
+    });
     this.setData({
       domPosTop: obj
-    })
+    });
   },
   scrollToDom(e) {
-    let index = e.currentTarget.dataset.index
-    let domPosTop = this.data.domPosTop
+    let index = e.currentTarget.dataset.index;
+    let domPosTop = this.data.domPosTop;
     this.setData({
       navActive: index
-    })
+    });
     switch (index) {
       case 1:
         wx.pageScrollTo({
-          scrollTop:0
-        })
+          scrollTop: 0
+        });
         break;
       case 2:
         wx.pageScrollTo({
-          scrollTop:domPosTop.detailTop
-        })
+          scrollTop: domPosTop.detailTop
+        });
         break;
       case 3:
         wx.pageScrollTo({
-          scrollTop:domPosTop.reviewsTop
-        })
+          scrollTop: domPosTop.reviewsTop
+        });
         break;
     }
   },
@@ -124,46 +124,51 @@ Page({
     _CommentList({
       typeId: 0,
       valueId: this.data.goodId,
-      showType:0,
+      showType: 0,
       size: 5
-    }).then(data => {
-      this.setData({
-        reviews:data
-      })
-      this.getDomPosTop();
-    }).catch(msg => {
-      wx.showModal({
-        title:msg
-      })
     })
+      .then(data => {
+        this.setData({
+          reviews: data
+        });
+        this.getDomPosTop();
+      })
+      .catch(msg => {
+        wx.showModal({
+          title: msg
+        });
+      });
   },
   getGoodDetail() {
-    _GoodsDetail({ id: this.data.goodId }).then(data => {
-      this.setData({
-        detail: data,
-        activeProduct: data.productList[0],
+    _GoodsDetail({ id: this.data.goodId })
+      .then(data => {
+        this.setData({
+          detail: data,
+          userHasCollect: data.userHasCollect,
+          activeProduct: data.productList[0]
+        });
+        this.getDomPosTop();
       })
-      this.getDomPosTop();
-    }).catch(msg => {
-      wx.showModal({ title: msg });
-    });
+      .catch(msg => {
+        wx.showModal({ title: msg });
+      });
   },
   previewImg(e) {
-    let picList = e.currentTarget.dataset.piclist
-    let index = e.currentTarget.dataset.index
-    let arr = []
+    let picList = e.currentTarget.dataset.piclist;
+    let index = e.currentTarget.dataset.index;
+    let arr = [];
     picList.forEach(item => {
-      arr.push(item.pic_url)
-    })
+      arr.push(item.pic_url);
+    });
     wx.previewImage({
       urls: arr,
       current: arr[index]
-    })
+    });
   },
   navToReviewsList(e) {
     wx.navigateTo({
-      url:`../reviewsList/reviewsList?goodId=${this.data.goodId}`
-    })
+      url: `../reviewsList/reviewsList?goodId=${this.data.goodId}`
+    });
   },
   //数量操作
   quantityControl(e) {
@@ -203,17 +208,23 @@ Page({
       typeId: 0,
       valueId: this.data.detail.info.id
     }).then(data => {
-      this.setData({
-        collectState: data.type
-      });
-      if(this.data.from==='collect') {
-        let pages = getCurrentPages()
+      if(data.type === 'delete') {
+        this.setData({
+          userHasCollect: 0
+        });
+      }else {
+        this.setData({
+          userHasCollect: 1
+        });
+      }
+      if (this.data.from === "collect") {
+        let pages = getCurrentPages();
         let prevPage = pages[pages.length - 2];
         prevPage.setData({
           page: 1,
           list: []
-        })
-        prevPage.getMyCollect()
+        });
+        prevPage.getMyCollect();
       }
     });
   },
@@ -252,15 +263,14 @@ Page({
             title: msg
           });
         });
-    }else {
+    } else {
       wx.showModal({
         title: "提示",
         content: "该商品已下架",
         showCancel: false,
-        confirmColor: '#b2b2b2'
+        confirmColor: "#b2b2b2"
       });
     }
-
   },
   scrollToTop() {
     wx.pageScrollTo({
@@ -268,22 +278,25 @@ Page({
     });
     this.setData({
       navActive: 1
-    })
+    });
   },
   onPageScroll(res) {
-    let domPosTop = this.data.domPosTop
-    if(res.scrollTop < domPosTop.reviewsTop) {
+    let domPosTop = this.data.domPosTop;
+    if (res.scrollTop < domPosTop.reviewsTop) {
       this.setData({
         navActive: 1
-      })
-    } else if (res.scrollTop >= domPosTop.reviewsTop && res.scrollTop < domPosTop.detailTop) {
+      });
+    } else if (
+      res.scrollTop >= domPosTop.reviewsTop &&
+      res.scrollTop < domPosTop.detailTop
+    ) {
       this.setData({
         navActive: 3
-      })
-    }else if (res.scrollTop >= domPosTop.detailTop) {
+      });
+    } else if (res.scrollTop >= domPosTop.detailTop) {
       this.setData({
         navActive: 2
-      })
+      });
     }
   },
   onShareAppMessage: function() {

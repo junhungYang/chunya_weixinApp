@@ -42,7 +42,7 @@
             <text>配送方式</text>
             <text>快递配送</text>
         </view>
-        <view class="invoice">
+        <view class="invoice" bindtap="navToInvoice">
             <text>发票类型</text>
             <text>个人电子发票</text>
             <image src="../../img/redictTo.png" />

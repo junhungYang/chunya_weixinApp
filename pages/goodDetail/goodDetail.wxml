@@ -34,8 +34,8 @@
                 </view>
                 <view class="collect-share">
                     <view bindtap="collect">
-                        <image src="{{collectState === 'add' ? '../../img/goodDetail/collect1.png' : '../../img/goodDetail/collect.png'}}" />
-                        <text>{{collectState==='add'?'已收藏':'收藏'}}</text>
+                        <image src="{{userHasCollect === 1 ? '../../img/goodDetail/collect1.png' : '../../img/goodDetail/collect.png'}}" />
+                        <text>{{userHasCollect===1?'已收藏':'收藏'}}</text>
                     </view>
                     <button open-type="share" class="share-btn">
                         <image src="../../img/goodDetail/share.png" />

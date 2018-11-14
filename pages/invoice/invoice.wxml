@@ -1,8 +1,8 @@
 <view class="template">
     <view class="header">
         <view>
-            <text class="active">电子发票</text>
-            <text>纸质发票</text>
+            <text class="{{invStyle==='e-inv'?'active':''}}" data-style="e-inv" bindtap="changeInvStyle">电子发票</text>
+            <text class="{{invStyle==='p-inv'?'active':''}}" data-style="p-inv" bindtap="changeInvStyle">纸质发票</text>
         </view>
         <view>
             默认开具普票，如需专票请填写完整购方信息并联系商家
@@ -12,19 +12,19 @@
         <view class="style">
             <text class="title">抬头类型</text>
             <view class="choose">
-                <view>
-                    <image src="../../img/checked.png" />
+                <view data-style="person" bindtap="changeInvTitleStyle">
+                    <image src="{{invTitleStyle==='person' ? '../../img/checked.png' : '../../img/noCheck.png'}}" />
                     <text>个人或事业单位</text>
                 </view>
-                <view>
-                    <image src="../../img/noCheck.png" />
+                <view data-style="company" bindtap="changeInvTitleStyle">
+                    <image src="{{invTitleStyle==='company' ? '../../img/checked.png' : '../../img/noCheck.png'}}" />
                     <text>企业</text>
                 </view>
             </view>
         </view>
         <view class="taitou-name">
             <text class="title">发票抬头</text>
-            <input type="text" placeholder="抬头名称" />
+            <input type="text" placeholder="抬头名称" value="{{invTitleText}}" bindinput="inputInvTitle"/>
         </view>
         <view class="default-taitou">
             <text class="title">默认抬头</text>
@@ -35,9 +35,9 @@
         <view class="content">
             <text class="title">发票内容</text>
             <image src="../../img/attention.png" />
-            <input type="text" placeholder="请填写发票内容"/>
+            <input type="text" placeholder="请填写发票内容" value="{{invContText}}" bindinput="inputInvCont"/>
         </view>
-        <view class="noInvoice">
+        <view class="noInvoice" bindtap="navBack">
             <text>本次不开具发票，继续下单</text>
             <image src="../../img/redictTo.png" />
         </view>

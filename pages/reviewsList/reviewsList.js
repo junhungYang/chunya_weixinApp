@@ -1,5 +1,5 @@
 // pages/reviewsList/reviewsList.js
-import { _CommentList } from "../../utils/request";
+import { _CommentList, _CommentPost } from "../../utils/request";
 Page({
 
   /**
@@ -8,7 +8,21 @@ Page({
   data: {
     reviewsList:[],
     pageIndex:1,
-    goodId: 0
+    goodId: 0,
+    commentValue: "",
+    emojiState: true,
+    imageState: true,
+    imageList: [],
+    emojiList: [
+      "😠", "😩", "😲", "😞", "😵", "😰", "😒", "😍", "😤", "😜",
+      "😝", "😋", "😘", "😚", "😷", "😳", "😃", "😅", "😆", "😁",
+      "😉", "😫", "😥", "😓", "😏", "😪", "😱", "😔", "😖", "😌",
+      "☀", "☁", "☔", "⛄", "⚡", "🌀", "🌂", "🌃", "🌄", "🌆",
+      "🌊", "🌋", "🌌", "🌏", "🌟", "🍀", "🌷", "🌱", "🍁", "🌸",
+      "🍄", "🌰", "🌼", "🌿", "🍒", "🍌", "🍎", "🍊", "🍓", "🍅",
+      "👀", "👂", "👃", "👄", "👅", "💄", "💅", "💆", "💇", "👤"
+    ],
+    from:0
   },
 
   /**
@@ -28,37 +42,153 @@ Page({
       page: this.data.pageIndex,
       sort: "desc"
     }).then(data => {
-      if(!style) {
         wx.setNavigationBarTitle({
           title: `评价(${data.count})`
         })
-        this.setData({
-          reviewsList: data.data
-        })
-      }else {
         wx.hideLoading();
         let arr = [...this.data.reviewsList,...data.data];
         this.setData({
           reviewsList: arr
         })
-      }
     }).catch(msg => {
       wx.showModal({
         title: msg
       })
     })
   },
-  previewImg(e) {
-    let picList = e.currentTarget.dataset.piclist
+  addImage() {
+    wx.chooseImage({
+      sizeType: 'compressed',
+      success: res => {
+        res.tempFiles.forEach((item, index) => {
+          if (item.size > 5000000) {
+            wx.showModal({
+              title: '图片过大',
+              content: '个别图片过大，请重新选择'
+            })
+          } else {
+            this.upLoadImg(res.tempFiles, index);
+            wx.showLoading({
+              title: '正在上传',
+              mask: true
+            })
+          }
+        })
+      }
+    })
+  },
+  inputEmoji(e) {
     let index = e.currentTarget.dataset.index
-    let arr = []
-    picList.forEach(item => {
-      arr.push(item.pic_url)
+    this.setData({
+      commentValue: `${this.data.commentValue}${this.data.emojiList[index]}`
     })
-    wx.previewImage({
-      urls: arr,
-      current: arr[index]
+  },
+  upLoadImg(list, index) {
+    let path = list[index].path
+    wx.uploadFile({
+      url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
+      filePath: path,
+      name: "file",
+      success: res => {
+        let data = JSON.parse(res.data);
+        if (data.errno === 0) {
+          if (index === list.length - 1) {
+            wx.hideLoading()
+          }
+          let arr = [...this.data.imageList, data.data]
+          if (arr.length > 9) {
+            arr.splice(9)
+          }
+          this.setData({
+            imageList: arr
+          })
+        } else {
+          wx.hideLoading()
+          wx.showModal({
+            title: data.msg
+          })
+        }
+      }
+    });
+  },
+  deleteImg(e) {
+    let index = e.currentTarget.dataset.index
+    let arr = this.data.imageList
+    arr.splice(index, 1)
+    this.setData({
+      imageList: arr
     })
+  },
+  inputComment(e) {
+    let value = e.detail.value;
+    if (value === " ") {
+      this.setData({
+        commentValue: ""
+      });
+    } else {
+      this.setData({
+        commentValue: value
+      });
+    }
+  },
+  postComment() {
+    if (this.data.commentValue) {
+      _CommentPost({
+        typeId: 0,
+        valueId: this.data.goodId,
+        content: this.data.commentValue,
+        imagesList: this.data.imageList
+      })
+        .then(() => {
+          wx.showToast({
+            title: "发表成功",
+            icon: "success"
+          });
+          this.setData({
+            pageIndex: 1,
+            commentValue: "",
+            imageState: true,
+            emojiState: true,
+            imageList: [],
+            reviewsList: []
+          });
+          this.getCommentList();
+        })
+        .catch(msg => wx.showModal({ title: msg }));
+    }
+  },
+  emojiStateManage(e) {
+    this.setData({
+      imageState: true,
+      emojiState: !this.data.emojiState
+    })
+  },
+  imageStateManage() {
+    this.setData({
+      emojiState: true,
+      imageState: !this.data.imageState
+    })
+  },
+  previewImg(e) {
+    let index = e.currentTarget.dataset.index;
+    let type = e.currentTarget.dataset.type
+    if (type === "cont") {
+      let picList = e.currentTarget.dataset.piclist;
+      let arr = [];
+      picList.forEach(item => {
+        arr.push(item.pic_url);
+      });
+      wx.previewImage({
+        urls: arr,
+        current: arr[index]
+      });
+    } else {
+      wx.previewImage({
+        urls: this.data.imageList,
+        current: this.data.imageList[index]
+      })
+    }
+
   },
   onReachBottom: function () {
     wx.showLoading({
@@ -68,7 +198,7 @@ Page({
     this.setData({
       pageIndex: this.data.pageIndex + 1
     });
-    this.getCommentList("byScroll");
+    this.getCommentList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
