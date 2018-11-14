@@ -65,9 +65,9 @@
       <view class="hot-events">
         <view class="hotEvents-title">
           <text>热门活动</text>
-          <text></text>
+          <text>{{commActiveIndex}} / {{commAllPage}}</text>
         </view>
-        <scroll-view class="events-cont" scroll-x="{{true}}">
+        <scroll-view class="events-cont" scroll-x="{{true}}" bindscroll="changeCommIndex">
           <image wx:for="{{commonwealList}}" src="{{item.image_url}}" data-url="{{item.link}}" bindtap="navToPublicDetail"/>
         </scroll-view>
       </view>

@@ -17,7 +17,9 @@ Page({
     searchText:'',
     searchListHid:true,
     searchList:[],
-    commonwealList: []
+    commonwealList: [],
+    commActiveIndex: '',
+    commAllPage:'' 
   },
 
   onLoad() {
@@ -37,13 +39,24 @@ Page({
       id: 6
     }).then(data => {
       this.setData({
-        commonwealList: data.adList
-      })
+        commonwealList: data.adList,
+        commAllPage: data.adList.length,
+        commActiveIndex: 1
+      });
     }).catch(msg => {
       wx.showModal({
         title: msg
       })
     })
+  },
+  changeCommIndex(e) {
+    let data = e.detail
+    let num = (data.scrollLeft) % 327;
+    if (num < 20 && num > -20) {
+      this.setData({
+        commActiveIndex: parseInt(data.scrollLeft / 327) +1
+      })
+    }
   },
   navToPublicDetail(e) {
     if(app.globalData.token) {
