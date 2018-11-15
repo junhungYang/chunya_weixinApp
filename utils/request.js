@@ -829,12 +829,10 @@ const _OrderSubmit = function(data) {
 };
 
 const _OrderCheckout = function(data) {
-  let url = data ? 
-    `${GlobalUrl}api/cart/checkout?couponId=${data.couponId}` :
-    `${GlobalUrl}api/cart/checkout`
   return new Promise((resolve, reject) => {
     wx.request({
-      url: url,
+      url: `${GlobalUrl}api/cart/checkout`,
+      data: data,
       method: "GET",
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -1232,7 +1230,29 @@ const _CouponAdd = function(data) {
     });
   });
 };
+
+const _CouponListByCart = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/coupon/listByCart`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
 module.exports = {
+  _CouponListByCart,
   _CouponForUser,
   _CouponForGood,
   _CouponAdd,

@@ -1,10 +1,7 @@
 {
   "pages": [
         "pages/index/index",
-            "pages/invoice/invoice",
-    
-
-        
+            "pages/invoice/invoice",        
         "pages/eventEnter/eventEnter",
                 "pages/publicReviewsList/publicReviewsList",
             "pages/writeStory/writeStory",
@@ -30,7 +27,8 @@
           "pages/nuankeDetail/nuankeDetail",
           "pages/nuanke/nuanke",
           "pages/watchVideo/watchVideo",
-          "pages/aboutChunya/aboutChunya"
+          "pages/aboutChunya/aboutChunya",
+          "pages/couponBeforeBalance/couponBeforeBalance"
   ],
   "window": {
     "backgroundTextStyle": "light",

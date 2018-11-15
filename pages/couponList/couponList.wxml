@@ -6,7 +6,9 @@
     </view>
     <view class="list">
         <view class="item" wx:for="{{list}}" wx:key="{{item.id}}" wx:for-index="index">
-            <image src="../../img/gradient1.jpg" />
+            <image wx:if="{{navActive===0}}" src="../../img/gradient1.jpg" />
+            <image wx:elif="{{navAcitve===1}}" src="../../img/gradient2.jpg" />
+            <image wx:else src="../../img/cantUse.png" />
             <view class="box">
                 <view class="info">
                     <view>
@@ -14,11 +16,12 @@
                         <text>{{item.couponInfo.type_money}}</text>
                     </view>
                     <view>
-                        <text>{{item.couponInfo.remark}}</text>
+                        <text>{{item.couponInfo.name}}</text>
                         <text>有效期{{item.couponInfo.use_start_date}}-{{item.couponInfo.use_end_date}}</text>
+                           <text wx:if="{{item.couponInfo.is_at_the_same_time}}">可与满减/折扣/第二份半价活动优惠同时享受</text>
                     </view>
                 </view>
-                <view wx:if="{{navActive===0}}" class="btn" data-id="{{item.couponInfo.id}}" data-state="{{item.couponInfo.isReceive}}" data-index="{{index}}" bindtap="addCoupon">
+                <view wx:if="{{navActive===0}}" class="btn" bindtap="navToHaowu">
                     去使用
                 </view>
                 <view wx:elif="{{navAcitve===1}}">

@@ -65,7 +65,7 @@
             </view>
         </view>
     </view>
-    <view class="coupon">
+    <view class="coupon" bindtap="navToCoupon">
         <text>优惠券/优惠码</text>
         <image src="../../img/redictTo.png" />
     </view>

@@ -10,28 +10,27 @@ Page({
     allQuantity: "",
     postscript: ""
   },
-  onShow: function (options) {
-    console.log(2);
-  },
-  onHide: function (options) {
-    console.log(3);
-  },
   onLoad: function(options) {
     this.getOrderCheckout();
   },
-  getOrderCheckout(fromIndex) {
-    _OrderCheckout()
+  navToCoupon() {
+    wx.navigateTo({
+      url: '../couponBeforeBalance/couponBeforeBalance'
+    })
+  },
+  getOrderCheckout(couponId) {
+    let obj = {}
+    if(couponId) {
+      console.log(couponId)
+      obj.couponId = couponId
+    }
+    _OrderCheckout(obj)
       .then(data => {
         this.setData({
           data
         });
         this.getAllQuantity();
-        if (fromIndex) {
-          wx.stopPullDownRefresh();
-          setTimeout(() => {
-            wx.hideLoading();
-          }, 600);
-        }
+        wx.stopPullDownRefresh();
       })
       .catch(msg => {
         wx.showModal({
@@ -74,9 +73,7 @@ Page({
               app.pay(data);
             })
             .catch(msg => {
-              wx.showModal({
-                title: msg
-              });
+              wx.showModal({ title: msg });
             });
         });
       } else {
@@ -115,11 +112,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    console.log(123456);
-    wx.showLoading({
-      title: "正在刷新"
-    });
-    this.getOrderCheckout("pullDown");
+    this.getOrderCheckout();
   },
 
   /**
