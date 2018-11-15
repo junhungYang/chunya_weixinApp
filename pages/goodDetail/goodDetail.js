@@ -7,7 +7,9 @@ import {
   _OrderCheckout,
   _CollectAddorDelete,
   _CommentList,
-  _SendFormid
+  _SendFormid,
+  _CouponForGood,
+  _CouponAdd
 } from "../../utils/request";
 Page({
   data: {
@@ -23,7 +25,9 @@ Page({
     navActive: 1,
     couponHidState: true,
     serviceHidState: true,
-    from: ""
+    from: "",
+    couponList: [],
+    couponPage: 1
   },
   onLoad: function(options) {
     that = this;
@@ -35,6 +39,7 @@ Page({
     if (app.globalData.token) {
       this.getGoodDetail();
       this.getReviews();
+      this.getCouponList();
     }
   },
   watch: {
@@ -56,9 +61,65 @@ Page({
       });
     }
   },
+  getCouponList() {
+    _CouponForGood({
+      goodsId: this.data.goodId,
+      page: this.data.couponPage,
+      size: 6
+    }).then(data => {
+      let arr = [...this.data.couponList,...data.data]
+      this.setData({
+        couponList: arr
+      })
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 400);
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
+    });
+  },
+  addCoupon(e) {
+    let state = e.currentTarget.dataset.state
+    if(state) {
+      wx.showModal({
+        title: '优惠券提示',
+        content: '该优惠券已经领取过'
+      })
+    }else {
+      let couponId = e.currentTarget.dataset.id
+      let index= e.currentTarget.dataset.index
+      _CouponAdd({
+        couponId
+      }).then(data => {
+        wx.showToast({
+          title: '成功领取',
+          icon: 'success'
+        })
+        let arr = this.data.couponList
+        arr[index].isReceive = 1
+        this.setData({
+          couponList: arr
+        })
+      }).catch(msg => {
+        wx.showModal({
+          title: msg
+        })
+      })
+    }
+  },
+  scrollGetCoupon() {
+    this.setData({
+      couponPage: this.data.couponPage +1
+    })
+    wx.showLoading({
+      title: '正在加载'
+    })
+    this.getCouponList()
+  },
   couponStateManage(e) {
     let index = e.currentTarget.dataset.index;
-
     if (index) {
       this.setData({ couponHidState: true });
     } else {

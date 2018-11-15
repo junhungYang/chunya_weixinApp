@@ -1,114 +1,81 @@
 .template {
-  background: #f2f2f2;
+  background: #fff;
   min-height: 100vh;
+}
+.template .nav {
+  height: 88rpx;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 5;
+  width: 70%;
+  padding: 0 15%;
+}
+.template .nav text {
+  font-size: 32rpx;
+  line-height: 86rpx;
+  color: #686868;
+  font-weight: 400;
+}
+.template .nav .nav-active {
+  color: #2ca5ae;
+  border-bottom: 2px solid #2ca5ae;
 }
 .template .list {
   margin: 0 6.4%;
-  padding-top: 40rpx;
+  padding-top: 128rpx;
 }
 .template .list .item {
-  background: #fff;
-  padding: 27rpx;
-  margin-top: 30rpx;
+  height: 180rpx;
+  display: flex;
   position: relative;
+  margin-top: 19rpx;
 }
 .template .list .item:first-of-type {
   margin-top: 0;
 }
-.template .list .item .top {
-  border-bottom: 1px dotted #b2b2b2;
-  padding-bottom: 24rpx;
+.template .list .item:last-of-type {
+  margin-bottom: 150rpx;
+}
+.template .list .item image {
+  width: 100%;
+  height: 100%;
+}
+.template .list .item .box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
 }
-.template .list .item .top .main {
+.template .list .item .box .info {
   flex: 1;
-  display: flex;
+  padding: 24rpx 28rpx;
 }
-.template .list .item .top .main image {
-  width: 100rpx;
-  height: 100rpx;
-  border: 1px solid #f2f2f2;
+.template .list .item .box .info view {
+  color: #fff;
 }
-.template .list .item .top .main view {
-  padding-left: 28rpx;
-}
-.template .list .item .top .main view text {
-  display: block;
-}
-.template .list .item .top .main view text:first-of-type {
-  font-size: 24rpx;
-  color: #313131;
-  line-height: 28rpx;
-}
-.template .list .item .top .main view text:nth-of-type(2) {
-  margin-top: 12rpx;
-  line-height: 24rpx;
-  border: 1px solid #d1051f;
-  border-radius: 5rpx;
-  font-size: 16rpx;
-  color: #d1051f;
-  width: 68rpx;
-  text-align: center;
-}
-.template .list .item .top .main view text:last-of-type {
-  margin-top: 13rpx;
-  color: #b7b7b7;
-  font-size: 18rpx;
-  line-height: 18rpx;
-}
-.template .list .item .top .price {
-  align-self: center;
-}
-.template .list .item .top .price text {
-  color: #d1051f;
-}
-.template .list .item .top .price text:first-of-type {
+.template .list .item .box .info view:first-of-type text:first-of-type {
   font-size: 28rpx;
 }
-.template .list .item .top .price text:last-of-type {
+.template .list .item .box .info view:first-of-type text:last-of-type {
   font-size: 50rpx;
-  margin-left: 6rpx;
 }
-.template .list .item .bottom {
-  margin-top: 13rpx;
-  display: flex;
+.template .list .item .box .info view:last-of-type {
+  margin-top: 8rpx;
+  line-height: 24rpx;
+  font-size: 20rpx;
 }
-.template .list .item .bottom .condition {
-  flex: 1;
-  font-size: 18rpx;
-  color: #b7b7b7;
-  line-height: 28rpx;
-}
-.template .list .item .bottom view {
-  align-self: center;
-  padding-left: 15rpx;
-}
-.template .list .item .bottom view text {
-  font-size: 18rpx;
-  color: #d1051f;
-  vertical-align: middle;
-  line-height: 18rpx;
-}
-.template .list .item .bottom view image {
-  margin-left: 12rpx;
-  vertical-align: middle;
-  width: 9rpx;
-  height: 18rpx;
-}
-.template .list .item::before,
-.template .list .item::after {
-  content: '';
+.template .list .item .box .info view:last-of-type text {
   display: block;
-  width: 10px;
-  height: 6px;
-  border-radius: 3px;
-  background: #f2f2f2;
-  position: absolute;
-  bottom: 22%;
 }
-.template .list .item::before {
-  left: -5px;
-}
-.template .list .item::after {
-  right: -5px;
+.template .list .item .box .btn {
+  width: 134rpx;
+  border-left: 1px dotted #fff;
+  line-height: 180rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
 }

@@ -105,7 +105,7 @@
   height: 46rpx;
 }
 .goodMod .goodInfo .info .coupon view:first-of-type text {
-  margin-left: 20rpx;
+  margin-left: 12rpx;
 }
 .goodMod .goodInfo .info .coupon view:last-of-type text {
   margin-right: 8rpx;

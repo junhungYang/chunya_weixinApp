@@ -20,7 +20,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.index)
     this.setData({
       fromIndex:options.index
     })
@@ -85,11 +84,9 @@ Page({
       let pages = getCurrentPages();
       let prevPage = pages[pages.length - 2];
       prevPage.getOrderCheckout();
-    }).catch(msg => {
-      wx.showModal({
-        title:msg
+      }).catch(msg => {
+        wx.showModal({ title: msg });
       })
-    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

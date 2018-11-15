@@ -2,7 +2,6 @@
     <view class="nav">
         <text class="{{navActive===0?'nav-active':''}}" data-index="{{0}}" bindtap="changeActive">全部活动</text>
         <text  class="{{navActive===1?'nav-active':''}}" data-index="{{1}}" bindtap="changeActive">已报名</text>
-        
     </view>
     <view class="line" hidden="{{navActive===0}}"></view>
     <view class="signup-list" hidden="{{navActive===0}}">

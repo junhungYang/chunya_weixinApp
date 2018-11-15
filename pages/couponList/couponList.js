@@ -1,5 +1,5 @@
 // pages/couponList/couponList.js
-import {_CouponList} from '../../utils/request'
+import { _CouponForUser} from '../../utils/request'
 Page({
 
   /**
@@ -7,7 +7,8 @@ Page({
    */
   data: {
     list:[],
-    page: 1
+    page: 1,
+    navActive: 0
   },
 
   /**
@@ -20,13 +21,14 @@ Page({
     wx.showLoading({
       title: '正在加载'
     })
-    _CouponList({
+    _CouponForUser({
+      type: this.data.navActive,
       page: this.data.page,
       size: 10
     }).then(data => {
-      let arr = [...this.data.list, ...data]
+      let arr = [...this.data.list, ...data.data]
       this.setData({
-        list: data
+        list: arr
       })
       setTimeout(() => {
         wx.hideLoading()
@@ -37,6 +39,15 @@ Page({
         title: msg
       })
     })
+  },
+  changeActive(e) {
+    let navActive = e.currentTarget.dataset.index
+    this.setData({
+      navActive,
+      list:[],
+      page: 1
+    })
+    this.getCouponList()
   },
   onReachBottom: function () {
     this.setData({

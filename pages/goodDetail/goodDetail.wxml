@@ -24,8 +24,8 @@
                 </view>
                 <view class="coupon" bindtap="couponStateManage">
                     <view>
-                        <image src="../../img/goodDetail/hongbao.png" />
-                        <text>150元新人红包</text>
+                        <image src="../../img/goodDetail/couponIcon.svg" mode="widthFix"/>
+                        <text>商品优惠券</text>
                     </view>
                     <view>
                         <text>立即领取</text>
@@ -220,94 +220,22 @@
         <view class="bg" data-index="{{1}}" bindtap="couponStateManage"></view>
         <view class="main">
             <view class="title">店铺优惠券</view>
-            <scroll-view scroll-y class="list">
-                <view class="item">
+            <scroll-view scroll-y class="list" bindscrolltolower="scrollGetCoupon">
+                <view class="item" wx:for="{{couponList}}" wx:key="{{item.id}}" wx:for-index="index">
                     <image src="../../img/gradient1.jpg" />
                     <view class="box">
                         <view class="info">
                             <view>
                                 <text>￥</text>
-                                <text>35</text>
+                                <text>{{item.type_money}}</text>
                             </view>
                             <view>
-                                <text>订单金额满699元可使用</text>
-                                <text>有效期2018.10.30-2019.10.31</text>
+                                <text>{{item.remark}}</text>
+                                <text>有效期{{item.use_start_date}}-{{item.use_end_date}}</text>
                             </view>
                         </view>
-                        <view class="btn">
-                            立即领取
-                        </view>
-                    </view>
-                </view>
-                <view class="item">
-                    <image src="../../img/gradient1.jpg" />
-                    <view class="box">
-                        <view class="info">
-                            <view>
-                                <text>￥</text>
-                                <text>35</text>
-                            </view>
-                            <view>
-                                <text>订单金额满699元可使用</text>
-                                <text>有效期2018.10.30-2019.10.31</text>
-                            </view>
-                        </view>
-                        <view class="btn">
-                            立即领取
-                        </view>
-                    </view>
-                </view>
-                <view class="item">
-                    <image src="../../img/gradient1.jpg" />
-                    <view class="box">
-                        <view class="info">
-                            <view>
-                                <text>￥</text>
-                                <text>35</text>
-                            </view>
-                            <view>
-                                <text>订单金额满699元可使用</text>
-                                <text>有效期2018.10.30-2019.10.31</text>
-                            </view>
-                        </view>
-                        <view class="btn">
-                            立即领取
-                        </view>
-                    </view>
-                </view>
-                <view class="item">
-                    <image src="../../img/gradient1.jpg" />
-                    <view class="box">
-                        <view class="info">
-                            <view>
-                                <text>￥</text>
-                                <text>35</text>
-                            </view>
-                            <view>
-                                <text>订单金额满699元可使用</text>
-                                <text>有效期2018.10.30-2019.10.31</text>
-                            </view>
-                        </view>
-                        <view class="btn">
-                            立即领取
-                        </view>
-                    </view>
-                </view>
-                <view class="item">
-                    <image src="../../img/gradient1.jpg" />
-                    <view class="box">
-                        <view class="info">
-                            <view>
-                                <text>￥</text>
-                                <text>35</text>
-                            </view>
-                            <view>
-                                <text>订单金额满699元可使用</text>
-                                <text>有效期2018.10.30-2019.10.31</text>
-                            </view>
-                        </view>
-                        <view class="btn">
-                            立即领取
+                        <view class="btn" data-id="{{item.id}}" data-state="{{item.isReceive}}" data-index="{{index}}" bindtap="addCoupon">
+                            {{item.isReceive?'已经领取':'立即领取'}}
                         </view>
                     </view>
                 </view>

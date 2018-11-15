@@ -107,6 +107,10 @@ Page({
       })
       let pages = getCurrentPages()
       let prevPage = pages[pages.length - 2];
+      let prevPrevPage = pages[pages.length - 3];
+      if (prevPrevPage.route === 'pages/beforeBalance/beforeBalance') {
+        prevPrevPage.getOrderCheckout()
+      }
       prevPage.getPositionList()
       setTimeout(() => {
         wx.navigateBack({

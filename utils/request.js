@@ -1169,26 +1169,73 @@ const _CartIndex = function () {
     });
 }
 
-//优惠券
-const _CouponList = function () {
-    return new Promise((resolve, reject) => {
-        wx.request({
-          url: `${GlobalUrl}api/coupon/list`,
-          header: {
-            "X-Nideshop-Token": Token
-          },
-          method: "GET",
-          success: res => {
-            if (res.data.errno === 0) {
-              resolve(res.data.data);
-            } else {
-              reject(res.data.errmsg);
-            }
-          }
-        });
+const _CouponForUser = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/coupon/listForUser`,
+      header: {
+        "X-Nideshop-Token": Token
+      },
+      data: data,
+      method: "GET",
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
     });
+  });
 }
+
+//商品优惠券
+const _CouponForGood = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/coupon/listForGood`,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      data: data,
+      method: "POST",
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+}
+
+// 领取优惠券
+const _CouponAdd = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/coupon/addUserCoupon`,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      data: data,
+      method: "POST",
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
 module.exports = {
+  _CouponForUser,
+  _CouponForGood,
+  _CouponAdd,
   _AboutChunya,
   _CollectDeleteAll,
   _LikeAddOrDelete,
@@ -1244,6 +1291,5 @@ module.exports = {
     _GetCartGoodsCount,
     _CartDelete,
     _CartIndex,
-    _CouponList,
   _UserCenterOrderCount
 };

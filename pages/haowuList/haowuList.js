@@ -1,11 +1,17 @@
 // pages/haowuList/haowuList.js
+import {
+  _GoodsList
+} from "../../utils/request";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goodsList:[1,2,3,4]
+    goodsList:[1,2,3,4],
+    searchText: '',
+    searchListHid: true,
+    searchList: [],
   },
 
   /**
@@ -14,7 +20,37 @@ Page({
   onLoad: function (options) {
 
   },
-
+  searchInput(e) {
+    this.setData({
+      searchText: e.detail.value
+    })
+    if (this.data.searchText) {
+      this.setData({ searchListHid: false })
+    } else {
+      this.setData({ searchListHid: true });
+    }
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      _GoodsList({
+        page: 1,
+        size: 10,
+        keyword: this.data.searchText
+      }).then(data => {
+        this.setData({
+          searchList: data.data
+        })
+      }).catch(msg => {
+        wx.showModal({
+          title: msg
+        });
+      });
+    }, 500);
+  }, 
+  hidSearchList() {
+    this.setData({
+      searchListHid: true,
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

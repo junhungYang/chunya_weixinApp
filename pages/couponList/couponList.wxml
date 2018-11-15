@@ -1,7 +1,37 @@
 <view class="template">
+    <view class="nav">
+         <text class="{{navActive===0?'nav-active':''}}" data-index="{{0}}" bindtap="changeActive">未使用</text>
+        <text  class="{{navActive===1?'nav-active':''}}" data-index="{{1}}" bindtap="changeActive">使用记录</text>
+        <text  class="{{navActive===2?'nav-active':''}}" data-index="{{2}}" bindtap="changeActive">已过期</text>
+    </view>
     <view class="list">
-        <view class="item" wx:for="{{list}}" wx:key="{{item.id}}">
-            <view class="top">
+        <view class="item" wx:for="{{list}}" wx:key="{{item.id}}" wx:for-index="index">
+            <image src="../../img/gradient1.jpg" />
+            <view class="box">
+                <view class="info">
+                    <view>
+                        <text>￥</text>
+                        <text>{{item.couponInfo.type_money}}</text>
+                    </view>
+                    <view>
+                        <text>{{item.couponInfo.remark}}</text>
+                        <text>有效期{{item.couponInfo.use_start_date}}-{{item.couponInfo.use_end_date}}</text>
+                    </view>
+                </view>
+                <view wx:if="{{navActive===0}}" class="btn" data-id="{{item.couponInfo.id}}" data-state="{{item.couponInfo.isReceive}}" data-index="{{index}}" bindtap="addCoupon">
+                    去使用
+                </view>
+                <view wx:elif="{{navAcitve===1}}">
+                    已使用
+                </view>
+                <view wx:else>
+                    已过期
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+    <!--<view class="top">
                 <view class="main">
                     <image src="" />
                     <view>
@@ -21,7 +51,4 @@
                     <text>去使用</text>
                     <image src="../../img/rediceTo_red.png" />
                 </view>
-            </view>
-        </view>
-    </view>
-</view>
+            </view> -->

@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "春芽好物"
+    "navigationBarTitleText": "春芽好物",
+    "usingComponents": {
+        "my-swiper": "../components/swiper/swiper"
+    }
 }

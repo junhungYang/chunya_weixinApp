@@ -157,37 +157,6 @@ Page({
       this.switchToLogin();
     }
   },
-  bindGetUserInfo(res) {
-    if (res.detail.userInfo) {
-      //用户点击了授权
-      app.getSensitiveInfo();
-    } else {
-      //用户点击了取消
-      wx.showModal({
-        title: "警告通知",
-        content:
-          "您点击了拒绝授权,将无法正常显示个人信息,请从新点击授权按钮获取授权。"
-      });
-    }
-  },
-  getPhoneNumber(e) {
-    let sessionKey = wx.getStorageSync("sessionKey");
-    _GetSensitiveInfo({
-      sessionKey,
-      encryptedData: e.detail.encryptedData,
-      ivStr: e.detail.iv
-    })
-      .then(data => {
-        let dataObj = JSON.parse(data);
-        wx.setStorageSync("userPhoneNum", dataObj.phoneNumber);
-        app.wxappLogin();
-      })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
-        });
-      });
-  },
   searchInput(e) {
     this.setData({
       searchText:e.detail.value
