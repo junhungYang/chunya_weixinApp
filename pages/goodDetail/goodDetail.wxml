@@ -230,7 +230,7 @@
                                 <text>{{item.type_money}}</text>
                             </view>
                             <view>
-                                <text>{{item.remark}}</text>
+                                <text>{{item.name}}</text>
                                 <text>有效期{{item.use_start_date}}-{{item.use_end_date}}</text>
                             </view>
                         </view>

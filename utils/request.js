@@ -1251,7 +1251,30 @@ const _CouponListByCart = function (data) {
     });
   });
 };
+
+// 好物分页
+const _HaowuList = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/catalog/queryL2List`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
 module.exports = {
+  _HaowuList,
   _CouponListByCart,
   _CouponForUser,
   _CouponForGood,

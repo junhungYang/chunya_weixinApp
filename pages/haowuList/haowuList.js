@@ -1,6 +1,6 @@
 // pages/haowuList/haowuList.js
 import {
-  _GoodsList
+  _HaowuList
 } from "../../utils/request";
 Page({
 
@@ -8,48 +8,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goodsList:[1,2,3,4],
-    searchText: '',
-    searchListHid: true,
-    searchList: [],
+    goodsList:[],
+    page: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getHaowuList()
   },
-  searchInput(e) {
-    this.setData({
-      searchText: e.detail.value
+  getHaowuList() {
+    _HaowuList({
+      page: this.data.page,
+      size: 3
+    }).then(data => {
+      let goodsList = [...this.data.goodsList,...data.data]
+      this.setData({
+        goodsList
+      })
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 600);
+    }).catch(msg => {
+      wx.showModal({
+        title: msg
+      })
     })
-    if (this.data.searchText) {
-      this.setData({ searchListHid: false })
-    } else {
-      this.setData({ searchListHid: true });
-    }
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => {
-      _GoodsList({
-        page: 1,
-        size: 10,
-        keyword: this.data.searchText
-      }).then(data => {
-        this.setData({
-          searchList: data.data
-        })
-      }).catch(msg => {
-        wx.showModal({
-          title: msg
-        });
-      });
-    }, 500);
-  }, 
-  hidSearchList() {
+  },
+  onReachBottom: function () {
     this.setData({
-      searchListHid: true,
-    });
+      page: this.data.page +1
+    })
+    wx.showLoading({
+      title: '正在加载'
+    })
+    this.getHaowuList()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -89,9 +83,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
 
-  },
 
   /**
    * 用户点击右上角分享
