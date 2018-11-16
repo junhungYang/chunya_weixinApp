@@ -21,7 +21,6 @@ Page({
   getOrderCheckout(couponId) {
     let obj = {}
     if(couponId) {
-      console.log(couponId)
       obj.couponId = couponId
     }
     _OrderCheckout(obj)
@@ -61,12 +60,18 @@ Page({
   orderConfirm() {
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
-      if (this.data.data.checkedAddress) {
-        _OrderSubmit({
-          postscript: this.data.postscript,
-          addressId: this.data.data.checkedAddress.id,
-          fullCutCouponDec: this.data.data.fullCutCouponDec
-        }).then(data => {
+      let wxData = this.data
+      if (wxData.data.checkedAddress) {
+        let obj = {
+          postscript:wxData.postscript,
+          addressId:wxData.data.checkedAddress.id,
+          fullCutCouponDec:wxData.data.fullCutCouponDec
+        }
+        if (wxData.data.checkedCoupon) {
+          obj.couponId = wxData.data.checkedCoupon.id
+          obj.couponNumber = wxData.data.checkedCoupon.coupon_number;
+        }
+        _OrderSubmit(obj).then(data => {
           let orderId = data.orderInfo.id;
           _WeChatPay({ orderId })
             .then(data => {
