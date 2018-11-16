@@ -1,11 +1,15 @@
 
 .template {
-  min-height: 100vh;
+  min-height: 110vh;
   background: #fff;
   .list {
     padding-top: 48rpx;
     .big-item {
-      margin: 0 6.4%;
+        padding-top: 25rpx;
+        margin: 0 6.4%;
+      &:first-of-type {
+        padding-top: 0;
+      }
       .header {
         image {
           display: block;
@@ -67,11 +71,26 @@
         }
       }
       .uploading {
-        height: 400rpx;
-        line-height: 350rpx;
+        height: 250rpx;
+        line-height: 250rpx;
         font-size: 20rpx;
         color: #b2b2b2;
         text-align: center;
+      }
+      .changePage {
+        height: 80rpx;
+        text-align: center;
+        text {
+          line-height: 80rpx;
+          font-size: 24rpx;
+          color: #b2b2b2;
+        }
+        text:first-of-type {
+          padding: 0 20rpx;
+        }
+        text:last-of-type {
+          padding: 0 20rpx;
+        }
       }
     }
   }

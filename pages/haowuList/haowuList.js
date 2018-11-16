@@ -1,15 +1,14 @@
 // pages/haowuList/haowuList.js
-import {
-  _HaowuList
-} from "../../utils/request";
+import { _HaowuList, _GoodsList, _SendFormid } from "../../utils/request";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goodsList:[],
-    page: 1
+    fatherList:[],
+    page: 1,
+    
   },
 
   /**
@@ -19,13 +18,16 @@ Page({
     this.getHaowuList()
   },
   getHaowuList() {
+    let length = this.data.fatherList.length
     _HaowuList({
       page: this.data.page,
-      size: 3
+      size: 2
     }).then(data => {
-      let goodsList = [...this.data.goodsList,...data.data]
       this.setData({
-        goodsList
+        fatherList: [...this.data.fatherList, ...data.data]
+      })
+      data.data.forEach((item,index) => {
+        this.changeChildPage(length + index,1)
       })
       setTimeout(() => {
         wx.hideLoading()
@@ -35,6 +37,67 @@ Page({
         title: msg
       })
     })
+  },
+  changeChildPage(targetIndex,page) {
+    let fatherList = this.data.fatherList
+    _GoodsList({
+      page,
+      categoryId: fatherList[targetIndex].id,
+      size: 6
+    }).then(childData => {
+      fatherList[targetIndex].subCategoryList = childData;
+      this.setData({
+        fatherList
+      })
+    }).catch(msg => {
+      wx.showModal({
+        title:msg
+      })
+    })
+  },
+  changePageEnter(e) {
+    let page = e.currentTarget.dataset.page
+    let type = e.currentTarget.dataset.type
+    let targetIndex = e.currentTarget.dataset.targetindex
+    let fatherList = this.data.fatherList
+    if(type === 'add') {
+      if (fatherList[targetIndex].subCategoryList.data.length!==0) {
+        this.changeChildPage(targetIndex, page += 1);
+      }else {
+        wx.showToast({
+          title: "产品上新中，敬请期待",
+          icon: "none",
+          duration: 600
+        });
+      }
+    }else {
+      if(page===1) {
+        wx.showToast({
+          title: '已经是第一页',
+          icon: 'none',
+          duration: 600
+        })
+      }else {
+        this.changeChildPage(targetIndex, page -= 1);
+      }
+    }
+  },
+  navToGoodDetail(e) {
+      let goodId = e.currentTarget.dataset.goodid;
+      wx.navigateTo({
+        url: `../goodDetail/goodDetail?goodId=${goodId}`
+      });
+  },
+  formSubmit_collect: function (e) {
+    let fromid = `${e.detail.formId}`;
+    let userInfoStorage = wx.getStorageSync('userInfo')
+    if (fromid && userInfoStorage) {
+      let openid = JSON.parse(userInfoStorage).openId
+      _SendFormid({
+        fromid,
+        openid
+      })
+    }
   },
   onReachBottom: function () {
     this.setData({

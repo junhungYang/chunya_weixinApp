@@ -1,6 +1,10 @@
 {
   "pages": [
-        "pages/index/index",
+      "pages/index/index",
+        "pages/haowuList/haowuList",
+        
+
+   
             "pages/invoice/invoice",        
         "pages/eventEnter/eventEnter",
                 "pages/publicReviewsList/publicReviewsList",
@@ -10,7 +14,7 @@
         "pages/publicDetail/publicDetail",
         "pages/public/public",
         "pages/storyDetail/storyDetail",
-        "pages/haowuList/haowuList",
+     
         "pages/reviewsList/reviewsList",
         "pages/goodDetail/goodDetail",
       "pages/couponList/couponList",

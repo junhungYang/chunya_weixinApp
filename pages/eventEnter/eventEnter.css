@@ -124,6 +124,9 @@
   overflow: hidden;
   box-sizing: border-box;
   padding: 30rpx 19rpx;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #b2b2b2;
 }
 .template .input-info .desc-info .input-box textarea {
   width: 100%;

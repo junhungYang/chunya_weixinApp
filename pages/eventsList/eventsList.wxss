@@ -9,6 +9,7 @@
   position: fixed;
   z-index: 5;
   width: 100%;
+  background: #f2f2f2;
 }
 .template .nav text {
   font-size: 32rpx;

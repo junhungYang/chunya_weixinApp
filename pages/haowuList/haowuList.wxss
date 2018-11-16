@@ -1,12 +1,16 @@
 .template {
-  min-height: 100vh;
+  min-height: 110vh;
   background: #fff;
 }
 .template .list {
   padding-top: 48rpx;
 }
 .template .list .big-item {
+  padding-top: 25rpx;
   margin: 0 6.4%;
+}
+.template .list .big-item:first-of-type {
+  padding-top: 0;
 }
 .template .list .big-item .header image {
   display: block;
@@ -67,11 +71,26 @@
   margin-top: 0;
 }
 .template .list .big-item .uploading {
-  height: 400rpx;
-  line-height: 350rpx;
+  height: 250rpx;
+  line-height: 250rpx;
   font-size: 20rpx;
   color: #b2b2b2;
   text-align: center;
+}
+.template .list .big-item .changePage {
+  height: 80rpx;
+  text-align: center;
+}
+.template .list .big-item .changePage text {
+  line-height: 80rpx;
+  font-size: 24rpx;
+  color: #b2b2b2;
+}
+.template .list .big-item .changePage text:first-of-type {
+  padding: 0 20rpx;
+}
+.template .list .big-item .changePage text:last-of-type {
+  padding: 0 20rpx;
 }
 .invisibleclass {
   display: block;
