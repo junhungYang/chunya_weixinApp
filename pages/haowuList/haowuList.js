@@ -32,10 +32,6 @@ Page({
       setTimeout(() => {
         wx.hideLoading()
       }, 600);
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
   },
   changeChildPage(targetIndex,page) {
@@ -46,12 +42,11 @@ Page({
       size: 6
     }).then(childData => {
       fatherList[targetIndex].subCategoryList = childData;
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 500);
       this.setData({
         fatherList
-      })
-    }).catch(msg => {
-      wx.showModal({
-        title:msg
       })
     })
   },
@@ -63,11 +58,15 @@ Page({
     if(type === 'add') {
       if (fatherList[targetIndex].subCategoryList.data.length!==0) {
         this.changeChildPage(targetIndex, page += 1);
+        wx.showLoading({
+          title: '正在加载',
+          mask: true
+        })
       }else {
         wx.showToast({
           title: "产品上新中，敬请期待",
           icon: "none",
-          duration: 600
+          duration: 1000
         });
       }
     }else {
@@ -75,10 +74,14 @@ Page({
         wx.showToast({
           title: '已经是第一页',
           icon: 'none',
-          duration: 600
+          duration: 1000
         })
       }else {
         this.changeChildPage(targetIndex, page -= 1);
+        wx.showLoading({
+          title: '正在加载',
+          mask: true
+        })
       }
     }
   },

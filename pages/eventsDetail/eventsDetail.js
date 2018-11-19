@@ -34,7 +34,7 @@ Page({
       this.setData({
         detail: data
       })
-    }).catch(msg => this.showModal(msg))
+    })
   },
   navToEnter() {
     if(this.data.detail.isSignUp === 1) {

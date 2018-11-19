@@ -50,10 +50,6 @@ Page({
         this.setData({
           reviewsList: arr
         })
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
   },
   addImage() {
@@ -154,7 +150,6 @@ Page({
           });
           this.getCommentList();
         })
-        .catch(msg => wx.showModal({ title: msg }));
     }
   },
   emojiStateManage(e) {

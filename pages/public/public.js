@@ -32,8 +32,6 @@ Page({
       this.setData({
         userInfo:data
       })
-    }).catch(msg => {
-      this.showModal(msg);
     })
   },
   getCommonList(style) {
@@ -55,8 +53,6 @@ Page({
           commonList: data.data
         })
       }
-    }).catch(msg => {
-      this.showModal(msg)
     })
   },
   onReachBottom: function () {
@@ -89,12 +85,7 @@ Page({
       setTimeout(() => {
         wx.hideLoading()
       }, 600);
-    }).catch(msg => {
-      this.showModal(msg);
     })
-    
-
-
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

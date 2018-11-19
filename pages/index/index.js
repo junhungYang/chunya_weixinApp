@@ -19,7 +19,8 @@ Page({
     searchList:[],
     commonwealList: [],
     commActiveIndex: '',
-    commAllPage:'' 
+    commAllPage:'' ,
+    eventItemWidth: 0
   },
 
   onLoad() {
@@ -30,10 +31,6 @@ Page({
       this.setData({
         goodsList: data.data
       });
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
     _SpreadList({
       id: 6
@@ -43,31 +40,37 @@ Page({
         commAllPage: data.adList.length,
         commActiveIndex: 1
       });
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
   },
+  getEventWidth() {
+    let query = wx.createSelectorQuery();
+    query.select("#events-item").boundingClientRect();
+    query.exec((res) => {
+      this.setData({ eventItemWidth: parseInt(res[0].width) });
+    });
+    // console.log(this.data.eventItemWidth)
+  },
   changeCommIndex(e) {
+    if(this.data.eventItemWidth === 0) {
+      this.getEventWidth()
+    }
     let data = e.detail
-    let num = (data.scrollLeft) % 327;
+    let num = data.scrollLeft % this.data.eventItemWidth;
     if (num < 20 && num > -20) {
       this.setData({
-        commActiveIndex: parseInt(data.scrollLeft / 327) +1
-      })
+        commActiveIndex:
+          parseInt(data.scrollLeft / this.data.eventItemWidth) + 1
+      });
     }
   },
   navToPublicDetail(e) {
     if(app.globalData.token) {
-      let url = e.currentTarget.dataset.url
-      wx.navigateTo({
-        url
-      })
+      let url = e.currentTarget.dataset.url;
+      wx.navigateTo({ url });
     }else {
       this.switchToLogin()
     }
-
+      
   },
   formSubmit_collect: function (e) {
     let fromid = `${e.detail.formId}`;
@@ -82,7 +85,7 @@ Page({
   },
   switchToLogin() {
     wx.showModal({
-      title: '无法跳转',
+      title: '提示',
       content: '请先进行登录操作',
       success: (res) => {
         if (res.confirm) {
@@ -93,6 +96,38 @@ Page({
       }
     })
   },
+  navToColorBtnMod(e) {
+    let type = e.currentTarget.dataset.type
+    if(app.globalData.token) {
+      switch (type) {
+        case "nuanke":
+          wx.navigateTo({ url: `../nuanke/nuanke` });
+          break;
+        case "public":
+          wx.navigateTo({ url: `../public/public` });
+          break;
+        case "haowu":
+          wx.navigateTo({ url: `../haowuList/haowuList` });
+          break;
+        case "story":
+          wx.navigateTo({ url: `../story/story` });
+          break;
+        case "signin":
+          _UserSignin()
+            .then(data => {
+              wx.showModal({
+                title: "签到成功",
+                content: data,
+                showCancel: false,
+                confirmColor: "#2d2d2d"
+              });
+            })
+          break;
+      }
+    }else {
+      this.switchToLogin();
+    }
+  },
   navToGoodDetail(e) {
     if(app.globalData.token) {
       let goodId = e.currentTarget.dataset.goodid;
@@ -100,62 +135,9 @@ Page({
         url: `../goodDetail/goodDetail?goodId=${goodId}`
       });
     }else {
-      this.switchToLogin()
-    }
-  },
-  navToNuanke() {
-    if(app.globalData.token) {
-      wx.navigateTo({
-        url: `../nuanke/nuanke`
-      });
-    } else {
-      this.switchToLogin()
-    }
-  },
-  navToPublic() {
-    if(app.globalData.token) {
-      wx.navigateTo({
-        url: `../public/public`
-      })
-    } else {
-      this.switchToLogin()
-    }
-  },
-  navToHaowu() {
-    if (app.globalData.token) {
-      wx.navigateTo({ url: "../haowuList/haowuList" });
-    } else {
       this.switchToLogin();
     }
-  },
-  navToStory() {
-    if (app.globalData.token) {
-      wx.navigateTo({ url: "../story/story" });
-    } else {
-      this.switchToLogin();
-    }
-  },
-  toSign() {
-    if (app.globalData.token) {
-      _UserSignin()
-        .then(data => {
-          wx.showModal({
-            title: "签到成功",
-            content: data,
-            showCancel: false,
-            confirmColor: "#2d2d2d"
-          });
-        })
-        .catch(msg => {
-          wx.showModal({
-            title: msg,
-            showCancel: false,
-            confirmColor: "#2d2d2d"
-          });
-        });
-    } else {
-      this.switchToLogin();
-    }
+  
   },
   searchInput(e) {
     this.setData({
@@ -176,11 +158,7 @@ Page({
         this.setData({
           searchList: data.data
         })
-      }).catch(msg => {
-        wx.showModal({
-          title: msg
-        });
-      });
+      })
     }, 500);
   }, 
   hidSearchList() {

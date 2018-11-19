@@ -87,12 +87,7 @@ Page({
           pageIndex: 1
         })
         this.getOrderList();
-      }).catch(msg => {
-        wx.showModal({
-          title: '提示',
-          content: msg
-        });
-      });
+      })
   },
   navToOrderDetail(e) {
     let orderId = e.currentTarget.dataset.item.id;
@@ -122,11 +117,6 @@ Page({
         .then(data => {
           app.pay(data);
         })
-        .catch(msg => {
-          wx.showModal({
-            title: msg
-          });
-        });
     }, 500);
   },
   buyAgain(e) {

@@ -13,12 +13,6 @@ Component({
               adList: data.adList
           })
       })
-    .catch(msg => {
-        wx.showModal({
-            title: "Error",
-            content: msg
-        });
-    })
   },
   methods: {
     navToGoodDetail(e) {
@@ -26,6 +20,18 @@ Component({
             let url = e.currentTarget.dataset.item.link
             wx.navigateTo({
                 url
+            })
+        }else {
+            wx.showModal({
+                title: '提示',
+                content: '请先进行登录操作',
+                success: (res) => {
+                    if (res.confirm) {
+                        wx.switchTab({
+                            url: '../cart/cart'
+                        })
+                    }
+                }
             })
         }
     }

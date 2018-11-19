@@ -26,10 +26,6 @@ Page({
       this.setData({
         list: arr
       })
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
   },
   navToGoodDetail(e) {
@@ -49,12 +45,7 @@ Page({
         list: []
       });
       this.getMyCollect()
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
-     
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

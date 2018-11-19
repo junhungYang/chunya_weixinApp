@@ -26,11 +26,7 @@ Page({
           this.setData({
             detail: data
           });
-        }).catch(msg => {
-          wx.showModal({
-            title: msg
-          });
-        });
+        })
     }
   },
   getPhoneNumber(e) {
@@ -50,11 +46,6 @@ Page({
         wx.setStorageSync("userPhoneNum", dataObj.phoneNumber);
         app.wxappLogin();
       })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
-        });
-      });
   },
   chooseAddress() {
     wx.chooseAddress({

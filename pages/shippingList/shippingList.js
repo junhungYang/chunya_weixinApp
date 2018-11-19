@@ -28,9 +28,6 @@ Page({
       .then(data => {
         this.setData({ data });
       })
-      .catch(msg => {
-        wx.showModal({ title: msg });
-      });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -75,9 +72,6 @@ Page({
           wx.hideLoading();
         }, 600)
       })
-      .catch(msg => {
-        wx.showModal({ title: msg });
-      });
   },
 
   /**

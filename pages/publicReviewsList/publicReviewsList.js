@@ -127,7 +127,6 @@ Page({
           this.getCommentList();
           this.refreshPrevPage();
         })
-        .catch(msg => wx.showModal({ title: msg }));
     }
   },
   emojiStateManage(e) {
@@ -170,9 +169,6 @@ Page({
           this.setData({ reviewsList: arr });
         }
       })
-      .catch(msg => {
-        wx.showModal({ title: msg });
-      });
   },
   previewImg(e) {
     let index = e.currentTarget.dataset.index;

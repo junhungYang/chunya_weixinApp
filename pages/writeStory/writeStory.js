@@ -190,10 +190,6 @@ Page({
           wx.navigateBack({
             delta: 1
           });
-      }).catch(msg => {
-        wx.showModal({
-          title: msg
-        })
       })
     }else {
       wx.showModal({

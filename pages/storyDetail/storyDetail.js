@@ -81,7 +81,7 @@ Page({
           });
         }
       })
-      .catch(msg => this.showModal(msg));
+
   },
   getStoryDetail() {
     _PostsDetail({
@@ -92,7 +92,7 @@ Page({
           detail: data
         });
       })
-      .catch(msg => this.showModal(msg));
+
   },
   onReachBottom: function() {
     this.setData({
@@ -170,10 +170,6 @@ Page({
       valueId: this.data.id
     }).then( () => {
       this.getCommentList();
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
   },
   collect() {
@@ -182,10 +178,6 @@ Page({
       valueId:this.data.id
     }).then(() => {
       this.getCommentList()
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
   },
   watch: {

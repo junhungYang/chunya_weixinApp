@@ -43,7 +43,7 @@ Page({
       this.setData({
         userInfo:data
       })
-    }).catch(msg => wx.showModal({title:msg}));
+    })
   },
   bindGetUserInfo(res) {
     if (res.detail.userInfo) {
@@ -63,11 +63,7 @@ Page({
         this.setData({
           orderCount: data
         })
-      }).catch(msg => {
-        wx.showModal({
-          title
-        })
-      })    
+      })   
   },
   navToOtherMod(e) {
     let type = e.currentTarget.dataset.type
@@ -92,6 +88,11 @@ Page({
           wx.navigateTo({ url: "../aboutChunya/aboutChunya" });
           break;
       }
+    }else {
+      wx.showModal({
+        title: '提示',
+        content: '无法进行跳转，请先点击头像进行授权登录'
+      })
     }
   },
   navToOrderList(e) {
@@ -101,6 +102,11 @@ Page({
       wx.navigateTo({
         url
       });
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '无法进行跳转，请先点击头像进行授权登录'
+      })
     }
   },
   navToOrderDetail(e) {
@@ -109,6 +115,11 @@ Page({
       wx.navigateTo({
         url: `../orderDetail/orderDetail?orderId=${orderId}`
       });
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '无法进行跳转，请先点击头像进行授权登录'
+      })
     }
   },
   onPullDownRefresh: function () {
@@ -125,11 +136,7 @@ Page({
         setTimeout(() => {
           wx.hideLoading();
         }, 600)
-      }).catch(msg => {
-        wx.showModal({
-          title: msg
-        })
       })
-    }).catch(msg => wx.showModal({ title: msg }));
+    })
   }
 });

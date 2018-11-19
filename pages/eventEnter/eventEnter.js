@@ -37,7 +37,6 @@ Page({
           detail: data
         });
       })
-      .catch(msg => {wx.showModal({ title: msg })});
   },
   inputName(e) {
     let value = e.detail.value;
@@ -118,9 +117,6 @@ Page({
           })
         }, 600);
      
-      }).catch(msg => {
-        wx.hideLoading()
-        wx.showModal({title: msg})
       })
     }
   },

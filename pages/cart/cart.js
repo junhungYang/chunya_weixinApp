@@ -52,9 +52,6 @@ Page({
           cartTotal: data.cartTotal
         });
       })
-      .catch(msg => {
-        wx.showModal({ title: msg });
-      });
   },
   formSubmit_collect: function(e) {
     let fromid = `${e.detail.formId}`;
@@ -103,11 +100,6 @@ Page({
           cartTotal: data.cartTotal
         });
       })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
-        });
-      });
   },
   quantityControl(e) {
     clearTimeout(this.timer)
@@ -138,11 +130,6 @@ Page({
           cartTotal: data.cartTotal
         });
       })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
-        });
-      });
   },
   buyConfirm() {
     if (this.data.cartTotal.checkedGoodsAmount !== 0) {
@@ -186,9 +173,6 @@ Page({
             wx.hideLoading();
           }, 600);
         })
-        .catch(msg => {
-          wx.showModal({ title: msg });
-        });
     }
   },
   goodsDelete() {

@@ -5,6 +5,73 @@ const _SetToken = function(token) {
   Token = token;
   console.log(Token)
 };
+
+var _WxappLogin = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/auth/wxappLogin`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        }
+        else {
+          _Reject(res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+var getNewToken = function() {
+  wx.showLoading({
+    title: '正在登录',
+    mask: true
+  })
+  let userInfoJson = wx.getStorageSync("userInfo");
+  let phoneNum = wx.getStorageSync("userPhoneNum");
+  let userInfo = JSON.parse(userInfoJson);
+  _WxappLogin({
+    openid: userInfo.openId,
+    gender: userInfo.gender,
+    avatarUrl: userInfo.avatarUrl,
+    nickName: userInfo.nickName,
+    mobile: phoneNum ? phoneNum : ""
+  }).then(data => {
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 1000);
+    wx.switchTab({
+      url: '../index/index'
+    })
+    _SetToken(data.token);
+  })
+}
+
+var _Reject = function (errno,errmsg) {
+  wx.hideLoading()
+  if(errno === 401) {
+    wx.showModal({
+      title: 'token失效',
+      content: "token已失效，请点击确认进行从新登录",
+      success: (res) => {
+        if (res.confirm) {
+          getNewToken();
+        }
+      }
+    });
+  }else {
+    wx.showModal({
+      title: errmsg
+    })
+  }
+}
+
+
 //关于我们
 const _AboutChunya = function(data) {
   return new Promise((resolve, reject) => {
@@ -19,7 +86,7 @@ const _AboutChunya = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -42,7 +109,7 @@ const _CollectDeleteAll = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -64,7 +131,7 @@ const _LikeAddOrDelete = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -84,7 +151,7 @@ const _PostsList = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -104,7 +171,7 @@ const _PostsDetail = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -124,7 +191,7 @@ const _PostsAddComment = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -144,7 +211,7 @@ const _PostsGetCommentList = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -164,7 +231,7 @@ const _PostsAdd = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -190,7 +257,7 @@ const _ActivitySignUp = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -210,7 +277,7 @@ const _ActivityList = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -230,7 +297,7 @@ const _ActivityDetail = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -256,7 +323,7 @@ const _CommonwealList = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -277,7 +344,7 @@ const _CommonwealDetail = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -298,7 +365,7 @@ const _CommonwealDonation = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -323,7 +390,7 @@ const _WarmclassPay = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -344,7 +411,7 @@ const _WarmclassDetail = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -365,7 +432,7 @@ const _WarmclassList = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -388,7 +455,7 @@ const _GetUserInfo = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -409,7 +476,7 @@ const _UserSignin = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -430,7 +497,7 @@ const _SendFormid = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -478,26 +545,6 @@ const _GetSensitiveInfo = function(data) {
   });
 };
 
-const _WxappLogin = function(data) {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: `${GlobalUrl}api/auth/wxappLogin`,
-      data: data,
-      method: "POST",
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      success: res => {
-        if (res.data.errno === 0) {
-          resolve(res.data.data);
-        } 
-         else {
-          reject(res.data.msg);
-        }
-      }
-    });
-  });
-};
 
 const _UploadHeadImg = function () {
     return new Promise((resolve, reject) => {
@@ -513,7 +560,7 @@ const _UploadHeadImg = function () {
             if (res.data.errno === 0) {
               resolve(res.data.data);
             } else {
-              reject(res.data.errmsg);
+              _Reject(res.data.errno,res.data.errmsg)
             }
           }
         });
@@ -534,7 +581,7 @@ const _Smscode = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -555,7 +602,7 @@ const _SpreadList = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -576,7 +623,7 @@ const _PositionSave = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -596,7 +643,7 @@ const _PositionList = function() {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -617,7 +664,7 @@ const _PositionDetail = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -638,7 +685,7 @@ const _PositionDelete = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -659,7 +706,7 @@ const _WeChatPay = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -680,7 +727,7 @@ const _OrderDetail = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -700,7 +747,7 @@ const _TakeDelay = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -721,7 +768,7 @@ const _UserCenterOrderCount = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -741,7 +788,7 @@ const _OrderList = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -761,7 +808,7 @@ const _OrderConfirmOrder = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -781,7 +828,7 @@ const _OrderCancelOrder = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -801,7 +848,7 @@ const _OrderDeleteOrder = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -821,7 +868,7 @@ const _OrderSubmit = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -842,7 +889,7 @@ const _OrderCheckout = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -863,7 +910,7 @@ const _CollectAddorDelete = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -883,7 +930,7 @@ const _CollectList = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -904,7 +951,7 @@ const _CatalogIndex = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -924,7 +971,7 @@ const _CatalogCurrent = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -944,7 +991,7 @@ const _GoodsList = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -964,7 +1011,7 @@ const _GoodsDetail = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -983,7 +1030,7 @@ const _GoodsKeyWordsList = function() {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -1004,7 +1051,7 @@ const _CommentList = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -1024,7 +1071,7 @@ const _CommentPost = function(data) {
             if (res.data.errno === 0) {
               resolve(res.data.data);
             } else {
-              reject(res.data.errmsg);
+              _Reject(res.data.errno,res.data.errmsg)
             }
           }
         });
@@ -1044,7 +1091,7 @@ const _OfficialNewsList = function (data) {
             if (res.data.errno === 0) {
               resolve(res.data.data);
             } else {
-              reject(res.data.errmsg);
+              _Reject(res.data.errno,res.data.errmsg)
             }
           }
         });
@@ -1064,7 +1111,7 @@ const _CommentCount = function (data) {
             if (res.data.errno === 0) {
               resolve(res.data.data);
             } else {
-              reject(res.data.errmsg);
+              _Reject(res.data.errno,res.data.errmsg)
             }
           }
         });
@@ -1086,7 +1133,7 @@ const _CartAdd = function (data) {
               resolve(res.data.data);
             } else {
  
-              reject(res.data.errmsg);
+              _Reject(res.data.errno,res.data.errmsg)
             }
           }
         });
@@ -1106,7 +1153,7 @@ const _CartChecked = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -1121,7 +1168,7 @@ const _GetCartGoodsCount = function (data) {
             if (res.data.errno === 0) {
               resolve(res.data.data);
             } else {
-              reject(res.data.errmsg);
+              _Reject(res.data.errno,res.data.errmsg)
             }
           }
         });
@@ -1141,7 +1188,7 @@ const _CartDelete = function (data) {
             if (res.data.errno === 0) {
               resolve(res.data.data);
             } else {
-              reject(res.data.errmsg);
+              _Reject(res.data.errno,res.data.errmsg)
             }
           }
         });
@@ -1160,7 +1207,7 @@ const _CartIndex = function () {
             if (res.data.errno === 0) {
               resolve(res.data.data);
             } else {
-              reject(res.data.errmsg);
+              _Reject(res.data.errno,res.data.errmsg)
             }
           }
         });
@@ -1180,7 +1227,7 @@ const _CouponForUser = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -1202,7 +1249,7 @@ const _CouponForGood = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -1224,7 +1271,7 @@ const _CouponAdd = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -1245,7 +1292,7 @@ const _CouponListByCart = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });
@@ -1267,7 +1314,7 @@ const _HaowuList = function (data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.errmsg);
+          _Reject(res.data.errno,res.data.errmsg)
         }
       }
     });

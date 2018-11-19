@@ -47,7 +47,7 @@ Page({
       this.setData({
         commonData: data
       })
-    }).catch(msg => this.showModal(msg))
+    })
   },
   getCommonwealDetail() {
     _CommonwealDetail({
@@ -58,9 +58,6 @@ Page({
         data
       });
     })
-    .catch(msg => {
-      this.showModal(msg);
-    });
   },
   contActiveManage() {
     this.setData({

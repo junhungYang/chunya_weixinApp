@@ -74,11 +74,7 @@ Page({
       setTimeout(() => {
         wx.hideLoading()
       }, 400);
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
-    });
+    })
   },
   addCoupon(e) {
     let state = e.currentTarget.dataset.state
@@ -101,10 +97,6 @@ Page({
         arr[index].isReceive = 1
         this.setData({
           couponList: arr
-        })
-      }).catch(msg => {
-        wx.showModal({
-          title: msg
         })
       })
     }
@@ -194,11 +186,6 @@ Page({
         });
         this.getDomPosTop();
       })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
-        });
-      });
   },
   getGoodDetail() {
     _GoodsDetail({ id: this.data.goodId })
@@ -210,9 +197,6 @@ Page({
         });
         this.getDomPosTop();
       })
-      .catch(msg => {
-        wx.showModal({ title: msg });
-      });
   },
   previewImg(e) {
     let picList = e.currentTarget.dataset.piclist;
@@ -319,11 +303,6 @@ Page({
             });
           }, 1500);
         })
-        .catch(msg => {
-          wx.showModal({
-            title: msg
-          });
-        });
     } else {
       wx.showModal({
         title: "提示",

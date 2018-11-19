@@ -30,10 +30,6 @@ Page({
       this.setData({
         addressList: data
       })
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
   },
   navBackBeforeBalance(e) {
@@ -84,8 +80,6 @@ Page({
       let pages = getCurrentPages();
       let prevPage = pages[pages.length - 2];
       prevPage.getOrderCheckout();
-      }).catch(msg => {
-        wx.showModal({ title: msg });
       })
   },
   /**

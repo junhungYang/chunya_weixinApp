@@ -13,12 +13,6 @@ Component({
               adList: data.adList
           })
       })
-          .catch(msg => {
-              wx.showModal({
-                  title: "Error",
-                  content: msg
-              });
-          })
   },
   methods: {
     navToGoodDetail(e) {

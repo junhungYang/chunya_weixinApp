@@ -78,7 +78,6 @@
   text-align: center;
 }
 .template .list .big-item .changePage {
-  height: 80rpx;
   text-align: center;
 }
 .template .list .big-item .changePage text {
@@ -91,6 +90,9 @@
 }
 .template .list .big-item .changePage text:last-of-type {
   padding: 0 20rpx;
+}
+.template .list .big-item .changePage .fff {
+  color: #fff;
 }
 .invisibleclass {
   display: block;

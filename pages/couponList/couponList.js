@@ -33,11 +33,6 @@ Page({
       setTimeout(() => {
         wx.hideLoading()
       }, 600);
-    }).catch(msg => {
-      wx.hideLoading()
-      wx.showModal({
-        title: msg
-      })
     })
   },
   changeActive(e) {

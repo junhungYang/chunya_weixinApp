@@ -318,3 +318,8 @@
   right: 18rpx;
   bottom: 0;
 }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

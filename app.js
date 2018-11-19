@@ -55,7 +55,6 @@ App({
         wx.setStorageSync("sessionKey", data.session_key);
         this.getSensitiveInfo();
       })
-      .catch(msg => this.showMod(msg));
   },
   getSensitiveInfo() {
     wx.getSetting({
@@ -74,13 +73,10 @@ App({
                   wx.setStorageSync("userInfo", data);
                   this.wxappLogin();
                 })
-                .catch(msg => this.showMod(msg));
             }
           });
         } else {
-          wx.switchTab({
-            url:'../cart/cart'
-          })
+
         }
       }
     });
@@ -95,17 +91,10 @@ App({
         avatarUrl: userInfo.avatarUrl,
         nickName: userInfo.nickName,
         mobile: phoneNum ? phoneNum : ""
+      }).then(data => {
+        _SetToken(data.token);
+        this.globalData.token = data.token;
       })
-        .then(data => {
-          _SetToken(data.token);
-          this.globalData.token = data.token;
-        })
-        .catch(msg => {
-          this.showMod(msg);
-          wx.switchTab({
-            url: '../cart/cart'
-          })
-        });
   },
   pay(data) {
     wx.requestPayment({
@@ -116,7 +105,6 @@ App({
       signType: data.signType,
       paySign: data.paySign,
       success: function (res) {
-        console.log(res);
         wx.showToast({
           title: "成功结算"
         });
@@ -153,9 +141,6 @@ App({
             }, 1000);
           }
         })
-        .catch(msg => {
-          wx.showModal({ title: msg });
-        });
     });
   },
   orderControl(orderId,controlStyle) {
@@ -181,12 +166,6 @@ App({
         break;
     }
     return promiseObj
-  },
-  showMod(msg) {
-    wx.showModal({
-      title: "Error",
-      content: msg
-    });
   },
   //监听器
   setWatcher(data, watch) {

@@ -33,10 +33,6 @@ Page({
           wx.hideLoading();
         }, 600);
       })
-      .catch(msg => {
-        wx.hideLoading();
-        wx.showModal({ title: msg });
-      });
   },
   useCoupon(e) {
     let couponId = e.currentTarget.dataset.id 

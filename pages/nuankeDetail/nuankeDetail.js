@@ -34,10 +34,6 @@ Page({
         contentDesc: data.contentDesc,
         isPay: data.isPay
       })
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
   },
   nuankePay(e) {
@@ -47,10 +43,6 @@ Page({
         id: this.data.payId
       }).then(data => {
         this.wxPay(data)
-      }).catch(msg => {
-        wx.showModal({
-          title: msg
-        })
       })
     }, 250);
   },

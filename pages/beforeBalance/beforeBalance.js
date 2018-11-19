@@ -31,11 +31,6 @@ Page({
         this.getAllQuantity();
         wx.stopPullDownRefresh();
       })
-      .catch(msg => {
-        wx.showModal({
-          title: msg
-        });
-      });
   },
   postscriptInput(e) {
     clearTimeout(this.timer);
@@ -77,9 +72,6 @@ Page({
             .then(data => {
               app.pay(data);
             })
-            .catch(msg => {
-              wx.showModal({ title: msg });
-            });
         });
       } else {
         wx.showModal({

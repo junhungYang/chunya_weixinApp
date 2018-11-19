@@ -48,7 +48,7 @@ Page({
         setTimeout(() => {
           wx.hideLoading()
         }, 600);
-    }).catch(msg => this.showModal(msg))
+    })
   },
   navToDetail(e) {
     let id = e.currentTarget.dataset.id;
@@ -117,7 +117,6 @@ Page({
         })
       }
     })
-    .catch(msg => this.showModal(msg))
   },
   nuankePay(e) {
     clearTimeout(this.timer)
@@ -126,7 +125,7 @@ Page({
         id: this.data.payId
       }).then(data => {
         this.wxPay(data)
-      }).catch(msg => this.showModal(msg))
+      })
     }, 250);
   },
   wxPay(data) {

@@ -41,10 +41,6 @@ Page({
           wx.hideLoading();
         }, 600);
       })
-      .catch(msg => {
-        // console.log(msg)
-        this.showModal(msg);
-      });
   },
   previewImg(e) {
     let index= e.currentTarget.dataset.index
@@ -69,10 +65,6 @@ Page({
         list: []
       })
       this.getStoryList()
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
     })
   },
   navToIndex() {
@@ -137,7 +129,7 @@ Page({
           this.getStoryList();
         }
       }
-    }).catch(msg => this.showModal(msg))
+    })
   },
   changeActive(e) {
     let index = e.currentTarget.dataset.index;

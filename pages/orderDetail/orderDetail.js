@@ -36,9 +36,6 @@ Page({
       .then(data => {
         this.setData({ data });
       })
-      .catch(msg => {
-        wx.showModal({ title: msg });
-      });
   },
   navToShippingList() {
       wx.navigateTo({
@@ -52,11 +49,6 @@ Page({
       _WeChatPay({ orderId })
         .then(data => {
           app.pay(data)
-        })
-        .catch(msg => {
-          wx.showModal({
-            title: msg
-          })
         })
     }, 500);
   },
@@ -85,11 +77,7 @@ Page({
           wx.navigateBack({ delta: 1 });
         }, 600);
       }
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      });
-    });
+    })
   },
   copy() {
     wx.setClipboardData({
@@ -139,9 +127,7 @@ Page({
           wx.hideLoading();
         },600)
       })
-      .catch(msg => {
-        wx.showModal({ title: msg });
-      });
+
   },
 
   /**
