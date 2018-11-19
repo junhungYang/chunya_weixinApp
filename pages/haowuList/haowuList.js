@@ -1,5 +1,6 @@
 // pages/haowuList/haowuList.js
 import { _HaowuList, _GoodsList, _SendFormid } from "../../utils/request";
+const App = getApp()
 Page({
 
   /**
@@ -8,7 +9,7 @@ Page({
   data: {
     fatherList:[],
     page: 1,
-    
+    totalPages: 0
   },
 
   /**
@@ -24,7 +25,8 @@ Page({
       size: 2
     }).then(data => {
       this.setData({
-        fatherList: [...this.data.fatherList, ...data.data]
+        fatherList: [...this.data.fatherList, ...data.data],
+        totalPages:data.totalPages
       })
       data.data.forEach((item,index) => {
         this.changeChildPage(length + index,1)
@@ -103,13 +105,17 @@ Page({
     }
   },
   onReachBottom: function () {
-    this.setData({
-      page: this.data.page +1
-    })
-    wx.showLoading({
-      title: '正在加载'
-    })
-    this.getHaowuList()
+    if(this.data.page < this.data.totalPages) {
+      this.setData({
+        page: this.data.page + 1
+      })
+      wx.showLoading({
+        title: '正在加载'
+      })
+      this.getHaowuList()
+    }else {
+      App.theEndPage()
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,5 +1,6 @@
 // pages/reviewsList/reviewsList.js
 import { _CommentList, _CommentPost } from "../../utils/request";
+const App = getApp()
 Page({
 
   /**
@@ -8,6 +9,7 @@ Page({
   data: {
     reviewsList:[],
     pageIndex:1,
+    totalPages: 0,
     goodId: 0,
     commentValue: "",
     emojiState: true,
@@ -48,7 +50,8 @@ Page({
         wx.hideLoading();
         let arr = [...this.data.reviewsList,...data.data];
         this.setData({
-          reviewsList: arr
+          reviewsList: arr,
+          totalPages: data.totalPages
         })
     })
   },
@@ -186,14 +189,19 @@ Page({
 
   },
   onReachBottom: function () {
-    wx.showLoading({
-      title: "正在加载",
-      mask: true
-    });
-    this.setData({
-      pageIndex: this.data.pageIndex + 1
-    });
-    this.getCommentList();
+    if(this.data.page < this.data.totalPages) {
+      wx.showLoading({
+        title: "正在加载",
+        mask: true
+      });
+      this.setData({
+        pageIndex: this.data.pageIndex + 1
+      });
+      this.getCommentList();
+    }else {
+      App.theEndPage()
+    }
+  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

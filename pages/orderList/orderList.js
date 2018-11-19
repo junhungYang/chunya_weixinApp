@@ -17,7 +17,8 @@ Page({
   data: {
     orderList: [],
     requestCode: -1,
-    pageIndex: 1
+    pageIndex: 1,
+    totalPages: 0
   },
   onLoad: function(options) {
     if(options.requestCode) {
@@ -31,15 +32,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    wx.showToast({
-      title: "正在加载",
-      icon: "loading",
-      mask: true
-    });
-    this.setData({
-      pageIndex: this.data.pageIndex + 1
-    });
-    this.getOrderList("byScroll");
+    if(this.data.pageIndex < this.data.totalPages) {
+      wx.showToast({
+        title: "正在加载",
+        icon: "loading",
+        mask: true
+      });
+      this.setData({
+        pageIndex: this.data.pageIndex + 1
+      });
+      this.getOrderList("byScroll");
+    }else {
+      app.theEndPage()
+    }
   },
   formSubmit_collect: function(e) {
     let fromid = `${e.detail.formId}`;
@@ -64,13 +69,16 @@ Page({
     _OrderList(obj).then(data => {
       if (!str) {
         this.setData({
-          orderList: data.data
+          orderList: data.data,
+          totalPages: data.totalPages
         });
       } else {
         this.setData({
-          orderList: [...this.data.orderList, ...data.data]
+          orderList: [...this.data.orderList, ...data.data],
+          totalPages: data.totalPages
         });
       }
+      console.log(this.data.totalPages)
     });
   },
   orderControl(e) {

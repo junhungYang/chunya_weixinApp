@@ -10,7 +10,8 @@ Page({
     navActive: 1,
     list:[],
     page: 1,
-    top: 0
+    top: 0,
+    totalPages: 0
   },
 
   /**
@@ -35,7 +36,8 @@ Page({
       .then(data => {
         let list = [...this.data.list, ...data.data];
         this.setData({
-          list
+          list,
+          totalPages: data.totalPages
         });
         setTimeout(() => {
           wx.hideLoading();
@@ -141,10 +143,15 @@ Page({
     this.getStoryList(index)
   },
   getListByScroll() {
-    this.setData({
-      page: this.data.page +1
-    })
-    this.getStoryList()
+    if(this.data.page < this.data.totalPages) {
+      this.setData({
+        page: this.data.page + 1
+      })
+      this.getStoryList()
+    }else {
+      App.theEndPage()
+    }
+
   },
   navToWatchVideo(e) {
     let src = e.currentTarget.dataset.src

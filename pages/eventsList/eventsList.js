@@ -11,6 +11,7 @@ Page({
     list: [],
     pageIndex: 1,
     navActive: 0,
+    totalPages: 0
   },
 
   /**
@@ -38,6 +39,7 @@ Page({
       size: 10
     }).then(data => {
       this.dataTranslate(data.data)
+      this.setData({ totalPages:data.totalPages });
       wx.hideLoading()
     })
   },
@@ -63,14 +65,19 @@ Page({
     })
   },
   onReachBottom: function () {
-    this.setData({
-      pageIndex: this.data.pageIndex +1
-    })
-    wx.showLoading({
-      title: '正在加载',
-      mask: true
-    })
-    this.getActivityList();
+    if (this.data.pageIndex < this.data.totalPages) {
+      this.setData({
+        pageIndex: this.data.pageIndex + 1
+      })
+      wx.showLoading({
+        title: '正在加载',
+        mask: true
+      })
+      this.getActivityList();
+    }else {
+      App.theEndPage();
+    }
+
   },
 
   watch: {

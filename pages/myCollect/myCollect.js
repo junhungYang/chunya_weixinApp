@@ -1,5 +1,6 @@
 // pages/myCollect/myCollect.js
 import { _CollectList, _CollectAddorDelete} from '../../utils/request'
+const App = getApp()
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
    */
   data: {
     page: 1,
-    list: []
+    list: [],
+    totalPages: 0
   },
 
   /**
@@ -24,7 +26,8 @@ Page({
     }).then(data => {
       let arr = [...this.data.list,...data.data]
       this.setData({
-        list: arr
+        list: arr,
+        totalPages: data.totalPages
       })
     })
   },
@@ -58,7 +61,15 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.page < this.data.totalPages) {
+      this.setData({ page: this.data.page + 1 });
+      wx.showLoading({
+        title: '正在加载'
+      })
+      this.getMyCollect()
+    } else {
+      App.theEndPage()
+    }
   },
 
   /**

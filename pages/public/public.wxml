@@ -1,5 +1,5 @@
 <view class="template">
-    <scroll-view class="scroll-view" scroll-y="{{true}}">
+    <view class="scroll-view" >
         <view class="bg"></view>
         <view class="main">
             <view class="userInfo">
@@ -42,8 +42,9 @@
                         </view>
                     </view>
                 </view>
+                
             </view>
         </view>
         
-    </scroll-view>
+    </view>
 </view>

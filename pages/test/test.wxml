@@ -1,3 +1,0 @@
-<view>
-    <button bindtap="chooseAddress">Button</button>
-</view>

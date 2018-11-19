@@ -1,58 +1,65 @@
 // pages/couponList/couponList.js
 import { _CouponForUser} from '../../utils/request'
+const App = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    list:[],
+    list: [],
     page: 1,
-    navActive: 0
+    navActive: 0,
+    totalPages: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.getCouponList()
+  onLoad: function(options) {
+    this.getCouponList();
   },
   getCouponList() {
     wx.showLoading({
-      title: '正在加载'
-    })
+      title: "正在加载"
+    });
     _CouponForUser({
       type: this.data.navActive,
       page: this.data.page,
       size: 10
     }).then(data => {
-      let arr = [...this.data.list, ...data.data]
+      let arr = [...this.data.list, ...data.data];
       this.setData({
-        list: arr
-      })
+        list: arr,
+        totalPages: data.totalPages
+      });
       setTimeout(() => {
-        wx.hideLoading()
+        wx.hideLoading();
       }, 600);
-    })
+    });
   },
   changeActive(e) {
-    let navActive = e.currentTarget.dataset.index
+    let navActive = e.currentTarget.dataset.index;
     this.setData({
       navActive,
-      list:[],
+      list: [],
       page: 1
-    })
-    this.getCouponList()
+    });
+    this.getCouponList();
   },
   navToHaowu() {
     wx.navigateTo({
-      url: '../haowuList/haowuList'
-    })
+      url: "../haowuList/haowuList"
+    });
   },
-  onReachBottom: function () {
-    this.setData({
-      page: this.data.page +1
-    })
-    this.getCouponList()
+  onReachBottom: function() {
+    if(this.data.page < this.data.totalPages) {
+      this.setData({
+        page: this.data.page + 1
+      });
+      this.getCouponList();
+    }else {
+      App.theEndPage()
+    }
+
   }
-})
+});

@@ -20,18 +20,13 @@ Page({
     commonwealList: [],
     commActiveIndex: '',
     commAllPage:'' ,
-    eventItemWidth: 0
+    eventItemWidth: 0,
+    goodsTotalPages: 0,
+    goodsPage: 1
   },
 
   onLoad() {
-    _GoodsList({
-      page: 1,
-      size: 10
-    }).then(data => {
-      this.setData({
-        goodsList: data.data
-      });
-    })
+    this.getGoodsList()
     _SpreadList({
       id: 6
     }).then(data => {
@@ -39,6 +34,17 @@ Page({
         commonwealList: data.adList,
         commAllPage: data.adList.length,
         commActiveIndex: 1
+      });
+    })
+  },
+  getGoodsList() {
+    _GoodsList({
+      page: this.data.goodsPage,
+      size: 10
+    }).then(data => {
+      this.setData({
+        goodsList: data.data,
+        goodsTotalPages: data.totalPages
       });
     })
   },
@@ -170,6 +176,17 @@ Page({
     wx.pageScrollTo({
       scrollTop: 0
     });
+  },
+  onReachBottom: function () {
+    if (this.data.goodsPage < this.data.goodsTotalPages) {
+      this.setData({ page: this.data.goodsPage + 1 });
+      wx.showLoading({
+        title: '正在加载'
+      })
+      this.getHaowuList()
+    } else {
+      app.theEndPage()
+    }
   },
   onShareAppMessage: function() {
     wx.showShareMenu();

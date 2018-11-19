@@ -1,8 +1,0 @@
-.invisibleclass {
-    margin: 0;
-    padding: 0;
-    background:#d10c5f
-}
-.invisibleclass::after {
-    border:0
-}

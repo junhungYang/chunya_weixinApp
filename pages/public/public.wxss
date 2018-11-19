@@ -2,10 +2,6 @@
   background: #f2f2f2;
   min-height: 100vh;
 }
-.template .scroll-view {
-  height: 100vh;
-  overflow: hidden;
-}
 .template .scroll-view .bg {
   height: 253rpx;
   width: 100%;
@@ -81,8 +77,9 @@
   font-weight: bold;
 }
 .template .scroll-view .main .public-list {
-  margin: 0 6.4%;
+  padding: 0 6.4%;
   margin-top: 39rpx;
+  background: #f2f2f2;
 }
 .template .scroll-view .main .public-list .item {
   padding: 30rpx;

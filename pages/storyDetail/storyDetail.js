@@ -17,6 +17,7 @@ Page({
     detail: {},
     pageIndex: 1,
     commentList: [],
+    totalPages: 0,
     from: "",
     value: ""
   },
@@ -32,6 +33,7 @@ Page({
         from: options.from
       });
       this.getCommentList();
+      this.getStoryDetail();
     }
     App.setWatcher(App.globalData, this.watch);
   },
@@ -66,20 +68,22 @@ Page({
       size: 10
     })
       .then(data => {
-        this.getStoryDetail();
         if (type) {
           let arr = [...this.data.commentList, ...data.data];
           setTimeout(() => {
             wx.hideLoading();
             this.setData({
-              commentList: arr
+              commentList: arr,
+              totalPages: data.totalPages
             });
           }, 500);
         } else {
           this.setData({
-            commentList: data.data
+            commentList: data.data,
+            totalPages: data.totalPages
           });
         }
+        console.log(this.data.totalPages)
       })
 
   },
@@ -95,10 +99,15 @@ Page({
 
   },
   onReachBottom: function() {
-    this.setData({
-      pageIndex: this.data.pageIndex + 1
-    });
-    this.getCommentList("scroll");
+    if(this.data.pageIndex < this.data.totalPages) {
+      this.setData({
+        pageIndex: this.data.pageIndex + 1
+      });
+      this.getCommentList("scroll");
+    }else {
+      App.theEndPage()
+    }
+
   },
   inputComment(e) {
     if (e.detail.value === " ") {
@@ -145,24 +154,6 @@ Page({
       list: []
     });
     prevPage.getStoryList();
-    // let detail = this.data.detail
-    // detail.commentCount ++
-    // let arr = this.data.commentList;
-    // arr.unshift(data)
-    // this.setData({
-    //   commentList: arr,
-    //   detail
-    // })
-    // wx.pageScrollTo({
-    //   scrollTop: 0
-    // })
-    // let pages = getCurrentPages()
-    // let prevPage = pages[pages.length - 2];
-    // let arrPrevPage = prevPage.data.list
-    // arrPrevPage[this.data.index].commentCount++;
-    // prevPage.setData({
-    //   list: arrPrevPage
-    // })
   },
   dianZan() {
     _LikeAddOrDelete({

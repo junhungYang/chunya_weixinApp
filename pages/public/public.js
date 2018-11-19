@@ -13,7 +13,8 @@ Page({
   data: {
     userInfo: {},
     activePage: 1,
-    commonList: []
+    commonList: [],
+    totalPages: 0
   },
 
   /**
@@ -37,7 +38,7 @@ Page({
   getCommonList(style) {
     _CommonwealList({
       page: this.data.activePage,
-      size: 10
+      size: 10,
     }).then(data => {
       data.data.forEach( item => {
         let arr = item.tags.split(',')
@@ -46,20 +47,27 @@ Page({
       if(style) {
         let arr = [...this.data.commonList, data.data]
         this.setData({
-          commonList: arr
+          commonList: arr,
+          totalPages: data.totalPages
         })
       }else {
         this.setData({
-          commonList: data.data
+          commonList: data.data,
+          totalPages: data.totalPages
         })
       }
     })
   },
   onReachBottom: function () {
-    this.setData({
-      activePage: this.data.activePage +1
-    })
-    this.getCommonList('byScroll')
+    console.log(123456)
+    if(this.data.page < this.data.totalPages) {
+      this.setData({
+        activePage: this.data.activePage + 1
+      })
+      this.getCommonList('byScroll')
+    }else {
+      app.theEndPage()
+    }
   },
   showModal(msg) {
     wx.showModal({

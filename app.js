@@ -37,9 +37,6 @@ App({
       }
     });
   },
-  test() {
-    console.log('test')
-  },
   //methods
   wxLoginApi() {
     wx.login({
@@ -166,6 +163,13 @@ App({
         break;
     }
     return promiseObj
+  },
+  theEndPage() {
+    wx.showToast({
+      title:'已经是最后一页',
+      icon: 'none',
+      duration: 1000
+    })
   },
   //监听器
   setWatcher(data, watch) {

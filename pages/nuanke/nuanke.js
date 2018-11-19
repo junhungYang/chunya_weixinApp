@@ -16,7 +16,8 @@ Page({
     page:1,
     payBtnHidden: true,
     payId: '',
-    activePrice: 0
+    activePrice: 0,
+    totalPages: 0
   },
   onLoad: function () {
     that= this
@@ -43,8 +44,10 @@ Page({
     }).then(data => {
       let arr = [...this.data.list,...data.data]
       this.setData({
-        list:arr
+        list:arr,
+        totalPages: data.totalPages
       })
+      console.log(this.data.totalPages)
         setTimeout(() => {
           wx.hideLoading()
         }, 600);
@@ -88,10 +91,15 @@ Page({
     })
   },
   scrollRefreshList(e) {
-    this.setData({
-      page: this.data.page +1
-    })
-    this.getList();
+    if(this.data.page < this.data.totalPages) {
+      this.setData({
+        page: this.data.page + 1
+      })
+      this.getList();
+    }else {
+      App.theEndPage()
+    }
+
    },
   collect(e) {
     let valueId = e.currentTarget.dataset.id;

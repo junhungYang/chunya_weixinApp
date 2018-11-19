@@ -3,6 +3,7 @@ import {
   _CommentList,
   _CommentPost
  } from "../../utils/request";
+ const App = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -10,6 +11,7 @@ Page({
   data: {
     reviewsList: [],
     pageIndex: 1,
+    totalPages: 0,
     id: 0,
     commentValue: "",
     emojiState: true,
@@ -162,11 +164,17 @@ Page({
     })
       .then(data => {
         if (!style) {
-          this.setData({ reviewsList: data.data });
+          this.setData({ 
+            reviewsList: data.data,
+            totalPages: data.totalPages
+           });
         } else {
           wx.hideLoading();
           let arr = [...this.data.reviewsList, ...data.data];
-          this.setData({ reviewsList: arr });
+          this.setData({ 
+            reviewsList: arr,
+            totalPages: data.totalPages
+           });
         }
       })
   },
@@ -192,14 +200,19 @@ Page({
 
   },
   onReachBottom: function() {
-    wx.showLoading({
-      title: "正在加载",
-      mask: true
-    });
-    this.setData({
-      pageIndex: this.data.pageIndex + 1
-    });
-    this.getCommentList("byScroll");
+    if (this.data.pageIndex < this.data.totalPages) {
+      wx.showLoading({
+        title: "正在加载",
+        mask: true
+      });
+      this.setData({
+        pageIndex: this.data.pageIndex + 1
+      });
+      this.getCommentList("byScroll");
+    }else {
+      App.theEndPage()
+    }
+
   },
 
   /**
