@@ -4,7 +4,7 @@
   <view class="input-box">
       <view class="mask {{searchText?'':'iconfont icon-search'}}">{{searchText?'':'搜索'}}</view>
     <input type="text" class="iconfont icon-search" class="bgText"  bindinput="searchInput"
-    value="{{searchText}}" bindblur="hidSearchList"/>
+    value="{{searchText}}" bindblur="hidSearchList" maxlength="1"/>
     <view class="search-list" hidden="{{searchListHid}}">
       <view class="haveGoods" wx:if="{{searchList.length!==0}}">
         <view wx:for="{{searchList}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail">

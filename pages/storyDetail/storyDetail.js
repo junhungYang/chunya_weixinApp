@@ -160,7 +160,7 @@ Page({
       typeId: 0,
       valueId: this.data.id
     }).then( () => {
-      this.getCommentList();
+      this.getStoryDetail();
     })
   },
   collect() {
@@ -168,7 +168,7 @@ Page({
       typeId: 2,
       valueId:this.data.id
     }).then(() => {
-      this.getCommentList()
+      this.getStoryDetail();
     })
   },
   watch: {
