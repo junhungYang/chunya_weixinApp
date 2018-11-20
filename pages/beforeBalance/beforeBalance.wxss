@@ -130,24 +130,32 @@
   right: 0;
   color: #b2b2b2;
 }
-.template .desc .invoice text {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 28rpx;
+.template .desc .invoice {
+  display: flex;
 }
-.template .desc .invoice text:first-of-type {
-  left: 0;
+.template .desc .invoice .inv-title,
+.template .desc .invoice view,
+.template .desc .invoice image {
+  align-self: center;
+}
+.template .desc .invoice .inv-title {
+  font-size: 28rpx;
   color: #313131;
 }
-.template .desc .invoice text:last-of-type {
-  right: 25rpx;
+.template .desc .invoice view {
   color: #b2b2b2;
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.template .desc .invoice view text:first-of-type {
+  color: #d1051f;
+  font-weight: bold;
 }
 .template .desc .invoice image {
-  position: absolute;
-  right: 0;
-  top: 33rpx;
   width: 13rpx;
   height: 24rpx;
 }

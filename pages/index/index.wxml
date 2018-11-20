@@ -65,8 +65,12 @@
       <view class="hot-events">
         <view class="hotEvents-title">
           <text>热门活动</text>
-          <text>{{commActiveIndex}} / {{commAllPage}}</text>
+          <text>{{commActiveIndex}} / {{commonwealList.length}}</text>
         </view>
+        <!--<view class="swiper-public" >
+             <public-swiper commonweal-list="{{commonwealList}}"></public-swiper>
+        </view> -->
+     
         <scroll-view class="events-cont" scroll-x="{{true}}" bindscroll="changeCommIndex">
           <image id="events-item" wx:for="{{commonwealList}}" src="{{item.image_url}}" data-url="{{item.link}}" bindtap="navToPublicDetail"/>
         </scroll-view>
@@ -76,15 +80,13 @@
           <text>热销产品</text><text>HOT-SALE PRODUCTS</text>
         </view>
         <view class="goods-item">
-          <!--<view class="header">
-            <image src="../../img/index/good_banner.jpg" />
-            <text>贴心｜爱意｜惊喜｜舒心</text>
-          </view> -->
           <view class="list">
             <view class="list-item"  wx:for="{{goodsList}}">
               <form bindsubmit="formSubmit_collect" report-submit="true">
                   <button  formType="submit"  hover-class="none" class='invisibleclass' data-goodId="{{item.id}}" bindtap="navToGoodDetail">
-                      <image src="{{item.primary_pic_url}}" />
+                      <view class="img-wrap">
+                            <image src="{{item.primary_pic_url}}" mode="widthFix"/>
+                      </view>
                       <text>{{item.name}}</text>
                       <view class="price">
                         <text class="now-price">￥{{item.retail_price}}</text>

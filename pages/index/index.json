@@ -1,5 +1,6 @@
 {
     "usingComponents": {
-        "my-swiper": "../components/swiper/swiper"
+        "my-swiper": "../components/swiper/swiper",
+        "public-swiper": "../components/eventsSwiper/eventsSwiper"
     }
 }

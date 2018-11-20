@@ -2,12 +2,11 @@
   <view class="container">
   <view class="page-body">
     <view class="page-section page-section-spacing swiper">
-      <swiper class="swiper-box"
-        indicator-dots="{{true}}"  vertical="{{false}}"
-        indicator-color="rgba(255,255,255,0.5)" indicator-active-color="rgba(255,255,255,1)">
-        <block wx:for="{{adList}}" wx:key="*this">
-          <swiper-item data-item="{{item}}" bindtap="navToGoodDetail" class="swiper-item-box">
-            <image class="swiper-item" src="{{item.image_url}}" />
+      <swiper class="swiper-box" autoplay="{{true}}" bindchange="swiperEvent"
+        indicator-dots="{{false}}"  vertical="{{false}}"   next-margin="20rpx">
+        <block wx:for="{{commonwealList}}" wx:key="*this" wx:for-index="index">
+          <swiper-item data-item="{{item}}"  >
+            <image class="swiper-item" src="{{item.image_url}}" data-url="{{item.link}}" bindtap="navToPublicDetail"/>
           </swiper-item>
         </block>
       </swiper>

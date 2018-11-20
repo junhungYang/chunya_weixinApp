@@ -196,6 +196,7 @@ App({
     cartInfo: {},
     token: "",
     text: "abc",
-    canIUseFlag: false
+    canIUseFlag: false,
+    publicSwiperIndex: 1
   }
 });

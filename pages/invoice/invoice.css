@@ -41,7 +41,10 @@
 .template .main .taitou-name,
 .template .main .default-taitou,
 .template .main .content,
-.template .main .noInvoice {
+.template .main .noInvoice,
+.template .main .phone-num,
+.template .main .mail,
+.template .main .taxpayer-code {
   height: 88rpx;
   box-sizing: border-box;
   padding: 0 29rpx;
@@ -52,31 +55,46 @@
 .template .main .taitou-name .title,
 .template .main .default-taitou .title,
 .template .main .content .title,
-.template .main .noInvoice .title {
+.template .main .noInvoice .title,
+.template .main .phone-num .title,
+.template .main .mail .title,
+.template .main .taxpayer-code .title {
   font-size: 24rpx;
   line-height: 88rpx;
 }
-.template .main .style .choose {
+.template .main .style .attention,
+.template .main .content .attention {
+  align-self: center;
+  width: 26rpx;
+  height: 26rpx;
+  margin: 0 15rpx;
+}
+.template .main .style .choose,
+.template .main .content .choose {
   flex: 1;
   position: relative;
   font-size: 0;
   text-align: right;
   line-height: 88rpx;
 }
-.template .main .style .choose view {
+.template .main .style .choose view,
+.template .main .content .choose view {
   display: inline-block;
 }
-.template .main .style .choose view image {
+.template .main .style .choose view image,
+.template .main .content .choose view image {
   width: 26rpx;
   height: 26rpx;
   vertical-align: middle;
 }
-.template .main .style .choose view text {
+.template .main .style .choose view text,
+.template .main .content .choose view text {
   vertical-align: middle;
   margin-left: 10rpx;
   font-size: 20rpx;
 }
-.template .main .style .choose view:last-of-type {
+.template .main .style .choose view:last-of-type,
+.template .main .content .choose view:last-of-type {
   margin-left: 22rpx;
 }
 .template .main .taitou-name input {
@@ -85,6 +103,12 @@
   line-height: 88rpx;
   height: 88rpx;
   padding-left: 20rpx;
+}
+.template .main .taitou-name .choose {
+  font-size: 24rpx;
+  line-height: 88rpx;
+  padding-left: 20rpx;
+  font-size: 20rpx;
 }
 .template .main .default-taitou view {
   flex: 1;
@@ -95,17 +119,14 @@
   width: 26rpx;
   height: 26rpx;
 }
-.template .main .content image {
-  align-self: center;
-  width: 26rpx;
-  height: 26rpx;
-  margin: 0 15rpx;
-}
-.template .main .content input {
+.template .main .phone-num input,
+.template .main .mail input,
+.template .main .taxpayer-code input {
   flex: 1;
   font-size: 20rpx;
   height: 88rpx;
   line-height: 88rpx;
+  padding-left: 20rpx;
 }
 .template .main .noInvoice {
   line-height: 88rpx;
@@ -133,4 +154,61 @@
   font-size: 28rpx;
   color: #fff;
   text-align: center;
+}
+.template .invoiceList {
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.template .invoiceList .bg {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.template .invoiceList .list-box {
+  position: absolute;
+  top: 400rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.template .invoiceList .list-box .list-header {
+  padding: 0 6.4%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 24rpx;
+  color: #000000;
+  border-bottom: 1px solid #f2f2f2;
+  display: flex;
+}
+.template .invoiceList .list-box .list-header image {
+  width: 50rpx;
+  align-self: center;
+}
+.template .invoiceList .list-box .list-header text {
+  flex: 1;
+  align-self: center;
+  margin-left: 15rpx;
+}
+.template .invoiceList .list-box .list {
+  flex: 1;
+  overflow: hidden;
+}
+.template .invoiceList .list-box .list .item {
+  margin: 0 6.4%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 24rpx;
+  color: #858585;
+  border-bottom: 1px solid #f2f2f2;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }

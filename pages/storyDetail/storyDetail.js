@@ -133,6 +133,9 @@ Page({
         this.setData({
           value: ""
         });
+        wx.pageScrollTo({
+          scrollTop: 0
+        })
         this.refreshCommentList(data);
       });
     }

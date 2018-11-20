@@ -8,7 +8,8 @@ Page({
   data: {
     data: {},
     allQuantity: "",
-    postscript: ""
+    postscript: "",
+    invoice: {}
   },
   onLoad: function(options) {
     this.getOrderCheckout();
@@ -60,7 +61,12 @@ Page({
         let obj = {
           postscript:wxData.postscript,
           addressId:wxData.data.checkedAddress.id,
-          fullCutCouponDec:wxData.data.fullCutCouponDec
+          fullCutCouponDec:wxData.data.fullCutCouponDec,
+          isBilling: 0
+        }
+        if (wxData.data.checkedInvoice.invoicerMobile) {
+          obj.isBilling = 1;
+          obj.invoiceId = wxData.data.checkedInvoice.id;
         }
         if (wxData.data.checkedCoupon) {
           obj.couponId = wxData.data.checkedCoupon.id
@@ -81,9 +87,10 @@ Page({
     }, 500);
   },
   navToInvoice() {
+    console.log(this.data)
     wx.navigateTo({
-      url: '../invoice/invoice'
-    })
+      url: `../invoice/invoice?invoice=${JSON.stringify(this.data.data.checkedInvoice)}`
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

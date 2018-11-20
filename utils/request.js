@@ -1322,7 +1322,54 @@ const _HaowuList = function (data) {
 };
 
 
+// 发票
+const _QueryInvoiceList = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/queryInvoiceList`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          _Reject(res.data.errno, res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
+
+// 发票
+const _SaveOrUpdateInvoice = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/saveOrUpdateInvoice`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          _Reject(res.data.errno, res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
 module.exports = {
+  _QueryInvoiceList,
+  _SaveOrUpdateInvoice,
   _HaowuList,
   _CouponListByCart,
   _CouponForUser,

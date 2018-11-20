@@ -133,24 +133,29 @@
       }
     }
     .invoice {
-      text {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 28rpx;
+      display: flex;
+      .inv-title,view,image {
+        align-self: center;
       }
-      text:first-of-type {
-        left: 0;
+      .inv-title {
+        font-size: 28rpx;
         color: #313131;
       }
-      text:last-of-type {
-        right: 25rpx;
-        color: #b2b2b2;
+      view {
+            color: #b2b2b2;
+            flex: 1;
+            margin-left: 20rpx;
+              font-size: 28rpx;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              text:first-of-type {
+                color: #d1051f;
+                font-weight: bold;
+              }
+
       }
       image {
-        position: absolute;
-        right: 0;
-        top: 33rpx;
         width: 13rpx;
         height: 24rpx;
       }

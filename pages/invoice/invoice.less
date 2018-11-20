@@ -36,7 +36,7 @@
         background:#fff;
         margin: 0 6.4%;
         margin-top: 20rpx;
-        .style,.taitou-name,.default-taitou,.content,.noInvoice {
+        .style,.taitou-name,.default-taitou,.content,.noInvoice,.phone-num,.mail,.taxpayer-code {
             height: 88rpx;
             box-sizing: border-box;
             padding: 0 29rpx;
@@ -47,7 +47,13 @@
                 line-height: 88rpx;
             }
         }
-        .style {
+        .style,.content {
+                .attention {
+                    align-self: center;
+                    width: 26rpx;
+                    height: 26rpx;
+                    margin: 0 15rpx;
+                }
               .choose {
                 flex: 1;
                 position: relative;
@@ -80,6 +86,12 @@
                 height: 88rpx;
                 padding-left: 20rpx;
             }
+            .choose {
+                font-size: 24rpx;
+                line-height: 88rpx;
+                padding-left: 20rpx;
+                font-size: 20rpx;
+            }
         }
         .default-taitou {
             view {
@@ -92,18 +104,13 @@
                 }
             }
         }
-        .content {
-            image {
-                align-self: center;
-                width: 26rpx;
-                height: 26rpx;
-                margin: 0 15rpx;
-            }
+        .phone-num,.mail,.taxpayer-code {
             input {
                 flex: 1;
                 font-size: 20rpx;
                 height: 88rpx;
                 line-height: 88rpx;
+                        padding-left: 20rpx;
             }
         }
         .noInvoice {
@@ -134,4 +141,61 @@
         color:#fff;
         text-align: center;
     }
+    .invoiceList {
+        position: fixed;
+        z-index: 5;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        .bg {
+            height: 100%;
+            background: rgba(0,0,0,0.5)
+        }
+        .list-box {
+            position: absolute;
+            top:400rpx;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            .list-header  {
+                padding: 0 6.4%;
+                 height: 80rpx;
+                line-height: 80rpx;
+                font-size: 24rpx;
+                color: #000000;
+                 border-bottom: 1px solid #f2f2f2;
+                 display: flex;
+                 image {
+                     width: 50rpx;
+                     align-self: center;
+                 }
+                 text {
+                     flex: 1;
+                     align-self: center;
+                     margin-left: 15rpx;
+                 }
+            }
+            .list {
+                flex: 1;
+                overflow: hidden;
+                .item{
+                    margin: 0 6.4%;
+                    height: 80rpx;
+                    line-height: 80rpx;
+                    font-size: 24rpx;
+                    color: #858585;
+                    border-bottom: 1px solid #f2f2f2;
+                }
+            }
+        }
+    }
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }

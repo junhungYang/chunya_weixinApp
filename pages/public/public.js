@@ -76,9 +76,7 @@ Page({
   },
   navToDetail(e) {
     let id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: `../publicDetail/publicDetail?commonwealId=${id}`
-    });
+    wx.navigateTo({ url: `../publicDetail/publicDetail?activityId=${id}` });
   },
   onPullDownRefresh: function () {
     wx.showLoading({

@@ -27,7 +27,7 @@
                         </view>
                     </view>
                 </view>
-                <input type="text" bindinput="inputPhone" value="{{phone}}" placeholder="手机号码" placeholder-style="color:#b2b2b2;"/>
+                <input type="number" bindinput="inputPhone" value="{{phone}}" placeholder="手机号码" placeholder-style="color:#b2b2b2;"/>
             </view>
         </view>
         <view class="desc-info">

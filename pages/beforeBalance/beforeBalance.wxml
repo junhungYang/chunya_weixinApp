@@ -43,8 +43,13 @@
             <text>快递配送</text>
         </view>
         <view class="invoice" bindtap="navToInvoice">
-            <text>发票类型</text>
-            <text>个人电子发票</text>
+            <text class="inv-title">发票类型</text>
+            <view wx:if="{{data.checkedInvoice.invoicerMobile}}">
+                <text>{{data.checkedInvoice.invoiceType===1?'电子':'纸质'}}</text>
+                <text>({{data.checkedInvoice.contentType===1?'商品明细':'商品类型'}})</text>
+                <text>{{data.checkedInvoice.headerContent}}</text>
+            </view>
+            <view wx:else>个人电子发票</view>
             <image src="../../img/redictTo.png" />
         </view>
         <view class="word">
