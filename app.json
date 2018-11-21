@@ -1,9 +1,9 @@
 {
   "pages": [
-
-        
-      "pages/index/index",
-            "pages/invoice/invoice",
+        "pages/index/index",
+        "pages/invoice/invoice",
+    
+          
         "pages/haowuList/haowuList",
             "pages/eventEnter/eventEnter",
 

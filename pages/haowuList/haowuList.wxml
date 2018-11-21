@@ -24,6 +24,7 @@
             </view>
             <view class="changePage" wx:if="{{item.subCategoryList.count!==0}}">
                 <text data-type="minus" wx:if="{{item.subCategoryList.currentPage!==1}}" data-targetindex="{{index}}" data-page="{{item.subCategoryList.currentPage}}" bindtap="changePageEnter">上一页</text>
+                <text wx:if="{{ (item.subCategoryList.currentPage!==1) && (item.subCategoryList.currentPage!==item.subCategoryList.totalPages) }}">|</text>
                 <text data-type="add" wx:if="{{item.subCategoryList.currentPage!==item.subCategoryList.totalPages}}" data-targetindex="{{index}}" data-page="{{item.subCategoryList.currentPage}}" bindtap="changePageEnter">下一页</text>
             </view>
         </view>   

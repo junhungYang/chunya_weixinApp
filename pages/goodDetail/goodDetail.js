@@ -27,7 +27,8 @@ Page({
     serviceHidState: true,
     from: "",
     couponList: [],
-    couponPage: 1
+    couponPage: 1,
+    couponTotal: 0
   },
   onLoad: function(options) {
     that = this;
@@ -69,7 +70,8 @@ Page({
     }).then(data => {
       let arr = [...this.data.couponList,...data.data]
       this.setData({
-        couponList: arr
+        couponList: arr,
+        couponTotal: data.totalPages
       })
       setTimeout(() => {
         wx.hideLoading()
@@ -102,13 +104,17 @@ Page({
     }
   },
   scrollGetCoupon() {
-    this.setData({
-      couponPage: this.data.couponPage +1
-    })
-    wx.showLoading({
-      title: '正在加载'
-    })
-    this.getCouponList()
+    if(this.data.couponPage < this.data.couponTotal) {
+      this.setData({
+        couponPage: this.data.couponPage + 1
+      })
+      wx.showLoading({
+        title: '正在加载'
+      })
+      this.getCouponList()
+    }else {
+      app.theEndPage()
+    }
   },
   couponStateManage(e) {
     let index = e.currentTarget.dataset.index;

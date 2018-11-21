@@ -87,10 +87,10 @@
             <view class="title">
                 <text>用户评价:</text>
                 <view class="start-list">
-                    <image src="../../img/goodDetail/start.png" />
+                    <!--<image src="../../img/goodDetail/start.png" />
                      <image src="../../img/goodDetail/start.png" />
                       <image src="../../img/goodDetail/start.png" />
-                       <image src="../../img/goodDetail/start.png" />
+                       <image src="../../img/goodDetail/start.png" /> -->
                 </view>
                 <view class="quantity" bindtap="navToReviewsList">
                     <text>{{reviews.count}}条评论</text>
@@ -115,8 +115,10 @@
                             {{item.content}}
                         </view>
                         <view class="pic-group">
-                            <image src="{{item1.pic_url}}" wx:for-item="item1" wx:for-index="index" mode="widthFix"
-                            wx:for="{{item.pic_list}}" data-piclist="{{item.pic_list}}" data-index="{{index}}"  bindtap="previewImg"/>
+                            <view class="img-box"  wx:for-item="item1" wx:for-index="index" wx:for="{{item.pic_list}}" 
+                            data-piclist="{{item.pic_list}}" data-index="{{index}}"  bindtap="previewImg">
+                                <image src="{{item1.pic_url}}" mode="widthFix"/>
+                            </view>
                         </view>
                     </view>
                 </view>
@@ -165,10 +167,13 @@
         </view>
     </view>
     <view class="cart-control" hidden="{{cartShowFlag}}">
+        <view class="bg" bindtap="cartStateManage"></view>
         <view class="box">
             <view class="info">
                 <view class="text-img">
-                    <image src="{{activeProduct.primary_pic_url}}" />
+                    <view class="img-box">
+                        <image src="{{activeProduct.primary_pic_url}}" mode="widthFix"/>
+                    </view>
                     <view class="about">
                         <view class="name">
                             {{activeProduct.goods_name}}

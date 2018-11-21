@@ -62,39 +62,78 @@
   font-size: 24rpx;
   line-height: 88rpx;
 }
+.template .main .style,
+.template .main .content {
+  position: relative;
+}
 .template .main .style .attention,
 .template .main .content .attention {
+  flex: 1;
+  padding: 0 15rpx;
   align-self: center;
+}
+.template .main .style .attention image,
+.template .main .content .attention image {
   width: 26rpx;
   height: 26rpx;
-  margin: 0 15rpx;
 }
-.template .main .style .choose,
-.template .main .content .choose {
+.template .main .style .attenText,
+.template .main .content .attenText {
+  position: absolute;
+  white-space: nowrap;
+  padding: 10rpx 15rpx;
+  background: #f2f2f2;
+  font-size: 20rpx;
+  box-shadow: 0 0 12rpx rgba(0, 0, 0, 0.4);
+  border-radius: 8rpx;
+  color: #272727;
+  top: -40rpx;
+  left: 25rpx;
+}
+.template .main .style .choose-name,
+.template .main .content .choose-name {
   flex: 1;
+  text-align: right;
+}
+.template .main .style .choose-cont,
+.template .main .content .choose-cont {
+  position: relative;
+  margin-left: 15rpx;
+}
+.template .main .style .choose-cont,
+.template .main .content .choose-cont,
+.template .main .style .choose-name,
+.template .main .content .choose-name {
+  line-height: 88rpx;
   position: relative;
   font-size: 0;
-  text-align: right;
-  line-height: 88rpx;
 }
-.template .main .style .choose view,
-.template .main .content .choose view {
+.template .main .style .choose-cont view,
+.template .main .content .choose-cont view,
+.template .main .style .choose-name view,
+.template .main .content .choose-name view {
   display: inline-block;
 }
-.template .main .style .choose view image,
-.template .main .content .choose view image {
+.template .main .style .choose-cont view image,
+.template .main .content .choose-cont view image,
+.template .main .style .choose-name view image,
+.template .main .content .choose-name view image {
   width: 26rpx;
   height: 26rpx;
   vertical-align: middle;
 }
-.template .main .style .choose view text,
-.template .main .content .choose view text {
+.template .main .style .choose-cont view text,
+.template .main .content .choose-cont view text,
+.template .main .style .choose-name view text,
+.template .main .content .choose-name view text {
   vertical-align: middle;
   margin-left: 10rpx;
   font-size: 20rpx;
 }
-.template .main .style .choose view:last-of-type,
-.template .main .content .choose view:last-of-type {
+.template .main .style .choose-cont view:last-of-type,
+.template .main .content .choose-cont view:last-of-type,
+.template .main .style .choose-name view:last-of-type,
+.template .main .content .choose-name view:last-of-type {
   margin-left: 22rpx;
 }
 .template .main .taitou-name input {
@@ -127,6 +166,7 @@
   height: 88rpx;
   line-height: 88rpx;
   padding-left: 20rpx;
+  text-align: right;
 }
 .template .main .noInvoice {
   line-height: 88rpx;

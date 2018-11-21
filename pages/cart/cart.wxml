@@ -6,7 +6,7 @@
         <view class="title">
             <view>
                 <image src="../../img/cart/icon1.png" />
-                <text>春芽好物</text>
+                <text>种子生活</text>
             </view>
             <view></view>
         </view>
@@ -17,7 +17,7 @@
                     <image wx:else src="../../img/cart/icon3.png" />
                 </view>
                 <view class="image">
-                    <image src="{{item.product_pic_url}}" />
+                    <image src="{{item.product_pic_url}}" mode="widthFix"/>
                 </view>
                 <view class="text">
                     <text>{{item.goods_name}}</text>

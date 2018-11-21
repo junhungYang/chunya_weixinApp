@@ -48,18 +48,40 @@
             }
         }
         .style,.content {
+            position: relative;
                 .attention {
+                    flex: 1;
+                    padding: 0 15rpx;
                     align-self: center;
-                    width: 26rpx;
-                    height: 26rpx;
-                    margin: 0 15rpx;
+                    image {          
+                        width: 26rpx;
+                        height: 26rpx;
+                    }
                 }
-              .choose {
-                flex: 1;
-                position: relative;
-                font-size: 0;
-                text-align: right;
-                line-height: 88rpx;
+                .attenText {
+                    position: absolute;
+                    white-space: nowrap;
+                    padding: 10rpx 15rpx;
+                    background: #f2f2f2;
+                    font-size: 20rpx;
+                    box-shadow: 0 0 12rpx rgba(0,0,0,0.4);
+                    border-radius: 8rpx;
+                    color: #272727;
+                    top: -40rpx;
+                    left: 25rpx;
+                }
+                .choose-name {
+                    flex: 1;
+                    text-align: right;
+                }
+                .choose-cont {
+                    position: relative;
+                    margin-left: 15rpx;
+                }
+              .choose-cont,.choose-name {
+                  line-height: 88rpx;
+                  position: relative;
+                            font-size: 0;
                 view {
                     display: inline-block;
                     image {
@@ -111,6 +133,7 @@
                 height: 88rpx;
                 line-height: 88rpx;
                         padding-left: 20rpx;
+                        text-align: right;
             }
         }
         .noInvoice {

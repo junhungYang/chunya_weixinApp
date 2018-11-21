@@ -62,6 +62,7 @@
             .choose {
                 width: 42rpx;
                 position: relative;
+                align-self: center;
                 image {
                     position: absolute;
                     left: 0;
@@ -72,15 +73,18 @@
                 }
             }
             .image {
+                align-self: center;
                 width: 176rpx;
+                height: 176rpx;
                 position: relative;
+                overflow: hidden;
+                background: #f2f2f2;
                 image {
                     position: absolute;
-                    left: 0;
+                    left: 50%;
                     top: 50%;
-                    transform: translateY(-50%);
-                    width: 176rpx;
-                    height: 176rpx;
+                    transform: translate(-50%,-50%);
+                    width: 176rpx
                 }
             }
             .text {

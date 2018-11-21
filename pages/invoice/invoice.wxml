@@ -11,7 +11,7 @@
     <view class="main">
         <view class="style">
             <text class="title">抬头类型</text>
-            <view class="choose">
+            <view class="choose-name">
                 <view data-style="{{1}}" bindtap="changeInvTitleStyle">
                     <image src="{{data.headerType=== 1 ? '../../img/checked.png' : '../../img/noCheck.png'}}" />
                     <text>个人</text>
@@ -38,9 +38,11 @@
             </view>
         </view>
         <view class="content">
-            <text class="title">发票内容</text>
-            <image src="../../img/attention.png" class="attention"/>
-            <view class="choose">
+            <text class="title" bindtouchstart="showAttention" bindtouchend="showAttention">发票内容</text>
+            <view class="attention"  bindtouchstart="showAttention" bindtouchend="showAttention">
+                 <image src="../../img/attention.png" />
+            </view>
+            <view class="choose-cont">
                 <view data-style="{{1}}" bindtap="changeCont">
                     <image src="{{data.contentType===1 ? '../../img/checked.png' : '../../img/noCheck.png'}}" />
                     <text>商品明细</text>
@@ -50,6 +52,7 @@
                     <text>商品类型</text>
                 </view>
             </view>
+              <text hidden="{{attentionState}}" class="attenText">发票内容选项已根据税法调整，具体请以展示为准</text>
         </view>
         <view class="phone-num">
             <text class="title">手机号码</text>
@@ -75,8 +78,8 @@
                 <text>发票列表</text>
             </view>
             <scroll-view scroll-y class="list">
-                <view class="item" wx:for="{{list}}">
-                    <text>1213456</text><text>888888</text>
+                <view class="item" wx:for="{{list}}" data-item="{{item}}" bindtap="refreshData">
+                    <text>发票抬头：{{item.headerContent}}</text>
                 </view>
             </scroll-view>
         </view>

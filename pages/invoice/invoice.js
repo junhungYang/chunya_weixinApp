@@ -9,10 +9,10 @@ Page({
    */
   data: {
     contStyle: "desc",
-    list: [1, 2, 3, 4, 5, 6, 78, 9, 78, 41, 5, 78, 748],
+    list: [],
     listState: true,
     data: {},
-    hasId: false,
+    attentionState: true
   },
 
   /**
@@ -24,6 +24,13 @@ Page({
       data: JSON.parse(options.invoice)
     });
     this.getInvoiceList();
+  },
+  refreshData(e) {
+    let data = e.currentTarget.dataset.item;
+    this.setData({
+      data,
+      listState: true
+    });
   },
   getInvoiceList() {
     _QueryInvoiceList().then(data => {
@@ -179,12 +186,12 @@ Page({
     data.headerType === 2
       ? (obj.taxpayerIdentificationNumber = data.taxpayerIdentificationNumber)
       : "";
-    data.hasId ? (obj.id = data.hasId) : "";
+    data.id ? (obj.id = data.id) : "";
     _SaveOrUpdateInvoice(obj).then(data => {
-      this.refreshPrevPage('hasInvoice',data)
+      this.refreshPrevPage(data);
     });
   },
-  refreshPrevPage(type,data) {
+  refreshPrevPage(data) {
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
     let obj = prevPage.data.data;
@@ -197,7 +204,24 @@ Page({
     });
   },
   noInvoice() {
-    this.refreshPrevPage('noInvoice',{})
+    let obj = {
+      id: null,
+      invoiceType: 1,
+      headerType: 1,
+      headerContent: null,
+      isDefault: 1,
+      contentType: 1,
+      invoicerMobile: null,
+      invoicerEmail: null,
+      taxpayerIdentificationNumber: null
+    };
+    this.refreshPrevPage(obj);
+  },
+  showAttention() {
+    console.log(11111);
+    this.setData({
+      attentionState: !this.data.attentionState
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
