@@ -156,6 +156,9 @@ App({
         promiseObj = _TakeDelay({ orderId })
         break;
       case "addReview":
+        wx.navigateTo({
+          url: `../writeReviews/writeReviews?orderId=${orderId}`
+        })
         break;
       case "logistics":
         break;

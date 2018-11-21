@@ -1,0 +1,150 @@
+.template {
+  min-height: 100vh;
+  background: #f2f2f2;
+  padding-bottom: 150rpx;
+}
+.template .list {
+  padding-top: 20rpx;
+  margin: 0 6.4%;
+}
+.template .list .item {
+  background: #fff;
+  border-radius: 10rpx;
+}
+.template .list .item .header {
+  display: flex;
+  padding: 20rpx;
+  border-bottom: 1px solid #f7f7f7;
+}
+.template .list .item .header .img-box {
+  position: relative;
+  background: #f2f2f2;
+  border: 1px solid red;
+  width: 114rpx;
+  height: 114rpx;
+  overflow: hidden;
+}
+.template .list .item .header .img-box image {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.template .list .item .header .good-level {
+  padding-left: 35rpx;
+  flex: 1;
+}
+.template .list .item .header .good-level .title {
+  padding-top: 8rpx;
+  font-size: 28rpx;
+  color: #313131;
+  font-weight: bold;
+}
+.template .list .item .header .good-level .star {
+  margin-top: 15rpx;
+  font-size: 0;
+}
+.template .list .item .header .good-level .star image {
+  width: 22rpx;
+  height: 22rpx;
+  margin-right: 11rpx;
+}
+.template .list .item .input-text {
+  padding: 20rpx;
+  height: 250rpx;
+  overflow: hidden;
+  border-bottom: 1px solid #f7f7f7;
+}
+.template .list .item .input-text textarea {
+  font-size: 20rpx;
+  color: #b2b2b2;
+  line-height: 30rpx;
+}
+.template .list .item .img-group {
+  padding: 20rpx;
+  padding-top: 27rpx;
+}
+.template .list .item .img-group .img-wrap {
+  display: inline-block;
+  width: 193rpx;
+  height: 193rpx;
+  overflow: hidden;
+  position: relative;
+  margin-left: 7rpx;
+  margin-right: 7rpx;
+  background: #000000;
+}
+.template .list .item .img-group .img-wrap .contImage {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.template .list .item .img-group .img-wrap .delIcon {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  right: 5rpx;
+  top: 5rpx;
+  z-index: 2;
+}
+.template .logistics {
+  margin: 0 6.4%;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  background: #fff;
+}
+.template .logistics .logi-item {
+  height: 78rpx;
+  margin: 0 27rpx;
+  border-bottom: 1px solid #f7f7f7;
+  display: flex;
+}
+.template .logistics .logi-item .left-text {
+  padding-left: 42rpx;
+  line-height: 78rpx;
+  font-size: 24rpx;
+}
+.template .logistics .logi-item .star {
+  flex: 1;
+  text-align: right;
+  font-size: 0;
+}
+.template .logistics .logi-item .star image {
+  padding: 28rpx 0;
+  width: 22rpx;
+  height: 22rpx;
+  padding-left: 11rpx;
+}
+.template .logistics .logi-item .right-check {
+  flex: 1;
+  text-align: right;
+}
+.template .logistics .logi-item .right-check image {
+  padding: 26rpx 0;
+  width: 24rpx;
+  height: 24rpx;
+}
+.template .logistics .header .left-text {
+  padding: 0;
+}
+.template .logistics .header .left-text image {
+  width: 30rpx;
+  height: 22rpx;
+}
+.template .logistics .header .left-text text {
+  margin-left: 15rpx;
+}
+.template .logistics .header .left-text image,
+.template .logistics .header .left-text text {
+  vertical-align: middle;
+}
+.template .logistics .header .right-text {
+  flex: 1;
+  text-align: right;
+  align-self: center;
+  color: #b2b2b2;
+  font-size: 20rpx;
+}

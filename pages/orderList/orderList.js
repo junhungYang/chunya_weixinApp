@@ -85,17 +85,14 @@ Page({
     let orderId = e.currentTarget.dataset.orderid;
     let controlStyle = e.currentTarget.dataset.str;
     let promiseObj = app.orderControl(orderId,controlStyle);
+    if(promiseObj) {
       promiseObj.then(data => {
-        wx.showToast({
-          icon: "success",
-          title: data,
-          duration: 1000
-        });
-        this.setData({
-          pageIndex: 1
-        })
+        wx.showToast({ icon: "success", title: data, duration: 1000 });
+        this.setData({ pageIndex: 1 });
         this.getOrderList();
-      })
+      });
+    }
+      
   },
   navToOrderDetail(e) {
     let orderId = e.currentTarget.dataset.item.id;

@@ -1,0 +1,83 @@
+<view class="template">
+    <view class="list">
+        <view class="item">
+            <view class="header">
+                <view class="img-box">
+                    <image src="" mode="widthFix"/>
+                </view>
+                <view class="good-level">
+                    <view class="title">
+                        商品评分
+                    </view>
+                    <view class="star">
+                        <image wx:for="{{5}}" src="../../img/starGlay.png" />
+                    </view>
+                </view>
+            </view>
+            <view class="input-text">
+                <textarea placeholder="请说说您的想法..." maxlength="-1"/>           
+            </view>
+            <view class="img-group">
+                <view class="img-wrap">
+                    <image class="contImage" src="../../img/add.png" mode="widthFix"/>
+                    <image class="delIcon" src="../../img/deleteRed.png" />
+                </view>
+                <view class="img-wrap">
+                    <image class="contImage" src="../../img/add.png" mode="widthFix"/>
+                    <image class="delIcon" src="../../img/deleteRed.png" />
+                </view>
+                <view class="img-wrap">
+                    <image class="contImage" src="../../img/add.png" mode="widthFix"/>
+                    <image class="delIcon" src="../../img/deleteRed.png" />
+                </view>
+                <view class="img-wrap">
+                    <image class="contImage" src="../../img/add.png" mode="widthFix"/>
+                    <image class="delIcon" src="../../img/deleteRed.png" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="logistics">
+        <view class="header logi-item">
+            <view class="left-text">
+                <image src="../../img/wuliuCart.png" />
+                <text>物流服务评论</text>
+            </view>
+            <view class="right-text">
+                满意请给5星哦
+            </view>
+        </view>
+        <view class="package-level logi-item">
+            <view class="left-text">
+                快递包装
+            </view>
+            <view class="star">
+                <image wx:for="{{5}}" wx:for-index="index" src="../../img/starGlay.png" data-type="goods" bindtap="chooseLevel"/>
+            </view>
+        </view>
+        <view class="speed-level logi-item">
+            <view class="left-text">
+                送货速度
+            </view>
+            <view class="star">
+                <image wx:for="{{5}}" src="../../img/starGlay.png" />
+            </view>
+        </view>
+        <view class="service-level logi-item">
+            <view class="left-text">
+                配送员服务态度
+            </view>
+            <view class="star">
+                <image wx:for="{{5}}" src="../../img/starGlay.png" />
+            </view>
+        </view>
+        <view class="has-name logi-item">
+            <view class="left-text">
+                匿名评价
+            </view>
+            <view class="right-check">
+                <image src="../../img/checked.png" />
+            </view>
+        </view>
+    </view>
+</view>

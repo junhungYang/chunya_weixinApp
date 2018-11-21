@@ -1,15 +1,13 @@
 {
   "pages": [
         "pages/index/index",
+            "pages/writeReviews/writeReviews",
+       
         "pages/invoice/invoice",
     
           
         "pages/haowuList/haowuList",
             "pages/eventEnter/eventEnter",
-
-   
-                 
-
                 "pages/publicReviewsList/publicReviewsList",
             "pages/writeStory/writeStory",
             "pages/story/story",

@@ -17,12 +17,15 @@ Page({
     searchText: "",
     searchListHid: true,
     searchList: [],
+    searchPage: 1,
+    searchTotalPage: 0,
     commonwealList: [],
     commActiveIndex: "",
     commOffset: 0,
     eventItemWidth: 0,
     goodsTotalPages: 0,
     goodsPage: 1,
+    testArr:[1,2,3,4,5,6,78,9,78,54,2,6,45,3]
   },
 
   onLoad() {
@@ -148,26 +151,48 @@ Page({
     }
   },
   searchInput(e) {
-    this.setData({
-      searchText: e.detail.value
-    });
-    if (this.data.searchText) {
-      this.setData({ searchListHid: false });
-    } else {
-      this.setData({ searchListHid: true });
-    }
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
-      _GoodsList({
-        page: 1,
-        size: 10,
-        keyword: this.data.searchText
-      }).then(data => {
-        this.setData({
-          searchList: data.data
-        });
+      this.setData({
+        searchText: e.detail.value,
+        searchPage: 1
       });
+      if (this.data.searchText) {
+        this.setData({ searchListHid: false });
+      } else {
+        this.setData({ searchListHid: true });
+      }
+      this.getSearchList('input')
     }, 500);
+  },
+  getSearchList(type) {
+    _GoodsList({
+      page: this.data.searchPage,
+      size: 10,
+      keyword: this.data.searchText
+    }).then(data => {
+      this.setData({ searchTotalPage: data.totalPages });
+      if(type === 'input') {
+        this.setData({
+          searchList: data.data,
+        });
+      }else {
+        this.setData({
+          searchList: [...this.data.searchList,...data.data]
+        })
+      }
+      
+    });
+  },
+  searchListScroll() {
+    if(this.data.searchPage < this.data.searchTotalPage) {
+      this.setData({
+        searchPage: this.data.searchPage + 1
+      })
+      this.getSearchList('scroll')
+    }else {
+      app.theEndPage()
+    }
   },
   hidSearchList() {
     this.setData({
