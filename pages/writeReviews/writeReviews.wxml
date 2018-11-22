@@ -1,5 +1,5 @@
 <view class="template">
-    <scroll-view scroll-y class="scroll-view">
+    <view scroll-y class="wrap">
         <view class="list">
             <view class="item" wx:for="{{goodsList}}" wx:key="{{item.id}}" wx:for-index="index">
                 <view class="header">
@@ -81,7 +81,7 @@
                 </view>
             </view>
         </view>
-    </scroll-view>
+    </view>
     <view class="fixBtn" bindtap="beforSubmit">
         提交
     </view>

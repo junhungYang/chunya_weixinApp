@@ -3,97 +3,90 @@
   background: #f2f2f2;
   padding-bottom: 150rpx;
 }
-.template .scroll-view {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  bottom: 100rpx;
-  overflow: hidden;
-  left: 0;
-}
-.template .scroll-view .list {
+.template .wrap .list {
   padding-top: 20rpx;
   margin: 0 6.4%;
 }
-.template .scroll-view .list .item {
+.template .wrap .list .item {
   margin-top: 20rpx;
   background: #fff;
   border-radius: 10rpx;
 }
-.template .scroll-view .list .item:first-of-type {
+.template .wrap .list .item:first-of-type {
   margin-top: 0;
 }
-.template .scroll-view .list .item .header {
+.template .wrap .list .item .header {
   display: flex;
   padding: 20rpx;
   border-bottom: 1px solid #f7f7f7;
 }
-.template .scroll-view .list .item .header .img-box {
+.template .wrap .list .item .header .img-box {
   position: relative;
   background: #f2f2f2;
   width: 114rpx;
   height: 114rpx;
   overflow: hidden;
 }
-.template .scroll-view .list .item .header .img-box image {
+.template .wrap .list .item .header .img-box image {
   width: 100%;
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
 }
-.template .scroll-view .list .item .header .good-level {
+.template .wrap .list .item .header .good-level {
   padding-left: 35rpx;
   flex: 1;
   font-size: 0;
 }
-.template .scroll-view .list .item .header .good-level .title {
+.template .wrap .list .item .header .good-level .title {
   padding-top: 8rpx;
   font-size: 28rpx;
   color: #313131;
   line-height: 34rpx;
 }
-.template .scroll-view .list .item .header .good-level .product {
+.template .wrap .list .item .header .good-level .product {
   font-size: 20rpx;
   padding: 0 8rpx;
   color: #d1051f;
+  border: 1px solid #d1051f;
   line-height: 28rpx;
   display: inline-block;
   margin-top: 10rpx;
 }
-.template .scroll-view .list .item .header .good-level .star {
+.template .wrap .list .item .header .good-level .star {
   margin-top: 15rpx;
   font-size: 0;
 }
-.template .scroll-view .list .item .header .good-level .star text {
+.template .wrap .list .item .header .good-level .star text {
   color: #313131;
   font-size: 22rpx;
   line-height: 44rpx;
   margin-right: 10rpx;
   vertical-align: middle;
 }
-.template .scroll-view .list .item .header .good-level .star image {
+.template .wrap .list .item .header .good-level .star image {
   vertical-align: middle;
   padding: 11rpx 9rpx;
   width: 22rpx;
   height: 22rpx;
 }
-.template .scroll-view .list .item .input-text {
+.template .wrap .list .item .input-text {
   padding: 20rpx;
   height: 180rpx;
   overflow: hidden;
   border-bottom: 1px solid #f7f7f7;
 }
-.template .scroll-view .list .item .input-text textarea {
+.template .wrap .list .item .input-text textarea {
   font-size: 20rpx;
   color: #b2b2b2;
   line-height: 30rpx;
 }
-.template .scroll-view .list .item .img-group {
+.template .wrap .list .item .img-group {
   padding: 20rpx;
   padding-top: 27rpx;
 }
-.template .scroll-view .list .item .img-group .img-wrap {
+.template .wrap .list .item .img-group .img-wrap {
   display: inline-block;
   width: 193rpx;
   height: 193rpx;
@@ -103,14 +96,14 @@
   margin-right: 7rpx;
   background: #000000;
 }
-.template .scroll-view .list .item .img-group .img-wrap .contImage {
+.template .wrap .list .item .img-group .img-wrap .contImage {
   width: 100%;
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
 }
-.template .scroll-view .list .item .img-group .img-wrap .delIcon {
+.template .wrap .list .item .img-group .img-wrap .delIcon {
   width: 35rpx;
   height: 35rpx;
   position: absolute;
@@ -118,57 +111,57 @@
   top: 5rpx;
   z-index: 2;
 }
-.template .scroll-view .logistics {
+.template .wrap .logistics {
   margin: 0 6.4%;
   margin-top: 20rpx;
   border-radius: 10rpx;
   background: #fff;
 }
-.template .scroll-view .logistics .logi-item {
+.template .wrap .logistics .logi-item {
   height: 78rpx;
   margin: 0 27rpx;
   border-bottom: 1px solid #f7f7f7;
   display: flex;
 }
-.template .scroll-view .logistics .logi-item .left-text {
+.template .wrap .logistics .logi-item .left-text {
   padding-left: 42rpx;
   line-height: 78rpx;
   font-size: 24rpx;
 }
-.template .scroll-view .logistics .logi-item .star {
+.template .wrap .logistics .logi-item .star {
   flex: 1;
   text-align: right;
   font-size: 0;
 }
-.template .scroll-view .logistics .logi-item .star image {
+.template .wrap .logistics .logi-item .star image {
   padding: 28rpx 13rpx;
   width: 22rpx;
   height: 22rpx;
 }
-.template .scroll-view .logistics .logi-item .right-check {
+.template .wrap .logistics .logi-item .right-check {
   flex: 1;
   text-align: right;
 }
-.template .scroll-view .logistics .logi-item .right-check image {
+.template .wrap .logistics .logi-item .right-check image {
   padding: 26rpx 27rpx;
   width: 24rpx;
   height: 24rpx;
 }
-.template .scroll-view .logistics .header .left-text {
+.template .wrap .logistics .header .left-text {
   padding: 0;
 }
-.template .scroll-view .logistics .header .left-text image {
+.template .wrap .logistics .header .left-text image {
   width: 30rpx;
   height: 22rpx;
 }
-.template .scroll-view .logistics .header .left-text text {
+.template .wrap .logistics .header .left-text text {
   margin-left: 15rpx;
 }
-.template .scroll-view .logistics .header .left-text image,
-.template .scroll-view .logistics .header .left-text text {
+.template .wrap .logistics .header .left-text image,
+.template .wrap .logistics .header .left-text text {
   vertical-align: middle;
 }
-.template .scroll-view .logistics .header .right-text {
+.template .wrap .logistics .header .right-text {
   flex: 1;
   text-align: right;
   align-self: center;
