@@ -3,11 +3,11 @@
         <view class="item" wx:for="{{reviewsList}}">
             <view class="info">
                 <view class="my-info">
-                    <image src="{{item.user_info.avatar}}" />
-                    <text>{{item.user_info.nickname}}</text>
+                    <image src="{{item.userInfo.avatar}}" />
+                    <text>{{item.userInfo.nickname}}</text>
                 </view>
                 <view class="time-info">
-                    <text>{{item.add_time}}</text>
+                    <text>{{item.addTime}}</text>
                     <text></text>
                 </view>
             </view>
@@ -16,9 +16,9 @@
                     {{item.content}}
                 </view>
                 <view class="pic-group">
-                    <view class="img-box"  wx:for-item="item1" wx:for-index="index" wx:for="{{item.pic_list}}" data-type="cont"
-                     data-piclist="{{item.pic_list}}" data-index="{{index}}"  bindtap="previewImg">
-                        <image src="{{item1.pic_url}}" mode="widthFix" />
+                    <view class="img-box"  wx:for-item="item1" wx:for-index="index" wx:for="{{item.imagesList}}" data-type="cont"
+                     data-piclist="{{item.imagesList}}" data-index="{{index}}"  bindtap="previewImg">
+                        <image src="{{item1.picUrl}}" mode="widthFix" />
                     </view>
                     
                 </view>

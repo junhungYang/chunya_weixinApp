@@ -1036,7 +1036,7 @@ const _GoodsKeyWordsList = function() {
     });
   });
 };
-//评论
+//一般评论评论
 const _CommentList = function (data) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -1057,6 +1057,28 @@ const _CommentList = function (data) {
     });
   });
 }
+
+const _GoodCommentList = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/comment/queryListByGood`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          _Reject(res.data.errno, res.data.errmsg);
+        }
+      }
+    });
+  });
+}
+
 const _CommentPost = function(data) {
     return new Promise((resolve, reject) => {
         wx.request({
@@ -1367,7 +1389,31 @@ const _SaveOrUpdateInvoice = function(data) {
   });
 };
 
+// 评价晒单
+const _PostComment = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/postComment`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/josn",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          _Reject(res.data.errno, res.data.errmsg);
+        }
+      }
+    });
+  });
+};
+
 module.exports = {
+  _GoodCommentList,
+  _PostComment,
   _QueryInvoiceList,
   _SaveOrUpdateInvoice,
   _HaowuList,

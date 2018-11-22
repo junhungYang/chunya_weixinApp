@@ -72,7 +72,7 @@
         </view> -->
      
         <scroll-view class="events-cont" scroll-x="{{true}}" bindscroll="changeCommIndex">
-          <image id="events-item" wx:for="{{commonwealList}}" src="{{item.image_url}}" data-url="{{item.link}}" bindtap="navToPublicDetail"/>
+          <image id="events-item" wx:for="{{commonwealList}}" src="{{item.image_url}}" data-url="{{item.link}}" bindtap="navToPublicOrEvent"/>
         </scroll-view>
       </view>
       <view class="hot-goods">

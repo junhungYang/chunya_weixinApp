@@ -197,7 +197,6 @@ Page({
         current: this.data.imageList[index]
       })
     }
-
   },
   onReachBottom: function() {
     if (this.data.pageIndex < this.data.totalPages) {

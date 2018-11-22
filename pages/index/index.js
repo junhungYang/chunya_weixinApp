@@ -25,7 +25,7 @@ Page({
     eventItemWidth: 0,
     goodsTotalPages: 0,
     goodsPage: 1,
-    testArr:[1,2,3,4,5,6,78,9,78,54,2,6,45,3]
+    testArr: [1, 2, 3, 4, 5, 6, 78, 9, 78, 54, 2, 6, 45, 3]
   },
 
   onLoad() {
@@ -64,20 +64,21 @@ Page({
     query.exec(res => {
       this.setData({ eventItemWidth: parseInt(res[0].width) });
     });
-    // console.log(this.data.eventItemWidth)
   },
   changeCommIndex(e) {
     if (this.data.eventItemWidth === 0) {
       this.getEventWidth();
     }
-    let data = e.detail;
-    let num = data.scrollLeft % this.data.eventItemWidth;
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let data = e.detail;
+      let num = data.scrollLeft % this.data.eventItemWidth;
       this.setData({
-        commActiveIndex:
-          parseInt(data.scrollLeft / this.data.eventItemWidth) + 1
+        commActiveIndex: parseInt(data.scrollLeft / this.data.eventItemWidth) + 1
       });
+    }, 500);
   },
-  navToPublicDetail(e) {
+  navToPublicOrEvent(e) {
     if (app.globalData.token) {
       let url = e.currentTarget.dataset.url;
       wx.navigateTo({ url });
@@ -162,7 +163,7 @@ Page({
       } else {
         this.setData({ searchListHid: true });
       }
-      this.getSearchList('input')
+      this.getSearchList("input");
     }, 500);
   },
   getSearchList(type) {
@@ -172,26 +173,25 @@ Page({
       keyword: this.data.searchText
     }).then(data => {
       this.setData({ searchTotalPage: data.totalPages });
-      if(type === 'input') {
+      if (type === "input") {
         this.setData({
-          searchList: data.data,
+          searchList: data.data
         });
-      }else {
+      } else {
         this.setData({
-          searchList: [...this.data.searchList,...data.data]
-        })
+          searchList: [...this.data.searchList, ...data.data]
+        });
       }
-      
     });
   },
   searchListScroll() {
-    if(this.data.searchPage < this.data.searchTotalPage) {
+    if (this.data.searchPage < this.data.searchTotalPage) {
       this.setData({
         searchPage: this.data.searchPage + 1
-      })
-      this.getSearchList('scroll')
-    }else {
-      app.theEndPage()
+      });
+      this.getSearchList("scroll");
+    } else {
+      app.theEndPage();
     }
   },
   hidSearchList() {

@@ -1,5 +1,5 @@
 // pages/reviewsList/reviewsList.js
-import { _CommentList, _CommentPost } from "../../utils/request";
+import { _GoodCommentList, _CommentPost } from "../../utils/request";
 const App = getApp()
 Page({
 
@@ -37,12 +37,10 @@ Page({
     this.getCommentList()
   },
   getCommentList(style) {
-    _CommentList({
-      typeId: 0,
-      valueId: this.data.goodId,
-      showType: 0,
+    _GoodCommentList({
+      goodId: this.data.goodId,
       page: this.data.pageIndex,
-      sort: "desc"
+      size: 10
     }).then(data => {
         wx.setNavigationBarTitle({
           title: `评价(${data.count})`
@@ -174,7 +172,7 @@ Page({
       let picList = e.currentTarget.dataset.piclist;
       let arr = [];
       picList.forEach(item => {
-        arr.push(item.pic_url);
+        arr.push(item.picUrl);
       });
       wx.previewImage({
         urls: arr,

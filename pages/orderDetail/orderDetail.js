@@ -58,26 +58,28 @@ Page({
   orderControl(e) {
     let orderId = e.currentTarget.dataset.orderid;
     let controlStyle = e.currentTarget.dataset.str;
-    let promiseObj = app.orderControl(orderId, controlStyle);
-    promiseObj.then(data => {
-      wx.showToast({
-        icon: "success",
-        title: data,
-        duration: 600
-      });
-      this.getOrderDetail()
-      let pages = getCurrentPages()
-      let prevPage = pages[pages.length - 2];
-      prevPage.setData({
-        pageIndex: 1
+    let promiseObj = app.orderControl(orderId, controlStyle,'detail');
+    if(promiseObj) {
+      promiseObj.then(data => {
+        wx.showToast({
+          icon: "success",
+          title: data,
+          duration: 600
+        });
+        this.getOrderDetail()
+        let pages = getCurrentPages()
+        let prevPage = pages[pages.length - 2];
+        prevPage.setData({
+          pageIndex: 1
+        })
+        prevPage.getOrderList();
+        if (controlStyle === 'delete') {
+          setTimeout(() => {
+            wx.navigateBack({ delta: 1 });
+          }, 600);
+        }
       })
-      prevPage.getOrderList();
-      if (controlStyle === 'delete') {
-        setTimeout(() => {
-          wx.navigateBack({ delta: 1 });
-        }, 600);
-      }
-    })
+    }
   },
   copy() {
     wx.setClipboardData({

@@ -24,8 +24,7 @@ Page({
   onLoad: function(options) {  
     that = this
     app.setWatcher(app.globalData,this.watch)
-    console.log(options.activityId);
-    this.setData({ id: Number(options.activityId) });
+    this.setData({ id: Number(options.commonwealId) });
     if (app.globalData.token) {
       this.getCommonwealDetail()
       this.getCommonList()

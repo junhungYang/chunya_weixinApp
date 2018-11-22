@@ -17,9 +17,7 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    this.setData({
-      id: Number(options.id)
-    })
+    this.setData({ id: Number(options.activityId) });
     if(App.globalData.token) {
       this.getDetail()
     }

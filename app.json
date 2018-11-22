@@ -1,7 +1,9 @@
 {
   "pages": [
         "pages/index/index",
-            "pages/writeReviews/writeReviews",
+        "pages/writeReviews/writeReviews",
+     
+          
        
         "pages/invoice/invoice",
     

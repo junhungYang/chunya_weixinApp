@@ -6,7 +6,7 @@ import {
   _CartAdd,
   _OrderCheckout,
   _CollectAddorDelete,
-  _CommentList,
+  _GoodCommentList,
   _SendFormid,
   _CouponForGood,
   _CouponAdd
@@ -180,11 +180,10 @@ Page({
     }
   },
   getReviews() {
-    _CommentList({
-      typeId: 0,
-      valueId: this.data.goodId,
-      showType: 0,
-      size: 5
+    _GoodCommentList({
+      goodId: this.data.goodId,
+      size: 5,
+      page:1
     })
       .then(data => {
         this.setData({

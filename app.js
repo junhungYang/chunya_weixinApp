@@ -140,7 +140,7 @@ App({
         })
     });
   },
-  orderControl(orderId,controlStyle) {
+  orderControl(orderId,controlStyle,from) {
     let promiseObj;
     switch (controlStyle) {
       case "delete":
@@ -157,7 +157,7 @@ App({
         break;
       case "addReview":
         wx.navigateTo({
-          url: `../writeReviews/writeReviews?orderId=${orderId}`
+          url: `../writeReviews/writeReviews?orderId=${orderId}&from=${from}`
         })
         break;
       case "logistics":

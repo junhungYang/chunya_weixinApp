@@ -61,7 +61,7 @@ Page({
   },
   navToDetail(e) {
     wx.navigateTo({
-      url: `../eventsDetail/eventsDetail?id=${e.currentTarget.dataset.id}`
+      url: `../eventsDetail/eventsDetail?activityId=${e.currentTarget.dataset.id}`
     })
   },
   onReachBottom: function () {

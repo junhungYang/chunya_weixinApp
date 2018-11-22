@@ -84,7 +84,7 @@ Page({
   orderControl(e) {
     let orderId = e.currentTarget.dataset.orderid;
     let controlStyle = e.currentTarget.dataset.str;
-    let promiseObj = app.orderControl(orderId,controlStyle);
+    let promiseObj = app.orderControl(orderId,controlStyle,'list');
     if(promiseObj) {
       promiseObj.then(data => {
         wx.showToast({ icon: "success", title: data, duration: 1000 });

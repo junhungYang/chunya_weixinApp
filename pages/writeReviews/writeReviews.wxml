@@ -1,83 +1,88 @@
 <view class="template">
-    <view class="list">
-        <view class="item">
-            <view class="header">
-                <view class="img-box">
-                    <image src="" mode="widthFix"/>
-                </view>
-                <view class="good-level">
-                    <view class="title">
-                        商品评分
+    <scroll-view scroll-y class="scroll-view">
+        <view class="list">
+            <view class="item" wx:for="{{goodsList}}" wx:key="{{item.id}}" wx:for-index="index">
+                <view class="header">
+                    <view class="img-box">
+                        <image src="{{item.product_pic_url}}" mode="widthFix"/>
                     </view>
-                    <view class="star">
-                        <image wx:for="{{5}}" src="../../img/starGlay.png" />
+                    <view class="good-level">
+                        <view class="title">
+                            {{item.goods_name}} 
+                        </view>
+                        <view class="product">
+                            {{item.product_name}}
+                        </view>
+                        <view class="star">
+                            <text>商品评分</text>
+                            <image wx:for="{{item.starList}}" wx:for-index="starIndex" 
+                            wx:key="{{starIndex+1}}" wx:for-item="item1" src="{{item1}}"
+                            data-goodindex="{{index}}" data-starindex="{{starIndex}}" bindtap="chooseGoodsPoint" />
+                        </view>
+                    </view>
+                </view>
+                <view class="input-text">
+                    <textarea placeholder="请说说您的想法..." maxlength="-1" bindinput="inputReview" data-index="{{index}}" value="{{item.reviewText}}"/>           
+                </view>
+                <view class="img-group">
+                    <view class="img-wrap" wx:for="{{item.imgList}}"  wx:for-item="imgItem" wx:for-index="imgIndex">
+                        <image class="contImage" src="{{imgItem}}" mode="widthFix" data-index="{{index}}" data-imgindex="{{imgIndex}}" bindtap="previewImg"/>
+                        <image class="delIcon" src="../../img/deleteRed.png" data-index="{{index}}" data-imgindex="{{imgIndex}}" bindtap="deleteImg"/>
+                    </view>
+                    <view class="img-wrap" wx:if="{{item.imgList.length < 9}}">
+                        <image class="contImage" src="../../img/camere.png"  mode="widthFix" data-index="{{index}}" bindtap="addImage"/>
                     </view>
                 </view>
             </view>
-            <view class="input-text">
-                <textarea placeholder="请说说您的想法..." maxlength="-1"/>           
-            </view>
-            <view class="img-group">
-                <view class="img-wrap">
-                    <image class="contImage" src="../../img/add.png" mode="widthFix"/>
-                    <image class="delIcon" src="../../img/deleteRed.png" />
+        </view>
+        <view class="logistics">
+            <view class="header logi-item">
+                <view class="left-text">
+                    <image src="../../img/wuliuCart.png" />
+                    <text>物流服务评论</text>
                 </view>
-                <view class="img-wrap">
-                    <image class="contImage" src="../../img/add.png" mode="widthFix"/>
-                    <image class="delIcon" src="../../img/deleteRed.png" />
-                </view>
-                <view class="img-wrap">
-                    <image class="contImage" src="../../img/add.png" mode="widthFix"/>
-                    <image class="delIcon" src="../../img/deleteRed.png" />
-                </view>
-                <view class="img-wrap">
-                    <image class="contImage" src="../../img/add.png" mode="widthFix"/>
-                    <image class="delIcon" src="../../img/deleteRed.png" />
+                <view class="right-text">
+                    满意请给5星哦
                 </view>
             </view>
-        </view>
-    </view>
-    <view class="logistics">
-        <view class="header logi-item">
-            <view class="left-text">
-                <image src="../../img/wuliuCart.png" />
-                <text>物流服务评论</text>
+            <view class="package-level logi-item">
+                <view class="left-text">
+                    快递包装
+                </view>
+                <view class="star">
+                    <image wx:for="{{packageStar}}" wx:for-index="index" src="{{item}}"
+                    wx:key="{{index+1}}" data-index="{{index}}" data-type="packageStar" bindtap="chooseOrderPoint"/>
+                </view>
             </view>
-            <view class="right-text">
-                满意请给5星哦
+            <view class="speed-level logi-item">
+                <view class="left-text">
+                    送货速度
+                </view>
+                <view class="star">
+                    <image wx:for="{{speedStar}}" wx:for-index="index" src="{{item}}" 
+                    wx:key="{{index+1}}" data-index="{{index}}" data-type="speedStar" bindtap="chooseOrderPoint"/>
+                </view>
             </view>
-        </view>
-        <view class="package-level logi-item">
-            <view class="left-text">
-                快递包装
+            <view class="service-level logi-item">
+                <view class="left-text">
+                    配送员服务态度
+                </view>
+                <view class="star">
+                    <image wx:for="{{serviceStar}}" wx:for-index="index" src="{{item}}" 
+                    wx:key="{{index+1}}" data-index="{{index}}" data-type="serviceStar" bindtap="chooseOrderPoint"/>
+                </view>
             </view>
-            <view class="star">
-                <image wx:for="{{5}}" wx:for-index="index" src="../../img/starGlay.png" data-type="goods" bindtap="chooseLevel"/>
-            </view>
-        </view>
-        <view class="speed-level logi-item">
-            <view class="left-text">
-                送货速度
-            </view>
-            <view class="star">
-                <image wx:for="{{5}}" src="../../img/starGlay.png" />
-            </view>
-        </view>
-        <view class="service-level logi-item">
-            <view class="left-text">
-                配送员服务态度
-            </view>
-            <view class="star">
-                <image wx:for="{{5}}" src="../../img/starGlay.png" />
-            </view>
-        </view>
-        <view class="has-name logi-item">
-            <view class="left-text">
-                匿名评价
-            </view>
-            <view class="right-check">
-                <image src="../../img/checked.png" />
+            <view class="has-name logi-item" bindtap="hasName">
+                <view class="left-text">
+                    匿名评价
+                </view>
+                <view class="right-check">
+                    <image  src="{{isAnonymous?'../../img/checked.png':'../../img/noCheck.png'}}" />
+                </view>
             </view>
         </view>
+    </scroll-view>
+    <view class="fixBtn" bindtap="beforSubmit">
+        提交
     </view>
 </view>
