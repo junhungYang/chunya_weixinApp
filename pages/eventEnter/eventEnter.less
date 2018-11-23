@@ -54,6 +54,7 @@
     }
     .input-info {
         margin: 0 6.4%;
+        padding-bottom: 100rpx;
         .base-info,.desc-info {
             .title {
                 height: 96rpx;
@@ -119,7 +120,7 @@
         }
         .desc-info {
             padding-bottom: 120rpx;
-            .input-box {
+            .replace-box,.input-box {
                 border-radius: 10rpx;
                 height: 298rpx;
                 background:#fff;
@@ -129,12 +130,13 @@
                           line-height: 30rpx;
                     font-size: 24rpx;
                     color:#b2b2b2;
-                textarea {
-                    width: 100%;
-                    line-height: 30rpx;
-                    font-size: 24rpx;
-                    color:#b2b2b2;
-                }
+            }
+            textarea {
+                height: 238rpx;
+                line-height: 30rpx;
+                font-size: 24rpx;
+                color:#b2b2b2;
+                overflow: hidden;
             }
             ::-webkit-scrollbar {
                 width: 0;
@@ -150,10 +152,6 @@
         text-align: center;
         font-size: 28rpx;
         color:#fff;
-        width: 100%;
-        position: fixed;
-        left: 0;
-        bottom: 0;
     }
     .enter-success {
         width: 100%;

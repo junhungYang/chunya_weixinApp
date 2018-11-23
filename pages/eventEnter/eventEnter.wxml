@@ -32,10 +32,11 @@
         </view>
         <view class="desc-info">
             <view class="title">报名留言</view>
-            <scroll-view scroll-y wx:if="{{enterSucState===true}}" class="input-box">
+            <view class="input-box" wx:if="{{enterSucState===true}}">
                 <textarea placeholder="请留言..." bindinput="inputDesc" value="{{desc}}" maxlength="{{-1}}" placeholder-style="color:#b2b2b2;"/>
-            </scroll-view>
-            <view class="input-box" wx:else>
+            </view>
+            
+            <view class="replace-box" wx:else>
                 {{desc}}
             </view>
         </view>

@@ -15,25 +15,37 @@
   padding-top: 30rpx;
   padding-bottom: 30rpx;
 }
-.template .main .title .scroll-view,
-.template .main .content .scroll-view {
-  height: 100%;
-  overflow: hidden;
-}
-.template .main .title .scroll-view textarea,
-.template .main .content .scroll-view textarea {
-  font-size: 24rpx;
+.template .main .title textarea,
+.template .main .content textarea {
+  font-size: 40rpx;
   line-height: 28rpx;
   color: #313131;
+  height: 102rpx;
+  overflow: hidden;
 }
 .template .main .title {
   height: 162rpx;
   box-sizing: border-box;
   border-bottom: 1px solid #f2f2f2;
 }
+.template .main .title textarea {
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: #313131;
+  height: 102rpx;
+  overflow: hidden;
+}
 .template .main .content {
   height: 222rpx;
   box-sizing: border-box;
+}
+.template .main .content textarea {
+  height: 162rpx;
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: #313131;
+  height: rpx;
+  overflow: hidden;
 }
 .template .main .placeHolder {
   font-size: 24rpx;

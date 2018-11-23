@@ -1,7 +1,6 @@
 .template {
   min-height: 100vh;
   background: #f2f2f2;
-  padding-bottom: 150rpx;
 }
 .template .wrap .list {
   padding-top: 20rpx;
@@ -74,13 +73,14 @@
 .template .wrap .list .item .input-text {
   padding: 20rpx;
   height: 180rpx;
-  overflow: hidden;
   border-bottom: 1px solid #f7f7f7;
 }
 .template .wrap .list .item .input-text textarea {
   font-size: 20rpx;
   color: #b2b2b2;
   line-height: 30rpx;
+  height: 180rpx;
+  overflow: hidden;
 }
 .template .wrap .list .item .img-group {
   padding: 20rpx;
@@ -168,12 +168,9 @@
   color: #b2b2b2;
   font-size: 20rpx;
 }
-.template .fixBtn {
-  position: fixed;
-  left: 0;
-  right: 0;
+.template .submit {
+  margin-top: 300rpx;
   height: 100rpx;
-  bottom: 0;
   background: #d1051f;
   line-height: 100rpx;
   text-align: center;

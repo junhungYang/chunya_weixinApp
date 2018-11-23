@@ -52,6 +52,7 @@ Page({
     arr.forEach(item => {
       pathArr.push(item.picUrl)
     })
+    console.log(pathArr[imgIndex])
     wx.previewImage({
       current: pathArr[imgIndex],
       urls: pathArr

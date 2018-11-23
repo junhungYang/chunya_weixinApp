@@ -208,7 +208,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     let arr = [];
     picList.forEach(item => {
-      arr.push(item.pic_url);
+      arr.push(item.picUrl);
     });
     wx.previewImage({
       urls: arr,

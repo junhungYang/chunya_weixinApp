@@ -15,7 +15,8 @@ Page({
     serviceStar: [],
     isAnonymous: 1,
     fatherIndexByUpload: 0,
-    from: ''
+    from: '',
+    submitBtnInit: false
   },
 
   /**
@@ -32,8 +33,7 @@ Page({
   orderStarInit() {
     function arrInit() {
       let arr = new Array(5);
-      arr[0] = "../../img/starRed.png";
-      arr.fill("../../img/starGlay.png", 1, 5);
+      arr.fill("../../img/starRed.png", 0, 5);
       return arr;
     }
     this.setData({
@@ -43,22 +43,29 @@ Page({
     });
   },
   getOrder() {
+    wx.showLoading({
+      title:'正在加载',
+      mask: true
+    })
     _OrderDetail({
       orderId: this.data.orderId
     }).then(data => {
       let goodsList = data.orderGoods;
       goodsList.forEach(item => {
         let starArr = new Array(5);
-        starArr[0] = "../../img/starRed.png";
-        starArr.fill("../../img/starGlay.png", 1, 5);
+        starArr.fill("../../img/starRed.png", 0, 5);
         item.starList = starArr;
         item.imgList = [];
         item.reviewText = "";
       });
       this.setData({
         goodsList: data.orderGoods,
-        orderInfo: data.orderInfo
+        orderInfo: data.orderInfo,
+        submitBtnInit: true
       });
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 600);
     });
   },
   chooseGoodsPoint(e) {

@@ -55,6 +55,7 @@
 }
 .template .input-info {
   margin: 0 6.4%;
+  padding-bottom: 100rpx;
 }
 .template .input-info .base-info .title,
 .template .input-info .desc-info .title {
@@ -117,6 +118,7 @@
 .template .input-info .desc-info {
   padding-bottom: 120rpx;
 }
+.template .input-info .desc-info .replace-box,
 .template .input-info .desc-info .input-box {
   border-radius: 10rpx;
   height: 298rpx;
@@ -128,11 +130,12 @@
   font-size: 24rpx;
   color: #b2b2b2;
 }
-.template .input-info .desc-info .input-box textarea {
-  width: 100%;
+.template .input-info .desc-info textarea {
+  height: 238rpx;
   line-height: 30rpx;
   font-size: 24rpx;
   color: #b2b2b2;
+  overflow: hidden;
 }
 .template .input-info .desc-info ::-webkit-scrollbar {
   width: 0;
@@ -146,10 +149,6 @@
   text-align: center;
   font-size: 28rpx;
   color: #fff;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
 }
 .template .enter-success {
   width: 100%;
