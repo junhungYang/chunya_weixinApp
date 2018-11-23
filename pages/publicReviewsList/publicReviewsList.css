@@ -45,9 +45,21 @@
 .template .list .item .cont .pic-group {
   font-size: 0;
 }
-.template .list .item .cont .pic-group image {
+.template .list .item .cont .pic-group .img-box {
+  display: inline-block;
   margin: 14rpx 7rpx 0 7rpx;
   width: 204rpx;
+  height: 204rpx;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+.template .list .item .cont .pic-group .img-box image {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .template .release {
   height: 107rpx;

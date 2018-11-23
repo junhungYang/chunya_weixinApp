@@ -153,7 +153,7 @@
 }
 .template .main .heart-reviews .list .item .info .info-box {
   flex: 1;
-  padding-left: 10rpx;
+  padding-left: 20rpx;
 }
 .template .main .heart-reviews .list .item .info .info-box text {
   display: block;
@@ -167,19 +167,21 @@
   color: #b2b2b2;
   margin-top: 10rpx;
 }
-.template .main .heart-reviews .list .item .info .time text {
-  display: block;
-  font-size: 20rpx;
+.template .main .heart-reviews .list .item .review-cont {
+  margin-top: 20rpx;
+  font-size: 24rpx;
   color: #b2b2b2;
-  padding-top: 23rpx;
+  line-height: 30rpx;
 }
 .template .main .heart-reviews .list .item .img-group {
   margin-top: 20rpx;
+  font-size: 0;
 }
 .template .main .heart-reviews .list .item .img-group .img-item {
+  margin-top: 14rpx;
   display: inline-block;
-  width: 206rpx;
-  height: 206rpx;
+  width: 205rpx;
+  height: 205rpx;
   overflow: hidden;
   position: relative;
   margin-left: 7rpx;

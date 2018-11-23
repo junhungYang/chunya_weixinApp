@@ -169,6 +169,18 @@ Page({
     prevPage.getUserInfo()
     prevPage.getCommonList()
   },
+  previewImg(e) {
+    let picList = e.currentTarget.dataset.piclist;
+    let index = e.currentTarget.dataset.index;
+    let arr = [];
+    picList.forEach(item => {
+      arr.push(item.pic_url);
+    });
+    wx.previewImage({
+      urls: arr,
+      current: arr[index]
+    });
+  },
   showModal(msg) {
     wx.showModal({
       title: msg

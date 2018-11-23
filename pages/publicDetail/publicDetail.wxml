@@ -63,14 +63,15 @@
                         <image src="{{item.user_info.avatar}}" />
                         <view class="info-box">
                             <text>{{item.user_info.nickname}}</text>
-                            <text>{{item.content}}</text>
-                        </view>
-                        <view class="time">
                             <text>{{item.add_time}}</text>
                         </view>
                     </view>
+                    <view class="review-cont">
+                        {{item.content}}
+                    </view>
                     <view class="img-group">
-                        <view class="img-item" wx:for="{{item.pic_list}}" wx:for-item="item1" wx:key="{{item1.id}}">
+                        <view class="img-item" wx:for="{{item.pic_list}}" wx:for-item="item1" wx:for-index="index" wx:key="{{item1.id}}" 
+                        data-piclist="{{item.pic_list}}" data-index="{{index}}" bindtap="previewImg">
                             <image src="{{item1.pic_url}}" mode="widthFix"/>  
                         </view>
                     </view>

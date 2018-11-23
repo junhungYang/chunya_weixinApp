@@ -3,7 +3,6 @@ const GlobalUrl = "https://shop.chunyajkkj.com/ch/";
 var Token = "";
 const _SetToken = function(token) {
   Token = token;
-  console.log(Token)
 };
 
 var _WxappLogin = function (data) {

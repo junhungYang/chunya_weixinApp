@@ -1,44 +1,47 @@
 <view class="template">
-    <view class="main">
-        <view class="title">
-                <textarea placeholder="输入你要发布的主题" value="{{titleText}}" maxlength="{{-1}}"
-                    bindinput="getTitleText" bindconfirm="getTitleText"/>
-        </view>
-        <view class="content">
-                <textarea placeholder="输入你要发布的内容" value="{{contentText}}" maxlength="{{-1}}"
-                    bindinput="getContentText" bindconfirm="getContentText"/>
-        </view>
-        <view wx:if="{{upLoadFile==='image'}}" class="img-group">
-            <view class="img-item" wx:for="{{imageList}}" wx:for-index="index">
-                    <image src="../../img/deleteRed.png" class="delIcon" data-index="{{index}}" bindtap="deleteImg"/>
-                <image src="{{item}}" mode="widthFix" class="contImage" data-index="{{index}}" bindtap="viewPic"/>
+    <view class="scroll-wrap">
+        <view class="main">
+            <view class="title">
+                    <textarea placeholder="输入你要发布的主题" value="{{titleText}}" maxlength="{{-1}}"
+                        bindinput="getTitleText" bindconfirm="getTitleText"/>
             </view>
-            <view bindtap="upLoadHiddenManage" class="img-item addImage" wx:if="{{imageList.length!==9}}">
-                <image src="../../img/camere.png" mode="widthFix"/>
+            <view class="content">
+                    <textarea placeholder="输入你要发布的内容" value="{{contentText}}" maxlength="{{-1}}"
+                        bindinput="getContentText" bindconfirm="getContentText"/>
             </view>
-        </view>
-        <view wx:else class="video">
-            <view class="video-box" hidden="{{videoSrc===''}}">
-                
-                <view bindtap="navToWatchVideo">
-                    <image class="poster" src="{{videoPoster}}" mode="widthFix"/>
-                    <image class="playIcon" src="../../img/play.svg" mode="widthFix"/>
+            <view wx:if="{{upLoadFile==='image'}}" class="img-group">
+                <view class="img-item" wx:for="{{imageList}}" wx:for-index="index">
+                        <image src="../../img/deleteRed.png" class="delIcon" data-index="{{index}}" bindtap="deleteImg"/>
+                    <image src="{{item}}" mode="widthFix" class="contImage" data-index="{{index}}" bindtap="viewPic"/>
                 </view>
-                <image class="delIcon-video" src="../../img/deleteRed.png" bindtap="deleteVideo"/>
-                
+                <view bindtap="upLoadHiddenManage" class="img-item addImage" wx:if="{{imageList.length!==9}}">
+                    <image src="../../img/camere.png" mode="widthFix"/>
+                </view>
             </view>
-            <view bindtap="upLoadHiddenManage" class="img-item addImage" wx:if="{{videoSrc===''}}">
-                <image src="../../img/camere.png" mode="widthFix"/>
+            <view wx:else class="video">
+                <view class="video-box" hidden="{{videoSrc===''}}">
+                    
+                    <view bindtap="navToWatchVideo">
+                        <image class="poster" src="{{videoPoster}}" mode="widthFix"/>
+                        <image class="playIcon" src="../../img/play.svg" mode="widthFix"/>
+                    </view>
+                    <image class="delIcon-video" src="../../img/deleteRed.png" bindtap="deleteVideo"/>
+                    
+                </view>
+                <view bindtap="upLoadHiddenManage" class="img-item addImage" wx:if="{{videoSrc===''}}">
+                    <image src="../../img/camere.png" mode="widthFix"/>
+                </view>
+            </view>
+        </view>
+        <view class="toTop">
+            <image src="../../img/toTop.png" />
+            <text>我要置顶</text>
+            <view>
+                <switch checked="true" bindchange="changeIsTop"/>
             </view>
         </view>
     </view>
-    <view class="toTop">
-        <image src="../../img/toTop.png" />
-        <text>我要置顶</text>
-        <view>
-            <switch checked="true" bindchange="changeIsTop"/>
-        </view>
-    </view>
+    
     <view class="fixed-btn" bindtap="postsAdd">
         立即发布
     </view>

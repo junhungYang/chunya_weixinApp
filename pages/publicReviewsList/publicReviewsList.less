@@ -43,9 +43,21 @@
                 }
                 .pic-group {
                     font-size: 0;
-                    image {
+                    .img-box {
+                        display: inline-block;
                         margin: 14rpx 7rpx 0 7rpx;
                         width: 204rpx;
+                        height: 204rpx;
+                        overflow: hidden;
+                        position: relative;
+                        background: #000;
+                        image {
+                            width: 100%;
+                            position: absolute;
+                            left: 0;
+                            top: 50%;
+                            transform: translateY(-50%)
+                        }
                     }
 
                 }

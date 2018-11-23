@@ -56,25 +56,27 @@
   background: #fff;
   padding-bottom: 20rpx;
   position: relative;
+  font-size: 0;
 }
 .template .main .img-group .img-item,
 .template .main .video .img-item {
   display: inline-block;
-  width: 206rpx;
-  height: 206rpx;
+  width: 205rpx;
+  height: 205rpx;
   overflow: hidden;
   position: relative;
   margin-left: 7rpx;
   margin-right: 7rpx;
+  margin-top: 14rpx;
   background: #000000;
 }
 .template .main .img-group .img-item .contImage,
 .template .main .video .img-item .contImage {
-  width: 120%;
+  width: 100%;
   position: absolute;
-  left: 50%;
+  left: 0;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
 }
 .template .main .img-group .img-item .delIcon,
 .template .main .video .img-item .delIcon {

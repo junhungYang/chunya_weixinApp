@@ -1,6 +1,6 @@
 <view class="template">
     <view class="header">
-        <image class="bg" src="{{detail.listCoverUrl}}" />
+        <image class="bg" src="{{detail.listCoverUrl}}" mode="widthFix"/>
         <view class="cont">
             <image src="{{detail.listCoverUrl}}" />
             <text class="title">{{detail.title}}</text>

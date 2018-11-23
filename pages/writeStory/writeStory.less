@@ -2,155 +2,158 @@
     min-height: 100vh;
     background: #f2f2f2;
          padding-bottom: 100rpx;
-    .main {
-        .title,.content,.img-group,.video {
-            background: #fff;
-            padding: 0 6.4%;
-        }
-        .title,.content {
-            padding-top: 30rpx;
-            padding-bottom: 30rpx;
-            textarea {
-                font-size: 40rpx;
-                line-height: 28rpx;
-                color: #313131;
-                height: 102rpx;
-                overflow: hidden;
+        .main {
+            .title,.content,.img-group,.video {
+                background: #fff;
+                padding: 0 6.4%;
             }
-        }
-        
-        .title {
-            height: 162rpx;
-            box-sizing: border-box;
-            border-bottom:1px solid #f2f2f2;
-            textarea {
-                font-size: 24rpx;
-                line-height: 28rpx;
-                color: #313131;
-                height: 102rpx;
-                overflow: hidden;
+            .title,.content {
+                padding-top: 30rpx;
+                padding-bottom: 30rpx;
+                textarea {
+                    font-size: 40rpx;
+                    line-height: 28rpx;
+                    color: #313131;
+                    height: 102rpx;
+                    overflow: hidden;
+                }
             }
-        }
-        .content {
-            height: 222rpx;
-            box-sizing: border-box;
-            textarea {
+            
+            .title {
                 height: 162rpx;
+                box-sizing: border-box;
+                border-bottom:1px solid #f2f2f2;
+                textarea {
+                    font-size: 24rpx;
+                    line-height: 28rpx;
+                    color: #313131;
+                    height: 102rpx;
+                    overflow: hidden;
+                }
+            }
+            .content {
+                height: 222rpx;
+                box-sizing: border-box;
+                textarea {
+                    height: 162rpx;
+                    font-size: 24rpx;
+                    line-height: 28rpx;
+                    color: #313131;
+                    height: rpx;
+                    overflow: hidden;
+                }
+            }
+            .placeHolder {
                 font-size: 24rpx;
-                line-height: 28rpx;
-                color: #313131;
-                height: rpx;
-                overflow: hidden;
+                color: #c1c1c1;
             }
-        }
-        .placeHolder {
-            font-size: 24rpx;
-            color: #c1c1c1;
-        }
-        .img-group,.video {
-            background: #fff;
-            padding-bottom: 20rpx;
-            position: relative;
-            .img-item {
-                display: inline-block;
-                width: 206rpx;
-                height: 206rpx;
-                overflow: hidden;
+            .img-group,.video {
+                background: #fff;
+                padding-bottom: 20rpx;
                 position: relative;
-                margin-left: 7rpx;
-                margin-right: 7rpx;
-                background:rgb(0,0,0);
-                .contImage {
-                    width: 120%;
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    transform: translate(-50%,-50%);
-                    
+                font-size: 0;
+                .img-item {
+                    display: inline-block;
+                    width: 205rpx;
+                    height: 205rpx;
+                    overflow: hidden;
+                    position: relative;
+                    margin-left: 7rpx;
+                    margin-right: 7rpx;
+                    margin-top: 14rpx;
+                    background:rgb(0,0,0);
+                    .contImage {
+                        width: 100%;
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        
+                    }
+                    .delIcon {
+                        width: 35rpx;
+                        height: 35rpx;
+                        position: absolute;
+                        right:5rpx;
+                        top: 5rpx;
+                        z-index: 2
+                    }
                 }
-                .delIcon {
-                    width: 35rpx;
-                    height: 35rpx;
-                    position: absolute;
-                    right:5rpx;
-                    top: 5rpx;
-                    z-index: 2
+                .video-box {
+                    position: relative;
+                    background: #000;
+                    height: 400rpx;
+                    overflow: hidden;
+                    .poster {
+                        width: 100%;
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                    .delIcon-video {
+                        width: 43rpx;
+                        height: 43rpx;
+                        position: absolute;
+                        right:12rpx;
+                        top: 12rpx;
+                        z-index: 2
+                    }
+                    .playIcon {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%,-50%);
+                        width: 70rpx;
+                    }
                 }
-            }
-            .video-box {
-                position: relative;
-                background: #000;
-                height: 400rpx;
-                overflow: hidden;
-                .poster {
-                    width: 100%;
-                    position: absolute;
-                    left: 0;
-                    top: 50%;
-                    transform: translateY(-50%);
-                }
-                .delIcon-video {
-                    width: 43rpx;
-                    height: 43rpx;
-                    position: absolute;
-                    right:12rpx;
-                    top: 12rpx;
-                    z-index: 2
-                }
-                .playIcon {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%,-50%);
-                    width: 70rpx;
-                }
-            }
 
-            .addImage {
-                image {
-                    width: 100%;
+                .addImage {
+                    image {
+                        width: 100%;
+                    }
                 }
             }
         }
-    }
-    .toTop {
-        margin-top: 20rpx;
-        background:#fff;
-        padding: 0 6.4%;
-        display: flex;
-        height: 82rpx;
-        image {
-            width: 38rpx;
-            height: 38rpx;
-            align-self: center;
+        .toTop {
+            margin-top: 20rpx;
+            background:#fff;
+            padding: 0 6.4%;
+            display: flex;
+            height: 82rpx;
+            image {
+                width: 38rpx;
+                height: 38rpx;
+                align-self: center;
+            }
+            text {
+                line-height: 82rpx;
+                font-size: 28rpx;
+                padding-left: 21rpx;
+                flex: 1;
+                align-self: center;
+            }
+            view {
+                align-self: center;
+            }
+            .wx-switch-input{
+                width:78rpx !important;
+                height:36rpx !important;
+                background: #2ca5ae !important;
+                border: #2ca5ae !important; 
+            }
+            /*白色样式（false的样式）*/
+            .wx-switch-input::before{
+                width:84rpx !important;
+                height: 38rpx !important;
+            }
+            /*绿色样式（true的样式）*/
+            .wx-switch-input::after{
+                width: 45rpx !important;
+                height: 36rpx !important;
+            }
         }
-        text {
-            line-height: 82rpx;
-            font-size: 28rpx;
-            padding-left: 21rpx;
-            flex: 1;
-             align-self: center;
-        }
-        view {
-            align-self: center;
-        }
-        .wx-switch-input{
-            width:78rpx !important;
-            height:36rpx !important;
-            background: #2ca5ae !important;
-            border: #2ca5ae !important; 
-        }
-        /*白色样式（false的样式）*/
-        .wx-switch-input::before{
-            width:84rpx !important;
-            height: 38rpx !important;
-        }
-        /*绿色样式（true的样式）*/
-        .wx-switch-input::after{
-            width: 45rpx !important;
-            height: 36rpx !important;
-        }
-    }
+    
     .fixed-btn {
         position: fixed;
         width: 100%;

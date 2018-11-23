@@ -16,9 +16,10 @@
                     {{item.content}}
                 </view>
                 <view class="pic-group">
-                    <image src="{{item1.pic_url}}" wx:for-item="item1" wx:for-index="index" mode="widthFix"
-                    wx:for="{{item.pic_list}}" data-piclist="{{item.pic_list}}"
-                     data-type="cont" data-index="{{index}}"  bindtap="previewImg"/>
+                    <view class="img-box" wx:for="{{item.pic_list}}"  wx:for-item="item1" wx:for-index="index"
+                        data-piclist="{{item.pic_list}}" data-type="cont" data-index="{{index}}"  bindtap="previewImg">
+                        <image src="{{item1.pic_url}}" mode="widthFix" />
+                    </view>
                 </view>
             </view>
         </view>

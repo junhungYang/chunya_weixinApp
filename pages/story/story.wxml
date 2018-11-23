@@ -6,6 +6,7 @@
         <text bindtap="changeActive" class="{{navActive===3?'nav-active':''}}" data-index="{{3}}">收藏</text>
     </view>
     <view class="content">
+        <video src=""></video>
         <view class="tuiJian" >
             <view hidden="{{navActive!==1}}" class="swiper-box">
                 <my-swiper></my-swiper>

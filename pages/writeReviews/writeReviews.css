@@ -84,16 +84,18 @@
 }
 .template .wrap .list .item .img-group {
   padding: 20rpx;
+  font-size: 0;
   padding-top: 27rpx;
 }
 .template .wrap .list .item .img-group .img-wrap {
   display: inline-block;
-  width: 193rpx;
-  height: 193rpx;
+  width: 191rpx;
+  height: 191rpx;
   overflow: hidden;
   position: relative;
   margin-left: 7rpx;
   margin-right: 7rpx;
+  margin-top: 14rpx;
   background: #000000;
 }
 .template .wrap .list .item .img-group .img-wrap .contImage {
