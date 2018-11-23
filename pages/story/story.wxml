@@ -1,4 +1,10 @@
 <view class="template">
+    <!--<video class="video-wrap" show-fullscreen-btn="{{false}}" show-play-btn="{{false}}" show-center-play-btn="false"
+        enable-progress-gesture="false">
+        <cover-view class="nav-test">
+            hello
+        </cover-view>
+    </video>-->
     <view class="nav">
         <text bindtap="changeActive" class="{{navActive===1?'nav-active':''}}" data-index="{{1}}">推荐</text>
         <text bindtap="changeActive" class="{{navActive===2?'nav-active':''}}" data-index="{{2}}">热门</text>
@@ -6,7 +12,6 @@
         <text bindtap="changeActive" class="{{navActive===3?'nav-active':''}}" data-index="{{3}}">收藏</text>
     </view>
     <view class="content">
-        <video src=""></video>
         <view class="tuiJian" >
             <view hidden="{{navActive!==1}}" class="swiper-box">
                 <my-swiper></my-swiper>

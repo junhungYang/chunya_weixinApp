@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navActive: 1,
+    navActive: 0,
     list:[],
     page: 1,
     top: 0,
