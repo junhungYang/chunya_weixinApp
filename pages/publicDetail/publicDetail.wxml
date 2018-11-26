@@ -134,7 +134,7 @@
                 </view>
                 <view class="input {{activePrice===5?'active':''}}" 
                  data-index="{{5}}" bindtap="changeActivePrice">
-                    <input placeholder-class="placeholder" placeholder="自定义金额" bindinput="inputPrice" type="digit" bindfocus="inputFocus"/> 元
+                    <input placeholder-class="placeholder" placeholder="自定义金额" bindinput="inputPrice" type="digit" value="{{inputPrice}}" bindfocus="inputFocus"/> 元
                 </view>
                 <view class="has-name">
                     <view class="hasName-btn {{hiddenName?'hidden':''}}"

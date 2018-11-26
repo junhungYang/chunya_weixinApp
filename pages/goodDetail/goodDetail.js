@@ -320,28 +320,27 @@ Page({
     });
   },
   onPageScroll(res) {
-    let domPosTop = this.data.domPosTop;
-    if (res.scrollTop < domPosTop.reviewsTop) {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let domPosTop = this.data.domPosTop;
+      let navActive;
+      if (res.scrollTop < domPosTop.reviewsTop) {
+        navActive = 1
+      } else if (
+        res.scrollTop >= domPosTop.reviewsTop &&
+        res.scrollTop < domPosTop.detailTop
+      ) {
+        navActive = 3
+      } else if (res.scrollTop >= domPosTop.detailTop) {
+        navActive = 2
+      }
       this.setData({
-        navActive: 1
+        navActive,
+        cartShowFlag: true,
+        couponHidState: true,
+        serviceHidState: true
       });
-    } else if (
-      res.scrollTop >= domPosTop.reviewsTop &&
-      res.scrollTop < domPosTop.detailTop
-    ) {
-      this.setData({
-        navActive: 3
-      });
-    } else if (res.scrollTop >= domPosTop.detailTop) {
-      this.setData({
-        navActive: 2
-      });
-    }
-    this.setData({
-      cartShowFlag: true,
-      couponHidState: true,
-      serviceHidState: true
-    });
+    }, 500);
   },
   onShareAppMessage: function() {
     wx.showShareMenu();

@@ -19,7 +19,8 @@ Page({
     price: 5,
     id: '',
     donorName: '',
-    commonData: {}
+    commonData: {},
+    inputPrice: ''
   },
   onLoad: function(options) {  
     that = this
@@ -85,11 +86,13 @@ Page({
     if (price) {
       this.setData({
         activePrice: index,
-        price
+        price,
+        inputPrice:''
       });
     } else {
       this.setData({
-        activePrice: index
+        activePrice: index,
+
       });
     }
   },
@@ -103,6 +106,7 @@ Page({
   },
   inputFocus(e) {
     this.setData({
+      inputPrice: e.detail.value,
       price: e.detail.value
     })
   },
