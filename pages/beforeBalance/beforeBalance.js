@@ -1,6 +1,7 @@
 // pages/beforeBalance/beforeBalance.js
 import { _OrderSubmit,_WeChatPay,_OrderCheckout} from '../../utils/request'
-const app = getApp()
+const App = getApp()
+var that;
 Page({
   /**
    * 页面的初始数据
@@ -12,7 +13,16 @@ Page({
     invoice: {}
   },
   onLoad: function(options) {
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     this.getOrderCheckout();
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getOrderCheckout()
+      }
+    }
   },
   navToCoupon() {
     wx.navigateTo({
@@ -26,12 +36,11 @@ Page({
     }
     _OrderCheckout(obj)
       .then(data => {
-        this.setData({
-          data
-        });
+        this.setData({ data });
         this.getAllQuantity();
         wx.stopPullDownRefresh();
       })
+      .catch(data => App.catchError(data));
   },
   postscriptInput(e) {
     clearTimeout(this.timer);
@@ -72,13 +81,16 @@ Page({
           obj.couponId = wxData.data.checkedCoupon.id
           obj.couponNumber = wxData.data.checkedCoupon.coupon_number;
         }
-        _OrderSubmit(obj).then(data => {
-          let orderId = data.orderInfo.id;
-          _WeChatPay({ orderId })
-            .then(data => {
-              app.pay(data);
-            })
-        });
+        _OrderSubmit(obj)
+          .then(data => {
+            let orderId = data.orderInfo.id;
+            _WeChatPay({ orderId })
+              .then(data => {
+                App.pay(data);
+              })
+              .catch(data => App.catchError(data));
+          })
+          .catch(data => App.catchError(data));
       } else {
         wx.showModal({
           title: "请先添加地址"
@@ -87,7 +99,6 @@ Page({
     }, 500);
   },
   navToInvoice() {
-    console.log(this.data)
     wx.navigateTo({
       url: `../invoice/invoice?invoice=${JSON.stringify(this.data.data.checkedInvoice)}`
     });

@@ -35,14 +35,12 @@ Page({
     })
       .then(data => {
         let list = [...this.data.list, ...data.data];
-        this.setData({
-          list,
-          totalPages: data.totalPages
-        });
+        this.setData({ list, totalPages: data.totalPages });
         setTimeout(() => {
           wx.hideLoading();
         }, 600);
       })
+      .catch(data => App.catchError(data));
   },
   previewImg(e) {
     let index= e.currentTarget.dataset.index
@@ -52,7 +50,6 @@ Page({
     arr.forEach(item => {
       pathArr.push(item.picUrl)
     })
-    console.log(pathArr[imgIndex])
     wx.previewImage({
       current: pathArr[imgIndex],
       urls: pathArr
@@ -68,7 +65,7 @@ Page({
         list: []
       })
       this.getStoryList()
-    })
+      }).catch(data => App.catchError(data))
   },
   navToIndex() {
     wx.switchTab({
@@ -95,44 +92,38 @@ Page({
         valueId
       })
     }
-    promiseObj.then(() => {
-      let arr = this.data.list
-      if (type === 'zan') {
-        if (isLiked&&count>0) {
-          arr[index].likeCount--
-          arr[index].isLiked = 0
-        } else {
-          arr[index].likeCount++
-          arr[index].isLiked = 1
-        }
-        this.setData({
-          list: arr
-        })
-      } else {
-        if (this.data.navActive !== 3) {
-          if (isCollected && count > 0) {
-            arr[index].collectCount--;
-            arr[index].isCollected = 0;
+    promiseObj
+      .then(() => {
+        let arr = this.data.list;
+        if (type === "zan") {
+          if (isLiked && count > 0) {
+            arr[index].likeCount--;
+            arr[index].isLiked = 0;
           } else {
-            arr[index].collectCount++;
-            arr[index].isCollected = 1;
+            arr[index].likeCount++;
+            arr[index].isLiked = 1;
           }
-          this.setData({
-            list: arr
-          })
+          this.setData({ list: arr });
         } else {
-          this.setData({
-            page:1
-          })
-          if(this.data.navActive === 3) {
-            this.setData({
-              list: []
-            })
+          if (this.data.navActive !== 3) {
+            if (isCollected && count > 0) {
+              arr[index].collectCount--;
+              arr[index].isCollected = 0;
+            } else {
+              arr[index].collectCount++;
+              arr[index].isCollected = 1;
+            }
+            this.setData({ list: arr });
+          } else {
+            this.setData({ page: 1 });
+            if (this.data.navActive === 3) {
+              this.setData({ list: [] });
+            }
+            this.getStoryList();
           }
-          this.getStoryList();
         }
-      }
-    })
+      })
+      .catch(data => App.catchError(data));
   },
   changeActive(e) {
     let index = e.currentTarget.dataset.index;

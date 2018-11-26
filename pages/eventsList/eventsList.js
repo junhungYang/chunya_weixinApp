@@ -41,7 +41,7 @@ Page({
       this.dataTranslate(data.data)
       this.setData({ totalPages:data.totalPages });
       wx.hideLoading()
-    })
+      }).catch(data => App.catchError(data))
   },
   dataTranslate(dataList) {
     dataList.forEach(item => {

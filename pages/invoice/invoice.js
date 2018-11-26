@@ -3,6 +3,8 @@ import {
   _QueryInvoiceList,
   _SaveOrUpdateInvoice
 } from '../../utils/request'
+const App = getApp()
+var that
 Page({
   /**
    * 页面的初始数据
@@ -19,11 +21,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(JSON.parse(options.invoice));
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     this.setData({
       data: JSON.parse(options.invoice)
     });
     this.getInvoiceList();
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getInvoiceList();
+      }
+    }
   },
   refreshData(e) {
     let data = e.currentTarget.dataset.item;
@@ -33,11 +43,11 @@ Page({
     });
   },
   getInvoiceList() {
-    _QueryInvoiceList().then(data => {
-      this.setData({
-        list: data
-      });
-    });
+    _QueryInvoiceList()
+      .then(data => {
+        this.setData({ list: data });
+      })
+      .catch(data => App.catchError(data));
   },
   inputTaxpayerCode(e) {
     clearTimeout(this.timer);
@@ -187,9 +197,11 @@ Page({
       ? (obj.taxpayerIdentificationNumber = data.taxpayerIdentificationNumber)
       : "";
     data.id ? (obj.id = data.id) : "";
-    _SaveOrUpdateInvoice(obj).then(data => {
-      this.refreshPrevPage(data);
-    });
+    _SaveOrUpdateInvoice(obj)
+      .then(data => {
+        this.refreshPrevPage(data);
+      })
+      .catch(data => App.catchError(data));
   },
   refreshPrevPage(data) {
     let pages = getCurrentPages();

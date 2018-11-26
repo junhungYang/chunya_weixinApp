@@ -1,6 +1,7 @@
 // pages/haowuList/haowuList.js
 import { _HaowuList, _GoodsList, _SendFormid } from "../../utils/request";
 const App = getApp()
+var that;
 Page({
 
   /**
@@ -16,7 +17,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     this.getHaowuList()
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getHaowuList()
+      }
+    }
   },
   getHaowuList() {
     let length = this.data.fatherList.length
@@ -34,7 +44,7 @@ Page({
       setTimeout(() => {
         wx.hideLoading()
       }, 600);
-    })
+      }).catch(data => App.catchError(data))
   },
   changeChildPage(targetIndex,page) {
     let fatherList = this.data.fatherList
@@ -50,7 +60,7 @@ Page({
       this.setData({
         fatherList
       })
-    })
+      }).catch(data => App.catchError(data))
   },
   changePageEnter(e) {
     let page = e.currentTarget.dataset.page

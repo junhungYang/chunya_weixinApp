@@ -1,5 +1,5 @@
 import { _SpreadList} from '../../../utils/request'
-const app = getApp();
+const App = getApp();
 Component({
 
   data: {
@@ -12,11 +12,11 @@ Component({
           this.setData({
               adList: data.adList
           })
-      })
+        }).catch(data => App.catchError(data))
   },
   methods: {
     navToGoodDetail(e) {
-        if(app.globalData.token) {
+        if(App.globalData.token) {
             let url = e.currentTarget.dataset.item.link
             wx.navigateTo({
                 url

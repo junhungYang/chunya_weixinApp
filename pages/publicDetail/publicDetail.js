@@ -4,7 +4,7 @@ import {
   _CommonwealDonation,
   _CommentList
 } from "../../utils/request";
-const app = getApp()
+const App = getApp()
 var that;
 Page({
   /**
@@ -23,9 +23,9 @@ Page({
   },
   onLoad: function(options) {  
     that = this
-    app.setWatcher(app.globalData,this.watch)
+    App.setWatcher(App.globalData,this.watch)
     this.setData({ id: Number(options.commonwealId) });
-    if (app.globalData.token) {
+    if (App.globalData.token) {
       this.getCommonwealDetail()
       this.getCommonList()
     }
@@ -45,7 +45,7 @@ Page({
       this.setData({
         commonData: data
       })
-    })
+      }).catch(data => App.catchError(data))
   },
   getCommonwealDetail() {
     _CommonwealDetail({
@@ -55,7 +55,7 @@ Page({
       this.setData({
         data
       });
-    })
+      }).catch(data => App.catchError(data))
   },
   contActiveManage() {
     this.setData({
@@ -121,7 +121,7 @@ Page({
             donorName: this.data.hiddenName ? "匿名" : this.data.donorName
           }).then(data => {
             this.publicPay(data)
-          });
+            }).catch(data => App.catchError(data))
         }
       }else {
         wx.showModal({

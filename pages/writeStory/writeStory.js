@@ -1,5 +1,6 @@
 // pages/writeStory/writeStory.js
 import { _PostsAdd} from '../../utils/request'
+const App = getApp()
 Page({
 
   /**
@@ -41,7 +42,6 @@ Page({
     }
   },
   changeIsTop(e) {
-    console.log(e.detail.value)
     this.setData({
       isTop: e.detail.value
     })
@@ -181,16 +181,13 @@ Page({
           obj.imagesList = []
         }
       }
-      _PostsAdd(obj).then(data => {
-        wx.showToast({
-          title: '发布成功',
-          mask: true
+      _PostsAdd(obj)
+        .then(data => {
+          wx.showToast({ title: "发布成功", mask: true });
+          this.refreshPrevPage();
+          wx.navigateBack({ delta: 1 });
         })
-          this.refreshPrevPage()
-          wx.navigateBack({
-            delta: 1
-          });
-      })
+        .catch(data => App.catchError(data));
     }else {
       wx.showModal({
         title: '请填写完整内容',

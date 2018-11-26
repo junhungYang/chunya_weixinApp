@@ -13,17 +13,16 @@ import {
 App({
   onLaunch: function() {
     // 当打开app时需先判断当前登录态是否已过期
-  
+    this.checkSessionApi()
+  },
+  checkSessionApi() {
     wx.checkSession({
       success: () => {
         //未过期
-        
         let userInfoJson = wx.getStorageSync("userInfo");
         wx.getSetting({
           success: res => {
-            
             if (res.authSetting["scope.userInfo"] && userInfoJson) {
-              
               this.wxappLogin(userInfoJson);
             } else {
               this.wxLoginApi();
@@ -51,6 +50,8 @@ App({
       .then(data => {
         wx.setStorageSync("sessionKey", data.session_key);
         this.getSensitiveInfo();
+      }).catch(data => {
+        this.catchError(data)
       })
   },
   getSensitiveInfo() {
@@ -69,7 +70,7 @@ App({
                 .then(data => {
                   wx.setStorageSync("userInfo", data);
                   this.wxappLogin();
-                })
+                }).catch(data => this.catchError(data))
             }
           });
         } else {
@@ -91,7 +92,7 @@ App({
       }).then(data => {
         _SetToken(data.token);
         this.globalData.token = data.token;
-      })
+      }).catch(data => this.catchError(data))
   },
   pay(data) {
     wx.requestPayment({
@@ -137,7 +138,7 @@ App({
               wx.switchTab({ url: "../cart/cart" });
             }, 1000);
           }
-        })
+        }).catch(data => this.catchError(data))
     });
   },
   orderControl(orderId,controlStyle,from) {
@@ -166,6 +167,24 @@ App({
         break;
     }
     return promiseObj
+  },
+  catchError(data) {
+    if(data.errno === 401) {
+      wx.showModal({
+        title: '登录提示',
+        content: data.errmsg,
+        success: (res) => {
+          if(res.confirm) {
+            this.checkSessionApi();
+          }
+        }
+      })
+    }else {
+      wx.showModal({
+        title: '错误提示',
+        content: data.errmsg
+      })
+    }
   },
   theEndPage() {
     wx.showToast({

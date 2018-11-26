@@ -7,7 +7,7 @@ import {
   _UserSignin,
   _SpreadList
 } from "../../utils/request";
-const app = getApp()
+const App = getApp()
 var that;
 Page({
   data: {
@@ -30,7 +30,7 @@ Page({
 
   onLoad() {
     this.getGoodsList();
-    app.setWatcher(app.globalData, this.watch);
+    App.setWatcher(App.globalData, this.watch);
     that = this;
     _SpreadList({
       id: 6
@@ -40,7 +40,7 @@ Page({
         commAllPage: data.adList.length,
         commActiveIndex: 1
       });
-    });
+      }).catch(data => App.catchError(data))
   },
   watch: {
     publicSwiperIndex(nV) {
@@ -56,7 +56,7 @@ Page({
         goodsList: data.data,
         goodsTotalPages: data.totalPages
       });
-    });
+      }).catch(data => App.catchError(data))
   },
   getEventWidth() {
     let query = wx.createSelectorQuery();
@@ -79,7 +79,7 @@ Page({
     }, 500);
   },
   navToPublicOrEvent(e) {
-    if (app.globalData.token) {
+    if (App.globalData.token) {
       let url = e.currentTarget.dataset.url;
       wx.navigateTo({ url });
     } else {
@@ -112,7 +112,7 @@ Page({
   },
   navToColorBtnMod(e) {
     let type = e.currentTarget.dataset.type;
-    if (app.globalData.token) {
+    if (App.globalData.token) {
       switch (type) {
         case "nuanke":
           wx.navigateTo({ url: `../nuanke/nuanke` });
@@ -134,7 +134,7 @@ Page({
               showCancel: false,
               confirmColor: "#2d2d2d"
             });
-          });
+          }).catch(data => App.catchError(data))
           break;
       }
     } else {
@@ -142,7 +142,7 @@ Page({
     }
   },
   navToGoodDetail(e) {
-    if (app.globalData.token) {
+    if (App.globalData.token) {
       let goodId = e.currentTarget.dataset.goodid;
       wx.navigateTo({
         url: `../goodDetail/goodDetail?goodId=${goodId}`
@@ -182,7 +182,7 @@ Page({
           searchList: [...this.data.searchList, ...data.data]
         });
       }
-    });
+      }).catch(data => App.catchError(data))
   },
   searchListScroll() {
     if (this.data.searchPage < this.data.searchTotalPage) {
@@ -191,7 +191,7 @@ Page({
       });
       this.getSearchList("scroll");
     } else {
-      app.theEndPage();
+      App.theEndPage();
     }
   },
   hidSearchList() {
@@ -212,7 +212,7 @@ Page({
       });
       this.getHaowuList();
     } else {
-      app.theEndPage();
+      App.theEndPage();
     }
   },
   onShareAppMessage: function() {

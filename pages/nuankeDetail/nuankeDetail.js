@@ -1,6 +1,7 @@
 // pages/nuankeDetail/nuankeDetail.js
 const App = getApp()
 import { _WarmclassDetail, _WarmclassPay} from '../../utils/request'
+var that = this;
 Page({
 
   /**
@@ -16,11 +17,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     if(App.globalData.token) {
       this.setData({
         id: Number(options.id)
       })
       this.getDetail()
+    }
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getDetail()
+      }
     }
   },
   getDetail() {
@@ -34,7 +44,7 @@ Page({
         contentDesc: data.contentDesc,
         isPay: data.isPay
       })
-    })
+      }).catch(data => App.catchError(data))
   },
   nuankePay(e) {
     clearTimeout(this.timer)
@@ -43,7 +53,7 @@ Page({
         id: this.data.payId
       }).then(data => {
         this.wxPay(data)
-      })
+        }).catch(data => App.catchError(data))
     }, 250);
   },
   wxPay(data) {

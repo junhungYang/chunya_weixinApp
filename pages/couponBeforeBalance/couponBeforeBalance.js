@@ -1,5 +1,7 @@
 // pages/couponList/couponList.js
 import { _CouponListByCart } from "../../utils/request";
+const App = getApp()
+var that;
 Page({
 
   /**
@@ -15,7 +17,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this;
+    App.setWatcher(App.globalData,this.watch)
     this.getCouponList()
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getCouponList()
+      }
+    }
   },
   getCouponList() {
     wx.showLoading({
@@ -33,6 +44,7 @@ Page({
           wx.hideLoading();
         }, 600);
       })
+      .catch(data => App.catchError(data));
   },
   useCoupon(e) {
     let couponId = e.currentTarget.dataset.id 

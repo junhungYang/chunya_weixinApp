@@ -1,7 +1,8 @@
 // pages/writeReviews/writeReviews.js
 
 import { _OrderDetail, _PostComment } from "../../utils/request";
-
+const App = getApp()
+var that
 Page({
   /**
    * 页面的初始数据
@@ -23,12 +24,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    that = this;
+    App.setWatcher(App.globalData,this.watch)
     this.setData({
       orderId: Number(options.orderId),
       from: options.from
     });
     this.getOrder();
     this.orderStarInit();
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getOrder();
+      }
+    }
   },
   orderStarInit() {
     function arrInit() {
@@ -44,8 +54,7 @@ Page({
   },
   getOrder() {
     wx.showLoading({
-      title:'正在加载',
-      mask: true
+      title:'正在加载'
     })
     _OrderDetail({
       orderId: this.data.orderId
@@ -66,7 +75,7 @@ Page({
       setTimeout(() => {
         wx.hideLoading()
       }, 600);
-    });
+      }).catch(data => App.catchError(data))
   },
   chooseGoodsPoint(e) {
     let goodIndex = e.currentTarget.dataset.goodindex;
@@ -236,14 +245,16 @@ Page({
     this.reviewSubmit(obj)
   },
   reviewSubmit(obj) {
-    _PostComment(obj).then(() => {
-      wx.showToast({
-        title: '评论添加成功',
-        icon: 'success',
-        mask: true
+    _PostComment(obj)
+      .then(() => {
+        wx.showToast({
+          title: "评论添加成功",
+          icon: "success",
+          mask: true
+        });
+        this.refreshPrevPage();
       })
-      this.refreshPrevPage()
-    })
+      .catch(data => App.catchError(data));
   },
   refreshPrevPage() {
     let pages = getCurrentPages()

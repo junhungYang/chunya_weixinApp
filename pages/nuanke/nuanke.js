@@ -47,11 +47,10 @@ Page({
         list:arr,
         totalPages: data.totalPages
       })
-      console.log(this.data.totalPages)
         setTimeout(() => {
           wx.hideLoading()
         }, 600);
-    })
+      }).catch(data => App.catchError(data))
   },
   navToDetail(e) {
     let id = e.currentTarget.dataset.id;
@@ -124,7 +123,7 @@ Page({
           list
         })
       }
-    })
+      }).catch(data => App.catchError(data))
   },
   nuankePay(e) {
     clearTimeout(this.timer)
@@ -133,7 +132,7 @@ Page({
         id: this.data.payId
       }).then(data => {
         this.wxPay(data)
-      })
+        }).catch(data => App.catchError(data))
     }, 250);
   },
   wxPay(data) {

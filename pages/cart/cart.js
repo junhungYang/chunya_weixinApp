@@ -5,7 +5,7 @@ import {
      _CartAdd,
     _CartChecked,
   _SendFormid} from '../../utils/request'
-const app = getApp();
+const App = getApp();
 var that;
 Page({
   data: {
@@ -18,10 +18,10 @@ Page({
   },
   onLoad() {
     that = this;
-    app.setWatcher(app.globalData, this.watch);
+    App.setWatcher(App.globalData, this.watch);
   },
   onShow: function(options) {
-    if (app.globalData.token) {
+    if (App.globalData.token) {
       this.setData({
         hasToken: true,
         allChoose:false
@@ -51,7 +51,7 @@ Page({
           cartList: data.cartList,
           cartTotal: data.cartTotal
         });
-      })
+      }).catch(data => App.catchError(data))
   },
   formSubmit_collect: function(e) {
     let fromid = `${e.detail.formId}`;
@@ -90,16 +90,14 @@ Page({
       this.cartChecked(productIds, isChecked);  
   },
   cartChecked(productIds, isChecked) {
-    _CartChecked({
-      productIds,
-      isChecked
-    })
+    _CartChecked({ productIds, isChecked })
       .then(data => {
         this.setData({
           cartList: data.cartList,
           cartTotal: data.cartTotal
         });
       })
+      .catch(data => App.catchError(data));
   },
   quantityControl(e) {
     clearTimeout(this.timer)
@@ -130,6 +128,7 @@ Page({
           cartTotal: data.cartTotal
         });
       })
+      .catch(data => App.catchError(data));
   },
   buyConfirm() {
     if (this.data.cartTotal.checkedGoodsAmount !== 0) {
@@ -147,7 +146,7 @@ Page({
   bindGetUserInfo(res) {
     if (res.detail.userInfo) {
       //用户点击了授权
-      app.getSensitiveInfo();
+      App.getSensitiveInfo();
     } else {
       //用户点击了取消
       wx.showModal({
@@ -161,7 +160,7 @@ Page({
     wx.showLoading({
       title: "正在刷新"
     });
-    if (app.globalData.token) {
+    if (App.globalData.token) {
       _CartIndex()
         .then(data => {
           this.setData({
@@ -173,6 +172,7 @@ Page({
             wx.hideLoading();
           }, 600);
         })
+        .catch(data => App.catchError(data));
     }
   },
   goodsDelete() {
@@ -191,7 +191,7 @@ Page({
           cartList: data.cartList,
           cartTotal: data.cartTotal
         })
-      })
+        }).catch(data => App.catchError(data))
     }
   },
   pullOff(e) {
@@ -211,7 +211,7 @@ Page({
               cartList: data.cartList,
               cartTotal: data.cartTotal
             })
-          })
+            }).catch(data => App.catchError(data))
         }
       }
     });

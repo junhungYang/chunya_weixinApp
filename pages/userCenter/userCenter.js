@@ -1,5 +1,5 @@
 // pages/test/test.js
-const app = getApp()
+const App = getApp()
 var that;
 import {
   _UserCenterOrderCount,
@@ -14,15 +14,15 @@ Page({
   },
   onLoad() {
     that = this
-    app.setWatcher(app.globalData, this.watch);
-    if(app.globalData.token) {
+    App.setWatcher(App.globalData, this.watch);
+    if(App.globalData.token) {
       this.setData({
         hasToken: true
       })
     }
   },
   onShow() {
-    if(app.globalData.token) {
+    if(App.globalData.token) {
       this.setUserInfo();
       this.requestOrderList();
     }
@@ -39,16 +39,16 @@ Page({
     }
   },
   setUserInfo() {
-    _GetUserInfo().then(data => {
-      this.setData({
-        userInfo:data
+    _GetUserInfo()
+      .then(data => {
+        this.setData({ userInfo: data });
       })
-    })
+      .catch(data => App.catchError(data));
   },
   bindGetUserInfo(res) {
     if (res.detail.userInfo) {
       //用户点击了授权
-      app.getSensitiveInfo();
+      App.getSensitiveInfo();
     } else {
       //用户点击了取消
       wx.showModal({
@@ -59,15 +59,15 @@ Page({
     }
   },
   requestOrderList() {
-      _UserCenterOrderCount().then(data => {
-        this.setData({
-          orderCount: data
+      _UserCenterOrderCount()
+        .then(data => {
+          this.setData({ orderCount: data });
         })
-      })   
+        .catch(data => App.catchError(data)); 
   },
   navToOtherMod(e) {
     let type = e.currentTarget.dataset.type
-    if(app.globalData.token) {
+    if(App.globalData.token) {
       switch (type) {
         case "couList":
           wx.navigateTo({ url: "../couponList/couponList" });
@@ -96,7 +96,7 @@ Page({
     }
   },
   navToOrderList(e) {
-    if(app.globalData.token) {
+    if(App.globalData.token) {
       let requestCode = e.currentTarget.dataset.requestcode
       let url = requestCode !== undefined ? `../orderList/orderList?requestCode=${requestCode}` : `../orderList/orderList`;
       wx.navigateTo({
@@ -110,7 +110,7 @@ Page({
     }
   },
   navToOrderDetail(e) {
-    if(app.globalData.token) {
+    if(App.globalData.token) {
       let orderId = e.currentTarget.dataset.orderid;
       wx.navigateTo({
         url: `../orderDetail/orderDetail?orderId=${orderId}`
@@ -126,17 +126,19 @@ Page({
     wx.showLoading({
       title: '正在刷新'
     })
-    _GetUserInfo().then(data => {
-      this.data.userInfo = data;
-      _UserCenterOrderCount().then(data => {
-        this.setData({
-          orderCount:data
-        })
-        wx.stopPullDownRefresh();
-        setTimeout(() => {
-          wx.hideLoading();
-        }, 600)
+    _GetUserInfo()
+      .then(data => {
+        this.data.userInfo = data;
+        _UserCenterOrderCount()
+          .then(data => {
+            this.setData({ orderCount: data });
+            wx.stopPullDownRefresh();
+            setTimeout(() => {
+              wx.hideLoading();
+            }, 600);
+          })
+          .catch(data => App.catchError(data));
       })
-    })
+      .catch(data => App.catchError(data));
   }
 });

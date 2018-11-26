@@ -32,7 +32,7 @@ Page({
       this.setData({
         detail: data
       })
-    })
+      }).catch(data => App.catchError(data))
   },
   navToEnter() {
     if(this.data.detail.isSignUp === 1) {

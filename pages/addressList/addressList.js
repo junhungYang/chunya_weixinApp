@@ -1,5 +1,6 @@
 // pages/addressList/addressList.js
-const app = getApp()
+const App = getApp()
+var that;
 import {
   _PositionList,
   _PositionSave,
@@ -13,13 +14,15 @@ Page({
   data: {
     addressList:[],
     fromIndex:'',
-    text:app.globalData.text
+    text:App.globalData.text
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     this.setData({
       fromIndex:options.index
     })
@@ -30,7 +33,7 @@ Page({
       this.setData({
         addressList: data
       })
-    })
+    }).catch(data => App.catchError(data))
   },
   navBackBeforeBalance(e) {
     if(this.data.fromIndex === '1') {
@@ -67,20 +70,25 @@ Page({
       is_default
     }).then(data => {
       this.getPositionList()
-    }).catch(msg => {
-      wx.showModal({ title: msg });
-    })
+      }).catch(data => App.catchError(data))
   },
   addressDel(e) {
     let id = e.currentTarget.dataset.id
-    _PositionDelete({
-      id
-    }).then(data => {
-      this.getPositionList();
-      let pages = getCurrentPages();
-      let prevPage = pages[pages.length - 2];
-      prevPage.getOrderCheckout();
+    _PositionDelete({ id })
+      .then(data => {
+        this.getPositionList();
+        let pages = getCurrentPages();
+        let prevPage = pages[pages.length - 2];
+        prevPage.getOrderCheckout();
       })
+      .catch(data => App.catchError(data));
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getPositionList()
+      }
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

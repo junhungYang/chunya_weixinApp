@@ -1,5 +1,6 @@
 // pages/addressInput/addressInput.js
-const app = getApp()
+const App = getApp()
+var that;
 import {
   _PositionDetail,
   _GetSensitiveInfo,
@@ -11,22 +12,37 @@ Page({
    */
   data: {
     detail: {},
-    addressText: "选择 省/市/区"
+    addressText: "选择 省/市/区",
+    id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.id !== 'undefined') {
-      let id = options.id;
+    that = this
+    App.setWatcher(App.globalData,this.watch)
+    this.setData({ id: options.id });
+    this.getPositionDetail()
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getPositionDetail()
+      }
+    }
+  },
+  getPositionDetail() {
+    if (this.data.id !== 'undefined') {
+      let id = this.data.id;
       _PositionDetail({
         id
       }).then(data => {
-          this.setData({
-            detail: data
-          });
-        })
+        this.setData({
+          detail: data
+        });
+      })
+        .catch(data => App.catchError(data))
     }
   },
   getPhoneNumber(e) {
@@ -44,8 +60,9 @@ Page({
           detail
         });
         wx.setStorageSync("userPhoneNum", dataObj.phoneNumber);
-        app.wxappLogin();
+        App.wxappLogin();
       })
+      .catch(data => App.catchError(data))
   },
   chooseAddress() {
     wx.chooseAddress({
@@ -108,7 +125,7 @@ Page({
           delta: 1
         })
       }, 1500);
-    });
+    }).catch(data => App.catchError(data))
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

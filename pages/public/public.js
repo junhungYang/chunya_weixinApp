@@ -3,7 +3,7 @@ import {
   _GetUserInfo,
   _CommonwealList
 } from "../../utils/request"
-const app = getApp()
+const App = getApp()
 var that;
 Page({
 
@@ -22,18 +22,18 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    app.setWatcher(app.globalData,this.watch)
-    if(app.globalData.token) {
+    App.setWatcher(App.globalData,this.watch)
+    if(App.globalData.token) {
       this.getUserInfo()
       this.getCommonList()
     }
   },
   getUserInfo() {
-    _GetUserInfo().then(data => {
-      this.setData({
-        userInfo:data
+    _GetUserInfo()
+      .then(data => {
+        this.setData({ userInfo: data });
       })
-    })
+      .catch(data => App.catchError(data));
   },
   getCommonList(style) {
     _CommonwealList({
@@ -56,17 +56,16 @@ Page({
           totalPages: data.totalPages
         })
       }
-    })
+      }).catch(data => App.catchError(data))
   },
   onReachBottom: function () {
-    console.log(123456)
     if(this.data.page < this.data.totalPages) {
       this.setData({
         activePage: this.data.activePage + 1
       })
       this.getCommonList('byScroll')
     }else {
-      app.theEndPage()
+      App.theEndPage()
     }
   },
   showModal(msg) {

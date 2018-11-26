@@ -1,6 +1,7 @@
 // pages/reviewsList/reviewsList.js
 import { _GoodCommentList, _CommentPost } from "../../utils/request";
 const App = getApp()
+var that;
 Page({
 
   /**
@@ -17,10 +18,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this;
+    App.setWatcher(App.globalData,this.watch)
     this.setData({
       goodId: Number(options.goodId)
     })
     this.getCommentList()
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getCommentList()
+      }
+    }
   },
   getCommentList(style) {
     _GoodCommentList({
@@ -37,7 +47,7 @@ Page({
           reviewsList: arr,
           totalPages: data.totalPages
         })
-    })
+      }).catch(data => App.catchError(data))
   },
 
   previewImg(e) {

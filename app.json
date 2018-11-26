@@ -1,9 +1,10 @@
 {
   "pages": [
-  
-        "pages/index/index",
-        "pages/writeReviews/writeReviews",
+      "pages/index/index",
             "pages/eventEnter/eventEnter",
+        
+        "pages/writeReviews/writeReviews",
+      
         "pages/invoice/invoice",
         "pages/haowuList/haowuList",
                 "pages/publicReviewsList/publicReviewsList",

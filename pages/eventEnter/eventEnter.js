@@ -3,6 +3,8 @@ import {
   _ActivityDetail,
   _ActivitySignUp
 } from '../../utils/request'
+const App = getApp()
+var that;
 Page({
   /**
    * 页面的初始数据
@@ -21,33 +23,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     this.setData({
       id: Number(options.id)
     });
     this.getDetail();
   },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getDetail()
+      }
+    }
+  },
   getDetail() {
-    _ActivityDetail({
-      id: this.data.id
-    })
+    _ActivityDetail({ id: this.data.id })
       .then(data => {
         let dateObj = new Date(data.activityStartTime);
-        data.activityStartTime = `${dateObj.getFullYear()}.${dateObj.getMonth() +1}.${dateObj.getDate()}`;
-        this.setData({
-          detail: data
-        });
+        data.activityStartTime = `${dateObj.getFullYear()}.${dateObj.getMonth() + 1}.${dateObj.getDate()}`;
+        this.setData({ detail: data });
       })
+      .catch(data => App.catchError(data));
   },
   inputName(e) {
     let value = e.detail.value;
-    console.log(e);
     if (value === " ") {
-      console.log(value);
       this.setData({
         name: ""
       });
     } else {
-      console.log(value);
       this.setData({
         name: value
       });
@@ -116,8 +121,7 @@ Page({
             enterSucState: false
           })
         }, 600);
-     
-      })
+        }).catch(data => App.catchError(data))
     }
   },
   navBackToEventDetail() {

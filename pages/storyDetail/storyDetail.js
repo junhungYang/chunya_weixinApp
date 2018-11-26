@@ -72,10 +72,7 @@ Page({
           let arr = [...this.data.commentList, ...data.data];
           setTimeout(() => {
             wx.hideLoading();
-            this.setData({
-              commentList: arr,
-              totalPages: data.totalPages
-            });
+            this.setData({ commentList: arr, totalPages: data.totalPages });
           }, 500);
         } else {
           this.setData({
@@ -83,19 +80,16 @@ Page({
             totalPages: data.totalPages
           });
         }
-        console.log(this.data.totalPages)
       })
+      .catch(data => App.catchError(data));
 
   },
   getStoryDetail() {
-    _PostsDetail({
-      id: this.data.id
-    })
+    _PostsDetail({ id: this.data.id })
       .then(data => {
-        this.setData({
-          detail: data
-        });
+        this.setData({ detail: data });
       })
+      .catch(data => App.catchError(data));
 
   },
   onReachBottom: function() {
@@ -137,7 +131,7 @@ Page({
           scrollTop: 0
         })
         this.refreshCommentList(data);
-      });
+        }).catch(data => App.catchError(data))
     }
   },
   refreshCommentList(data) {
@@ -172,7 +166,7 @@ Page({
       valueId:this.data.id
     }).then(() => {
       this.getStoryDetail();
-    })
+      }).catch(data => App.catchError(data))
   },
   watch: {
     token(newValue) {

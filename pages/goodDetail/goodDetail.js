@@ -1,5 +1,5 @@
 // pages/goodDetail/goodDetail.js
-const app = getApp();
+const App = getApp();
 var that;
 import {
   _GoodsDetail,
@@ -32,12 +32,12 @@ Page({
   },
   onLoad: function(options) {
     that = this;
-    app.setWatcher(app.globalData, this.watch);
+    App.setWatcher(App.globalData, this.watch);
     this.setData({
       goodId: options.goodId,
       from: options.from ? options.from : ""
     });
-    if (app.globalData.token) {
+    if (App.globalData.token) {
       this.getGoodDetail();
       this.getReviews();
       this.getCouponList();
@@ -48,6 +48,7 @@ Page({
       if (newValue) {
         that.getGoodDetail();
         that.getReviews();
+        that.getCouponList();
       }
     }
   },
@@ -76,7 +77,8 @@ Page({
       setTimeout(() => {
         wx.hideLoading()
       }, 400);
-    })
+      }).catch(data => App.catchError(data))
+
   },
   addCoupon(e) {
     let state = e.currentTarget.dataset.state
@@ -100,7 +102,7 @@ Page({
         this.setData({
           couponList: arr
         })
-      })
+        }).catch(data => App.catchError(data))
     }
   },
   scrollGetCoupon() {
@@ -113,7 +115,7 @@ Page({
       })
       this.getCouponList()
     }else {
-      app.theEndPage()
+      App.theEndPage()
     }
   },
   couponStateManage(e) {
@@ -180,17 +182,12 @@ Page({
     }
   },
   getReviews() {
-    _GoodCommentList({
-      goodId: this.data.goodId,
-      size: 5,
-      page:1
-    })
+    _GoodCommentList({ goodId: this.data.goodId, size: 5, page: 1 })
       .then(data => {
-        this.setData({
-          reviews: data
-        });
+        this.setData({ reviews: data });
         this.getDomPosTop();
       })
+      .catch(data => App.catchError(data));
   },
   getGoodDetail() {
     _GoodsDetail({ id: this.data.goodId })
@@ -202,6 +199,7 @@ Page({
         });
         this.getDomPosTop();
       })
+      .catch(data => App.catchError(data));
   },
   previewImg(e) {
     let picList = e.currentTarget.dataset.piclist;
@@ -276,7 +274,7 @@ Page({
         });
         prevPage.getMyCollect();
       }
-    });
+      }).catch(data => App.catchError(data))
   },
   //跳转至首页
   navToIndex() {
@@ -298,16 +296,12 @@ Page({
       };
       _CartAdd(buyingInfo)
         .then(data => {
-          wx.showToast({
-            title: "添加成功",
-            icon: "success"
-          });
+          wx.showToast({ title: "添加成功", icon: "success" });
           setTimeout(() => {
-            wx.switchTab({
-              url: "../cart/cart"
-            });
+            wx.switchTab({ url: "../cart/cart" });
           }, 1500);
         })
+        .catch(data => App.catchError(data));
     } else {
       wx.showModal({
         title: "提示",
@@ -343,6 +337,11 @@ Page({
         navActive: 2
       });
     }
+    this.setData({
+      cartShowFlag: true,
+      couponHidState: true,
+      serviceHidState: true
+    });
   },
   onShareAppMessage: function() {
     wx.showShareMenu();

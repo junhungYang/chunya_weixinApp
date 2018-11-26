@@ -1,5 +1,6 @@
 // pages/aboutChunya/aboutChunya.js
 import { _AboutChunya} from '../../utils/request'
+const App = getApp()
 Page({
 
   /**
@@ -17,11 +18,7 @@ Page({
       id: 8
     }).then(data => {
       this.setData({ content: data.contentDesc });
-    }).catch(msg => {
-      wx.showModal({
-        title: msg
-      })
-    })
+      }).catch(data => App.catchError(data))
   },
 
   /**

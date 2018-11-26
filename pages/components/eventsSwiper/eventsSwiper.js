@@ -14,7 +14,6 @@ Component({
   methods: {
       swiperEvent(e) {
           app.globalData.publicSwiperIndex = e.detail.current +1
-          console.log(app.globalData.publicSwiperIndex);
       },
   },
   pageLifetimes: {

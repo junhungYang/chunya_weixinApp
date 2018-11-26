@@ -1,6 +1,7 @@
 // pages/myCollect/myCollect.js
 import { _CollectList, _CollectAddorDelete} from '../../utils/request'
 const App = getApp()
+var that;
 Page({
 
   /**
@@ -16,7 +17,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     this.getMyCollect()
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getMyCollect()
+      }
+    }
   },
   getMyCollect() {
     _CollectList({
@@ -29,7 +39,7 @@ Page({
         list: arr,
         totalPages: data.totalPages
       })
-    })
+      }).catch(data => App.catchError(data))
   },
   navToGoodDetail(e) {
     let goodId = e.currentTarget.dataset.id
@@ -48,7 +58,7 @@ Page({
         list: []
       });
       this.getMyCollect()
-    })
+      }).catch(data => App.catchError(data))
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

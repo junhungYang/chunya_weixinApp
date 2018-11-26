@@ -8,7 +8,7 @@ import {
   _OrderDeleteOrder,
   _TakeDelay
 } from "../../utils/request";
-const app = getApp()
+const App = getApp()
 var that;
 Page({
 
@@ -18,11 +18,11 @@ Page({
   },
   onLoad: function (options) {
     that = this
-    app.setWatcher(app.globalData, this.watch);
+    App.setWatcher(App.globalData, this.watch);
     this.setData({
       orderId: options.orderId
     })
-    if(app.globalData.token) {
+    if(App.globalData.token) {
       this.getOrderDetail()
     }
   },
@@ -36,6 +36,7 @@ Page({
       .then(data => {
         this.setData({ data });
       })
+      .catch(data => App.catchError(data));
   },
   navToShippingList() {
       wx.navigateTo({
@@ -48,37 +49,34 @@ Page({
       let orderId = e.currentTarget.dataset.id
       _WeChatPay({ orderId })
         .then(data => {
-          app.pay(data)
+          App.pay(data);
         })
+        .catch(data => App.catchError(data));
     }, 500);
   },
   buyAgain(e) {
-    app.buyAgain(e)
+    App.buyAgain(e)
   },
   orderControl(e) {
     let orderId = e.currentTarget.dataset.orderid;
     let controlStyle = e.currentTarget.dataset.str;
-    let promiseObj = app.orderControl(orderId, controlStyle,'detail');
+    let promiseObj = App.orderControl(orderId, controlStyle,'detail');
     if(promiseObj) {
-      promiseObj.then(data => {
-        wx.showToast({
-          icon: "success",
-          title: data,
-          duration: 600
-        });
-        this.getOrderDetail()
-        let pages = getCurrentPages()
-        let prevPage = pages[pages.length - 2];
-        prevPage.setData({
-          pageIndex: 1
+      promiseObj
+        .then(data => {
+          wx.showToast({ icon: "success", title: data, duration: 600 });
+          this.getOrderDetail();
+          let pages = getCurrentPages();
+          let prevPage = pages[pages.length - 2];
+          prevPage.setData({ pageIndex: 1 });
+          prevPage.getOrderList();
+          if (controlStyle === "delete") {
+            setTimeout(() => {
+              wx.navigateBack({ delta: 1 });
+            }, 600);
+          }
         })
-        prevPage.getOrderList();
-        if (controlStyle === 'delete') {
-          setTimeout(() => {
-            wx.navigateBack({ delta: 1 });
-          }, 600);
-        }
-      })
+        .catch(data => App.catchError(data));
     }
   },
   copy() {
@@ -125,10 +123,11 @@ Page({
       .then(data => {
         this.setData({ data });
         wx.stopPullDownRefresh();
-        setTimeout(()=> {
+        setTimeout(() => {
           wx.hideLoading();
-        },600)
+        }, 600);
       })
+      .catch(data => App.catchError(data));
 
   },
 

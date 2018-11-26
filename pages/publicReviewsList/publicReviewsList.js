@@ -4,6 +4,7 @@ import {
   _CommentPost
  } from "../../utils/request";
  const App = getApp()
+ var that
 Page({
   /**
    * 页面的初始数据
@@ -32,10 +33,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     this.setData({
       id: Number(options.id)
     });
     this.getCommentList();
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getCommentList()
+      }
+    }
   },
   addImage() {
     wx.chooseImage({
@@ -115,13 +125,10 @@ Page({
         imagesList: this.data.imageList
       })
         .then(() => {
-          wx.showToast({
-            title: "发表成功",
-            icon: "success"
-          });
-          this.setData({ 
-            pageIndex: 1, 
-            commentValue: '',
+          wx.showToast({ title: "发表成功", icon: "success" });
+          this.setData({
+            pageIndex: 1,
+            commentValue: "",
             imageState: true,
             emojiState: true,
             imageList: []
@@ -129,6 +136,7 @@ Page({
           this.getCommentList();
           this.refreshPrevPage();
         })
+        .catch(data => App.catchError(data));
     }
   },
   emojiStateManage(e) {
@@ -164,19 +172,17 @@ Page({
     })
       .then(data => {
         if (!style) {
-          this.setData({ 
+          this.setData({
             reviewsList: data.data,
             totalPages: data.totalPages
-           });
+          });
         } else {
           wx.hideLoading();
           let arr = [...this.data.reviewsList, ...data.data];
-          this.setData({ 
-            reviewsList: arr,
-            totalPages: data.totalPages
-           });
+          this.setData({ reviewsList: arr, totalPages: data.totalPages });
         }
       })
+      .catch(data => App.catchError(data));
   },
   previewImg(e) {
     let index = e.currentTarget.dataset.index;
@@ -213,7 +219,15 @@ Page({
     }
 
   },
-
+  onPageScroll() {
+    if (this.data.emojiState === false) {
+      this.setData({ emojiState:true });
+    } else if (this.data.imageState === false) {
+      this.setData({
+        imageState: true
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -55,7 +55,6 @@
 }
 .template .input-info {
   margin: 0 6.4%;
-  padding-bottom: 100rpx;
 }
 .template .input-info .base-info .title,
 .template .input-info .desc-info .title {
@@ -115,9 +114,6 @@
   padding-left: 19rpx;
   border-bottom: 1px solid  #f2f2f2;
 }
-.template .input-info .desc-info {
-  padding-bottom: 120rpx;
-}
 .template .input-info .desc-info .replace-box,
 .template .input-info .desc-info .input-box {
   border-radius: 10rpx;
@@ -143,12 +139,14 @@
   color: transparent;
 }
 .template .enter-btn {
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 70rpx;
+  margin: 100rpx 185rpx 0 185rpx;
   background: #d1051f;
+  line-height: 70rpx;
   text-align: center;
   font-size: 28rpx;
   color: #fff;
+  border-radius: 40rpx;
 }
 .template .enter-success {
   width: 100%;

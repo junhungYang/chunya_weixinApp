@@ -1,6 +1,7 @@
 // pages/couponList/couponList.js
 import { _CouponForUser} from '../../utils/request'
 const App = getApp()
+var that;
 Page({
   /**
    * 页面的初始数据
@@ -16,7 +17,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    that = this;
+    App.setWatcher(App.globalData,this.watch)
     this.getCouponList();
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getCouponList()
+      }
+    }
   },
   getCouponList() {
     wx.showLoading({
@@ -35,7 +45,7 @@ Page({
       setTimeout(() => {
         wx.hideLoading();
       }, 600);
-    });
+      }).catch(data => App.catchError(data))
   },
   changeActive(e) {
     let navActive = e.currentTarget.dataset.index;

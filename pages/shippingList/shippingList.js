@@ -1,6 +1,7 @@
 // pages/shippingList/shippingList.js
 import { _OrderDetail} from '../../utils/request'
-const app = getApp()
+const App = getApp()
+var that;
 Page({
 
   /**
@@ -16,11 +17,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     this.setData({
       orderId: options.orderId
     })
-    if(app.globalData.token) {
+    if(App.globalData.token) {
       this.getOrderDetail()
+    }
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getOrderDetail()
+      }
     }
   },
   getOrderDetail() {
@@ -28,6 +38,7 @@ Page({
       .then(data => {
         this.setData({ data });
       })
+      .catch(data => App.catchError(data));
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -70,8 +81,9 @@ Page({
         wx.stopPullDownRefresh();
         setTimeout(() => {
           wx.hideLoading();
-        }, 600)
+        }, 600);
       })
+      .catch(data => App.catchError(data));
   },
 
   /**

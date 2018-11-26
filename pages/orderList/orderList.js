@@ -9,7 +9,8 @@ import {
   _OrderDeleteOrder,
   _TakeDelay
 } from "../../utils/request";
-const app = getApp();
+const App = getApp();
+var that;
 Page({
   /**
    * 页面的初始数据
@@ -21,12 +22,21 @@ Page({
     totalPages: 0
   },
   onLoad: function(options) {
+    that = this
+    App.setWatcher(App.globalData,this.watch)
     if(options.requestCode) {
       this.setData({
         requestCode: Number(options.requestCode)
       })
     }
     this.getOrderList();
+  },
+  watch: {
+    token(nV) {
+      if(nV) {
+        that.getOrderList()
+      }
+    }
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -43,7 +53,7 @@ Page({
       });
       this.getOrderList("byScroll");
     }else {
-      app.theEndPage()
+      App.theEndPage()
     }
   },
   formSubmit_collect: function(e) {
@@ -66,31 +76,34 @@ Page({
         orderStatus: this.data.requestCode
       };
     }
-    _OrderList(obj).then(data => {
-      if (!str) {
-        this.setData({
-          orderList: data.data,
-          totalPages: data.totalPages
-        });
-      } else {
-        this.setData({
-          orderList: [...this.data.orderList, ...data.data],
-          totalPages: data.totalPages
-        });
-      }
-      console.log(this.data.totalPages)
-    });
+    _OrderList(obj)
+      .then(data => {
+        if (!str) {
+          this.setData({
+            orderList: data.data,
+            totalPages: data.totalPages
+          });
+        } else {
+          this.setData({
+            orderList: [...this.data.orderList, ...data.data],
+            totalPages: data.totalPages
+          });
+        }
+      })
+      .catch(data => App.catchError(data));
   },
   orderControl(e) {
     let orderId = e.currentTarget.dataset.orderid;
     let controlStyle = e.currentTarget.dataset.str;
-    let promiseObj = app.orderControl(orderId,controlStyle,'list');
+    let promiseObj = App.orderControl(orderId,controlStyle,'list');
     if(promiseObj) {
-      promiseObj.then(data => {
-        wx.showToast({ icon: "success", title: data, duration: 1000 });
-        this.setData({ pageIndex: 1 });
-        this.getOrderList();
-      });
+      promiseObj
+        .then(data => {
+          wx.showToast({ icon: "success", title: data, duration: 1000 });
+          this.setData({ pageIndex: 1 });
+          this.getOrderList();
+        })
+        .catch(data => App.catchError(data));
     }
       
   },
@@ -120,12 +133,13 @@ Page({
       let orderId = e.currentTarget.dataset.id;
       _WeChatPay({ orderId })
         .then(data => {
-          app.pay(data);
+          App.pay(data);
         })
+        .catch(data => App.catchError(data));
     }, 500);
   },
   buyAgain(e) {
-    app.buyAgain(e);
+    App.buyAgain(e);
   },
   /**
    * 生命周期函数--监听页面隐藏
