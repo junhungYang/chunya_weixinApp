@@ -1,143 +1,143 @@
 
 <view class="template">
-    <view class="bg"></view>
-    <view class="main">
-    <view class="info" wx:if="{{hasToken}}">
-        <view class="pro-pic">
-            <image src="{{userInfo.avatar}}" />
-        </view>
-        <view class="text">
-            <text>{{userInfo.nickname}}</text>
-        </view>
-        <!--<view class="control">
-            编辑
-        </view> -->
-    </view>
-    <view class="info" wx:else>
-        <view class="pro-pic">
-            <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">头像</button>
-        </view>
-        <view class="text">
-            <text>请点击头像进行授权登录</text>
-        </view>
-    </view>
-    <view class="integral">
-        <view class="point">
-            <image src="../../img/userCenter/icon1.png" />
-            <view class="desc">
-                <text>积分</text>
-                <text>{{userInfo.integral}}</text>
+        <view class="bg"></view>
+        <view class="main">
+            <view class="info" wx:if="{{hasToken}}">
+                <view class="pro-pic">
+                    <image src="{{userInfo.avatar}}" />
+                </view>
+                <view class="text">
+                    <text>{{userInfo.nickname}}</text>
+                </view>
+                <!--<view class="control">
+                    编辑
+                </view> -->
             </view>
-        </view>
-        <view class="text">
-            <text>春芽vip</text>
-            <text>礼遇好物</text>
-        </view>
-       <view class="vip">
-            <image src="../../img/userCenter/icon2.png" />
-        </view>
-    </view> 
-    <view class="order">
-        <view class="title" bindtap="navToOrderList">
-            <view>我的订单</view>
-            <view>
-                <text>查看全部订单</text>
-                <image src="../../img/redictTo.png" />
+            <view class="info" wx:else>
+                <view class="pro-pic">
+                    <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">头像</button>
+                </view>
+                <view class="text">
+                    <text>请点击头像进行授权登录</text>
+                </view>
             </view>
-        </view>
-        <view class="nav">
-            <view class="nav-item" data-requestcode="{{0}}"  bindtap="navToOrderList">
-                <image src="../../img/userCenter/nav1.png"/>
-                <text>待付款</text>
-                <view wx:if="{{orderCount.dfk}}">{{orderCount.dfk>99?'99+':orderCount.dfk}}</view>
-            </view>
-            <view class="nav-item"  data-requestcode="{{201}}" bindtap="navToOrderList">
-                <image src="../../img/userCenter/nav2.png" />
-                <text>待发货</text>
-                <view wx:if="{{orderCount.dfh}}">{{orderCount.dfh>99?'99+':orderCount.dfh}}</view>
-            </view>
-            <view class="nav-item" data-requestcode="{{300}}" bindtap="navToOrderList">
-                <image src="../../img/userCenter/nav3.png" />
-                <text>待收货</text>
-                <view wx:if="{{orderCount.dsh}}">{{orderCount.dsh>99?'99+':orderCount.dsh}}</view>
-            </view>
-            <view class="nav-item"  data-requestcode="{{301}}" bindtap="navToOrderList">
-                <image src="../../img/userCenter/nav4.png"/>
-                <text>待评价</text>
-                <view wx:if="{{orderCount.dpl}}">{{orderCount.dpl>99?'99+':orderCount.dpl}}</view>
-            </view>
-            <!--<view class="nav-item">
-                <image src="../../img/userCenter/nav5.png" />
-                <text>售后服务</text>
-            </view> -->
-        </view>
-        <view class="cont">
-            <view class="list">
-                <view class="cont-item"  wx:if="{{orderCount.orderInfo}}" data-orderid="{{orderCount.orderInfo.id}}" bindtap="navToOrderDetail">
-                    <view class="cont-title">
-                        <text>最新物流</text>
-                        <text>{{orderCount.orderInfo.delivery_time}}</text>
+            <view class="integral">
+                <view class="point">
+                    <image src="../../img/userCenter/icon1.png" />
+                    <view class="desc">
+                        <text>积分</text>
+                        <text>{{userInfo.integral}}</text>
                     </view>
+                </view>
+                <view class="text">
+                    <text>春芽vip</text>
+                    <text>礼遇好物</text>
+                </view>
+            <view class="vip">
+                    <image src="../../img/userCenter/icon2.png" />
+                </view>
+            </view> 
+            <view class="order">
+                <view class="title" bindtap="navToOrderList">
+                    <view>我的订单</view>
                     <view>
-                        <view class="desc">
-                            <image src="{{orderCount.orderInfo.orderGoodsList[0].product_pic_url}}" />
-                            <view class="desc-text">
-                                <view>
-                                    <image src="../../img/userCenter/icon3.png" />
-                                    <text>{{orderCount.orderInfo.order_status_text}}</text>
-                                </view>
-                                <view>
-                                    {{orderCount.orderInfo.tracesList.length!==0?orderCount.orderInfo.tracesList[0].AcceptStation:'暂无物流信息'}}
+                        <text>查看全部订单</text>
+                        <image src="../../img/redictTo.png" />
+                    </view>
+                </view>
+                <view class="nav">
+                    <view class="nav-item" data-requestcode="{{0}}"  bindtap="navToOrderList">
+                        <image src="../../img/userCenter/nav1.png"/>
+                        <text>待付款</text>
+                        <view wx:if="{{orderCount.dfk}}">{{orderCount.dfk>99?'99+':orderCount.dfk}}</view>
+                    </view>
+                    <view class="nav-item"  data-requestcode="{{201}}" bindtap="navToOrderList">
+                        <image src="../../img/userCenter/nav2.png" />
+                        <text>待发货</text>
+                        <view wx:if="{{orderCount.dfh}}">{{orderCount.dfh>99?'99+':orderCount.dfh}}</view>
+                    </view>
+                    <view class="nav-item" data-requestcode="{{300}}" bindtap="navToOrderList">
+                        <image src="../../img/userCenter/nav3.png" />
+                        <text>待收货</text>
+                        <view wx:if="{{orderCount.dsh}}">{{orderCount.dsh>99?'99+':orderCount.dsh}}</view>
+                    </view>
+                    <view class="nav-item"  data-requestcode="{{301}}" bindtap="navToOrderList">
+                        <image src="../../img/userCenter/nav4.png"/>
+                        <text>待评价</text>
+                        <view wx:if="{{orderCount.dpl}}">{{orderCount.dpl>99?'99+':orderCount.dpl}}</view>
+                    </view>
+                    <!--<view class="nav-item">
+                        <image src="../../img/userCenter/nav5.png" />
+                        <text>售后服务</text>
+                    </view> -->
+                </view>
+                <view class="cont">
+                    <view class="list">
+                        <view class="cont-item"  wx:if="{{orderCount.orderInfo}}" data-orderid="{{orderCount.orderInfo.id}}" bindtap="navToOrderDetail">
+                            <view class="cont-title">
+                                <text>最新物流</text>
+                                <text>{{orderCount.orderInfo.delivery_time}}</text>
+                            </view>
+                            <view>
+                                <view class="desc">
+                                    <image src="{{orderCount.orderInfo.orderGoodsList[0].product_pic_url}}" />
+                                    <view class="desc-text">
+                                        <view>
+                                            <image src="../../img/userCenter/icon3.png" />
+                                            <text>{{orderCount.orderInfo.order_status_text}}</text>
+                                        </view>
+                                        <view>
+                                            {{orderCount.orderInfo.tracesList.length!==0?orderCount.orderInfo.tracesList[0].AcceptStation:'暂无物流信息'}}
+                                        </view>
+                                    </view>
                                 </view>
                             </view>
                         </view>
                     </view>
                 </view>
             </view>
+            <view class="tool">
+                <view class="title">
+                    必备工具
+                </view>
+                <view class="list" >
+                    <view class="item" data-type="couList" bindtap="navToOtherMod">
+                        <image src="../../img/userCenter/coupon.png" />
+                        <text>优惠券</text>
+                    </view>
+                    <view class="item" data-type="collect" bindtap="navToOtherMod">
+                        <image src="../../img/userCenter/collect.png" />
+                        <text>我的收藏</text>
+                    </view>
+                    <view class="item" data-type="events" bindtap="navToOtherMod">
+                        <image src="../../img/userCenter/event.png" />
+                        <text>我的活动</text>
+                    </view>
+                    <view class="item" data-type="nuanke" bindtap="navToOtherMod">
+                        <image src="../../img/userCenter/share.png"/>
+                        <text>课堂分享</text>
+                    </view>
+                    <view class="item">
+                        <button open-type="contact" class="custom-service">
+                            <image src="../../img/userCenter/kefu.png" />
+                            <text>客服</text>
+                        </button>
+                    </view>
+                    <view class="item">
+                        <button open-type="feedback" class="custom-service">
+                            <image src="../../img/userCenter/yijian.png" />
+                            <text>意见反馈</text>
+                        </button>
+                    </view>
+                    <view class="item" data-type="address"  bindtap="navToOtherMod">
+                        <image src="../../img/userCenter/position.png"/>
+                        <text>地址管理</text>
+                    </view>
+                    <view class="item" data-type="about" bindtap="navToOtherMod">
+                        <image src="../../img/userCenter/about.png" />
+                        <text>关于我们</text>
+                    </view>
+                </view>
+            </view>
         </view>
-    </view>
-    <view class="tool">
-        <view class="title">
-            必备工具
-        </view>
-        <view class="list" >
-            <view class="item" data-type="couList" bindtap="navToOtherMod">
-                <image src="../../img/userCenter/coupon.png" />
-                <text>优惠券</text>
-            </view>
-            <view class="item" data-type="collect" bindtap="navToOtherMod">
-                <image src="../../img/userCenter/collect.png" />
-                <text>我的收藏</text>
-            </view>
-            <view class="item" data-type="events" bindtap="navToOtherMod">
-                <image src="../../img/userCenter/event.png" />
-                <text>我的活动</text>
-            </view>
-            <view class="item" data-type="nuanke" bindtap="navToOtherMod">
-                <image src="../../img/userCenter/share.png"/>
-                <text>课堂分享</text>
-            </view>
-            <view class="item">
-                <button open-type="contact" class="custom-service">
-                    <image src="../../img/userCenter/kefu.png" />
-                    <text>客服</text>
-                </button>
-            </view>
-            <view class="item">
-                <button open-type="feedback" class="custom-service">
-                    <image src="../../img/userCenter/yijian.png" />
-                    <text>意见反馈</text>
-                </button>
-            </view>
-            <view class="item" data-type="address"  bindtap="navToOtherMod">
-                <image src="../../img/userCenter/position.png"/>
-                <text>地址管理</text>
-            </view>
-            <view class="item" data-type="about" bindtap="navToOtherMod">
-                <image src="../../img/userCenter/about.png" />
-                <text>关于我们</text>
-            </view>
-        </view>
-    </view>
-    </view>
 </view>

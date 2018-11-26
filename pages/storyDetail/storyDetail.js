@@ -19,7 +19,8 @@ Page({
     commentList: [],
     totalPages: 0,
     from: "",
-    value: ""
+    value: "",
+    reviewsCount: 0
   },
 
   /**
@@ -68,6 +69,9 @@ Page({
       size: 10
     })
       .then(data => {
+        this.setData({
+          reviewsCount: data.count
+        })
         if (type) {
           let arr = [...this.data.commentList, ...data.data];
           setTimeout(() => {
@@ -134,11 +138,14 @@ Page({
         }).catch(data => App.catchError(data))
     }
   },
-  refreshCommentList(data) {
+  refreshCommentList() {
     this.setData({
       pageIndex: 1
     });
     this.getCommentList();
+    this.refreshPrevPage();
+  },
+  refreshPrevPage() {
     let pages = getCurrentPages();
     let prevPage;
     if (this.data.from === "list") {
@@ -158,7 +165,8 @@ Page({
       valueId: this.data.id
     }).then( () => {
       this.getStoryDetail();
-    })
+      this.refreshPrevPage();
+    }).catch(data => App.catchError(data))
   },
   collect() {
     _CollectAddorDelete({
@@ -166,6 +174,7 @@ Page({
       valueId:this.data.id
     }).then(() => {
       this.getStoryDetail();
+      this.refreshPrevPage();
       }).catch(data => App.catchError(data))
   },
   watch: {

@@ -142,6 +142,7 @@
 .template .main .heart-reviews .list .item {
   padding: 15rpx 6.4%;
   border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 35rpx;
 }
 .template .main .heart-reviews .list .item .info {
   display: flex;
@@ -174,14 +175,14 @@
   line-height: 30rpx;
 }
 .template .main .heart-reviews .list .item .img-group {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   font-size: 0;
 }
 .template .main .heart-reviews .list .item .img-group .img-item {
   margin-top: 14rpx;
   display: inline-block;
-  width: 205rpx;
-  height: 205rpx;
+  width: 207rpx;
+  height: 207rpx;
   overflow: hidden;
   position: relative;
   margin-left: 7rpx;
@@ -194,6 +195,9 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.template .main .heart-reviews .list .item .img-group .img-item:nth-child(3n+1) {
+  margin-left: 0;
 }
 .template .main .heart-reviews .list .item:last-of-type {
   border: 0;

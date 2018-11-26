@@ -61,8 +61,8 @@
 .template .main .img-group .img-item,
 .template .main .video .img-item {
   display: inline-block;
-  width: 205rpx;
-  height: 205rpx;
+  width: 207rpx;
+  height: 207rpx;
   overflow: hidden;
   position: relative;
   margin-left: 7rpx;
@@ -122,6 +122,9 @@
 .template .main .img-group .addImage image,
 .template .main .video .addImage image {
   width: 100%;
+}
+.template .main .img-group .img-item:nth-child(3n+1) {
+  margin-left: 0;
 }
 .template .toTop {
   margin-top: 20rpx;

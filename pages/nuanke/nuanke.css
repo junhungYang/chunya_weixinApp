@@ -67,6 +67,7 @@
 .template .list .item .img {
   margin-top: 18rpx;
   height: 296rpx;
+  overflow: hidden;
 }
 .template .list .item .img image {
   width: 100%;

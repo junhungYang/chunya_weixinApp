@@ -194,7 +194,13 @@ Page({
       }
     }
   },
-
+  onPageScroll() {
+    if (this.data.priceState === false) {
+      this.setData({
+        priceState: true
+      })
+    }
+  },
   onReady: function() {},
 
   /**

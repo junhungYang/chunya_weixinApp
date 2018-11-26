@@ -89,8 +89,8 @@
 }
 .template .item .cont .visual .img .img-item {
   display: inline-block;
-  width: 205rpx;
-  height: 205rpx;
+  width: 207rpx;
+  height: 207rpx;
   overflow: hidden;
   position: relative;
   margin-left: 7rpx;
@@ -104,6 +104,9 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.template .item .cont .visual .img .img-item:nth-child(3n+1) {
+  margin-left: 0;
 }
 .template .reviewsList {
   background: #fff;

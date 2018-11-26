@@ -5,14 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    src: ''
+    src: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.src)
     this.setData({
       src: options.src
     })
@@ -22,7 +21,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.createVideoContext("myVideo").requestFullScreen({
+      direction: 90
+    })
+        
   },
 
   /**

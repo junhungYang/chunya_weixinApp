@@ -366,8 +366,8 @@
 }
 .goodMod .reviews .list .item .item-cont .pic-group .img-box {
   margin: 14rpx 7rpx 0 7rpx;
-  width: 204rpx;
-  height: 204rpx;
+  width: 207rpx;
+  height: 207rpx;
   display: inline-block;
   background: #000;
   overflow: hidden;
@@ -379,6 +379,9 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.goodMod .reviews .list .item .item-cont .pic-group .img-box:nth-child(3n+1) {
+  margin-left: 0;
 }
 .goodMod .reviews .list .item:last-of-type {
   border: 0;

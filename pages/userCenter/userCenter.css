@@ -1,6 +1,6 @@
 .template {
   background: #f2f2f2;
-  min-height: 120vh;
+  height: 130vh;
 }
 .template .bg {
   height: 253rpx;
@@ -14,6 +14,7 @@
   position: absolute;
   width: 100%;
   top: 0;
+  padding-bottom: 100rpx;
 }
 .template .main .info {
   box-sizing: border-box;
@@ -83,27 +84,20 @@
 .template .main .integral .point {
   width: 175rpx;
   border-right: 1px solid #f2f2f2;
-  position: relative;
   padding-left: 42rpx;
   padding-right: 42rpx;
   box-sizing: border-box;
 }
 .template .main .integral .point image {
-  position: absolute;
   width: 32rpx;
   height: 35rpx;
   margin: 0 auto;
-  left: 50%;
-  top: 17rpx;
-  transform: translateX(-50%);
+  margin-top: 17rpx;
+  display: block;
 }
 .template .main .integral .point .desc {
   display: block;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 41rpx;
-  width: 100%;
+  line-height: 32rpx;
   text-align: center;
 }
 .template .main .integral .point .desc text {
@@ -200,25 +194,21 @@
   color: #fff;
   min-width: 22rpx;
 }
-.template .main .order .nav .nav-item image:nth-of-type(1) {
+.template .main .order .nav .nav-item:nth-of-type(1) image {
   width: 32rpx;
   height: 34rpx;
 }
-.template .main .order .nav .nav-item image:nth-of-type(2) {
+.template .main .order .nav .nav-item:nth-of-type(2) image {
   width: 32rpx;
   height: 32rpx;
 }
-.template .main .order .nav .nav-item image:nth-of-type(3) {
+.template .main .order .nav .nav-item:nth-of-type(3) image {
   width: 38rpx;
   height: 32rpx;
 }
-.template .main .order .nav .nav-item image:nth-of-type(4) {
+.template .main .order .nav .nav-item:nth-of-type(4) image {
   width: 29rpx;
   height: 36rpx;
-}
-.template .main .order .nav .nav-item image:nth-of-type(5) {
-  width: 27rpx;
-  height: 32rpx;
 }
 .template .main .order .cont {
   margin: 0 6.4%;

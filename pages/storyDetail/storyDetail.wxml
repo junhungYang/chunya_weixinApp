@@ -24,9 +24,9 @@
                 <text>{{detail.relativeDate}}</text>
         </view>
     </view>
-    <view class="reviewsList">
+    <view class="reviewsList" wx:if="{{reviewsCount!==0}}">
         <view class="quantity">
-            全部评论 {{detail.commentCount}}
+            全部评论 {{reviewsCount}}
         </view>
         <view class="list">
             <view class="item" wx:for="{{commentList}}" wx:key="{{item.id}}">

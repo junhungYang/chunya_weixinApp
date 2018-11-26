@@ -38,9 +38,14 @@
   margin-top: 20rpx;
   position: relative;
 }
-.template .list .big-item .sm-list .list-item image {
+.template .list .big-item .sm-list .list-item .img-wrap {
   width: 309rpx;
   height: 430rpx;
+  background: #f2f2f2;
+  overflow: hidden;
+}
+.template .list .big-item .sm-list .list-item .img-wrap image {
+  width: 309rpx;
 }
 .template .list .big-item .sm-list .list-item text {
   padding-top: 6rpx;
