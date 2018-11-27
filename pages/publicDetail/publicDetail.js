@@ -180,10 +180,7 @@ Page({
     picList.forEach(item => {
       arr.push(item.pic_url);
     });
-    wx.previewImage({
-      urls: arr,
-      current: arr[index]
-    });
+    App.previewImg(index,arr)
   },
   showModal(msg) {
     wx.showModal({

@@ -6,6 +6,7 @@ Page({
    */
   data: {
     src: '',
+    state: true
   },
 
   /**
@@ -21,31 +22,33 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.createVideoContext("myVideo").requestFullScreen({
-      direction: 90
-    })
-        
+    // setTimeout(() => {
+    //   let dom = wx.createVideoContext("myVideo");
+    //   dom.requestFullScreen();
+    // }, 1000);
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.setData({
+      state: false
+    })
   },
 
   /**

@@ -125,57 +125,18 @@ Page({
       this.setData({
         goodsList
       });
-      console.log(this.data.goodsList[index].reviewText);
     }, 500);
   },
   addImage(e) {
     let fatherIndexByUpload = e.currentTarget.dataset.index;
     this.setData({ fatherIndexByUpload });
     let imgList = this.data.goodsList[fatherIndexByUpload].imgList;
-    wx.chooseImage({
-      sizeType: "compressed",
-      success: res => {
-        let totalLen = imgList.length + res.tempFiles.length;
-        if (totalLen > 9) {
-          res.tempFiles.splice(res.tempFiles.length - (totalLen - 9));
-        }
-        res.tempFiles.forEach((item, index) => {
-          if (item.size > 5000000) {
-            wx.showModal({
-              title: "图片过大",
-              content: "个别图片过大，请重新选择"
-            });
-          } else {
-            this.upLoadImg(res.tempFiles, index);
-            wx.showLoading({
-              title: "正在上传",
-              mask: true
-            });
-          }
-        });
-      }
-    });
-  },
-  upLoadImg(list, index) {
-    let path = list[index].path;
-    wx.uploadFile({
-      url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-      filePath: path,
-      name: "file",
-      success: res => {
-        let data = JSON.parse(res.data);
-        if (data.errno === 0) {
-          if (index === list.length - 1) {
-            wx.hideLoading();
-          }
-          this.controlImgList(data.data);
-        } else {
-          wx.hideLoading();
-          wx.showModal({
-            title: data.msg
-          });
-        }
-      }
+    App.addImage(imgList.length).then(arr => {
+      arr.forEach(item => {
+        App.upLoadImg(item.path)
+          .then(data => this.controlImgList(data))
+          .catch(msg => wx.showModal({title:msg}))
+      });
     });
   },
   controlImgList(data) {
@@ -196,10 +157,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     let imgIndex = e.currentTarget.dataset.imgindex;
     let goodsList = this.data.goodsList;
-    wx.previewImage({
-      urls: goodsList[index].imgList,
-      current: goodsList[index].imgList[imgIndex]
-    });
+    App.previewImg(imgIndex,goodsList[index].imgList)
   },
   beforSubmit() {
     let goodsList = this.data.goodsList;

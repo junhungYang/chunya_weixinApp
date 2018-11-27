@@ -52,24 +52,16 @@ Page({
 
   previewImg(e) {
     let index = e.currentTarget.dataset.index;
-    let type = e.currentTarget.dataset.type
-    if (type === "cont") {
-      let picList = e.currentTarget.dataset.piclist;
-      let arr = [];
-      picList.forEach(item => {
-        arr.push(item.picUrl);
-      });
-      wx.previewImage({
-        urls: arr,
-        current: arr[index]
-      });
-    } else {
-      wx.previewImage({
-        urls: this.data.imageList,
-        current: this.data.imageList[index]
-      })
-    }
-
+    let picList = e.currentTarget.dataset.piclist;
+    let arr = [];
+    picList.forEach(item => {
+      arr.push(item.picUrl);
+    });
+    wx.previewImage({
+      urls: arr,
+      current: arr[index]
+    });
+  
   },
   onReachBottom: function () {
     if(this.data.page < this.data.totalPages) {

@@ -13,7 +13,7 @@ import {
 App({
   onLaunch: function() {
     // 当打开app时需先判断当前登录态是否已过期
-    this.checkSessionApi()
+    this.checkSessionApi();
   },
   checkSessionApi() {
     wx.checkSession({
@@ -50,9 +50,10 @@ App({
       .then(data => {
         wx.setStorageSync("sessionKey", data.session_key);
         this.getSensitiveInfo();
-      }).catch(data => {
-        this.catchError(data)
       })
+      .catch(data => {
+        this.catchError(data);
+      });
   },
   getSensitiveInfo() {
     wx.getSetting({
@@ -70,11 +71,11 @@ App({
                 .then(data => {
                   wx.setStorageSync("userInfo", data);
                   this.wxappLogin();
-                }).catch(data => this.catchError(data))
+                })
+                .catch(data => this.catchError(data));
             }
           });
         } else {
-
         }
       }
     });
@@ -82,17 +83,19 @@ App({
   wxappLogin() {
     let userInfoJson = wx.getStorageSync("userInfo");
     let phoneNum = wx.getStorageSync("userPhoneNum");
-      let userInfo = JSON.parse(userInfoJson);
-      _WxappLogin({
-        openid: userInfo.openId,
-        gender: userInfo.gender,
-        avatarUrl: userInfo.avatarUrl,
-        nickName: userInfo.nickName,
-        mobile: phoneNum ? phoneNum : ""
-      }).then(data => {
+    let userInfo = JSON.parse(userInfoJson);
+    _WxappLogin({
+      openid: userInfo.openId,
+      gender: userInfo.gender,
+      avatarUrl: userInfo.avatarUrl,
+      nickName: userInfo.nickName,
+      mobile: phoneNum ? phoneNum : ""
+    })
+      .then(data => {
         _SetToken(data.token);
         this.globalData.token = data.token;
-      }).catch(data => this.catchError(data))
+      })
+      .catch(data => this.catchError(data));
   },
   pay(data) {
     wx.requestPayment({
@@ -102,7 +105,7 @@ App({
       package: data.package,
       signType: data.signType,
       paySign: data.paySign,
-      success: function (res) {
+      success: function(res) {
         wx.showToast({
           title: "成功结算"
         });
@@ -112,7 +115,7 @@ App({
           });
         }, 1000);
       },
-      fail: function (res) {
+      fail: function(res) {
         wx.redirectTo({
           url: "../orderList/orderList"
         });
@@ -138,10 +141,12 @@ App({
               wx.switchTab({ url: "../cart/cart" });
             }, 1000);
           }
-        }).catch(data => this.catchError(data))
+        })
+        .catch(data => this.catchError(data));
     });
   },
-  orderControl(orderId,controlStyle,from) {
+
+  orderControl(orderId, controlStyle, from) {
     let promiseObj;
     switch (controlStyle) {
       case "delete":
@@ -154,44 +159,78 @@ App({
         promiseObj = _OrderConfirmOrder({ orderId });
         break;
       case "delay":
-        promiseObj = _TakeDelay({ orderId })
+        promiseObj = _TakeDelay({ orderId });
         break;
       case "addReview":
         wx.navigateTo({
           url: `../writeReviews/writeReviews?orderId=${orderId}&from=${from}`
-        })
+        });
         break;
       case "logistics":
         break;
       case "return":
         break;
     }
-    return promiseObj
+    return promiseObj;
+  },
+  previewImg(index, arr) {
+    wx.previewImage({ current: arr[index], urls: arr });
+  },
+  addImage(listLen) {
+    return new Promise(resolve => {
+      wx.chooseImage({
+        sizeType: "compressed",
+        success: res => {
+          let totalLen = listLen + res.tempFiles.length;
+          if (totalLen > 9) {
+            res.tempFiles.splice(res.tempFiles.length - (totalLen - 9));
+          }
+          resolve(res.tempFiles)
+        }
+      });
+    })
+  },
+  upLoadImg(path) {
+    return new Promise((resolve,reject) => {
+      wx.uploadFile({
+        url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
+        filePath: path,
+        name: "file",
+        success: res => {
+          let data = JSON.parse(res.data);
+          if (data.errno === 0) {
+            resolve(data.data)
+          } else {
+            reject(data.msg)
+          }
+        }
+      });
+    })
   },
   catchError(data) {
-    if(data.errno === 401) {
+    if (data.errno === 401) {
       wx.showModal({
-        title: '登录提示',
+        title: "登录提示",
         content: data.errmsg,
-        success: (res) => {
-          if(res.confirm) {
+        success: res => {
+          if (res.confirm) {
             this.checkSessionApi();
           }
         }
-      })
-    }else {
+      });
+    } else {
       wx.showModal({
-        title: '错误提示',
+        title: "错误提示",
         content: data.errmsg
-      })
+      });
     }
   },
   theEndPage() {
     wx.showToast({
-      title:'已经是最后一页',
-      icon: 'none',
+      title: "已经是最后一页",
+      icon: "none",
       duration: 1000
-    })
+    });
   },
   //监听器
   setWatcher(data, watch) {

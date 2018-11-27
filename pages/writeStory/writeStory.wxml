@@ -12,7 +12,7 @@
             <view wx:if="{{upLoadFile==='image'}}" class="img-group">
                 <view class="img-item" wx:for="{{imageList}}" wx:for-index="index">
                         <image src="../../img/deleteRed.png" class="delIcon" data-index="{{index}}" bindtap="deleteImg"/>
-                    <image src="{{item}}" mode="widthFix" class="contImage" data-index="{{index}}" bindtap="viewPic"/>
+                    <image src="{{item.path}}" mode="widthFix" class="contImage" data-index="{{index}}" bindtap="viewPic"/>
                 </view>
                 <view bindtap="upLoadHiddenManage" class="img-item addImage" wx:if="{{imageList.length!==9}}">
                     <image src="../../img/camere.png" mode="widthFix"/>
@@ -42,7 +42,7 @@
         </view>
     </view>
     
-    <view class="fixed-btn" bindtap="postsAdd">
+    <view class="fixed-btn" bindtap="confirm">
         立即发布
     </view>
     <view class="imageOrVideo" hidden="{{upLoadHidden}}">

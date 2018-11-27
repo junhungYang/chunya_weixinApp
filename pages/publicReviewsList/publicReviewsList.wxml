@@ -40,7 +40,7 @@
                 <view class="wrap">
                     <view wx:for="{{imageList}}" wx:for-index="index" wx:key="{{index+1}}">
                          <image src="../../img/deleteRed.png" class="delIcon" data-index="{{index}}" bindtap="deleteImg"/>
-                        <image class="contImage" src="{{item}}" mode="widthFix"data-index="{{index}}" data-type="post"   bindtap="previewImg"/>
+                        <image class="contImage" src="{{item.path}}" mode="widthFix"data-index="{{index}}" data-type="post"   bindtap="previewImg"/>
                     </view>
                     <view bindtap="addImage" wx:if="{{imageList.length!==9}}">
                         <image class="add-image" src="../../img/camere.png" mode="widthFix"/>
@@ -56,7 +56,7 @@
                 <image src="../../img/chooseImg.png" />
             </view>
         </view>
-        <input placeholder="点击评论留言..." value="{{commentValue}}" type="text" bindinput="inputComment" bindconfirm="postComment" placeholder-class="placeholder"/>
+        <input placeholder="点击评论留言..." value="{{commentValue}}" type="text" bindinput="inputComment" bindconfirm="confirm" placeholder-class="placeholder"/>
         
     </view>
 </view>

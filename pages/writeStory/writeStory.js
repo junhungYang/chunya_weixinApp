@@ -50,80 +50,32 @@ Page({
     this.setData({
       upLoadFile: 'image'
     })
-    wx.chooseImage({
-      sizeType: 'compressed',
-      success: res => {
-        this.setData({
-          videoSrc: ''
-        })
-        res.tempFiles.forEach((item,index) => {
-          if (item.size > 5000000) {
-            wx.showModal({
-              title: '图片过大',
-              content: '个别图片过大，请重新选择'
-            })
-          }else {
-            this.upLoadImg(res.tempFiles, index);
-          }
-        })
-      }
+    App.addImage(this.data.imageList.length).then(data => {
+      let imageList = [...this.data.imageList,...data]
+      this.setData({ 
+        imageList,
+        upLoadHidden: true
+       });
     })
   },
-  upLoadVideo(videoSrc) {
-    wx.showLoading({
-      title: '正在上传',
-      // mask: true
-    })
-    let promiseObj = new Promise((resolve,reject) => {
+  upLoadVideo() {
+    return new Promise((resolve,reject) => {
       wx.uploadFile({
         url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-        filePath: videoSrc,
+        filePath: this.data.videoSrc,
         name: "file",
         success: res => {
           let data = JSON.parse(res.data)
+          console.log(data)
           if (data.errno === 0) {
-            this.setData({
-              videoSrc: data.data,
-            })
-            resolve()
+            console.log(123456)
+           resolve(data.data)
           } else {
-            wx.showModal({ title: data.msg })
-            reject()
+            reject(data.msg)
           }
         }
-      });
+      })
     })
-
-  },
-  upLoadImg(list,index) {
-    let path = list[index].path
-    wx.showLoading({
-      title: '正在上传',
-      mask: true
-    })
-    wx.uploadFile({
-      url: "https://shop.chunyajkkj.com/ch/api/upload/upload",
-      filePath: path,
-      name: "file",
-      success: res => {
-        let data = JSON.parse(res.data);
-        if(data.errno === 0) {
-          wx.hideLoading()
-          let arr = [...this.data.imageList,data.data]
-          if(arr.length > 9) {
-            arr.splice(9)
-          }
-          this.setData({
-            imageList: arr,
-            upLoadHidden: true
-          })
-        }else {
-          wx.showModal({
-            title: data.msg
-          })
-        }
-      }
-    });
   },
   addVideo() {
     this.setData({
@@ -137,8 +89,10 @@ Page({
             content: '视频过大，请进行裁剪或上传其他视频'
           })
         }else {
-          console.log(res);
-          this.upLoadVideo(res.tempFilePath);
+          this.setData({ 
+            videoSrc: res.tempFilePath,
+            upLoadHidden: true
+           });
         }
       }
     })
@@ -162,8 +116,11 @@ Page({
       url:`../watchVideo/watchVideo?src=${this.data.videoSrc}`
     })
   },
-  postsAdd() {
+  confirm() {
     if(this.data.titleText&&this.data.contentText) {
+      wx.showLoading({
+        title: '正在上传'
+      })
       let isTop = this.data.isTop ? 0 : 2
       let obj = {
         title: this.data.titleText,
@@ -172,28 +129,45 @@ Page({
         videoCoverUrl: ''
       }
       if (this.data.upLoadFile === 'image') {
-        obj.imagesList = this.data.imageList
+        obj.imagesList = []
+        this.upLoadImg(obj)
       }else {
         if(this.data.videoSrc) {
-          obj.imagesList = [this.data.videoSrc]
-          obj.videoCoverUrl = this.data.videoPoster
+          this.upLoadVideo().then(data => {
+            obj.imagesList = [data]
+            this.postsAdd(obj)
+          })
         }else {
           obj.imagesList = []
+          this.postsAdd(obj)
         }
       }
-      _PostsAdd(obj)
-        .then(data => {
-          wx.showToast({ title: "发布成功", mask: true });
-          this.refreshPrevPage();
-          wx.navigateBack({ delta: 1 });
-        })
-        .catch(data => App.catchError(data));
     }else {
       wx.showModal({
         title: '请填写完整内容',
         content: '请填写您要发布的内容或标题'
       })
     }
+  },
+  upLoadImg(obj) {
+    this.data.imageList.forEach(item => {
+      App.upLoadImg(item.path).then(data => {
+        obj.imagesList.push(data)
+        if (obj.imagesList.length === this.data.imageList.length) {
+          this.postsAdd(obj)
+        }
+      }).catch(msg => wx.showModal({ title: msg }))
+    })
+  },
+  postsAdd(data) {
+    _PostsAdd(data)
+      .then(() => {
+        wx.hideLoading()
+        wx.showToast({ title: "发布成功", mask: true });
+        this.refreshPrevPage();
+        wx.navigateBack({ delta: 1 });
+      })
+      .catch(data => App.catchError(data));
   },
   refreshPrevPage() {
     let pages = getCurrentPages()
@@ -205,7 +179,6 @@ Page({
     prevPage.getStoryList()
   },
   upLoadHiddenManage(e) {
-    console.log(11111)
     let index = e.currentTarget.dataset.index
     if(index === 1) {
       this.setData({
@@ -219,14 +192,9 @@ Page({
   },
   viewPic(e) {
     let index = e.currentTarget.dataset.index
-    let arr = [];
-    this.data.imageList.forEach(item => {
-      arr.push(item)
-    })
-    wx.previewImage({
-      current: arr[index],
-      urls: arr
-    })
+    let imageList = []
+    this.data.imageList.forEach(item => imageList.push(item.path))
+    App.previewImg(index, imageList)
   },
   onReady: function () {
 
