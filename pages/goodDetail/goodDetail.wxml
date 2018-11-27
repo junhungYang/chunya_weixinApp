@@ -1,9 +1,4 @@
 <view class="template">
-    <view class="nav">
-        <text bindtap="scrollToDom" class="{{navActive===1?'nav-active':''}}" data-index="{{1}}">宝贝</text>
-        <text bindtap="scrollToDom" class="{{navActive===2?'nav-active':''}}" data-index="{{2}}">详情</text>
-        <text bindtap="scrollToDom" class="{{navActive===3?'nav-active':''}}" data-index="{{3}}">评价</text>
-    </view>
     <view class="goodMod">
         <view class="swiper">
             <good-swiper gallery="{{detail.gallery}}"></good-swiper>
@@ -78,7 +73,7 @@
             <image src="../../img/logo.png" />
             <view>
                 <text>种子生活</text>
-                <text>chunya Health Technology</text>
+                <text>The seeds of life</text>
                 <text>官方</text>
                 <view class="btn">进店</view>
             </view>

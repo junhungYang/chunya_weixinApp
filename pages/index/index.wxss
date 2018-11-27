@@ -227,7 +227,7 @@
   font-size: 24rpx;
   color: #444444;
   line-height: 42rpx;
-  max-height: 84rpx;
+  height: 84rpx;
   overflow: hidden;
 }
 .container .index-cont .hot-goods .goods-item .list .list-item .price {

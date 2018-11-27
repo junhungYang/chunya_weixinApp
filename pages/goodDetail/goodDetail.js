@@ -21,8 +21,6 @@ Page({
     activeProduct: {},
     goodId: "",
     reviews: [],
-    domPosTop: {},
-    navActive: 1,
     couponHidState: true,
     serviceHidState: true,
     from: "",
@@ -142,50 +140,10 @@ Page({
       quantity: 1
     });
   },
-  getDomPosTop() {
-    let query = wx.createSelectorQuery();
-    query.select("#reviews").boundingClientRect();
-    query.select("#good-detail").boundingClientRect();
-
-    let obj = {};
-    obj.allTop = 0;
-    query.exec(function(res) {
-      obj.reviewsTop = res[0].top - 44;
-      obj.detailTop = res[1].top - 44;
-    });
-    this.setData({
-      domPosTop: obj
-    });
-  },
-  scrollToDom(e) {
-    let index = e.currentTarget.dataset.index;
-    let domPosTop = this.data.domPosTop;
-    this.setData({
-      navActive: index
-    });
-    switch (index) {
-      case 1:
-        wx.pageScrollTo({
-          scrollTop: 0
-        });
-        break;
-      case 2:
-        wx.pageScrollTo({
-          scrollTop: domPosTop.detailTop
-        });
-        break;
-      case 3:
-        wx.pageScrollTo({
-          scrollTop: domPosTop.reviewsTop
-        });
-        break;
-    }
-  },
   getReviews() {
     _GoodCommentList({ goodId: this.data.goodId, size: 5, page: 1 })
       .then(data => {
         this.setData({ reviews: data });
-        this.getDomPosTop();
       })
       .catch(data => App.catchError(data));
   },
@@ -197,7 +155,6 @@ Page({
           userHasCollect: data.userHasCollect,
           activeProduct: data.productList[0]
         });
-        this.getDomPosTop();
       })
       .catch(data => App.catchError(data));
   },
@@ -315,32 +272,14 @@ Page({
     wx.pageScrollTo({
       scrollTop: 0
     });
-    this.setData({
-      navActive: 1
-    });
+
   },
   onPageScroll(res) {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(() => {
-      let domPosTop = this.data.domPosTop;
-      let navActive;
-      if (res.scrollTop < domPosTop.reviewsTop) {
-        navActive = 1
-      } else if (
-        res.scrollTop >= domPosTop.reviewsTop &&
-        res.scrollTop < domPosTop.detailTop
-      ) {
-        navActive = 3
-      } else if (res.scrollTop >= domPosTop.detailTop) {
-        navActive = 2
-      }
-      this.setData({
-        navActive,
-        cartShowFlag: true,
-        couponHidState: true,
-        serviceHidState: true
-      });
-    }, 500);
+    this.setData({
+      cartShowFlag: true,
+      couponHidState: true,
+      serviceHidState: true
+    });
   },
   onShareAppMessage: function() {
     wx.showShareMenu();

@@ -133,13 +133,13 @@
   border-top-left-radius: 15rpx;
   border-top-right-radius: 15rpx;
   box-shadow: 0rpx -5rpx 10rpx rgba(190, 190, 190, 0.4);
-  padding-top: 20rpx;
+  padding-top: 48rpx;
   padding-bottom: 20rpx;
 }
 .template .release .choose-img .img-group .wrap view {
   display: inline-block;
-  width: 207rpx;
-  height: 207rpx;
+  width: 205rpx;
+  height: 205rpx;
   overflow: hidden;
   position: relative;
   margin-left: 7rpx;
@@ -155,6 +155,7 @@
 }
 .template .release .choose-img .img-group .wrap view .add-image {
   width: 100%;
+  background: #fff;
 }
 .template .release .choose-img .img-group .wrap view .delIcon {
   width: 35rpx;
@@ -163,9 +164,6 @@
   right: 5rpx;
   top: 5rpx;
   z-index: 2;
-}
-.template .release .choose-img .img-group .wrap view:last-of-type {
-  background: #fff;
 }
 .template .release .choose-img .img-group .img-box:nth-child(3n+1) {
   margin-left: 0;

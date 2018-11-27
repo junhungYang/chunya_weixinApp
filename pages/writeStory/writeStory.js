@@ -119,7 +119,8 @@ Page({
   confirm() {
     if(this.data.titleText&&this.data.contentText) {
       wx.showLoading({
-        title: '正在上传'
+        title: '正在上传',
+        mask: true
       })
       let isTop = this.data.isTop ? 0 : 2
       let obj = {

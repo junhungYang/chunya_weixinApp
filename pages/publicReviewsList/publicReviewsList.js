@@ -76,6 +76,10 @@ Page({
     }
   },
   confirm() {
+    wx.showLoading({
+      title: '正在提交',
+      mask: true
+    })
     if (this.data.commentValue) {
       if(this.data.imageList.length !== 0) {
         let imagesList = [];
@@ -105,6 +109,7 @@ Page({
       imagesList,
     })
       .then(() => {
+        wx.hideLoading()
         wx.showToast({ title: "发表成功", icon: "success" });
         this.setData({
           pageIndex: 1,

@@ -16,28 +16,7 @@
 .invisibleclass::after {
   border: 0;
 }
-.nav {
-  height: 88rpx;
-  background: #f2f2f2;
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  z-index: 5;
-  width: 70%;
-  padding: 0 15%;
-}
-.nav text {
-  font-size: 32rpx;
-  line-height: 86rpx;
-  color: #686868;
-  font-weight: 400;
-}
-.nav .nav-active {
-  color: #2ca5ae;
-  border-bottom: 2px solid #2ca5ae;
-}
 .goodMod {
-  padding-top: 88rpx;
   padding-bottom: 92rpx;
 }
 .goodMod .swiper {
@@ -249,9 +228,10 @@
 .goodMod .shop-nav view text:first-of-type {
   font-size: 28rpx;
   font-weight: bold;
+  line-height: 32rpx;
 }
 .goodMod .shop-nav view text:nth-of-type(2) {
-  font-size: 11rpx;
+  font-size: 14rpx;
   color: #464646;
 }
 .goodMod .shop-nav view text:last-of-type {
@@ -264,7 +244,7 @@
   text-align: center;
   color: #fff;
   background: #464646;
-  margin-top: 11rpx;
+  margin-top: 6rpx;
 }
 .goodMod .shop-nav view .btn {
   width: 88rpx;
@@ -670,7 +650,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  top: 88rpx;
+  top: 0;
   bottom: 0;
 }
 .coupon-list .bg,
