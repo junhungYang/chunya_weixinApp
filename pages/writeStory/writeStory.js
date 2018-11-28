@@ -56,6 +56,7 @@ Page({
         imageList,
         upLoadHidden: true
        });
+       wx.hideLoading()
     })
   },
   upLoadVideo() {

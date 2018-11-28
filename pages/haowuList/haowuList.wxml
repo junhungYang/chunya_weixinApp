@@ -1,34 +1,3 @@
 <view class="template">
-    <view class="list">
-        <view class="big-item" wx:for="{{fatherList}}" wx:for-index="index" wx:key="{{item.id}}">
-            <view class="header">
-                <image src="{{item.wap_banner_url}}" />
-                <text>{{item.front_desc}}</text>
-            </view>
-            <view class="sm-list" wx:if="{{item.subCategoryList.data.length!==0}}">
-                <view class="list-item"  wx:for="{{item.subCategoryList.data}}" wx:for-item="item1" wx:key="{{item1.id}}">
-                    <form bindsubmit="formSubmit_collect" report-submit="true">
-                        <button  formType="submit"  hover-class="none" class='invisibleclass' data-goodId="{{item1.id}}" bindtap="navToGoodDetail">
-                            <view class="img-wrap">
-                                <image src="{{item1.primary_pic_url}}" mode="widthFix"/>
-                            </view>
-                            <text>{{item1.name}}</text>
-                            <view class="price">
-                                <text class="now-price">￥{{item1.retail_price}}</text>
-                                <text class="old-price">￥{{item1.market_price}}</text>
-                            </view>
-                        </button>
-                    </form>      
-                </view>
-            </view>
-            <view class="uploading" wx:if="{{item.subCategoryList.count===0}}">
-                — 产品上新中，敬请期待 —
-            </view>
-            <view class="changePage" wx:if="{{item.subCategoryList.count!==0}}">
-                <text data-type="minus" wx:if="{{item.subCategoryList.currentPage!==1}}" data-targetindex="{{index}}" data-page="{{item.subCategoryList.currentPage}}" bindtap="changePageEnter">上一页</text>
-                <text wx:if="{{ (item.subCategoryList.currentPage!==1) && (item.subCategoryList.currentPage!==item.subCategoryList.totalPages) }}">|</text>
-                <text data-type="add" wx:if="{{item.subCategoryList.currentPage!==item.subCategoryList.totalPages}}" data-targetindex="{{index}}" data-page="{{item.subCategoryList.currentPage}}" bindtap="changePageEnter">下一页</text>
-            </view>
-        </view>   
-    </view>
+    <haowu-list ishot="{{0}}" id="haowu"></haowu-list>
 </view>

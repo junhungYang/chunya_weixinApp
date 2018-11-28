@@ -537,7 +537,10 @@ const _GetSessionKey = function(data) {
           resolve(res.data.data);
           console.log(res.data.msg)
         } else {
-          reject(res.data.msg);
+          reject({
+            errno: res.data.errno,
+            errmsg: res.data.errmsg
+          })
         }
       }
     });
@@ -557,7 +560,10 @@ const _GetSensitiveInfo = function(data) {
         if (res.data.errno === 0) {
           resolve(res.data.data);
         } else {
-          reject(res.data.msg);
+          reject({
+            errno: res.data.errno,
+            errmsg: res.data.errmsg
+          })
         }
       }
     });

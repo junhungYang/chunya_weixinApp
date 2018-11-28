@@ -23,13 +23,10 @@ Page({
     commActiveIndex: "",
     commOffset: 0,
     eventItemWidth: 0,
-    goodsTotalPages: 0,
-    goodsPage: 1,
-    testArr: [1, 2, 3, 4, 5, 6, 78, 9, 78, 54, 2, 6, 45, 3]
+    haowuComp: null
   },
 
   onLoad() {
-    this.getGoodsList();
     App.setWatcher(App.globalData, this.watch);
     that = this;
     _SpreadList({
@@ -42,21 +39,14 @@ Page({
       });
       }).catch(data => App.catchError(data))
   },
+  onReady() {
+    let haowuComp = this.selectComponent("#haowu");
+    this.setData({ haowuComp });
+  },
   watch: {
     publicSwiperIndex(nV) {
       that.setData({ commActiveIndex: nV });
     }
-  },
-  getGoodsList() {
-    _GoodsList({
-      page: this.data.goodsPage,
-      size: 10
-    }).then(data => {
-      this.setData({
-        goodsList: data.data,
-        goodsTotalPages: data.totalPages
-      });
-      }).catch(data => App.catchError(data))
   },
   getEventWidth() {
     let query = wx.createSelectorQuery();
@@ -141,16 +131,7 @@ Page({
       this.switchToLogin();
     }
   },
-  navToGoodDetail(e) {
-    if (App.globalData.token) {
-      let goodId = e.currentTarget.dataset.goodid;
-      wx.navigateTo({
-        url: `../goodDetail/goodDetail?goodId=${goodId}`
-      });
-    } else {
-      this.switchToLogin();
-    }
-  },
+
   searchInput(e) {
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
@@ -205,15 +186,7 @@ Page({
     });
   },
   onReachBottom: function() {
-    if (this.data.goodsPage < this.data.goodsTotalPages) {
-      this.setData({ page: this.data.goodsPage + 1 });
-      wx.showLoading({
-        title: "正在加载"
-      });
-      this.getHaowuList();
-    } else {
-      App.theEndPage();
-    }
+    this.data.haowuComp.scrollRefresh()
   },
   onShareAppMessage: function() {
     wx.showShareMenu();

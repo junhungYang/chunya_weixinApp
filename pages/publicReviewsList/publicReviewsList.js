@@ -53,6 +53,7 @@ Page({
       this.setData({
         imageList
       })
+      wx.hideLoading()
     })
   },
   deleteImg(e) {

@@ -1,6 +1,6 @@
 {
     "navigationBarTitleText": "春芽好物",
     "usingComponents": {
-        "my-swiper": "../components/swiper/swiper"
+        "haowu-list": "../components/haowu/haowu"
     }
 }

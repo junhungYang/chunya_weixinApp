@@ -80,22 +80,7 @@
           <text>热销产品</text><text>HOT-SALE PRODUCTS</text>
         </view>
         <view class="goods-item">
-          <view class="list">
-            <view class="list-item"  wx:for="{{goodsList}}">
-              <form bindsubmit="formSubmit_collect" report-submit="true">
-                  <button  formType="submit"  hover-class="none" class='invisibleclass' data-goodId="{{item.id}}" bindtap="navToGoodDetail">
-                      <view class="img-wrap">
-                            <image src="{{item.primary_pic_url}}" mode="widthFix"/>
-                      </view>
-                      <text>{{item.name}}</text>
-                      <view class="price">
-                        <text class="now-price">￥{{item.retail_price}}</text>
-                        <text class="old-price">￥{{item.market_price}}</text>
-                      </view>
-                  </button>
-              </form>      
-            </view>
-          </view>
+          <haowu-list ishot="{{1}}"  id="haowu"></haowu-list>
         </view>
       </view>
   </view>

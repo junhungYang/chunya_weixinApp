@@ -1,0 +1,119 @@
+.list {
+  padding-top: 48rpx;
+}
+.list .big-item {
+  padding-top: 25rpx;
+  margin: 0 6.4%;
+}
+.list .big-item:first-of-type {
+  padding-top: 0;
+}
+.list .big-item .header image {
+  display: block;
+  width: 100%;
+  height: 220rpx;
+  background: #f2f2f2;
+}
+.list .big-item .header text {
+  display: block;
+  width: 100%;
+  text-align: center;
+  height: 93rpx;
+  line-height: 93rpx;
+  font-size: 24rpx;
+  color: #313131;
+}
+.list .big-item .sm-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.list .big-item .sm-list .list-item {
+  width: 309rpx;
+  margin-top: 20rpx;
+  position: relative;
+}
+.list .big-item .sm-list .list-item .img-wrap {
+  width: 309rpx;
+  height: 430rpx;
+  background: #f2f2f2;
+  overflow: hidden;
+}
+.list .big-item .sm-list .list-item .img-wrap image {
+  width: 309rpx;
+}
+.list .big-item .sm-list .list-item text {
+  padding-top: 6rpx;
+  display: block;
+  font-size: 24rpx;
+  color: #444444;
+  line-height: 42rpx;
+}
+.list .big-item .sm-list .list-item .good-name {
+  height: 84rpx;
+  overflow: hidden;
+}
+.list .big-item .sm-list .list-item .price {
+  position: relative;
+  font-size: 0;
+}
+.list .big-item .sm-list .list-item .price .now-price {
+  display: inline-block;
+  color: #d1051f;
+  font-size: 24rpx;
+}
+.list .big-item .sm-list .list-item .price .old-price {
+  display: inline-block;
+  color: #b2b2b2;
+  font-size: 24rpx;
+  text-decoration: line-through;
+  margin-left: 20rpx;
+}
+.list .big-item .sm-list .list-item:first-of-type {
+  margin-top: 0;
+}
+.list .big-item .sm-list .list-item:nth-of-type(2) {
+  margin-top: 0;
+}
+.list .big-item .uploading {
+  height: 250rpx;
+  line-height: 250rpx;
+  font-size: 20rpx;
+  color: #b2b2b2;
+  text-align: center;
+}
+.list .big-item .changePage {
+  text-align: center;
+}
+.list .big-item .changePage text {
+  line-height: 80rpx;
+  font-size: 24rpx;
+  color: #b2b2b2;
+}
+.list .big-item .changePage text:first-of-type {
+  padding: 0 20rpx;
+}
+.list .big-item .changePage text:last-of-type {
+  padding: 0 20rpx;
+}
+.list .big-item .changePage .fff {
+  color: #fff;
+}
+.list .big-item:last-of-type {
+  padding-bottom: 50rpx;
+}
+.invisibleclass {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+  line-height: 0;
+}
+.form {
+  width: 100%;
+  height: 100%;
+}
+.invisibleclass::after {
+  border: 0;
+}

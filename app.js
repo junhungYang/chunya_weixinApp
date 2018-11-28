@@ -177,6 +177,10 @@ App({
     wx.previewImage({ current: arr[index], urls: arr });
   },
   addImage(listLen) {
+    wx.showLoading({
+      title: '正在上传',
+      mask: true
+    })
     return new Promise(resolve => {
       wx.chooseImage({
         sizeType: "compressed",
@@ -201,13 +205,14 @@ App({
           if (data.errno === 0) {
             resolve(data.data)
           } else {
-            reject(data.msg)
+            reject(data.errmsg)
           }
         }
       });
     })
   },
   catchError(data) {
+    console.log(data)
     if (data.errno === 401) {
       wx.showModal({
         title: "登录提示",

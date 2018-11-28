@@ -1,6 +1,7 @@
 {
     "usingComponents": {
         "my-swiper": "../components/swiper/swiper",
-        "public-swiper": "../components/eventsSwiper/eventsSwiper"
+        "public-swiper": "../components/eventsSwiper/eventsSwiper",
+        "haowu-list": "../components/haowu/haowu"
     }
 }

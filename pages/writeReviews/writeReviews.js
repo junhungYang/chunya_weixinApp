@@ -128,21 +128,28 @@ Page({
     }, 500);
   },
   addImage(e) {
-    let fatherIndexByUpload = e.currentTarget.dataset.index;
-    this.setData({ fatherIndexByUpload });
-    let imgList = this.data.goodsList[fatherIndexByUpload].imgList;
-    App.addImage(imgList.length).then(arr => {
-      arr.forEach(item => {
-        App.upLoadImg(item.path)
-          .then(data => this.controlImgList(data))
-          .catch(msg => wx.showModal({title:msg}))
+      let fatherIndexByUpload = e.currentTarget.dataset.index;
+      this.setData({ fatherIndexByUpload, addFlag:false });
+      let imgListLen = this.data.goodsList[fatherIndexByUpload].imgList.length;
+    App.addImage(imgListLen).then(arr => {
+        arr.forEach(item => {
+          App.upLoadImg(item.path).then(data => {
+            this.controlImgList(data, imgListLen + arr.length);
+          }).catch(msg => {
+              wx.hideLoading()
+              wx.showModal({ title: msg });
+            })
+        });
       });
-    });
   },
-  controlImgList(data) {
+  controlImgList(data,targetLen) {
     let goodsList = this.data.goodsList;
     goodsList[this.data.fatherIndexByUpload].imgList.push(data);
     this.setData({ goodsList });
+    let nowLen = goodsList[this.data.fatherIndexByUpload].imgList.length
+    if(nowLen === targetLen) {
+      wx.hideLoading()
+    }
   },
   deleteImg(e) {
     let index = e.currentTarget.dataset.index;
