@@ -535,7 +535,6 @@ const _GetSessionKey = function(data) {
       success: res => {
         if (res.data.errno === 0) {
           resolve(res.data.data);
-          console.log(res.data.msg)
         } else {
           reject({
             errno: res.data.errno,

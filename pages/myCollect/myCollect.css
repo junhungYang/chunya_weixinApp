@@ -98,3 +98,8 @@
   flex: 1;
   padding: 15rpx 0;
 }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

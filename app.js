@@ -76,6 +76,9 @@ App({
             }
           });
         } else {
+          wx.switchTab({
+            url: '../cart/cart'
+          })
         }
       }
     });
@@ -94,8 +97,12 @@ App({
       .then(data => {
         _SetToken(data.token);
         this.globalData.token = data.token;
+        wx.hideLoading()
       })
-      .catch(data => this.catchError(data));
+      .catch(data => {
+        this.catchError(data)
+        wx.hideLoading()
+      });
   },
   pay(data) {
     wx.requestPayment({
@@ -177,14 +184,14 @@ App({
     wx.previewImage({ current: arr[index], urls: arr });
   },
   addImage(listLen) {
-    wx.showLoading({
-      title: '正在上传',
-      mask: true
-    })
     return new Promise(resolve => {
       wx.chooseImage({
         sizeType: "compressed",
         success: res => {
+          wx.showLoading({
+            title: '正在上传',
+            mask: true
+          })
           let totalLen = listLen + res.tempFiles.length;
           if (totalLen > 9) {
             res.tempFiles.splice(res.tempFiles.length - (totalLen - 9));

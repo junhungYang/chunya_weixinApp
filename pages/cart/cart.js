@@ -146,6 +146,10 @@ Page({
   bindGetUserInfo(res) {
     if (res.detail.userInfo) {
       //用户点击了授权
+      wx.showLoading({
+        title: '正在登录',
+        mask: true
+      })
       App.getSensitiveInfo();
     } else {
       //用户点击了取消

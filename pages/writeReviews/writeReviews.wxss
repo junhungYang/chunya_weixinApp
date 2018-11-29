@@ -82,6 +82,7 @@
   line-height: 30rpx;
   height: 180rpx;
   overflow: hidden;
+  width: 100% !important;
 }
 .template .wrap .list .item .img-group {
   padding: 20rpx;

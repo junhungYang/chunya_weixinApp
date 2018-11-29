@@ -109,6 +109,7 @@
   background: transparent;
   text-align: left;
   line-height: 0;
+  border-radius: 0;
 }
 .form {
   width: 100%;

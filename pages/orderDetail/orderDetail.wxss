@@ -34,7 +34,7 @@
 }
 .template .logistics .desc {
   display: flex;
-  border-bottom: 2px solid #f7f7f7;
+  border-bottom: 1px solid #f7f7f7;
   height: 130rpx;
 }
 .template .logistics .desc image:first-of-type {
@@ -91,7 +91,7 @@
   padding: 0 6.4%;
 }
 .template .main .order-refund {
-  border-bottom: 2px solid #f7f7f7;
+  border-bottom: 1px solid #f7f7f7;
 }
 .template .main .order-refund .order {
   display: flex;

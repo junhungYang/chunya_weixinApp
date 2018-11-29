@@ -22,6 +22,7 @@
   color: #313131;
   height: 102rpx;
   overflow: hidden;
+  width: 100% !important;
 }
 .template .main .title {
   height: 162rpx;
@@ -34,6 +35,7 @@
   color: #313131;
   height: 102rpx;
   overflow: hidden;
+  width: 100% !important;
 }
 .template .main .content {
   height: 222rpx;

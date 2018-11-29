@@ -7,7 +7,7 @@
     <view class="search-list" hidden="{{searchListHid}}">
       <view class="bg" bindtap="hidSearchList"></view>
       <scroll-view scroll-y class="haveGoods" wx:if="{{searchList.length!==0}}" bindscrolltolower="searchListScroll">
-        <view wx:for="{{testArr}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail">
+        <view wx:for="{{searchList}}" data-goodId="{{item.id}}" bindtap="navToGoodDetail">
           {{item.name}}
         </view> 
       </scroll-view>
@@ -17,7 +17,7 @@
     </view>
   </view>
   <view class="swiper-box">
-    <my-swiper></my-swiper>
+    <my-swiper id="my-swiper"></my-swiper>
   </view>
   <view class="nav">
     <view class="item">

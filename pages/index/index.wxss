@@ -97,9 +97,9 @@
   height: 26rpx;
 }
 .container .swiper-box {
-  padding-top: 56rpx;
+  padding-top: 88rpx;
   height: 374rpx;
-  background: #eeeeee;
+  background: #464646;
   position: relative;
 }
 .container .swiper-box .mask {

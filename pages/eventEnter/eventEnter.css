@@ -132,6 +132,7 @@
   font-size: 24rpx;
   color: #b2b2b2;
   overflow: hidden;
+  width: 100% !important;
 }
 .template .input-info .desc-info ::-webkit-scrollbar {
   width: 0;

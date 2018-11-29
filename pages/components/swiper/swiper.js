@@ -6,13 +6,7 @@ Component({
     adList:[]
   }, // 私有数据，可用于模版渲染
   created() {
-      _SpreadList({
-          id: 4
-      }).then(data => {
-          this.setData({
-              adList: data.adList
-          })
-        }).catch(data => App.catchError(data))
+        this.getList()
   },
   methods: {
     navToGoodDetail(e) {
@@ -34,6 +28,15 @@ Component({
                 }
             })
         }
+    },
+    getList() {
+        _SpreadList({
+            id: 4
+        }).then(data => {
+            this.setData({
+                adList: data.adList
+            })
+        }).catch(data => App.catchError(data))
     }
   }
 });

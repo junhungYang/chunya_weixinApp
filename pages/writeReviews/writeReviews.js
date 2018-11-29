@@ -132,24 +132,20 @@ Page({
       this.setData({ fatherIndexByUpload, addFlag:false });
       let imgListLen = this.data.goodsList[fatherIndexByUpload].imgList.length;
     App.addImage(imgListLen).then(arr => {
+        let upLoadList = []
         arr.forEach(item => {
-          App.upLoadImg(item.path).then(data => {
-            this.controlImgList(data, imgListLen + arr.length);
-          }).catch(msg => {
-              wx.hideLoading()
-              wx.showModal({ title: msg });
-            })
+          upLoadList.push(App.upLoadImg(item.path))
         });
+        Promise.all(upLoadList).then(data => this.controlImgList(data))
       });
   },
-  controlImgList(data,targetLen) {
+  controlImgList(data) {
     let goodsList = this.data.goodsList;
-    goodsList[this.data.fatherIndexByUpload].imgList.push(data);
+    let newImgList = goodsList[this.data.fatherIndexByUpload].imgList.concat(data);
+    newImgList.splice(9)
+    goodsList[this.data.fatherIndexByUpload].imgList = newImgList;
     this.setData({ goodsList });
-    let nowLen = goodsList[this.data.fatherIndexByUpload].imgList.length
-    if(nowLen === targetLen) {
-      wx.hideLoading()
-    }
+    wx.hideLoading()
   },
   deleteImg(e) {
     let index = e.currentTarget.dataset.index;

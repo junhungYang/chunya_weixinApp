@@ -13,7 +13,6 @@ Page({
   data: {
     canIUse: wx.canIUse("button.open-type.getUserInfo"),
     name: "junxing",
-    goodsList: [],
     searchText: "",
     searchListHid: true,
     searchList: [],
@@ -29,15 +28,7 @@ Page({
   onLoad() {
     App.setWatcher(App.globalData, this.watch);
     that = this;
-    _SpreadList({
-      id: 6
-    }).then(data => {
-      this.setData({
-        commonwealList: data.adList,
-        commAllPage: data.adList.length,
-        commActiveIndex: 1
-      });
-      }).catch(data => App.catchError(data))
+    this.getCommonwealList()
   },
   onReady() {
     let haowuComp = this.selectComponent("#haowu");
@@ -47,6 +38,17 @@ Page({
     publicSwiperIndex(nV) {
       that.setData({ commActiveIndex: nV });
     }
+  },
+  getCommonwealList() {
+    _SpreadList({
+      id: 6
+    }).then(data => {
+      this.setData({
+        commonwealList: data.adList,
+        commAllPage: data.adList.length,
+        commActiveIndex: 1
+      });
+    }).catch(data => App.catchError(data))
   },
   getEventWidth() {
     let query = wx.createSelectorQuery();
@@ -155,15 +157,27 @@ Page({
     }).then(data => {
       this.setData({ searchTotalPage: data.totalPages });
       if (type === "input") {
+     
         this.setData({
           searchList: data.data
         });
+        console.log(this.data.searchList)
       } else {
         this.setData({
           searchList: [...this.data.searchList, ...data.data]
         });
       }
       }).catch(data => App.catchError(data))
+  },
+  navToGoodDetail(e) {
+    if (App.globalData.token) {
+      let goodId = e.currentTarget.dataset.goodid;
+      wx.navigateTo({
+        url: `../goodDetail/goodDetail?goodId=${goodId}`
+      });
+    } else {
+      this.switchToLogin()
+    }
   },
   searchListScroll() {
     if (this.data.searchPage < this.data.searchTotalPage) {
@@ -190,5 +204,21 @@ Page({
   },
   onShareAppMessage: function() {
     wx.showShareMenu();
+  },
+  onPageScroll() {
+    this.setData({ searchListHid:true });
+  },
+  onPullDownRefresh() {
+    this.getCommonwealList()
+    this.selectComponent("#my-swiper").getList()
+    this.data.haowuComp.setData({
+      fatherList: [],
+      page: 1,
+      totalPages: 0,
+    })
+    this.data.haowuComp.getHaowuList()
+    setTimeout(() => {
+      wx.stopPullDownRefresh();
+    }, 1000);
   }
 });

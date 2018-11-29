@@ -78,14 +78,11 @@
                 <view class="btn">进店</view>
             </view>
         </view>
-        <view class="reviews" id="reviews">
+        <view class="reviews" wx:if="{{reviews.data.length > 0}}">
             <view class="title">
                 <text>用户评价:</text>
                 <view class="start-list">
-                    <!--<image src="../../img/goodDetail/start.png" />
-                     <image src="../../img/goodDetail/start.png" />
-                      <image src="../../img/goodDetail/start.png" />
-                       <image src="../../img/goodDetail/start.png" /> -->
+                    <image wx:for="{{detail.info.star}}" src="../../img/goodDetail/start.png" />
                 </view>
                 <view class="quantity" bindtap="navToReviewsList">
                     <text>{{reviews.count}}条评论</text>
