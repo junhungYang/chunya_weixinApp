@@ -33,6 +33,9 @@ Page({
     this.getActivityList()
   },
   getActivityList() {
+    wx.showLoading({
+      title: '正在加载'
+    })
     _ActivityList({
       page: this.data.pageIndex,
       type: this.data.navActive,
@@ -40,7 +43,9 @@ Page({
     }).then(data => {
       this.dataTranslate(data.data)
       this.setData({ totalPages:data.totalPages });
-      wx.hideLoading()
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 600)
       }).catch(data => App.catchError(data))
   },
   dataTranslate(dataList) {
