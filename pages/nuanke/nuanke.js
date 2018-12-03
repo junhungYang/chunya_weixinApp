@@ -36,6 +36,7 @@ Page({
   getList() {
       wx.showLoading({
         title: '正在加载',
+        mask:true
       })
     _WarmclassList({
       page: this.data.page,

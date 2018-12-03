@@ -121,7 +121,6 @@ Page({
     this.setData({
       data
     });
-    console.log(this.data.data.invoicerEmail);
   },
   inputPhoneNum(e) {
     clearTimeout(this.timer);
@@ -131,7 +130,6 @@ Page({
       this.setData({
         data
       });
-      console.log(this.data.data.invoicerMobile.length);
     }, 600);
   },
   filterStart() {
@@ -230,10 +228,12 @@ Page({
     this.refreshPrevPage(obj);
   },
   showAttention() {
-    console.log(11111);
     this.setData({
       attentionState: !this.data.attentionState
     });
+  },
+  onPageScroll() {
+    this.setData({ listState:true });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

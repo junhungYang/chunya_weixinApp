@@ -30,6 +30,10 @@ Page({
     })
   },
   getOrderCheckout(couponId) {
+    wx.showLoading({
+      title:'正在加载',
+      mask:true
+    })
     let obj = {}
     if(couponId) {
       obj.couponId = couponId
@@ -39,6 +43,9 @@ Page({
         this.setData({ data });
         this.getAllQuantity();
         wx.stopPullDownRefresh();
+        setTimeout(() => {
+          wx.hideLoading()
+        }, 600);
       })
       .catch(data => App.catchError(data));
   },
