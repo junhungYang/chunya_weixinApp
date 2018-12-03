@@ -54,7 +54,8 @@ Page({
   },
   getOrder() {
     wx.showLoading({
-      title:'正在加载'
+      title:'正在加载',
+      mask:true
     })
     _OrderDetail({
       orderId: this.data.orderId

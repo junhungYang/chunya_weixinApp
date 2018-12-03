@@ -29,6 +29,10 @@ Page({
     }
   },
   getMyCollect() {
+    wx.showLoading({
+      title: '正在加载',
+      mask: true
+    })
     _CollectList({
       typeId: 0,
       page: this.data.page,
@@ -39,6 +43,9 @@ Page({
         list: arr,
         totalPages: data.totalPages
       })
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 600);
       }).catch(data => App.catchError(data))
   },
   navToGoodDetail(e) {
@@ -73,9 +80,6 @@ Page({
   onReachBottom: function () {
     if (this.data.page < this.data.totalPages) {
       this.setData({ page: this.data.page + 1 });
-      wx.showLoading({
-        title: '正在加载'
-      })
       this.getMyCollect()
     } else {
       App.theEndPage()

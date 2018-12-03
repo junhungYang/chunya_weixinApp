@@ -1,4 +1,5 @@
 <view class="template">
+    <video wx:if="{{videoId}}" src="{{videoSrc}}" poster="{{poster}}"></video>
     <rich-text wx:if="{{isPay}}" nodes="{{contentDesc}}"></rich-text>
     <view wx:if="{{isPay===0}}" class="payMask">
         <view>

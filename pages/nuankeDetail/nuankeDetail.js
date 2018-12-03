@@ -1,6 +1,7 @@
 // pages/nuankeDetail/nuankeDetail.js
 const App = getApp()
 import { _WarmclassDetail, _WarmclassPay} from '../../utils/request'
+import {getVideoInfo,requestVideoUrls} from '../../utils/transVideoInfo'
 var that = this;
 Page({
 
@@ -10,7 +11,10 @@ Page({
   data: {
     id:'',
     contentDesc:'',
-    isPay:false
+    isPay:false,
+    videoId: null,
+    poster: '',
+    videoSrc: null
   },
 
   /**
@@ -20,9 +24,7 @@ Page({
     that = this
     App.setWatcher(App.globalData,this.watch)
     if(App.globalData.token) {
-      this.setData({
-        id: Number(options.id)
-      })
+      this.setData({ id: Number(options.warmClassId) });
       this.getDetail()
     }
   },
@@ -42,9 +44,23 @@ Page({
       })
       this.setData({
         contentDesc: data.contentDesc,
-        isPay: data.isPay
-      })
+        isPay: data.isPay,
+        videoId: data.videoId,
+        poster: data.listCoverUrl
+      });
+      this.getVideo()
       }).catch(data => App.catchError(data))
+  },
+  getVideo() {
+    if(this.data.videoId) {
+      getVideoInfo(this.data.videoId)
+      .then(requestVideoUrls)
+      .then(data => {
+        this.setData({
+          videoSrc: data
+        })
+      })
+    }
   },
   nuankePay(e) {
     clearTimeout(this.timer)

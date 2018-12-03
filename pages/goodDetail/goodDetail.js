@@ -109,7 +109,8 @@ Page({
         couponPage: this.data.couponPage + 1
       })
       wx.showLoading({
-        title: '正在加载'
+        title: '正在加载',
+        mask:true
       })
       this.getCouponList()
     }else {

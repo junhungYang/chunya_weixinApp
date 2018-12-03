@@ -73,7 +73,8 @@ Page({
    */
   onPullDownRefresh: function () {
     wx.showLoading({
-      title: '正在刷新'
+      title: '正在刷新',
+      mask:true
     })
     _OrderDetail({ orderId: this.data.orderId })
       .then(data => {

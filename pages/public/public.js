@@ -81,7 +81,8 @@ Page({
   },
   onPullDownRefresh: function () {
     wx.showLoading({
-      title: '正在刷新'
+      title: '正在刷新',
+      mask:true
     })
     _GetUserInfo().then(data => {
       this.setData({

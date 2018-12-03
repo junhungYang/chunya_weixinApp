@@ -35,7 +35,7 @@ Page({
   },
   getList() {
       wx.showLoading({
-        title: '正在加载'
+        title: '正在加载',
       })
     _WarmclassList({
       page: this.data.page,
@@ -55,7 +55,7 @@ Page({
   navToDetail(e) {
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `../nuankeDetail/nuankeDetail?id=${id}`
+      url: `../nuankeDetail/nuankeDetail?warmClassId=${id}`
     });
   },
   changeNav(e) {
@@ -75,7 +75,7 @@ Page({
     })
     if(isPay) {
       wx.navigateTo({
-        url: `../nuankeDetail/nuankeDetail?id=${this.data.payId}`
+        url: `../nuankeDetail/nuankeDetail?warmClassId=${this.data.payId}`
       });
     }else {
       this.setData({
@@ -149,7 +149,7 @@ Page({
         });
         setTimeout(() => {
           wx.navigateTo({
-            url: `../nuankeDetail/nuankeDetail?id=${this.data.payId}`
+            url: `../nuankeDetail/nuankeDetail?warmClassId=${this.data.payId}`
           });
         }, 500);
       }

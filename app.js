@@ -219,7 +219,7 @@ App({
     })
   },
   catchError(data) {
-    console.log(data)
+    wx.hideLoading()
     if (data.errno === 401) {
       wx.showModal({
         title: "登录提示",

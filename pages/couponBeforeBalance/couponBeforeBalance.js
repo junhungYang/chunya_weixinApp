@@ -30,7 +30,8 @@ Page({
   },
   getCouponList() {
     wx.showLoading({
-      title: '正在加载'
+      title: '正在加载',
+      mask:true
     })
     _CouponListByCart({
       type: this.data.navActive,

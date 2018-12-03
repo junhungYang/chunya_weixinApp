@@ -43,11 +43,6 @@ Page({
    */
   onReachBottom: function() {
     if(this.data.pageIndex < this.data.totalPages) {
-      wx.showToast({
-        title: "正在加载",
-        icon: "loading",
-        mask: true
-      });
       this.setData({
         pageIndex: this.data.pageIndex + 1
       });
@@ -68,6 +63,10 @@ Page({
     }
   },
   getOrderList(str) {
+    wx.showLoading({
+      title: "正在加载",
+      mask: true
+    });
     let obj = { page: this.data.pageIndex, size: 10 };
     if (this.data.requestCode !== -1) {
       obj = {
@@ -89,6 +88,9 @@ Page({
             totalPages: data.totalPages
           });
         }
+        setTimeout(() => {
+          wx.hideLoading()
+        }, 600);
       })
       .catch(data => App.catchError(data));
   },

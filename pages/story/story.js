@@ -26,7 +26,8 @@ Page({
   },
   getStoryList() {
       wx.showLoading({
-        title: "正在加载"
+        title: "正在加载",
+        mask:true
       });
     _PostsList({
       type: this.data.navActive,

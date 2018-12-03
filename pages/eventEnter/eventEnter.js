@@ -106,7 +106,8 @@ Page({
       })
     }else {
       wx.showLoading({
-        title: '正在提交'
+        title: '正在提交',
+        mask:true
       })
       _ActivitySignUp({
         id: this.data.id,
