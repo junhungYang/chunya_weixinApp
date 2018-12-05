@@ -13,10 +13,6 @@ Page({
     navActive: 0,
     totalPages: 0
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     that = this
     App.setWatcher(App.globalData,this.watch)
@@ -34,7 +30,8 @@ Page({
   },
   getActivityList() {
     wx.showLoading({
-      title: '正在加载'
+      title: '正在加载',
+      mask:true
     })
     _ActivityList({
       page: this.data.pageIndex,

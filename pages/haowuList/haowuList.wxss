@@ -1,6 +1,6 @@
 .template {
   min-height: 110vh;
-  background: #fff;
+  background: #191919;
   padding-top: 48rpx;
 }
 .invisibleclass {

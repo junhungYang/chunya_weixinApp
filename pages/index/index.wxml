@@ -64,8 +64,10 @@
   <view class="index-cont">
       <view class="hot-events">
         <view class="hotEvents-title">
-          <text>热门活动</text>
-          <text>{{commActiveIndex}} / {{commonwealList.length}}</text>
+          <view>热门活动</view>
+          <view>
+            <text>{{commActiveIndex}}</text> / {{commonwealList.length < 10 ? '0' + commonwealList.length : commonwealList.length}}
+          </view>
         </view>
         <!--<view class="swiper-public" >
              <public-swiper commonweal-list="{{commonwealList}}"></public-swiper>

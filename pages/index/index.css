@@ -1,5 +1,5 @@
 .container {
-  background: #f2f2f2;
+  background: #fff;
 }
 .container .input-box {
   position: fixed;
@@ -111,7 +111,7 @@
 }
 .container .nav {
   height: 176rpx;
-  background: #fff;
+  background: #f7f7f7;
   display: flex;
   justify-content: space-around;
 }
@@ -131,7 +131,7 @@
 }
 .container .index-cont {
   margin-top: 20rpx;
-  background: #fff;
+  background: #191919;
 }
 .container .index-cont .hot-events .hotEvents-title {
   padding-top: 32rpx;
@@ -140,14 +140,19 @@
   display: flex;
   justify-content: space-between;
 }
-.container .index-cont .hot-events .hotEvents-title text:first-of-type {
+.container .index-cont .hot-events .hotEvents-title view:first-of-type {
   font-size: 32rpx;
-  color: #313131;
+  color: #fff;
+  font-weight: bold;
 }
-.container .index-cont .hot-events .hotEvents-title text:last-of-type {
+.container .index-cont .hot-events .hotEvents-title view:last-of-type {
   font-size: 20rpx;
-  color: #b2b2b2;
+  color: #aeaeae;
   margin-top: 14rpx;
+}
+.container .index-cont .hot-events .hotEvents-title view:last-of-type text {
+  font-weight: bold;
+  color: #fff;
 }
 .container .index-cont .hot-events .swiper-public {
   margin-top: 10rpx;
@@ -175,22 +180,23 @@
   margin-left: 6.4%;
 }
 .container .index-cont .hot-goods .hotgoods-title {
-  padding-top: 32rpx;
+  padding-top: 56rpx;
   display: flex;
   justify-content: space-between;
   margin: 0 6.4%;
 }
 .container .index-cont .hot-goods .hotgoods-title text:first-of-type {
   font-size: 32rpx;
-  color: #313131;
+  color: #fff;
+  font-weight: bold;
 }
 .container .index-cont .hot-goods .hotgoods-title text:last-of-type {
   font-size: 20rpx;
-  color: #b2b2b2;
+  color: #ababab;
   margin-top: 14rpx;
 }
 .container .index-cont .hot-goods .goods-item {
-  margin-top: 10rpx;
+  margin-top: 43rpx;
 }
 .container .fixed-group .contact {
   position: fixed;

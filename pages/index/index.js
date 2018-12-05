@@ -26,18 +26,11 @@ Page({
   },
 
   onLoad() {
-    App.setWatcher(App.globalData, this.watch);
-    that = this;
     this.getCommonwealList()
   },
   onReady() {
     let haowuComp = this.selectComponent("#haowu");
     this.setData({ haowuComp });
-  },
-  watch: {
-    publicSwiperIndex(nV) {
-      that.setData({ commActiveIndex: nV });
-    }
   },
   getCommonwealList() {
     _SpreadList({
@@ -45,8 +38,7 @@ Page({
     }).then(data => {
       this.setData({
         commonwealList: data.adList,
-        commAllPage: data.adList.length,
-        commActiveIndex: 1
+        commActiveIndex: '01'
       });
     }).catch(data => App.catchError(data))
   },
@@ -65,8 +57,10 @@ Page({
     this.timer = setTimeout(() => {
       let data = e.detail;
       let num = data.scrollLeft % this.data.eventItemWidth;
+      let commActiveIndex = parseInt(data.scrollLeft / this.data.eventItemWidth) + 1
+      commActiveIndex = commActiveIndex < 10 ? `0${commActiveIndex}` : commActiveIndex;
       this.setData({
-        commActiveIndex: parseInt(data.scrollLeft / this.data.eventItemWidth) + 1
+        commActiveIndex
       });
     }, 500);
   },
@@ -161,7 +155,6 @@ Page({
         this.setData({
           searchList: data.data
         });
-        console.log(this.data.searchList)
       } else {
         this.setData({
           searchList: [...this.data.searchList, ...data.data]

@@ -270,7 +270,6 @@ App({
     token: "",
     text: "abc",
     canIUseFlag: false,
-    publicSwiperIndex: 1
   }
 });
 

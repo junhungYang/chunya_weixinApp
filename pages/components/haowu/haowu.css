@@ -22,6 +22,8 @@
   line-height: 93rpx;
   font-size: 24rpx;
   color: #313131;
+  font-weight: bold;
+  color: #ffe3a3;
 }
 .list .big-item .sm-list {
   display: flex;
@@ -46,12 +48,12 @@
   padding-top: 6rpx;
   display: block;
   font-size: 24rpx;
-  color: #444444;
   line-height: 42rpx;
 }
 .list .big-item .sm-list .list-item .good-name {
   height: 84rpx;
   overflow: hidden;
+  color: #fefefe;
 }
 .list .big-item .sm-list .list-item .price {
   position: relative;
@@ -61,6 +63,7 @@
   display: inline-block;
   color: #d1051f;
   font-size: 24rpx;
+  font-weight: bold;
 }
 .list .big-item .sm-list .list-item .price .old-price {
   display: inline-block;
