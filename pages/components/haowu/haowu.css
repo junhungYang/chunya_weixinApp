@@ -37,12 +37,13 @@
 }
 .list .big-item .sm-list .list-item .img-wrap {
   width: 309rpx;
-  height: 430rpx;
+  height: 429rpx;
   background: #f2f2f2;
   overflow: hidden;
 }
 .list .big-item .sm-list .list-item .img-wrap image {
-  width: 309rpx;
+  width: 100%;
+  height: 100%;
 }
 .list .big-item .sm-list .list-item text {
   padding-top: 6rpx;

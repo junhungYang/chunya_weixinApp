@@ -111,7 +111,7 @@
 }
 .container .nav {
   height: 176rpx;
-  background: #f7f7f7;
+  background: #fff;
   display: flex;
   justify-content: space-around;
 }
@@ -130,7 +130,6 @@
   text-align: center;
 }
 .container .index-cont {
-  margin-top: 20rpx;
   background: #191919;
 }
 .container .index-cont .hot-events .hotEvents-title {

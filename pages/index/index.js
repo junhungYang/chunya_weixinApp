@@ -5,7 +5,8 @@ import {
   _GetSensitiveInfo,
   _SendFormid,
   _UserSignin,
-  _SpreadList
+  _SpreadList,
+  _wxappMenuList
 } from "../../utils/request";
 const App = getApp()
 var that;
@@ -22,15 +23,25 @@ Page({
     commActiveIndex: "",
     commOffset: 0,
     eventItemWidth: 0,
-    haowuComp: null
+    haowuComp: null,
+    colorMenu:[]
   },
 
   onLoad() {
-    this.getCommonwealList()
+    this.getCommonwealList();
+    this.getColorMenu()
   },
   onReady() {
     let haowuComp = this.selectComponent("#haowu");
     this.setData({ haowuComp });
+  },
+  getColorMenu() {
+    _wxappMenuList()
+      .then(data => {
+        this.setData({
+          colorMenu: data
+        })
+      })
   },
   getCommonwealList() {
     _SpreadList({
@@ -100,19 +111,19 @@ Page({
     let type = e.currentTarget.dataset.type;
     if (App.globalData.token) {
       switch (type) {
-        case "nuanke":
+        case "nk":
           wx.navigateTo({ url: `../nuanke/nuanke` });
           break;
-        case "public":
+        case "gy":
           wx.navigateTo({ url: `../public/public` });
           break;
-        case "haowu":
+        case "hw":
           wx.navigateTo({ url: `../haowuList/haowuList` });
           break;
-        case "story":
+        case "gs":
           wx.navigateTo({ url: `../story/story` });
           break;
-        case "signin":
+        case "qd":
           _UserSignin().then(data => {
             wx.showModal({
               title: "签到成功",

@@ -1561,7 +1561,32 @@ const _PostComment = function (data) {
   });
 };
 
+// 首页menu
+const _wxappMenuList = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/official/wxappMenuList`,
+      method: "POST",
+      header: {
+        "Content-Type": "application/josn",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.code === 0) {
+          resolve(res.data.data);
+        } else {
+          // reject({
+          //   errno: res.data.errno,
+          //   errmsg: res.data.errmsg
+          // })
+        }
+      }
+    });
+  });
+};
+
 module.exports = {
+  _wxappMenuList,
   _GoodCommentList,
   _PostComment,
   _QueryInvoiceList,

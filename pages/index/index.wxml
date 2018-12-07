@@ -20,15 +20,15 @@
     <my-swiper id="my-swiper"></my-swiper>
   </view>
   <view class="nav">
-    <view class="item">
+    <view class="item" wx:for="{{colorMenu}}">
       <form bindsubmit="formSubmit_collect" report-submit="true">
-          <button  formType="submit"  hover-class="none" class="getFromId" data-type="haowu" bindtap="navToColorBtnMod">
-              <image src="../../img/index/haowu.png"/>
-              <text>好物</text>
+          <button  formType="submit"  hover-class="none" class="getFromId" data-type="{{item.value}}" bindtap="navToColorBtnMod">
+              <image src="{{'../../img/index/' + item.value + '.png'}}"/>
+              <text>{{item.name}}</text>
           </button>
       </form>  
     </view>
-    <view class="item">
+    <!--<view class="item">
        <form bindsubmit="formSubmit_collect" report-submit="true">
           <button  formType="submit"  hover-class="none" class="getFromId" data-type="nuanke" bindtap="navToColorBtnMod">
               <image src="../../img/index/nuanke.png"/>
@@ -59,7 +59,7 @@
           <text>签到</text>
         </button>
       </form> 
-    </view>
+    </view> -->
   </view>
   <view class="index-cont">
       <view class="hot-events">
