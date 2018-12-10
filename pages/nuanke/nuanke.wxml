@@ -10,17 +10,20 @@
             <view class="title">
                 <view class="main">
                     <text>{{item.title}}</text>
-                    <text>{{item.isPay===1?'已支付':''}}</text>
+                    <text wx:if="{{item.isFree === 0}}">{{item.isPay===1?'已支付':'付费'}}</text>
+                    <text wx:else>免费</text>
                 </view>
                 <view class="vice">
                     <text>{{item.brief}}</text>
                 </view>
             </view>
-            <view class="img" data-id="{{item.id}}" data-ispay="{{item.isPay}}"  data-price="{{item.contentPrice}}" bindtap="showPayBtn">
+            <view class="img" data-id="{{item.id}}" data-isfree="{{item.isFree}}"
+            data-ispay="{{item.isPay}}"  data-price="{{item.contentPrice}}" bindtap="showPayBtn">
                 <image src="{{item.listCoverUrl}}" />
             </view>
             <view class="control">
-                <view class="read" data-id="{{item.id}}" data-ispay="{{item.isPay}}" data-price="{{item.contentPrice}}" bindtap="showPayBtn">
+                <view class="read" data-id="{{item.id}}" data-isfree="{{item.isFree}}"
+                data-ispay="{{item.isPay}}" data-price="{{item.contentPrice}}" bindtap="showPayBtn">
                     <text>阅读全文</text>
                 </view>
                 

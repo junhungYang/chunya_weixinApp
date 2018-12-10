@@ -212,7 +212,8 @@ Page({
         wx.showToast({
           title: "评论添加成功",
           icon: "success",
-          mask: true
+          mask: true,
+          duration: 2000
         });
         this.refreshPrevPage();
       })
@@ -231,11 +232,11 @@ Page({
     }else {
       listPage(prevPage)
     }
-      setTimeout(() => {
-        wx.navigateBack({
-          delta: 1
-        })
-      }, 1000);
+    setTimeout(() => {
+      wx.navigateBack({
+        delta: 1
+      })
+    }, 2000);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

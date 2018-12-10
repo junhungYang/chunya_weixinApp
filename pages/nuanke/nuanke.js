@@ -17,14 +17,14 @@ Page({
     payBtnHidden: true,
     payId: '',
     activePrice: 0,
-    totalPages: 0
+    totalPages: 0,
+    isPay: 0
   },
-  onLoad: function () {
+  onLoad: function (options) {
     that= this
     App.setWatcher(App.globalData,this.watch)
-    if(App.globalData.token) {
-      this.getList();
-    }
+    this.setData({isPay:options.isPay})
+    App.globalData.token ? this.getList() : ''
   },
   watch: {
     token(newValue) {
@@ -41,7 +41,8 @@ Page({
     _WarmclassList({
       page: this.data.page,
       type: this.data.navIndex,
-      size: 10
+      size: 10,
+      isPay: this.data.isPay
     }).then(data => {
       let arr = [...this.data.list,...data.data]
       this.setData({
@@ -71,10 +72,11 @@ Page({
   showPayBtn(e) {
     let isPay = e.currentTarget.dataset.ispay
     let activePrice = e.currentTarget.dataset.price
+    let isFree = e.currentTarget.dataset.isfree
     this.setData({
       payId: e.currentTarget.dataset.id
     })
-    if(isPay) {
+    if(isFree || isPay) {
       wx.navigateTo({
         url: `../nuankeDetail/nuankeDetail?warmClassId=${this.data.payId}`
       });

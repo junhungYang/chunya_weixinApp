@@ -11,10 +11,11 @@ Page({
   data: {
     id:'',
     contentDesc:'',
-    isPay:false,
+    isPay:null,
     videoId: null,
     poster: '',
-    videoSrc: null
+    videoSrc: null,
+    isFree: null
   },
 
   /**
@@ -23,8 +24,8 @@ Page({
   onLoad: function (options) {
     that = this
     App.setWatcher(App.globalData,this.watch)
-    if(App.globalData.token) {
-      this.setData({ id: Number(options.warmClassId) });
+    this.setData({ id: options.warmClassId});
+    if (App.globalData.token) {
       this.getDetail()
     }
   },
@@ -39,17 +40,26 @@ Page({
     _WarmclassDetail({
       id:this.data.id
     }).then(data => {
-      wx.setNavigationBarTitle({
-        title: data.title
-      })
-      this.setData({
-        contentDesc: data.contentDesc,
-        isPay: data.isPay,
-        videoId: data.videoId,
-        poster: data.listCoverUrl
-      });
-      this.getVideo()
+      wx.stopPullDownRefresh();
+      if(data.signType) {
+        this.wxPay(data)
+      } else {
+        this.initDom(data)
+      }
       }).catch(data => App.catchError(data))
+  },
+  initDom(data) {
+    wx.setNavigationBarTitle({
+      title: data.title
+    })
+    this.setData({
+      contentDesc: data.contentDesc,
+      isPay: data.isPay,
+      videoId: data.videoId,
+      isFree: data.isFree,
+      poster: data.listCoverUrl
+    });
+    this.getVideo()
   },
   getVideo() {
     if(this.data.videoId) {
@@ -61,16 +71,6 @@ Page({
         })
       })
     }
-  },
-  nuankePay(e) {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(() => {
-      _WarmclassPay({
-        id: this.data.payId
-      }).then(data => {
-        this.wxPay(data)
-        }).catch(data => App.catchError(data))
-    }, 250);
   },
   wxPay(data) {
     wx.requestPayment({
@@ -120,7 +120,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    if (App.globalData.token) {
+      this.getDetail()
+    }
   },
 
   /**
@@ -134,6 +136,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+     wx.showShareMenu();
   }
 })

@@ -1,4 +1,5 @@
 {
+    "enablePullDownRefresh": true,
     "usingComponents": {
         "my-swiper": "../components/swiper/swiper",
         "public-swiper": "../components/eventsSwiper/eventsSwiper",

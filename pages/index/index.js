@@ -112,7 +112,7 @@ Page({
     if (App.globalData.token) {
       switch (type) {
         case "nk":
-          wx.navigateTo({ url: `../nuanke/nuanke` });
+          wx.navigateTo({ url: `../nuanke/nuanke?isPay=0` });
           break;
         case "gy":
           wx.navigateTo({ url: `../public/public` });
@@ -213,6 +213,10 @@ Page({
     this.setData({ searchListHid:true });
   },
   onPullDownRefresh() {
+    wx.showToast({
+      title: '正在加载',
+      icon: 'loading'
+    })
     this.getCommonwealList()
     this.selectComponent("#my-swiper").getList()
     this.data.haowuComp.setData({

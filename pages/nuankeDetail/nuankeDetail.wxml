@@ -1,13 +1,23 @@
 <view class="template">
-    <video wx:if="{{videoId}}" src="{{videoSrc}}" poster="{{poster}}"></video>
-    <rich-text wx:if="{{isPay}}" nodes="{{contentDesc}}"></rich-text>
-    <view wx:if="{{isPay===0}}" class="payMask">
+    <view class="cont-wrap" wx:if="{{isFree === 1 || isPay === 1}}">
+        <video wx:if="{{videoId}}" src="{{videoSrc}}" poster="{{poster}}"></video>
+        <rich-text nodes="{{contentDesc}}"></rich-text>
+        <view class="share">
+            <view class="text">
+                - 恭喜你已阅读完 -
+            </view>
+            <view class="btn">
+                <button open-type="share">分享</button>
+            </view>
+        </view>
+    </view>
+    <!--<view wx:if="{{isFree===0 && isPay===0}}" class="payMask">
         <view>
             <text>春芽暖课</text>
-            <text>支付￥1元即可阅读</text>
+            <text>支付￥{{price}}元即可阅读</text>
         </view>
         <view bindtap="nuankePay">
             立即支付
         </view>
-    </view>
+    </view> -->
 </view>

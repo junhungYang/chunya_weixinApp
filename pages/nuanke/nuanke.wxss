@@ -48,12 +48,17 @@
 .template .list .item .title .main text:first-of-type {
   color: #313131;
   font-weight: bold;
-  font-size: 28rpx;
+  font-size: 32rpx;
   flex: 1;
 }
 .template .list .item .title .main text:last-of-type {
   font-size: 24rpx;
-  color: #b2b2b2;
+  line-height: 28rpx;
+  border: 1px solid #ff873e;
+  color: #ff873e;
+  padding: 0 12rpx;
+  border-radius: 15rpx;
+  align-self: baseline;
 }
 .template .list .item .title .vice {
   margin-top: 10rpx;

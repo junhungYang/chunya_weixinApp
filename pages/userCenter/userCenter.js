@@ -79,7 +79,7 @@ Page({
           wx.navigateTo({ url: "../eventsList/eventsList" });
           break;
         case "nuanke":
-          wx.navigateTo({ url: "../nuanke/nuanke" });
+          wx.navigateTo({ url: "../nuanke/nuanke?isPay=1" });
           break;
         case "address":
           wx.navigateTo({ url: "../addressList/addressList?index=2" });

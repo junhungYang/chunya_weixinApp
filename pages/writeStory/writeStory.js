@@ -67,9 +67,7 @@ Page({
         name: "file",
         success: res => {
           let data = JSON.parse(res.data)
-          console.log(data)
           if (data.errno === 0) {
-            console.log(123456)
            resolve(data.data)
           } else {
             reject(data.msg)
@@ -132,7 +130,11 @@ Page({
       }
       if (this.data.upLoadFile === 'image') {
         obj.imagesList = []
-        this.upLoadImg(obj)
+        if(this.data.imageList.length > 0) {
+          this.upLoadImg(obj)
+        }else {
+          this.postsAdd(obj)
+        }
       }else {
         if(this.data.videoSrc) {
           this.upLoadVideo().then(data => {

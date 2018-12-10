@@ -31,7 +31,35 @@
   line-height: 100rpx;
   text-align: center;
 }
-.template video {
+.template .cont-wrap video {
   width: 87.2%;
   margin: 48rpx 6.4%;
+}
+.template .cont-wrap .share {
+  margin-top: 135rpx;
+  margin-bottom: 150rpx;
+}
+.template .cont-wrap .share .text {
+  font-size: 20rpx;
+  color: rgba(49, 49, 49, 0.5);
+  text-align: center;
+}
+.template .cont-wrap .share .btn {
+  margin: 0 auto;
+  margin-top: 40rpx;
+  width: 380rpx;
+}
+.template .cont-wrap .share .btn button {
+  margin: 0;
+  padding: 0;
+  border-radius: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  background: #2ca5ae;
+  color: #fff;
+}
+.template .cont-wrap .share .btn button::after {
+  border: 0;
 }
