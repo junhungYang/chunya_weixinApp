@@ -1,12 +1,10 @@
 import { _SpreadList} from '../../../utils/request'
 const app = getApp();
 Component({
-  properties: {
-    commonwealList: {
-      // 属性名
-      type: Array, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
-    }
+  data: {
+    list: [[1,2],[2,3],[3,4],[4,5]]
   },
+
 
   created() {
 

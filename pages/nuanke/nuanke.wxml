@@ -1,11 +1,62 @@
 <view class="template">
     <view class="nav">
-        <text class="{{navIndex===1?'active':''}}" data-index="{{1}}" bindtap="changeNav">美文</text>
-        <text class="{{navIndex===2?'active':''}}" data-index="{{2}}" bindtap="changeNav">视觉</text>
-        <text class="{{navIndex===3?'active':''}}" data-index="{{3}}" bindtap="changeNav">影音</text>
-        <text class="{{navIndex===4?'active':''}}" data-index="{{4}}" bindtap="changeNav">收藏</text>
+        <text class="{{navIndex===0?'active':''}}" data-index="{{0}}" bindtap="changeNav">美文</text>
+        <text class="{{navIndex===1?'active':''}}" data-index="{{1}}" bindtap="changeNav">视觉</text>
+        <text class="{{navIndex===2?'active':''}}" data-index="{{2}}" bindtap="changeNav">影音</text>
+        <text class="{{navIndex===3?'active':''}}" data-index="{{3}}" bindtap="changeNav">收藏</text>
     </view>
-    <scroll-view scroll-y class="list" bindscrolltolower="scrollRefreshList">
+    <view class="container">
+    <view class="page-body">
+        <view class="page-section page-section-spacing swiper">
+        <swiper class="swiper-box" current="{{navIndex}}" bindchange="changeIndex">
+            <swiper-item wx:for="{{list}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
+                <scroll-view class="scroll-box" scroll-y data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="scrollRefresh">
+                    <view class="item" wx:for="{{fatherItem.data}}" wx:for-item="item">
+                        <view class="title">
+                            <view class="main">
+                                <text>{{item.title}}</text>
+                                <text wx:if="{{item.isFree === 0}}">{{item.isPay===1?'已支付':'付费'}}</text>
+                                <text wx:else>免费</text>
+                            </view>
+                            <view class="vice">
+                                <text>{{item.brief}}</text>
+                            </view>
+                        </view>
+                        <view class="img" data-id="{{item.id}}" data-isfree="{{item.isFree}}"
+                        data-ispay="{{item.isPay}}"  data-price="{{item.contentPrice}}" bindtap="showPayBtn">
+                            <image src="{{item.listCoverUrl}}" />
+                        </view>
+                        <view class="control">
+                            <view class="read" data-id="{{item.id}}" data-isfree="{{item.isFree}}"
+                            data-ispay="{{item.isPay}}" data-price="{{item.contentPrice}}" bindtap="showPayBtn">
+                                <text>阅读全文</text>
+                            </view>
+                            
+                            <view class="other">
+                                <view>
+                                    <image src="../../img/nuanke/person.png" />
+                                    <text>{{item.viewCount}}人阅读</text>
+                                </view>
+                                <view data-id="{{item.id}}" data-fatherindex="{{fatherIndex}}" data-contenttype="{{item.contentType}}" data-index="{{index}}" bindtap="collect">
+                                    <image src="{{item.isCollected?'../../img/goodDetail/collect1.png':'../../img/goodDetail/collect.png'}}" />
+                                    <text>{{item.isCollected?'已收藏':'收藏'}}</text>
+                                </view>
+                                <view>
+                                    <button open-type="share" class="share-btn">
+                                        <image src="../../img/nuanke/share.png" />
+                                        <text>分享</text>
+                                    </button>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </swiper-item>
+        </swiper>
+        </view>
+    </view>
+    </view>
+    <!--<scroll-view scroll-y class="list" bindscrolltolower="scrollRefreshList">
         <view class="item" wx:for="{{list}}" wx:for-index="index">
             <view class="title">
                 <view class="main">
@@ -18,7 +69,7 @@
                 </view>
             </view>
             <view class="img" data-id="{{item.id}}" data-isfree="{{item.isFree}}"
-            data-ispay="{{item.isPay}}"  data-price="{{item.contentPrice}}" bindtap="showPayBtn">
+             data-ispay="{{item.isPay}}"  data-price="{{item.contentPrice}}" bindtap="showPayBtn">
                 <image src="{{item.listCoverUrl}}" />
             </view>
             <view class="control">
@@ -45,7 +96,7 @@
                 </view>
             </view>
         </view>
-    </scroll-view>
+    </scroll-view>-->
     <view class="toPay" hidden="{{payBtnHidden}}">
         <view class="bg" bindtap="hiddenPayBtn">
             

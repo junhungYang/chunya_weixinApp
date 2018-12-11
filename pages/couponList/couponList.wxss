@@ -22,27 +22,40 @@
   color: #2ca5ae;
   border-bottom: 2px solid #2ca5ae;
 }
-.template .list {
-  margin: 0 6.4%;
-  padding-top: 128rpx;
+.template .container {
+  position: absolute;
+  left: 0;
+  top: 88rpx;
+  bottom: 0;
+  right: 0;
 }
-.template .list .item {
+.template .container .swiper-box {
+  height: 100%;
+}
+.template .container .swiper-box .swiper-item {
+  height: 100%;
+}
+.template .container .swiper-box .swiper-item .scroll-box {
+  height: 100%;
+}
+.template .container .swiper-box .swiper-item .scroll-box .item {
   height: 180rpx;
   display: flex;
   position: relative;
+  margin: 0 6.4%;
   margin-top: 19rpx;
 }
-.template .list .item:first-of-type {
-  margin-top: 0;
+.template .container .swiper-box .swiper-item .scroll-box .item:first-of-type {
+  margin-top: 48rpx;
 }
-.template .list .item:last-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .item:last-of-type {
   margin-bottom: 150rpx;
 }
-.template .list .item image {
+.template .container .swiper-box .swiper-item .scroll-box .item image {
   width: 100%;
   height: 100%;
 }
-.template .list .item .box {
+.template .container .swiper-box .swiper-item .scroll-box .item .box {
   position: absolute;
   left: 0;
   top: 0;
@@ -50,32 +63,37 @@
   height: 100%;
   display: flex;
 }
-.template .list .item .box .info {
+.template .container .swiper-box .swiper-item .scroll-box .item .box .info {
   flex: 1;
   padding: 24rpx 28rpx;
 }
-.template .list .item .box .info view {
+.template .container .swiper-box .swiper-item .scroll-box .item .box .info view {
   color: #fff;
 }
-.template .list .item .box .info view:first-of-type text:first-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .item .box .info view:first-of-type text:first-of-type {
   font-size: 28rpx;
 }
-.template .list .item .box .info view:first-of-type text:last-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .item .box .info view:first-of-type text:last-of-type {
   font-size: 50rpx;
 }
-.template .list .item .box .info view:last-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .item .box .info view:last-of-type {
   margin-top: 8rpx;
   line-height: 24rpx;
   font-size: 20rpx;
 }
-.template .list .item .box .info view:last-of-type text {
+.template .container .swiper-box .swiper-item .scroll-box .item .box .info view:last-of-type text {
   display: block;
 }
-.template .list .item .box .btn {
+.template .container .swiper-box .swiper-item .scroll-box .item .box .btn {
   width: 134rpx;
   border-left: 1px dotted #fff;
   line-height: 180rpx;
   text-align: center;
   font-size: 24rpx;
   color: #fff;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }

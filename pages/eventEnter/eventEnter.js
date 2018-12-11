@@ -128,12 +128,9 @@ Page({
   navBackToEventDetail() {
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 3];
-    prevPage.setData({
-      pageIndex:1,
-      navActive: 1,
-      list:[]
+    prevPage.data.list.forEach((item,index) => {
+      prevPage.getActivityList(1, index)
     })
-    prevPage.getActivityList()
     wx.navigateBack({
       delta: 2
     })

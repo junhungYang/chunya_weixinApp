@@ -1,5 +1,5 @@
 <my-swiper>
-  <view class="container">
+<view class="container">
   <view class="page-body">
     <view class="page-section page-section-spacing swiper">
       <swiper class="swiper-box"

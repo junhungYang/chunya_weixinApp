@@ -11,20 +11,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navIndex: 1,
-    list:[],
+    navIndex: 0,
+    list:[{},{},{},{}],
     page:1,
     payBtnHidden: true,
     payId: '',
     activePrice: 0,
     totalPages: 0,
-    isPay: 0
+    isPay: 0,
+    list1: [[1,2],[3,4],[5,6]]
   },
   onLoad: function (options) {
     that= this
     App.setWatcher(App.globalData,this.watch)
     this.setData({isPay:options.isPay})
-    App.globalData.token ? this.getList() : ''
+    if(App.globalData.token) {
+      this.data.list.forEach((item,index) => {
+        this.getList(1,index+1);
+      })
+    }
   },
   watch: {
     token(newValue) {
@@ -33,41 +38,56 @@ Page({
       }  
     }
   },
-  getList() {
-      wx.showLoading({
-        title: '正在加载',
-        mask:true
-      })
-    _WarmclassList({
-      page: this.data.page,
-      type: this.data.navIndex,
-      size: 10,
-      isPay: this.data.isPay
-    }).then(data => {
-      let arr = [...this.data.list,...data.data]
-      this.setData({
-        list:arr,
-        totalPages: data.totalPages
-      })
+  getList(page,type,scroll) {
+    wx.showLoading({
+      title: '正在加载'
+    })
+      _WarmclassList({
+        page,
+        type,
+        size: 8,
+        isPay: this.data.isPay
+      }).then(data => {
+        let arr = this.data.list
+        if(scroll) {
+          arr[type-1].currentPage ++
+          arr[type-1].data = [...arr[type-1].data, ...data.data];
+        }else {
+          arr[type-1] = data
+        }
         setTimeout(() => {
           wx.hideLoading()
-        }, 600);
+        }, 1000);
+        this.setData({
+          list: arr
+        })
       }).catch(data => App.catchError(data))
+  },
+  changeIndex(e) {
+    this.setData({
+      navIndex: e.detail.current
+    })
+  },
+  changeNav(e) {
+    let index = e.currentTarget.dataset.index
+    this.setData({
+      navIndex: index,
+    })
+  },
+  scrollRefresh(e) {
+    let item = e.currentTarget.dataset.item
+    let index = e.currentTarget.dataset.index
+    if (item.currentPage < item.totalPages) {
+      this.getList(item.currentPage+1,index+1,'scroll');
+    } else {
+      App.theEndPage()
+    }
   },
   navToDetail(e) {
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: `../nuankeDetail/nuankeDetail?warmClassId=${id}`
     });
-  },
-  changeNav(e) {
-    let index = e.currentTarget.dataset.index
-    this.setData({
-      navIndex: index,
-      page:1,
-      list:[]
-    })
-    this.getList()
   },
   showPayBtn(e) {
     let isPay = e.currentTarget.dataset.ispay
@@ -92,41 +112,37 @@ Page({
       payBtnHidden: true
     })
   },
-  scrollRefreshList(e) {
-    if(this.data.page < this.data.totalPages) {
-      this.setData({
-        page: this.data.page + 1
-      })
-      this.getList();
-    }else {
-      App.theEndPage()
-    }
-
-   },
   collect(e) {
     let valueId = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;
+    let fatherIndex = e.currentTarget.dataset.fatherindex
+    let otherIndex = e.currentTarget.dataset.contenttype -1
     let list = this.data.list
     _CollectAddorDelete({
       typeId: 1,
       valueId
     }).then((data) => {
-      if(this.data.navIndex !== 4) {
+      if(this.data.navIndex < 3) {
         if (data.type === "delete") {
-          list[index].isCollected = 0
+          list[fatherIndex].data[index].isCollected = 0
         } else {
-          list[index].isCollected = 1
+          list[fatherIndex].data[index].isCollected = 1
         }
-        this.setData({
-          list
-        })
+        this.setData({ list })
+        this.getList(1, 4);
       }else {
-        list.splice(index, 1);
+        list[otherIndex].data.forEach(item =>{
+          if(item.id === valueId) {
+            item.isCollected = 0
+          }
+        })
+        list[fatherIndex].data.splice(index, 1);
         this.setData({
           list
         })
       }
-      }).catch(data => App.catchError(data))
+     
+    }).catch(data => App.catchError(data))
   },
   nuankePay(e) {
     clearTimeout(this.timer)

@@ -1,10 +1,35 @@
 <view class="template">
     <view class="nav">
-        <text class="{{navActive===0?'nav-active':''}}" data-index="{{0}}" bindtap="changeActive">全部活动</text>
-        <text  class="{{navActive===1?'nav-active':''}}" data-index="{{1}}" bindtap="changeActive">已报名</text>
+        <text class="{{navActive===0?'nav-active':''}}" data-index="{{0}}" bindtap="changePageIndex">全部活动</text>
+        <text  class="{{navActive===1?'nav-active':''}}" data-index="{{1}}" bindtap="changePageIndex">已报名</text>
     </view>
-    <view class="line" hidden="{{navActive===0}}"></view>
-    <view class="signup-list" hidden="{{navActive===0}}">
+    <view class="line"></view>
+    <view class="container">
+        <swiper class="swiper-box" current="{{navActive}}" data-type="scroll" bindchange="changePageIndex">
+            <block wx:for="{{list}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
+                <swiper-item class="swiper-item">
+                    <scroll-view class="scroll-box" scroll-y data-fatheritem="{{fatherItem}}" bindscrolltolower="scrollRefresh">
+                        <view class="{{fatherIndex === 0 ? 'noSignup-list' : 'signup-list'}}">
+                            <view class="item" wx:for="{{fatherItem.data}}" data-id="{{item.id}}" bindtap="navToDetail">
+                                <image src="{{item.listCoverUrl}}" />
+                                <view class="info">
+                                    <text class="title">{{item.title}}</text>
+                                    <text wx:if="{{fatherIndex === 0}}" class="desc">{{item.brief}}</text>
+                                    <text wx:if="{{fatherIndex === 1}}" class="city">{{item.activityCity}}</text>
+                                    <text wx:if="{{fatherIndex === 1}}" class="date">{{item.activityStartTime}}</text>
+                                    <text class="place">{{fatherIndex === 0 ? item.activityStartTime : ''}} {{item.activityPlace}}</text>
+                                    <view>
+                                        <text wx:for="{{item.tags}}" wx:for-item="item1">{{item1}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!--<view class="signup-list" hidden="{{navActive===0}}">
         <view class="item" wx:for="{{list}}" data-id="{{item.id}}" bindtap="navToDetail">
             <image src="{{item.listCoverUrl}}" />
             <view class="info">
@@ -30,5 +55,5 @@
                 </view>
             </view>
         </view>
-    </view>
+    </view> -->
 </view>

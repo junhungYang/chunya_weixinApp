@@ -30,6 +30,7 @@
           "pages/watchVideo/watchVideo",
           "pages/aboutChunya/aboutChunya",
           "pages/couponBeforeBalance/couponBeforeBalance"
+       
   ],
   "window": {
     "backgroundTextStyle": "light",

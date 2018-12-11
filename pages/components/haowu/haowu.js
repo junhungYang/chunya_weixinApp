@@ -36,7 +36,7 @@ Component({
       _GoodsList({
         page,
         categoryId: fatherList[targetIndex].id,
-        size: 30,
+        size: 99,
         isHot: this.data.ishot
       }).then(childData => {
         fatherList[targetIndex].subCategoryList = childData;

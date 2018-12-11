@@ -31,13 +31,18 @@
   line-height: 100rpx;
   text-align: center;
 }
+.template .cont-wrap {
+  padding-bottom: 150rpx;
+}
 .template .cont-wrap video {
   width: 87.2%;
   margin: 48rpx 6.4%;
 }
+.template .cont-wrap .fr-fin {
+  width: 100% !important;
+}
 .template .cont-wrap .share {
   margin-top: 135rpx;
-  margin-bottom: 150rpx;
 }
 .template .cont-wrap .share .text {
   font-size: 20rpx;

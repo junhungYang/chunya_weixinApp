@@ -8,16 +8,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [],
-    pageIndex: 1,
+    list: ['',''],
     navActive: 0,
-    totalPages: 0
   },
   onLoad: function (options) {
     that = this
     App.setWatcher(App.globalData,this.watch)
     if(App.globalData.token) {
-      this.getActivityList()
+      this.data.list.forEach((item,index) => {
+        this.getActivityList(1,index);
+      })
+      
     }
   },
   changeActive(e) {
@@ -28,18 +29,28 @@ Page({
     })
     this.getActivityList()
   },
-  getActivityList() {
+  getActivityList(page,index,scroll) {
+    console.log(page)
     wx.showLoading({
       title: '正在加载',
       mask:true
     })
     _ActivityList({
-      page: this.data.pageIndex,
-      type: this.data.navActive,
-      size: 10
+      page,
+      type: index,
+      size: 5
     }).then(data => {
-      this.dataTranslate(data.data)
-      this.setData({ totalPages:data.totalPages });
+      data.data = this.dataTranslate(data.data);
+      let list = this.data.list
+      if(scroll) {
+        list[index].currentPage ++
+        list[index].data = [...list[index].data,...data.data]
+      }else {
+        list[index] = data
+      }
+      this.setData({
+        list
+      })
       setTimeout(() => {
         wx.hideLoading()
       }, 600)
@@ -56,36 +67,40 @@ Page({
       let activityStartTime = `${year}.${month}.${date}`
       item.activityStartTime = activityStartTime;
     })
-      let arr = [...this.data.list,...dataList]
+     return dataList
+  },
+  changePageIndex(e) {
+    let type = e.currentTarget.dataset.type
+    if(type === 'scroll') {
       this.setData({
-        list: arr
+        navActive: e.detail.current
       })
+    }else {
+      this.setData({
+        navActive: e.currentTarget.dataset.index
+      })
+    }
+  },
+  scrollRefresh(e) {
+    let fatherItem = e.currentTarget.dataset.fatheritem
+    if(fatherItem.currentPage < fatherItem.totalPages) {
+      this.getActivityList(fatherItem.currentPage+1, this.data.navActive, 'scroll')
+    }else {
+      App.theEndPage()
+    }
   },
   navToDetail(e) {
     wx.navigateTo({
       url: `../eventsDetail/eventsDetail?activityId=${e.currentTarget.dataset.id}`
     })
   },
-  onReachBottom: function () {
-    if (this.data.pageIndex < this.data.totalPages) {
-      this.setData({
-        pageIndex: this.data.pageIndex + 1
-      })
-      wx.showLoading({
-        title: '正在加载',
-        mask: true
-      })
-      this.getActivityList();
-    }else {
-      App.theEndPage();
-    }
-
-  },
 
   watch: {
     token(newValue) {
       if(newValue) {
-        that.getActivityList() 
+        that.data.list.forEach((item, index) => {
+          that.getActivityList(1, index);
+        })
       }
     }
   },

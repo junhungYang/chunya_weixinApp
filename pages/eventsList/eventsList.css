@@ -29,11 +29,29 @@
   right: 0;
   top: 86rpx;
 }
-.template .signup-list {
-  margin: 0 6.4%;
-  padding-top: 128rpx;
+.template .container {
+  position: absolute;
+  left: 0;
+  top: 90rpx;
+  right: 0;
+  bottom: 0;
+  background: #f2f2f2;
 }
-.template .signup-list .item {
+.template .container .swiper-box {
+  height: 100%;
+}
+.template .container .swiper-box .swiper-item {
+  height: 100%;
+}
+.template .container .swiper-box .swiper-item .scroll-box {
+  height: 100%;
+}
+.template .container .swiper-box .swiper-item .scroll-box .signup-list {
+  margin: 0 6.4%;
+  margin-top: 20rpx;
+  margin-bottom: 80rpx;
+}
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item {
   background: #fff;
   padding: 30rpx;
   padding-right: 20rpx;
@@ -41,40 +59,40 @@
   margin-top: 14rpx;
   display: flex;
 }
-.template .signup-list .item:first-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item:first-of-type {
   margin-top: 0;
 }
-.template .signup-list .item image {
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item image {
   width: 198rpx;
   height: 198rpx;
   border-radius: 10rpx;
 }
-.template .signup-list .item .info {
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info {
   flex: 1;
   padding-left: 41rpx;
 }
-.template .signup-list .item .info .title,
-.template .signup-list .item .info .city,
-.template .signup-list .item .info .date,
-.template .signup-list .item .info .place {
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info .title,
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info .city,
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info .date,
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info .place {
   display: block;
   font-size: 28rpx;
   line-height: 34rpx;
 }
-.template .signup-list .item .info .title {
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info .title {
   font-weight: bold;
   color: #313131;
 }
-.template .signup-list .item .info .city,
-.template .signup-list .item .info .date,
-.template .signup-list .item .info .place {
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info .city,
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info .date,
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info .place {
   color: #b2b2b2;
 }
-.template .signup-list .item .info view {
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info view {
   line-height: 28rpx;
   margin-top: 12rpx;
 }
-.template .signup-list .item .info view text {
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info view text {
   font-size: 24rpx;
   line-height: 28rpx;
   padding: 0 4rpx;
@@ -83,52 +101,49 @@
   border-radius: 5rpx;
   margin-left: 29rpx;
 }
-.template .signup-list .item .info view text:first-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .signup-list .item .info view text:first-of-type {
   margin-left: 0;
 }
-.template .noSignup-list {
-  padding-top: 88rpx;
-}
-.template .noSignup-list .item {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item {
   background: #fff;
   padding: 44rpx 6.4% 38rpx 6.4%;
   border-bottom: 1px solid #f2f2f2;
   display: flex;
 }
-.template .noSignup-list .item image {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item image {
   width: 198rpx;
   height: 198rpx;
   border-radius: 10rpx;
 }
-.template .noSignup-list .item .info {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info {
   flex: 1;
   padding-left: 41rpx;
 }
-.template .noSignup-list .item .info .title,
-.template .noSignup-list .item .info .desc,
-.template .noSignup-list .item .info .place {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info .title,
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info .desc,
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info .place {
   display: block;
   font-size: 28rpx;
 }
-.template .noSignup-list .item .info .title {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info .title {
   font-weight: bold;
   color: #313131;
   line-height: 34rpx;
 }
-.template .noSignup-list .item .info .place {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info .place {
   color: #b2b2b2;
   line-height: 43rpx;
   font-size: 20rpx;
 }
-.template .noSignup-list .item .info .desc {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info .desc {
   font-size: 20rpx;
   color: #313131;
   line-height: 22rpx;
 }
-.template .noSignup-list .item .info view {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info view {
   line-height: 28rpx;
 }
-.template .noSignup-list .item .info view text {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info view text {
   font-size: 24rpx;
   line-height: 28rpx;
   padding: 0 4rpx;
@@ -137,6 +152,11 @@
   border-radius: 5rpx;
   margin-left: 29rpx;
 }
-.template .noSignup-list .item .info view text:first-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .noSignup-list .item .info view text:first-of-type {
   margin-left: 0;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }

@@ -7,10 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [],
-    page: 1,
+    list: ['','',''],
     navActive: 0,
-    totalPages: 0
   },
 
   /**
@@ -19,7 +17,9 @@ Page({
   onLoad: function(options) {
     that = this;
     App.setWatcher(App.globalData,this.watch)
-    this.getCouponList();
+    this.data.list.forEach((item,index) => {
+      this.getCouponList(1,index);
+    })
   },
   watch: {
     token(nV) {
@@ -28,49 +28,65 @@ Page({
       }
     }
   },
-  getCouponList() {
+  getCouponList(page,typeIndex,scroll) {
     wx.showLoading({
       title: "正在加载",
       mask:true
     });
     _CouponForUser({
-      type: this.data.navActive,
-      page: this.data.page,
+      type:typeIndex,
+      page,
       size: 10
     }).then(data => {
-      let arr = [...this.data.list, ...data.data];
+      let list = this.data.list
+      if(scroll) {
+        list[typeIndex].currentPage ++
+        list[typeIndex].data = [...list[typeIndex].data,...data.data]
+      }else {
+        list[typeIndex] = data
+      }
       this.setData({
-        list: arr,
-        totalPages: data.totalPages
-      });
+        list
+      })
       setTimeout(() => {
         wx.hideLoading();
       }, 600);
       }).catch(data => App.catchError(data))
   },
-  changeActive(e) {
+  changeActiveByScroll(e) {
+    this.setData({
+      navActive: e.detail.current
+    })
+  },
+  changeActiveByClick(e) {
     let navActive = e.currentTarget.dataset.index;
     this.setData({
-      navActive,
-      list: [],
-      page: 1
-    });
-    this.getCouponList();
+      navActive
+    })
   },
   navToHaowu() {
     wx.navigateTo({
       url: "../haowuList/haowuList"
     });
   },
-  onReachBottom: function() {
-    if(this.data.page < this.data.totalPages) {
-      this.setData({
-        page: this.data.page + 1
-      });
-      this.getCouponList();
+  scrollRefresh(e) {
+    let fatherIndex = e.currentTarget.dataset.index
+    let fatherItem = e.currentTarget.dataset.item
+    if(fatherItem.currentPage < fatherItem.totalPages) {
+      this.getCouponList(fatherItem.currentPage+1,fatherIndex,'scroll')
     }else {
       App.theEndPage()
     }
-
   }
+  // onReachBottom: function() {
+  //   if(this.data.page < this.data.totalPages) {
+  //     this.setData({
+  //       page: this.data.page + 1
+  //     });
+  //     this.getCouponList();
+  //   }else {
+  //     App.theEndPage()
+  //   }
+
+  // }
 });

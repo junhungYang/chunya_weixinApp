@@ -25,67 +25,79 @@
   color: #2ca5ae;
   border-bottom: 2px solid #2ca5ae;
 }
-.template .list {
-  width: 100%;
-  padding: 0 6.4%;
-  box-sizing: border-box;
+.template .container {
   position: absolute;
+  left: 0;
   top: 88rpx;
   bottom: 0;
-  left: 0;
+  right: 0;
+  background: #f2f2f2;
+}
+.template .container .page-body {
+  height: 100%;
+}
+.template .container .page-body .page-section {
+  height: 100%;
+}
+.template .container .page-body .page-section .swiper-box {
+  height: 100%;
+}
+.template .container .page-body .page-section .swiper-box .scroll-box {
+  height: 100%;
   overflow: hidden;
 }
-.template .list .item {
-  margin-top: 40rpx;
+.template .container .page-body .page-section .swiper-box .scroll-box .item {
   background: #fff;
   border-radius: 15rpx;
   padding: 30rpx;
   box-sizing: border-box;
+  margin: 0 6.4%;
+  margin-top: 40rpx;
 }
-.template .list .item .title .main {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .title .main {
   display: flex;
 }
-.template .list .item .title .main text:first-of-type {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .title .main text:first-of-type {
   color: #313131;
   font-weight: bold;
   font-size: 32rpx;
   flex: 1;
 }
-.template .list .item .title .main text:last-of-type {
-  font-size: 24rpx;
-  line-height: 28rpx;
+.template .container .page-body .page-section .swiper-box .scroll-box .item .title .main text:last-of-type {
+  font-size: 20rpx;
+  line-height: 24rpx;
   border: 1px solid #ff873e;
   color: #ff873e;
   padding: 0 12rpx;
   border-radius: 15rpx;
   align-self: baseline;
 }
-.template .list .item .title .vice {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .title .vice {
   margin-top: 10rpx;
 }
-.template .list .item .title .vice text {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .title .vice text {
   display: block;
   color: #b2b2b2;
   font-size: 24rpx;
   line-height: 32rpx;
 }
-.template .list .item .img {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .img {
   margin-top: 18rpx;
   height: 296rpx;
   overflow: hidden;
 }
-.template .list .item .img image {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .img image {
   width: 100%;
   height: 100%;
 }
-.template .list .item .control {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .control {
   margin-top: 27rpx;
   display: flex;
 }
-.template .list .item .control .read {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .control .read {
   flex: 1;
 }
-.template .list .item .control .read text {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .control .read text {
   display: block;
   border: 1px solid #313131;
   border-radius: 10rpx;
@@ -94,35 +106,35 @@
   line-height: 48rpx;
   font-size: 28rpx;
 }
-.template .list .item .control .other {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .control .other {
   display: flex;
   width: 245rpx;
   justify-content: space-between;
 }
-.template .list .item .control .other view:first-of-type image {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .control .other view:first-of-type image {
   width: 28rpx;
   height: 27rpx;
 }
-.template .list .item .control .other view:nth-of-type(2) image {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .control .other view:nth-of-type(2) image {
   width: 25rpx;
   height: 24rpx;
 }
-.template .list .item .control .other view:last-of-type image {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .control .other view:last-of-type image {
   width: 25rpx;
   height: 25rpx;
 }
-.template .list .item .control .other view image {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .control .other view image {
   display: block;
   margin: 0 auto;
 }
-.template .list .item .control .other view text {
+.template .container .page-body .page-section .swiper-box .scroll-box .item .control .other view text {
   margin-top: 9rpx;
   display: block;
   font-size: 16rpx;
   color: #9f9f9f;
   line-height: 18rpx;
 }
-.template .list .item:last-of-type {
+.template .container .page-body .page-section .swiper-box .item:last-of-type {
   margin-bottom: 140rpx;
 }
 .template .toPay {

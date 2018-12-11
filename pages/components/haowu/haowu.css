@@ -80,11 +80,13 @@
   margin-top: 0;
 }
 .list .big-item .uploading {
-  height: 250rpx;
-  line-height: 250rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   font-size: 20rpx;
   color: #b2b2b2;
+  opacity: 0.4;
   text-align: center;
+  padding-bottom: 30rpx;
 }
 .list .big-item .changePage {
   text-align: center;
