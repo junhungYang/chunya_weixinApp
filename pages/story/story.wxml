@@ -1,86 +1,88 @@
 <view class="template">
-    <!--<video class="video-wrap" show-fullscreen-btn="{{false}}" show-play-btn="{{false}}" show-center-play-btn="false"
-        enable-progress-gesture="false">
-        <cover-view class="nav-test">
-            hello
-        </cover-view>
-    </video>-->
     <view class="nav">
-        <text bindtap="changeActive" class="{{navActive===1?'nav-active':''}}" data-index="{{1}}">推荐</text>
-        <text bindtap="changeActive" class="{{navActive===2?'nav-active':''}}" data-index="{{2}}">热门</text>
-        <text bindtap="changeActive" class="{{navActive===0?'nav-active':''}}" data-index="{{0}}">温度</text>
-        <text bindtap="changeActive" class="{{navActive===3?'nav-active':''}}" data-index="{{3}}">收藏</text>
+        <text bindtap="changeActiveByClick" class="{{navActive===0?'nav-active':''}}" data-index="{{0}}">温度</text>
+        <text bindtap="changeActiveByClick" class="{{navActive===1?'nav-active':''}}" data-index="{{1}}">推荐</text>
+        <text bindtap="changeActiveByClick" class="{{navActive===2?'nav-active':''}}" data-index="{{2}}">热门</text>
+        <text bindtap="changeActiveByClick" class="{{navActive===3?'nav-active':''}}" data-index="{{3}}">收藏</text>
     </view>
-    <view class="content">
-        <view class="tuiJian" >
-            <view hidden="{{navActive!==1}}" class="swiper-box">
-                <my-swiper></my-swiper>
-            </view>
-            <view wx:if="{{navActive===3}}" class="cancel">
-                <text bindtap="cancelCollectAll">清空</text>
-                <view></view>
-                <text bindtap="navToIndex">首页</text>
-            </view>
-            <view class="list">
-                <view class="item" wx:for="{{list}}" wx:for-index="index" wx:key="{{item.id}}">
-                    <view class="user-info" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
-                        <image src="{{item.userInfo.avatar}}" />
-                        <view>
-                            <text>{{item.userInfo.nickname}}</text>
-                            <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
+    <view class="container">
+        <swiper class="swiper-box" current="{{navActive}}" bindchange="changeActiveByScroll">
+            <block wx:for="{{list}}" wx:for-item="fatherItem" wx:for-index="fatherIndex" wx:key="{{fatherIndex+1}}">
+                <swiper-item class="swiper-item">
+                    <scroll-view class="scroll-box" scroll-y data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="getListByScroll">
+                        <view wx:if="{{fatherIndex===1}}" class="swiper-box">
+                            <my-swiper></my-swiper>
                         </view>
-                    </view>
-                    <view class="cont">
-                        <view class="isRecommend" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
-                            <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
-                            <text wx:if="{{item.isTop===1}}">置顶</text>
+                        <view wx:if="{{fatherIndex===3}}" class="cancel">
+                            <text bindtap="cancelCollectAll">清空</text>
+                            <view></view>
+                            <text bindtap="navToIndex">首页</text>
                         </view>
-                        <view class="desc">
-                            <view class="text" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
-                                 <text>{{item.title}}</text>
-                                <text>{{item.contentDesc}}</text>
-                           
-                            </view>
-                            <view wx:if="{{item.resourceType===1&&item.postsPictureVos.length!==0}}" class="img-group">
-                                <view class="img" wx:for="{{item.postsPictureVos}}" wx:for-item="imgItem" 
-                                wx:for-index="imgindex" data-imgindex="{{imgindex}}" data-index="{{index}}" bindtap="previewImg">
-                                    <image src="{{imgItem.picUrl}}" mode="widthFix"/>
-                                </view>
-                            </view>
-                            <view wx:if="{{item.resourceType!==1&&item.postsPictureVos.length!==0}}" class="video-group" data-src="{{item.postsPictureVos[0].picUrl}}" bindtap="navToWatchVideo">
-                                 <image class="poster" src="{{item.postsPictureVos[0].videoCoverUrl}}" mode="widthFix"/>
-                                 <image class="playIcon" src="../../img/play.svg" mode="widthFix"/>
-                            </view>
-                            <view class="timeAndControl">
-                                <view class="time">
-                                    <text>{{item.relativeDate}}</text>
-                                </view>
-                                <view class="control">
+                        <view class="list" style="{{fatherIndex===1?'padding-bottom:58rpx':''}}">
+                            <view class="item" wx:for="{{fatherItem.data}}" wx:key="{{item.id}}" wx:for-index="index">
+                                <view class="user-info" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
+                                    <image src="{{item.userInfo.avatar}}" />
                                     <view>
-                                        <image src="../../img/reviewsIcon.png" />
-                                        <text>{{item.commentCount}}</text>
+                                        <text>{{item.userInfo.nickname}}</text>
+                                        <text>{{item.relativeDate}}-{{item.city}}-浏览{{item.viewCount}}</text>
                                     </view>
-                                    <view data-index="{{index}}" data-isliked="{{item.isLiked}}" data-id="{{item.id}}" data-type="{{'zan'}}" data-count="{{item.likeCount}}"  bindtap="zanControl">
-                                        <image src="{{item.isLiked?'../../img/zanOrange.png':'../../img/zan.png'}}" />
-                                        <text>{{item.likeCount}}</text>
+                                </view>
+                                <view class="cont">
+                                    <view class="isRecommend" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
+                                        <image wx:if="{{item.isRecommend}}" src="../../img/tuijian.png" />
+                                        <text wx:if="{{item.isTop===1}}">置顶</text>
                                     </view>
-                                    <view data-index="{{index}}" data-iscollected="{{item.isCollected}}" data-id="{{item.id}}" data-type="{{'collect'}}" data-count="{{item.collectCount}}" bindtap="zanControl">
-                                        <image src="{{item.isCollected?'../../img/collectOrange.png':'../../img/collect.png'}}" />
-                                        <text>{{item.collectCount}}</text>
+                                    <view class="desc">
+                                        <view class="text" data-id="{{item.id}}" data-index="{{index}}" bindtap="navToDetail">
+                                            <text>{{item.title}}</text>
+                                            <text>{{item.contentDesc}}</text>
+                                    
+                                        </view>
+                                        <view wx:if="{{item.resourceType===1&&item.postsPictureVos.length!==0}}" class="img-group">
+                                            <view class="img" wx:for="{{item.postsPictureVos}}" wx:for-item="imgItem" 
+                                            wx:for-index="imgindex" data-imgindex="{{imgindex}}" data-fatherindex="{{fatherIndex}}" data-index="{{index}}" bindtap="previewImg">
+                                                <image src="{{imgItem.picUrl}}" mode="widthFix"/>
+                                            </view>
+                                        </view>
+                                        <view wx:if="{{item.resourceType!==1&&item.postsPictureVos.length!==0}}" class="video-group" data-src="{{item.postsPictureVos[0].picUrl}}" bindtap="navToWatchVideo">
+                                            <image class="poster" src="{{item.postsPictureVos[0].videoCoverUrl}}" mode="widthFix"/>
+                                            <image class="playIcon" src="../../img/play.svg" mode="widthFix"/>
+                                        </view>
+                                        <view class="timeAndControl">
+                                            <view class="time">
+                                                <text>{{item.relativeDate}}</text>
+                                            </view>
+                                            <view class="control">
+                                                <view>
+                                                    <image src="../../img/reviewsIcon.png" />
+                                                    <text>{{item.commentCount}}</text>
+                                                </view>
+                                                <view data-fatherindex="{{fatherIndex}}" data-index="{{index}}" data-id="{{item.id}}"  data-count="{{item.likeCount}}"  bindtap="likeControl">
+                                                    <image src="{{item.isLiked?'../../img/zanOrange.png':'../../img/zan.png'}}" />
+                                                    <text>{{item.likeCount}}</text>
+                                                </view>
+                                                <view data-fatherindex="{{fatherIndex}}" data-index="{{index}}" data-id="{{item.id}}"  data-count="{{item.collectCount}}" bindtap="collect">
+                                                    <image src="{{item.isCollected?'../../img/collectOrange.png':'../../img/collect.png'}}" />
+                                                    <text>{{item.collectCount}}</text>
+                                                </view>
+                                            </view>
+                                        </view>
                                     </view>
                                 </view>
                             </view>
                         </view>
-                    </view>
-                </view>
-            </view>
-            <view wx:if="{{navActive===3&&list.length===0}}" class="mask">
-                <view>
-                    <image src="../../img/collectPic.jpg" />
-                    <text>啥都没有~</text>
-                </view>
-            </view>
-        </view>
+                        
+                        <view wx:if="{{navActive===3&&list[3].data.length===0}}" class="mask">
+                            <view>
+                                <image src="../../img/collectPic.jpg" />
+                                <text>啥都没有~</text>
+                            </view>
+                        </view>
+                    </scroll-view>
+                    <image src="{{item}}" class="slide-image" />
+                </swiper-item>
+            </block>
+        </swiper>
     </view>
     <view class="writeStory-add" bindtap="navToWriteStory">
         <image src="../../img/add.png" />

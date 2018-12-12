@@ -153,11 +153,9 @@ Page({
     } else if (this.data.from === "write") {
       prevPage = pages[pages.length - 3];
     }
-    prevPage.setData({
-      page: 1,
-      list: []
-    });
-    prevPage.getStoryList();
+    prevPage.data.list.forEach((item,index) => {
+      prevPage.getStoryList(1,index);
+    })
   },
   dianZan() {
     _LikeAddOrDelete({

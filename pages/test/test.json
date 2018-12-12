@@ -1,5 +1,0 @@
-{
-    "usingComponents": {
-        "my-swiper": "../components/eventsSwiper/eventsSwiper"
-    }
-}

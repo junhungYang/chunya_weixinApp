@@ -22,38 +22,45 @@
   color: #2ca5ae;
   border-bottom: 2px solid #2ca5ae;
 }
-.template .content {
+.template .container {
   position: absolute;
-  width: 100%;
   top: 88rpx;
-  min-height: 70vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: #fff;
 }
-.template .content .tuiJian {
-  position: relative;
+.template .container .swiper-box {
+  height: 100%;
 }
-.template .content .tuiJian .list {
+.template .container .swiper-box .swiper-item {
+  height: 100%;
+}
+.template .container .swiper-box .swiper-item .scroll-box {
+  height: 100%;
+}
+.template .container .swiper-box .swiper-item .scroll-box .list {
   min-height: 90vh;
 }
-.template .content .tuiJian .list .item {
+.template .container .swiper-box .swiper-item .scroll-box .list .item {
   padding: 39rpx 6.4% 29rpx 6.4%;
   border-bottom: 1px solid #f2f2f2;
   position: relative;
 }
-.template .content .tuiJian .list .item .user-info {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .user-info {
   display: flex;
 }
-.template .content .tuiJian .list .item .user-info image {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .user-info image {
   width: 58rpx;
   height: 58rpx;
   border-radius: 50%;
 }
-.template .content .tuiJian .list .item .user-info view {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .user-info view {
   position: relative;
   flex: 1;
   padding-left: 14rpx;
 }
-.template .content .tuiJian .list .item .user-info view text {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .user-info view text {
   position: absolute;
   left: 21rpx;
   width: 100%;
@@ -62,68 +69,68 @@
   white-space: nowrap;
   margin-left: 7rpx;
 }
-.template .content .tuiJian .list .item .user-info view text:first-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .user-info view text:first-of-type {
   font-size: 24rpx;
   color: #313131;
   top: 0;
   line-height: 32rpx;
 }
-.template .content .tuiJian .list .item .user-info view text:last-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .user-info view text:last-of-type {
   font-size: 20rpx;
   color: #b2b2b2;
   bottom: 0;
   line-height: 24rpx;
 }
-.template .content .tuiJian .list .item .cont {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont {
   display: flex;
   margin-top: 22rpx;
 }
-.template .content .tuiJian .list .item .cont .isRecommend {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .isRecommend {
   width: 58rpx;
   text-align: center;
 }
-.template .content .tuiJian .list .item .cont .isRecommend image {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .isRecommend image {
   display: block;
   width: 34rpx;
   height: 34rpx;
   margin: 0 12rpx;
   margin-top: 10rpx;
 }
-.template .content .tuiJian .list .item .cont .isRecommend text {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .isRecommend text {
   font-size: 22rpx;
   line-height: 28rpx;
   color: #d1051f;
 }
-.template .content .tuiJian .list .item .cont .desc {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc {
   flex: 1;
   padding-left: 18rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .text {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .text {
   margin-left: 7rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .text text {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .text text {
   display: block;
 }
-.template .content .tuiJian .list .item .cont .desc .text text:first-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .text text:first-of-type {
   font-size: 28rpx;
   line-height: 34rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .text text:nth-of-type(2) {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .text text:nth-of-type(2) {
   margin-top: 12rpx;
   font-size: 20rpx;
   color: #b7b7b7;
   line-height: 28rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .text text:last-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .text text:last-of-type {
   font-size: 20rpx;
   color: #b7b7b7;
   margin-top: 25rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .img-group {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .img-group {
   margin-top: 4rpx;
   font-size: 0;
 }
-.template .content .tuiJian .list .item .cont .desc .img-group .img {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .img-group .img {
   margin-top: 14rpx;
   display: inline-block;
   width: 178rpx;
@@ -134,94 +141,94 @@
   background: black;
   position: relative;
 }
-.template .content .tuiJian .list .item .cont .desc .img-group .img image {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .img-group .img image {
   width: 120%;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.template .content .tuiJian .list .item .cont .desc .img-group image {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .img-group image {
   width: 100rpx;
   height: 100rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .video-group {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .video-group {
   margin-top: 18rpx;
   height: 350rpx;
   background: #000;
   position: relative;
   overflow: hidden;
 }
-.template .content .tuiJian .list .item .cont .desc .video-group .poster {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .video-group .poster {
   width: 100%;
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
 }
-.template .content .tuiJian .list .item .cont .desc .video-group .playIcon {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .video-group .playIcon {
   width: 55rpx;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl {
   margin-top: 20rpx;
   height: 40rpx;
   display: flex;
   margin-left: 7rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .time {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .time {
   flex: 1;
   align-self: center;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .time text {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .time text {
   font-size: 20rpx;
   color: #b7b7b7;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .control {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .control {
   align-self: center;
   text-align: right;
   font-size: 0;
   display: flex;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .control view {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .control view {
   margin: 0 12rpx;
   display: inline-block;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .control view image,
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .control view text {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .control view image,
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .control view text {
   vertical-align: middle;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .control view text {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .control view text {
   color: #b2b2b2;
   font-size: 20rpx;
   margin-left: 9rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .control view:first-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .control view:first-of-type {
   margin-left: 0;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .control view:first-of-type image {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .control view:first-of-type image {
   width: 32rpx;
   height: 28rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .control view:nth-of-type(2) image {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .control view:nth-of-type(2) image {
   width: 32rpx;
   height: 32rpx;
 }
-.template .content .tuiJian .list .item .cont .desc .timeAndControl .control view:nth-of-type(3) image {
+.template .container .swiper-box .swiper-item .scroll-box .list .item .cont .desc .timeAndControl .control view:nth-of-type(3) image {
   width: 31rpx;
   height: 30rpx;
 }
-.template .content .tuiJian .mask {
+.template .container .swiper-box .swiper-item .scroll-box .mask {
   height: 90vh;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
 }
-.template .content .tuiJian .mask view {
+.template .container .swiper-box .swiper-item .scroll-box .mask view {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -229,43 +236,43 @@
   flex-direction: column;
   transform: translate(-50%, -50%);
 }
-.template .content .tuiJian .mask view image,
-.template .content .tuiJian .mask view text {
+.template .container .swiper-box .swiper-item .scroll-box .mask view image,
+.template .container .swiper-box .swiper-item .scroll-box .mask view text {
   display: block;
 }
-.template .content .tuiJian .mask view image {
+.template .container .swiper-box .swiper-item .scroll-box .mask view image {
   width: 177rpx;
   height: 193rpx;
 }
-.template .content .tuiJian .mask view text {
+.template .container .swiper-box .swiper-item .scroll-box .mask view text {
   font-size: 24rpx;
   color: #313131;
   margin: 0 auto;
   margin-top: 35rpx;
 }
-.template .content .tuiJian .swiper-box {
+.template .container .swiper-box .swiper-item .scroll-box .swiper-box {
   height: 395rpx;
   background: #eeeeee;
   position: relative;
 }
-.template .content .cancel {
+.template .container .swiper-box .swiper-item .scroll-box .cancel {
   height: 56rpx;
   font-size: 0;
   text-align: right;
   padding: 0 6.4%;
   border-bottom: 1px solid #f2f2f2;
 }
-.template .content .cancel text {
+.template .container .swiper-box .swiper-item .scroll-box .cancel text {
   line-height: 56rpx;
   font-size: 20rpx;
 }
-.template .content .cancel text:first-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .cancel text:first-of-type {
   color: #b2b2b2;
 }
-.template .content .cancel text:last-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .cancel text:last-of-type {
   color: #2ca5ae;
 }
-.template .content .cancel view {
+.template .container .swiper-box .swiper-item .scroll-box .cancel view {
   display: inline-block;
   margin: 0 17rpx;
   width: 2px;
@@ -292,4 +299,9 @@
 .template .writeStory-add image {
   width: 159rpx;
   height: 162rpx;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }

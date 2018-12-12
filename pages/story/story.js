@@ -8,10 +8,7 @@ Page({
    */
   data: {
     navActive: 0,
-    list:[],
-    page: 1,
-    top: 0,
-    totalPages: 0
+    list:['','','',''],
   },
 
   /**
@@ -21,32 +18,55 @@ Page({
     that = this;
     App.setWatcher(App.globalData, this.watch);
     if (App.globalData.token) {
-      this.getStoryList();
+      this.data.list.forEach((item,index) => {
+        this.getStoryList(1,index);
+      })
     }
   },
-  getStoryList() {
+  getStoryList(page,typeIndex,scroll,noLoading) {
+    if(!noLoading) {
       wx.showLoading({
         title: "正在加载",
-        mask:true
+        mask: true
       });
+    }
     _PostsList({
-      type: this.data.navActive,
-      page: this.data.page,
+      type:typeIndex,
+      page,
       size: 10
     })
       .then(data => {
-        let list = [...this.data.list, ...data.data];
-        this.setData({ list, totalPages: data.totalPages });
+        let list = this.data.list
+        if(scroll) {
+          list[typeIndex].currentPage ++
+          list[typeIndex].data = [...list[typeIndex].data, ...data.data]
+        }else {
+          list[typeIndex] = data
+        }
+        this.setData({
+          list
+        })
         setTimeout(() => {
           wx.hideLoading();
         }, 600);
       })
       .catch(data => App.catchError(data));
   },
+  changeActiveByScroll(e) {
+    this.setData({
+      navActive: e.detail.current
+    })
+  },
+  changeActiveByClick(e) {
+    this.setData({
+      navActive: e.currentTarget.dataset.index
+    })
+  },
   previewImg(e) {
     let index= e.currentTarget.dataset.index
     let imgIndex = e.currentTarget.dataset.imgindex
-    let arr = this.data.list[index].postsPictureVos;
+    let fatherIndex = e.currentTarget.dataset.fatherindex
+    let arr = this.data.list[fatherIndex].data[index].postsPictureVos;
     let pathArr = []
     arr.forEach(item => {
       pathArr.push(item.picUrl)
@@ -60,12 +80,9 @@ Page({
     _CollectDeleteAll({
       typeId: 2
     }).then(() => {
-      this.setData({
-        navActive: 3,
-        page: 1,
-        list: []
+      this.data.list.forEach((item, index) => {
+        this.getStoryList(1, index);
       })
-      this.getStoryList()
       }).catch(data => App.catchError(data))
   },
   navToIndex() {
@@ -73,78 +90,94 @@ Page({
       url: '../index/index'
     })
   },
-  zanControl(e) {
-    let index = e.currentTarget.dataset.index
-    let valueId = e.currentTarget.dataset.id
-    let isLiked = e.currentTarget.dataset.isliked
-    let isCollected = e.currentTarget.dataset.iscollected
-    let type = e.currentTarget.dataset.type
-    let count = e.currentTarget.dataset.count
-    let promiseObj
-
-    if(type === 'collect') {
-      promiseObj = _CollectAddorDelete({
+  collect(e) {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let fatherIndex = e.currentTarget.dataset.fatherindex
+      let valueId = e.currentTarget.dataset.id
+      let targetIndex = e.currentTarget.dataset.index
+      let count = e.currentTarget.dataset.count
+      let list = this.data.list
+      let collectRes = 0
+      _CollectAddorDelete({
         typeId: 2,
         valueId
+      }).then((data) => {
+        if(fatherIndex !== 3) {
+          if (data.type === 'delete') {
+            list[3].data.forEach((item,index) => {
+              if(item.id === valueId) {
+                list[3].data.splice(index,1)
+              }
+            })
+            collectRes = 0
+            count ? count -- : ''
+          } else {
+            this.getStoryList(1,3,false,'noLoading')
+            collectRes = 1
+            count ++
+          }
+        }else {
+          list[3].data.splice(targetIndex,1)
+          collectRes = 0
+          count ? count-- : ''
+        }
+        list.forEach((item, index) => {
+          if(index !== 3) {
+            item.data.forEach((item1, index1) => {
+              if (item1.id === valueId) {
+                item1.isCollected = collectRes
+                item1.collectCount = count
+                return
+              }
+            })
+          }
+        })
+        this.setData({ list })
       })
-    }else {
-      promiseObj = _LikeAddOrDelete({
+    }, 300); 
+  },
+  likeControl(e) {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let fatherIndex = e.currentTarget.dataset.fatherindex
+      let valueId = e.currentTarget.dataset.id
+      let targetIndex = e.currentTarget.dataset.index
+      let count = e.currentTarget.dataset.count
+      let list = this.data.list
+      let likeRes = 0
+      _LikeAddOrDelete({
         typeId: 0,
         valueId
-      })
-    }
-    promiseObj
-      .then(() => {
-        let arr = this.data.list;
-        if (type === "zan") {
-          if (isLiked && count > 0) {
-            arr[index].likeCount--;
-            arr[index].isLiked = 0;
-          } else {
-            arr[index].likeCount++;
-            arr[index].isLiked = 1;
-          }
-          this.setData({ list: arr });
-        } else {
-          if (this.data.navActive !== 3) {
-            if (isCollected && count > 0) {
-              arr[index].collectCount--;
-              arr[index].isCollected = 0;
-            } else {
-              arr[index].collectCount++;
-              arr[index].isCollected = 1;
-            }
-            this.setData({ list: arr });
-          } else {
-            this.setData({ page: 1 });
-            if (this.data.navActive === 3) {
-              this.setData({ list: [] });
-            }
-            this.getStoryList();
-          }
+      }).then(data => {
+        if(data.type === 'delete') {
+          likeRes = 0
+          count ? count-- : ''
+        }else {
+          likeRes = 1
+          count ++
         }
+        list.forEach(item => {
+          item.data.forEach(item1 => {
+            if (item1.id === valueId) {
+              item1.isLiked = likeRes
+              item1.likeCount = count
+              return
+            }
+          })
+        })
+        this.setData({ list })
       })
-      .catch(data => App.catchError(data));
+    }, 300);
   },
-  changeActive(e) {
-    let index = e.currentTarget.dataset.index;
-    this.setData({
-      navActive: index,
-      page: 1,
-      list:[]
-    });
-    this.getStoryList(index)
-  },
-  getListByScroll() {
-    if(this.data.page < this.data.totalPages) {
-      this.setData({
-        page: this.data.page + 1
-      })
-      this.getStoryList()
+  getListByScroll(e) {
+    let fatherItem = e.currentTarget.dataset.item
+    let fatherIndex = e.currentTarget.dataset.index
+    if(fatherItem.currentPage < fatherItem.totalPages) {
+      this.getStoryList(fatherItem.currentPage + 1,fatherIndex,'scroll')
     }else {
       App.theEndPage()
     }
-
   },
   navToWatchVideo(e) {
     let src = e.currentTarget.dataset.src
@@ -167,14 +200,11 @@ Page({
   watch: {
     token(newValue) {
       if (newValue) {
-        that.getStoryList(that.data.navActive);
+        that.data.list.forEach((item, index) => {
+          that.getStoryList(1, index);
+        })
       }
     }
-  },
-  showModal(msg) {
-    wx.showModal({
-      title: msg
-    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

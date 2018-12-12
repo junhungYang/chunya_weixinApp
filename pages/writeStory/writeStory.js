@@ -176,11 +176,10 @@ Page({
   refreshPrevPage() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2];
-    prevPage.setData({
-      page:1,
-      list:[]
+    
+    prevPage.data.list.forEach((item,index) => {
+      prevPage.getStoryList(1,index)
     })
-    prevPage.getStoryList()
   },
   upLoadHiddenManage(e) {
     let index = e.currentTarget.dataset.index
