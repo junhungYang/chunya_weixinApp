@@ -41,12 +41,33 @@ Page({
       id:this.data.id
     }).then(data => {
       wx.stopPullDownRefresh();
-      if(data.signType) {
-        this.wxPay(data)
-      } else {
         this.initDom(data)
-      }
-      }).catch(data => App.catchError(data))
+      }).catch(data => {
+        if(data.errno === 1) {
+          wx.showModal({
+            title: '提示',
+            content: data.errmsg,
+            success: (res) => {
+              if (res.confirm) {
+                this.payControl()
+              }else {
+                wx.switchTab({
+                  url: '../index/index'
+                })
+              }
+            }
+          })
+        }else {
+          App.catchError(data);
+        }
+      })
+  },
+  payControl() {
+    _WarmclassPay({
+      id: this.data.id
+    }).then(data => {
+      this.getDetail()
+    }).catch(data => App.catchError(data))
   },
   initDom(data) {
     wx.setNavigationBarTitle({

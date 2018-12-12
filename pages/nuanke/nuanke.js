@@ -93,18 +93,33 @@ Page({
     let isPay = e.currentTarget.dataset.ispay
     let activePrice = e.currentTarget.dataset.price
     let isFree = e.currentTarget.dataset.isfree
-    this.setData({
-      payId: e.currentTarget.dataset.id
-    })
+    let payId = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `../nuankeDetail/nuankeDetail?warmClassId=${payId}`
+    });
     if(isFree || isPay) {
       wx.navigateTo({
-        url: `../nuankeDetail/nuankeDetail?warmClassId=${this.data.payId}`
+        url: `../nuankeDetail/nuankeDetail?warmClassId=${payId}`
       });
     }else {
-      this.setData({
-        payBtnHidden: false,
-        activePrice
-      });
+      wx.showModal({
+        title: '兑换提示',
+        content: `需${activePrice}积分进行兑换`,
+        success: (res) => {
+          if(res.confirm) {
+            _WarmclassPay({
+              id: payId
+            }).then(data => {
+              wx.navigateTo({
+                url: `../nuankeDetail/nuankeDetail?warmClassId=${payId}`
+              });
+              this.data.list.forEach((item, index) => {
+                this.getList(1, index + 1);
+              })
+            }).catch(data => App.catchError(data))
+          }
+        }
+      })
     }
   },
   hiddenPayBtn() {
@@ -143,36 +158,6 @@ Page({
       }
      
     }).catch(data => App.catchError(data))
-  },
-  nuankePay(e) {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(() => {
-      _WarmclassPay({
-        id: this.data.payId
-      }).then(data => {
-        this.wxPay(data)
-        }).catch(data => App.catchError(data))
-    }, 250);
-  },
-  wxPay(data) {
-    wx.requestPayment({
-      timeStamp: data.timeStamp,
-      appId: data.appId,
-      nonceStr: data.nonceStr,
-      package: data.package,
-      signType: data.signType,
-      paySign: data.paySign,
-      success: (res) => {
-        wx.showToast({
-          title: "成功结算"
-        });
-        setTimeout(() => {
-          wx.navigateTo({
-            url: `../nuankeDetail/nuankeDetail?warmClassId=${this.data.payId}`
-          });
-        }, 500);
-      }
-    });
   },
   showModal(msg) {
     wx.showModal({

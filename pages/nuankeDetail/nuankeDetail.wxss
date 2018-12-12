@@ -38,6 +38,9 @@
   width: 87.2%;
   margin: 48rpx 6.4%;
 }
+.template .cont-wrap p {
+  width: 100% !important;
+}
 .template .cont-wrap .fr-fin {
   width: 100% !important;
 }
