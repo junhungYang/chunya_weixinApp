@@ -97,8 +97,8 @@ Page({
   },
   navToOrderList(e) {
     if(App.globalData.token) {
-      let requestCode = e.currentTarget.dataset.requestcode
-      let url = requestCode !== undefined ? `../orderList/orderList?requestCode=${requestCode}` : `../orderList/orderList`;
+      let index = e.currentTarget.dataset.index
+      let url = index !== undefined ? `../orderList/orderList?index=${index}` : `../orderList/orderList`;
       wx.navigateTo({
         url
       });

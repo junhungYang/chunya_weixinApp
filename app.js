@@ -104,7 +104,7 @@ App({
         wx.hideLoading()
       });
   },
-  pay(data) {
+  pay(data,from) {
     wx.requestPayment({
       timeStamp: data.timeStamp,
       appId: data.appId,

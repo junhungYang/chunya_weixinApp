@@ -49,7 +49,20 @@ Page({
       let orderId = e.currentTarget.dataset.id
       _WeChatPay({ orderId })
         .then(data => {
-          App.pay(data);
+          wx.requestPayment({
+            timeStamp: data.timeStamp,
+            appId: data.appId,
+            nonceStr: data.nonceStr,
+            package: data.package,
+            signType: data.signType,
+            paySign: data.paySign,
+            success: (res) => {
+              wx.showToast({
+                title: "成功结算"
+              });
+              this.getOrderDetail()
+            },
+          });
         })
         .catch(data => App.catchError(data));
     }, 500);
@@ -68,8 +81,9 @@ Page({
           this.getOrderDetail();
           let pages = getCurrentPages();
           let prevPage = pages[pages.length - 2];
-          prevPage.setData({ pageIndex: 1 });
-          prevPage.getOrderList();
+          prevPage.data.orderList.forEach((item,index) => {
+            prevPage.getOrderList(1,index)
+          })
           if (controlStyle === "delete") {
             setTimeout(() => {
               wx.navigateBack({ delta: 1 });

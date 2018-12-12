@@ -1,76 +1,84 @@
 <view class="template">
     <view class="nav">
-        <view bindtap="changeActive" data-requestCode="{{-1}}">
-            <text class="{{requestCode===-1?'active':''}}">全部</text>
+        <view bindtap="changeActiveByClick" data-navactive="{{0}}">
+            <text class="{{navActive===0?'active':''}}">全部</text>
         </view>
-        <view bindtap="changeActive" data-requestCode="{{0}}">
-            <text class="{{requestCode===0?'active':''}}">待付款</text>
+        <view bindtap="changeActiveByClick" data-navactive="{{1}}">
+            <text class="{{navActive===1?'active':''}}">待付款</text>
         </view>
-        <view bindtap="changeActive" data-requestCode="{{201}}">
-            <text class="{{requestCode===201?'active':''}}">待发货</text>
+        <view bindtap="changeActiveByClick" data-navactive="{{2}}">
+            <text class="{{navActive===2?'active':''}}">待发货</text>
         </view>
-        <view bindtap="changeActive" data-requestCode="{{300}}">
-            <text class="{{requestCode===300?'active':''}}">待收货</text>
+        <view bindtap="changeActiveByClick" data-navactive="{{3}}">
+            <text class="{{navActive===3?'active':''}}">待收货</text>
         </view>
-        <view bindtap="changeActive" data-requestCode="{{301}}">
-            <text class="{{requestCode===301?'active':''}}">待评价</text>
+        <view bindtap="changeActiveByClick" data-navactive="{{4}}">
+            <text class="{{navActive===4?'active':''}}">待评价</text>
         </view>
     </view>
-    <view class="content">
-        <view class="item" wx:for="{{orderList}}">
-            <view class="title">
-                <image src="../../img/logo.png" />
-                <text>种子生活</text>
-                <text>{{item.order_status_text}}</text>
-            </view>
-            <view wx:for="{{item.orderGoodsList}}" wx:for-item="item1" data-item="{{item}}" bindtap="navToOrderDetail">
-                    <form bindsubmit="formSubmit_collect" report-submit="true">
-                        <button  formType="submit"  hover-class="none" class='invisibleclass'>
-                            <view class="desc">
-                                <image src="{{item1.product_pic_url}}" />
-                                <view class="text">
-                                    <text class="name">{{item1.goods_name}}</text>
-                                    <text class="price">￥{{item1.retail_price}}</text>
-                                    <!--<view class="other">
-                                            公益捐赠0.95元
-                                    </view>-->
+    <view class="container">
+        <swiper class="swiper-box" current="{{navActive}}" bindchange="changeActiveByScroll">
+            <block wx:for="{{orderList}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
+                <swiper-item class="swiper-item">
+                    <scroll-view class="scroll-box" scroll-y data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="refreshListByScroll">
+                        <view class="item" wx:for="{{fatherItem.data}}" wx:key="item.id">
+                            <view class="title">
+                                <image src="../../img/logo.png" />
+                                <text>种子生活</text>
+                                <text>{{item.order_status_text}}</text>
+                            </view>
+                            <view wx:for="{{item.orderGoodsList}}" wx:for-item="item1" data-item="{{item}}" bindtap="navToOrderDetail">
+                                    <form bindsubmit="formSubmit_collect" report-submit="true">
+                                        <button  formType="submit"  hover-class="none" class='invisibleclass'>
+                                            <view class="desc">
+                                                <image src="{{item1.product_pic_url}}" />
+                                                <view class="text">
+                                                    <text class="name">{{item1.goods_name}}</text>
+                                                    <text class="price">￥{{item1.retail_price}}</text>
+                                                    <!--<view class="other">
+                                                            公益捐赠0.95元
+                                                    </view>-->
+                                                </view>
+                                                <text class="quantity">×{{item1.number}}</text>
+                                            </view>  
+                                        </button>
+                                    </form> 
+                            </view>
+                            <view class="control">
+                                <view class="btn-group">
+                                    <view wx:if="{{item.handleOption.cancel}}">
+                                        <text bindtap="orderControl" data-orderid="{{item.id}}" data-str="cancel">{{item.order_status===201?'退款':'取消订单'}} </text>
+                                    </view>
+                                    <view wx:if="{{item.handleOption.delete}}" data-orderid="{{item.id}}" data-str="delete" bindtap="orderControl">
+                                        删除订单
+                                    </view>
+                                    <view wx:if="{{item.handleOption.comment}}" data-orderid="{{item.id}}" data-str="addReview" bindtap="orderControl">
+                                        添加评论
+                                    </view>
+                                    <view wx:if="{{item.handleOption.kuaidi}}" data-orderid="{{item.id}}" bindtap="navToShippingList">
+                                        查看物流
+                                    </view>
+                                    <!--<view wx:if="{{item.handleOption.return}}" data-orderid="{{item.id}}" data-str="return" bindtap="orderControl">
+                                        退换货
+                                    </view> -->
+                                    <view wx:if="{{item.handleOption.buy}}" data-goodslist="{{item.orderGoodsList}}" bindtap="buyAgain">
+                                        再次购买
+                                    </view>
+                                    <view wx:if="{{item.handleOption.delay}}" data-orderid="{{item.id}}" data-str="delay" bindtap="orderControl">
+                                            延迟收货
+                                    </view>
+                                    <view wx:if="{{item.handleOption.confirm}}" data-orderid="{{item.id}}" data-str="confirm" bindtap="orderControl">
+                                        确认收货
+                                    </view>
+                                    <view wx:if="{{item.handleOption.pay}}" data-id="{{item.id}}" bindtap="pay">
+                                        结算
+                                    </view>
                                 </view>
-                                <text class="quantity">×{{item1.number}}</text>
-                            </view>  
-                        </button>
-                    </form> 
-            </view>
-            <view class="control">
-                <view class="btn-group">
-                    <view wx:if="{{item.handleOption.cancel}}">
-                        <text bindtap="orderControl" data-orderid="{{item.id}}" data-str="cancel">{{item.order_status===201?'退款':'取消订单'}} </text>
-                    </view>
-                    <view wx:if="{{item.handleOption.delete}}" data-orderid="{{item.id}}" data-str="delete" bindtap="orderControl">
-                        删除订单
-                    </view>
-                    <view wx:if="{{item.handleOption.comment}}" data-orderid="{{item.id}}" data-str="addReview" bindtap="orderControl">
-                        添加评论
-                    </view>
-                    <view wx:if="{{item.handleOption.kuaidi}}" data-orderid="{{item.id}}" bindtap="navToShippingList">
-                        查看物流
-                    </view>
-                    <view wx:if="{{item.handleOption.return}}" data-orderid="{{item.id}}" data-str="return" bindtap="orderControl">
-                        退换货
-                    </view>
-                    <view wx:if="{{item.handleOption.buy}}" data-goodslist="{{item.orderGoodsList}}" bindtap="buyAgain">
-                        再次购买
-                    </view>
-                    <view wx:if="{{item.handleOption.delay}}" data-orderid="{{item.id}}" data-str="delay" bindtap="orderControl">
-                            延迟收货
-                    </view>
-                    <view wx:if="{{item.handleOption.confirm}}" data-orderid="{{item.id}}" data-str="confirm" bindtap="orderControl">
-                        确认收货
-                    </view>
-                    <view wx:if="{{item.handleOption.pay}}" data-id="{{item.id}}" bindtap="pay">
-                        结算
-                    </view>
-                </view>
-            </view>
-        </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </swiper-item>
+            </block>
+        </swiper>
     </view>
 </view>

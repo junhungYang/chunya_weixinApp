@@ -222,16 +222,16 @@ Page({
   refreshPrevPage() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2];
-    function listPage (target) {
-      target.setData({ pageIndex: 1 });
-      target.getOrderList()
-    }
+    let listPage = ''
     if (this.data.from === 'detail') {
       prevPage.getOrderDetail();
-      listPage(pages[pages.length - 3]); 
+      listPage = pages[pages.length - 3];
     }else {
-      listPage(prevPage)
+      listPage = prevPage
     }
+    listPage.data.orderList.forEach((item, index) => {
+      listPage.getOrderList(1,index)
+    })
     setTimeout(() => {
       wx.navigateBack({
         delta: 1

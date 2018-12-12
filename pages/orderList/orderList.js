@@ -16,41 +16,90 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderList: [],
-    requestCode: -1,
+    orderList: ["", "", "", "", ""],
+    navActive: 0,
     pageIndex: 1,
     totalPages: 0
   },
   onLoad: function(options) {
-    that = this
-    App.setWatcher(App.globalData,this.watch)
-    if(options.requestCode) {
+    that = this;
+    App.setWatcher(App.globalData, this.watch);
+    if (options.index) {
       this.setData({
-        requestCode: Number(options.requestCode)
-      })
+        navActive: Number(options.index)
+      });
     }
-    this.getOrderList();
+    this.data.orderList.forEach((item, index) => {
+      this.getOrderList(1, index);
+    });
+  },
+  getOrderList(page,index,scroll) {
+    wx.showLoading({
+      title: "正在加载",
+      mask: true
+    });
+    let orderStatus;
+    switch (index) {
+      case 1:
+        orderStatus = 0
+        break;
+      case 2:
+        orderStatus = 201
+        break;
+      case 3: 
+        orderStatus = 300
+        break;
+      case 4:
+        orderStatus = 301
+        break;
+    }
+    let obj = { page, size: 10 };
+    index !== 0 ? obj.orderStatus = orderStatus : ''
+    _OrderList(obj)
+      .then(data => {
+        let orderList = this.data.orderList
+        if(scroll) {
+          orderList[index].currentPage ++
+          orderList[index].data = [...orderList[index].data,...data.data]
+        }else {
+          orderList[index] = data
+        }
+        this.setData({ orderList })
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 600);
+      })
+      .catch(data => App.catchError(data));
+  },
+  changeActiveByScroll(e) {
+    this.setData({
+      navActive: e.detail.current
+    })
+  },
+  changeActiveByClick(e) {
+    this.setData({
+      navActive: e.currentTarget.dataset.navactive
+    })
   },
   watch: {
     token(nV) {
-      if(nV) {
-        that.getOrderList()
+      if (nV) {
+        that.getOrderList();
       }
+    }
+  },
+  refreshListByScroll(e) {
+    let fatherItem = e.currentTarget.dataset.item
+    let fatherIndex = e.currentTarget.dataset.index
+    if(fatherItem.currentPage < fatherItem.totalPages) {
+      this.getOrderList(fatherItem.currentPage + 1, fatherIndex,'scroll')
+    }else {
+      App.theEndPage()
     }
   },
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-    if(this.data.pageIndex < this.data.totalPages) {
-      this.setData({
-        pageIndex: this.data.pageIndex + 1
-      });
-      this.getOrderList("byScroll");
-    }else {
-      App.theEndPage()
-    }
-  },
   formSubmit_collect: function(e) {
     let fromid = `${e.detail.formId}`;
     let userInfoStorage = wx.getStorageSync("userInfo");
@@ -62,52 +111,21 @@ Page({
       });
     }
   },
-  getOrderList(str) {
-    wx.showLoading({
-      title: "正在加载",
-      mask: true
-    });
-    let obj = { page: this.data.pageIndex, size: 10 };
-    if (this.data.requestCode !== -1) {
-      obj = {
-        page: this.data.pageIndex,
-        size: 10,
-        orderStatus: this.data.requestCode
-      };
-    }
-    _OrderList(obj)
-      .then(data => {
-        if (!str) {
-          this.setData({
-            orderList: data.data,
-            totalPages: data.totalPages
-          });
-        } else {
-          this.setData({
-            orderList: [...this.data.orderList, ...data.data],
-            totalPages: data.totalPages
-          });
-        }
-        setTimeout(() => {
-          wx.hideLoading()
-        }, 600);
-      })
-      .catch(data => App.catchError(data));
-  },
+
   orderControl(e) {
     let orderId = e.currentTarget.dataset.orderid;
     let controlStyle = e.currentTarget.dataset.str;
-    let promiseObj = App.orderControl(orderId,controlStyle,'list');
-    if(promiseObj) {
+    let promiseObj = App.orderControl(orderId, controlStyle, "list");
+    if (promiseObj) {
       promiseObj
         .then(data => {
           wx.showToast({ icon: "success", title: data, duration: 1000 });
-          this.setData({ pageIndex: 1 });
-          this.getOrderList();
+          this.data.orderList.forEach((item,index) => {
+            this.getOrderList(1,index);
+          })
         })
         .catch(data => App.catchError(data));
     }
-      
   },
   navToOrderDetail(e) {
     let orderId = e.currentTarget.dataset.item.id;
@@ -116,26 +134,33 @@ Page({
     });
   },
   navToShippingList(e) {
-    let orderId = e.currentTarget.dataset.orderid
+    let orderId = e.currentTarget.dataset.orderid;
     wx.navigateTo({
       url: `../shippingList/shippingList?orderId=${orderId}`
-    })
-  },
-  changeActive(e) {
-    this.setData({
-      requestCode: e.currentTarget.dataset.requestcode,
-      pageIndex: 1
     });
-    wx.pageScrollTo({ scrollTop: 0 });
-    this.getOrderList();
   },
   pay(e) {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       let orderId = e.currentTarget.dataset.id;
       _WeChatPay({ orderId })
         .then(data => {
-          App.pay(data);
+          wx.requestPayment({
+            timeStamp: data.timeStamp,
+            appId: data.appId,
+            nonceStr: data.nonceStr,
+            package: data.package,
+            signType: data.signType,
+            paySign: data.paySign,
+            success: res => {
+              wx.showToast({
+                title: "成功结算"
+              });
+              this.data.orderList.forEach((item,index) => {
+                this.getOrderList(1,index)
+              });
+            }
+          });
         })
         .catch(data => App.catchError(data));
     }, 500);

@@ -1,5 +1,6 @@
 .template {
-  background: #f7f7f7;
+  background: #fff;
+  height: 100vh;
 }
 .template .nav {
   position: fixed;
@@ -30,70 +31,84 @@
   color: #2ca5ae;
   border-bottom: 2px solid #2ca5ae;
 }
-.template .content {
-  padding-top: 88rpx;
+.template .container {
+  position: absolute;
+  top: 88rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
 }
-.template .content .item {
-  margin-top: 20rpx;
+.template .container .swiper-box {
+  height: 100%;
 }
-.template .content .item:first-of-type {
-  margin-top: 0;
+.template .container .swiper-box .swiper-item {
+  height: 100%;
 }
-.template .content .item {
+.template .container .swiper-box .swiper-item .scroll-box {
+  height: 100%;
+}
+.template .container .swiper-box .swiper-item .scroll-box .item {
+  border-top: 20rpx solid #f7f7f7;
+}
+.template .container .swiper-box .swiper-item .scroll-box .item:first-of-type {
+  border-top: 0;
+}
+.template .container .swiper-box .swiper-item .scroll-box .item {
   padding: 0 6.4%;
   background: #fff;
 }
-.template .content .item .title {
+.template .container .swiper-box .swiper-item .scroll-box .item .title {
   height: 84rpx;
   border-bottom: 1px solid #f7f7f7;
   display: flex;
 }
-.template .content .item .title image,
-.template .content .item .title text {
+.template .container .swiper-box .swiper-item .scroll-box .item .title image,
+.template .container .swiper-box .swiper-item .scroll-box .item .title text {
   align-self: center;
 }
-.template .content .item .title image {
+.template .container .swiper-box .swiper-item .scroll-box .item .title image {
   width: 44rpx;
   height: 44rpx;
 }
-.template .content .item .title text:first-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .item .title text:first-of-type {
   padding-left: 18rpx;
   flex: 1;
   font-size: 28rpx;
   color: #313131;
 }
-.template .content .item .title text:last-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .item .title text:last-of-type {
   font-size: 28rpx;
   color: #fb560a;
 }
-.template .content .item .desc {
+.template .container .swiper-box .swiper-item .scroll-box .item .desc {
   height: 152rpx;
   display: flex;
   position: relative;
   border-bottom: 1px solid #f7f7f7;
   padding-top: 28rpx;
 }
-.template .content .item .desc image {
+.template .container .swiper-box .swiper-item .scroll-box .item .desc image {
   width: 124rpx;
   height: 124rpx;
 }
-.template .content .item .desc .text {
+.template .container .swiper-box .swiper-item .scroll-box .item .desc .text {
   flex: 1;
   padding-left: 25rpx;
   margin-top: 5rpx;
   position: relative;
 }
-.template .content .item .desc .text .name,
-.template .content .item .desc .text .price {
+.template .container .swiper-box .swiper-item .scroll-box .item .desc .text .name,
+.template .container .swiper-box .swiper-item .scroll-box .item .desc .text .price {
   display: block;
   font-size: 28rpx;
   color: #313131;
   line-height: 36rpx;
 }
-.template .content .item .desc .text .price {
+.template .container .swiper-box .swiper-item .scroll-box .item .desc .text .price {
   margin-top: 10rpx;
 }
-.template .content .item .desc .text .other {
+.template .container .swiper-box .swiper-item .scroll-box .item .desc .text .other {
   position: absolute;
   left: 25rpx;
   bottom: 28rpx;
@@ -104,7 +119,7 @@
   padding: 0 18rpx;
   border-radius: 5rpx;
 }
-.template .content .item .desc .quantity {
+.template .container .swiper-box .swiper-item .scroll-box .item .desc .quantity {
   position: absolute;
   right: 0;
   bottom: 30rpx;
@@ -112,17 +127,17 @@
   color: #b2b2b2;
   line-height: 36rpx;
 }
-.template .content .item .control {
+.template .container .swiper-box .swiper-item .scroll-box .item .control {
   height: 100rpx;
   position: relative;
 }
-.template .content .item .control .btn-group {
+.template .container .swiper-box .swiper-item .scroll-box .item .control .btn-group {
   position: absolute;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
 }
-.template .content .item .control .btn-group view {
+.template .container .swiper-box .swiper-item .scroll-box .item .control .btn-group view {
   display: inline-block;
   width: 　136rpx;
   height: 44rpx;
@@ -134,10 +149,10 @@
   color: #313131;
   padding: 0 13rpx;
 }
-.template .content .item .control .btn-group view:nth-of-type(2) {
+.template .container .swiper-box .swiper-item .scroll-box .item .control .btn-group view:nth-of-type(2) {
   margin-left: 20rpx;
 }
-.template .content .item .control .btn-group view:last-of-type {
+.template .container .swiper-box .swiper-item .scroll-box .item .control .btn-group view:last-of-type {
   margin-left: 20rpx;
   color: #d1051f;
   border: 1px solid  #d1051f;
