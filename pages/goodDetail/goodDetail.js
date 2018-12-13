@@ -208,9 +208,9 @@ Page({
     this.timer = setTimeout(() => {
       let index = e.currentTarget.dataset.index;
       if (index === 1) {
-        App.startAnimate(this, "cartAnimate", "left", "0%");
+        App.startAnimate(this, "cartAnimate", "top", "0%");
       } else {
-        App.startAnimate(this, "cartAnimate", "left", "-100%");
+        App.startAnimate(this, "cartAnimate", "top", "100%");
       }
     }, 400);
   },
