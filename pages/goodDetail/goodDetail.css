@@ -17,7 +17,12 @@
   border: 0;
 }
 .goodMod {
-  padding-bottom: 92rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 92rpx;
+  overflow: hidden;
 }
 .goodMod .swiper {
   height: 750rpx;
@@ -487,8 +492,8 @@
 .cart-control {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  left: -100%;
+  width: 100%;
   bottom: 0;
   z-index: 99;
 }
@@ -648,8 +653,8 @@
 .coupon-list,
 .service-detail {
   position: fixed;
-  left: 0;
-  right: 0;
+  width: 100%;
+  left: -100%;
   top: 0;
   bottom: 0;
 }

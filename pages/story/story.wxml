@@ -9,8 +9,8 @@
         <swiper class="swiper-box" current="{{navActive}}" bindchange="changeActiveByScroll">
             <block wx:for="{{list}}" wx:for-item="fatherItem" wx:for-index="fatherIndex" wx:key="{{fatherIndex+1}}">
                 <swiper-item class="swiper-item">
-                    <scroll-view class="scroll-box" scroll-y data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="getListByScroll">
-                        <view wx:if="{{fatherIndex===1}}" class="swiper-box">
+                    <scroll-view class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="getListByScroll">
+                        <view wx:if="{{fatherIndex===1}}"  style="height:395rpx">
                             <my-swiper></my-swiper>
                         </view>
                         <view wx:if="{{fatherIndex===3}}" class="cancel">

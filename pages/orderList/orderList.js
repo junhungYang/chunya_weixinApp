@@ -18,8 +18,7 @@ Page({
   data: {
     orderList: ["", "", "", "", ""],
     navActive: 0,
-    pageIndex: 1,
-    totalPages: 0
+    scrollFlag: true
   },
   onLoad: function(options) {
     that = this;
@@ -38,6 +37,7 @@ Page({
       title: "正在加载",
       mask: true
     });
+    this.setData({scrollFlag:false})
     let orderStatus;
     switch (index) {
       case 1:
@@ -64,10 +64,11 @@ Page({
         }else {
           orderList[index] = data
         }
-        this.setData({ orderList })
-        setTimeout(() => {
-          wx.hideLoading();
-        }, 600);
+        this.setData({ 
+          orderList,
+          scrollFlag:true
+         })
+         App.hideLoadingInSwiper(this.data.orderList,'')
       })
       .catch(data => App.catchError(data));
   },
@@ -84,7 +85,9 @@ Page({
   watch: {
     token(nV) {
       if (nV) {
-        that.getOrderList();
+        that.data.orderList.forEach((item, index) => {
+          that.getOrderList(1, index);
+        });
       }
     }
   },

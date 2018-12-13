@@ -5,6 +5,7 @@ Component({
     fatherList: [],
     page: 1,
     totalPages: 0,
+    scrollFlag:true
   },
   properties: {
     ishot:Number
@@ -17,11 +18,12 @@ Component({
       let length = this.data.fatherList.length
       _HaowuList({
         page: this.data.page,
-        size: 3
+        size: 5
       }).then(data => {
         this.setData({
           fatherList: [...this.data.fatherList, ...data.data],
-          totalPages: data.totalPages
+          totalPages: data.totalPages,
+          scrollFlag:true
         })
         data.data.forEach((item, index) => {
           this.changeChildPage(length + index, 1)
@@ -43,9 +45,7 @@ Component({
         setTimeout(() => {
           wx.hideLoading()
         }, 500);
-        this.setData({
-          fatherList
-        })
+        this.setData({ fatherList })
       }).catch(data => App.catchError(data))
     },
     changePageEnter(e) {
@@ -55,11 +55,11 @@ Component({
       let fatherList = this.data.fatherList
       if (type === 'add') {
         if (fatherList[targetIndex].subCategoryList.data.length !== 0) {
-          this.changeChildPage(targetIndex, page += 1);
           wx.showLoading({
             title: '正在加载',
             mask: true
           })
+          this.changeChildPage(targetIndex, page += 1);
         } else {
           wx.showToast({
             title: "产品上新中，敬请期待",
@@ -75,11 +75,8 @@ Component({
             duration: 1000
           })
         } else {
+          wx.showLoading({ title: "正在加载", mask: true });
           this.changeChildPage(targetIndex, page -= 1);
-          wx.showLoading({
-            title: '正在加载',
-            mask: true
-          })
         }
       }
     },
@@ -118,16 +115,20 @@ Component({
       }
     },
     scrollRefresh() {
-      if (this.data.page < this.data.totalPages) {
-        this.setData({
-          page: this.data.page + 1
-        })
-        wx.showLoading({
-          title: '正在加载'
-        })
-        this.getHaowuList()
-      } else {
-        App.theEndPage()
+      if(this.data.scrollFlag) {
+        if (this.data.page < this.data.totalPages) {
+          this.setData({
+            page: this.data.page + 1,
+            scrollFlag:false
+          })
+          wx.showLoading({
+            title: '正在加载',
+            mask: true
+          })
+          this.getHaowuList()
+        } else {
+          App.theEndPage()
+        }
       }
     }
   }

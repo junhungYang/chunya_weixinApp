@@ -12,14 +12,12 @@ Page({
    */
   data: {
     navIndex: 0,
-    list:[{},{},{},{}],
-    page:1,
+    list:['','','',''],
     payBtnHidden: true,
     payId: '',
     activePrice: 0,
-    totalPages: 0,
     isPay: 0,
-    list1: [[1,2],[3,4],[5,6]]
+    scrollFlag: true
   },
   onLoad: function (options) {
     that= this
@@ -34,14 +32,20 @@ Page({
   watch: {
     token(newValue) {
       if(newValue) {
-        that.getList();
+        that.data.list.forEach((item, index) => {
+          that.getList(1, index + 1);
+        })
       }  
     }
   },
-  getList(page,type,scroll) {
-    wx.showLoading({
-      title: '正在加载'
-    })
+  getList(page,type,scroll,collect) {
+    if(!collect) {
+      wx.showLoading({
+        title: '正在加载',
+        mask:true
+      })
+    }
+    this.setData({scrollFlag:false})
       _WarmclassList({
         page,
         type,
@@ -55,11 +59,10 @@ Page({
         }else {
           arr[type-1] = data
         }
-        setTimeout(() => {
-          wx.hideLoading()
-        }, 1000);
+        App.hideLoadingInSwiper(this.data.list, '')
         this.setData({
-          list: arr
+          list: arr,
+          scrollFlag:true
         })
       }).catch(data => App.catchError(data))
   },
@@ -94,9 +97,9 @@ Page({
     let activePrice = e.currentTarget.dataset.price
     let isFree = e.currentTarget.dataset.isfree
     let payId = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: `../nuankeDetail/nuankeDetail?warmClassId=${payId}`
-    });
+    let childIndex = e.currentTarget.dataset.childindex
+    let fatherIndex = e.currentTarget.dataset.fatherindex
+    let list = this.data.list
     if(isFree || isPay) {
       wx.navigateTo({
         url: `../nuankeDetail/nuankeDetail?warmClassId=${payId}`
@@ -113,19 +116,13 @@ Page({
               wx.navigateTo({
                 url: `../nuankeDetail/nuankeDetail?warmClassId=${payId}`
               });
-              this.data.list.forEach((item, index) => {
-                this.getList(1, index + 1);
-              })
+              list[fatherIndex].data[childIndex].isPay = 1
+              this.setData({list})
             }).catch(data => App.catchError(data))
           }
         }
       })
     }
-  },
-  hiddenPayBtn() {
-    this.setData({
-      payBtnHidden: true
-    })
   },
   collect(e) {
     let valueId = e.currentTarget.dataset.id;
@@ -144,7 +141,7 @@ Page({
           list[fatherIndex].data[index].isCollected = 1
         }
         this.setData({ list })
-        this.getList(1, 4);
+        this.getList(1, 4,'','collect');
       }else {
         list[otherIndex].data.forEach(item =>{
           if(item.id === valueId) {

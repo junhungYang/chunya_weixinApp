@@ -26,7 +26,8 @@ Page({
       "🌊", "🌋", "🌌", "🌏", "🌟", "🍀", "🌷", "🌱", "🍁", "🌸",
       "🍄", "🌰", "🌼", "🌿", "🍒", "🍌", "🍎", "🍊", "🍓", "🍅",
       "👀", "👂", "👃", "👄", "👅", "💄", "💅", "💆", "💇", "👤"
-    ]
+    ],
+    scrollFlag: true
   },
 
   /**
@@ -148,6 +149,10 @@ Page({
     })
   },
   getCommentList(style) {
+    wx.showLoading({
+      title: '正在加载',
+      mask: true
+    })
     _CommentList({
       typeId: 2,
       valueId: this.data.id,
@@ -156,16 +161,17 @@ Page({
       sort: "desc"
     })
       .then(data => {
-        if (!style) {
-          this.setData({
-            reviewsList: data.data,
-            totalPages: data.totalPages
-          });
-        } else {
-          wx.hideLoading();
-          let arr = [...this.data.reviewsList, ...data.data];
-          this.setData({ reviewsList: arr, totalPages: data.totalPages });
+        if(style) {
+          data.data = [...this.data.reviewsList, ...data.data]
         }
+        this.setData({
+          reviewsList: data.data,
+          totalPages: data.totalPages,
+          scrollFlag: true
+        })
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 600);
       })
       .catch(data => App.catchError(data));
   },
@@ -186,19 +192,21 @@ Page({
     }
   },
   onReachBottom: function() {
-    if (this.data.pageIndex < this.data.totalPages) {
-      wx.showLoading({
-        title: "正在加载",
-        mask: true
-      });
-      this.setData({
-        pageIndex: this.data.pageIndex + 1
-      });
-      this.getCommentList("byScroll");
-    }else {
-      App.theEndPage()
+    if(this.data.scrollFlag) {
+      if (this.data.pageIndex < this.data.totalPages) {
+        wx.showLoading({
+          title: "正在加载",
+          mask: true
+        });
+        this.setData({
+          pageIndex: this.data.pageIndex + 1,
+          scrollFlag: false
+        });
+        this.getCommentList("byScroll");
+      } else {
+        App.theEndPage()
+      }
     }
-
   },
   onPageScroll() {
     if (this.data.emojiState === false) {

@@ -1,5 +1,5 @@
 <view class="template">
-    <view class="goodMod">
+    <scroll-view scroll-y scroll-top="{{mainScrollTop}}" scroll-with-animation="{{true}}" class="goodMod">
         <view class="swiper">
             <good-swiper gallery="{{detail.gallery}}"></good-swiper>
         </view>
@@ -121,7 +121,7 @@
                 <rich-text nodes="{{detail.info.goods_desc}}"></rich-text>
             </view>
         </view>
-    </view>
+    </scroll-view>
       <view class="fixed-group">
         <button open-type="contact" size="20" class="contact">
             <image src="../../img/index/kefu_icon.png" />
@@ -158,7 +158,7 @@
             </form>  
         </view>
     </view>
-    <view class="cart-control" hidden="{{cartShowFlag}}">
+    <view class="cart-control" animation="{{cartAnimate}}">
         <view class="bg" bindtap="cartStateManage"></view>
         <view class="box">
             <view class="info">
@@ -213,11 +213,11 @@
             </view>
         </view>
     </view>
-    <view class="coupon-list" hidden="{{couponHidState}}">
+    <view class="coupon-list" animation="{{couponAnimate}}">
         <view class="bg" data-index="{{1}}" bindtap="couponStateManage"></view>
         <view class="main">
             <view class="title">店铺优惠券</view>
-            <scroll-view scroll-y class="list" bindscrolltolower="scrollGetCoupon">
+            <scroll-view scroll-y="{{scrollFlag}}" class="list" bindscrolltolower="scrollGetCoupon">
                 <view class="item" wx:for="{{couponList}}" wx:key="{{item.id}}" wx:for-index="index">
                     <image src="../../img/gradient1.jpg" />
                     <view class="box">
@@ -238,11 +238,11 @@
                 </view>
             </scroll-view>
         </view>
-        <view class="confirm">
+        <view class="confirm" data-index="{{1}}" bindtap="couponStateManage">
             完成
         </view>
     </view>
-    <view class="service-detail" hidden="{{serviceHidState}}">
+    <view class="service-detail" animation="{{serviceAnimate}}">
          <view class="bg" data-index="{{1}}" bindtap="serviceStateManage"></view>
          <view class="main no-padding">
             <view class="title">服务说明</view>

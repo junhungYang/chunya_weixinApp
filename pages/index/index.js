@@ -24,34 +24,37 @@ Page({
     commOffset: 0,
     eventItemWidth: 0,
     haowuComp: null,
-    colorMenu:[]
+    colorMenu: [],
+    searchAnimate: null,
+    searchAnimateFlag: true
   },
 
   onLoad() {
     this.getCommonwealList();
-    this.getColorMenu()
+    this.getColorMenu();
   },
   onReady() {
     let haowuComp = this.selectComponent("#haowu");
     this.setData({ haowuComp });
   },
   getColorMenu() {
-    _wxappMenuList()
-      .then(data => {
-        this.setData({
-          colorMenu: data
-        })
-      })
+    _wxappMenuList().then(data => {
+      this.setData({
+        colorMenu: data
+      });
+    });
   },
   getCommonwealList() {
     _SpreadList({
       id: 6
-    }).then(data => {
-      this.setData({
-        commonwealList: data.adList,
-        commActiveIndex: '01'
-      });
-    }).catch(data => App.catchError(data))
+    })
+      .then(data => {
+        this.setData({
+          commonwealList: data.adList,
+          commActiveIndex: "01"
+        });
+      })
+      .catch(data => App.catchError(data));
   },
   getEventWidth() {
     let query = wx.createSelectorQuery();
@@ -64,12 +67,14 @@ Page({
     if (this.data.eventItemWidth === 0) {
       this.getEventWidth();
     }
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       let data = e.detail;
       let num = data.scrollLeft % this.data.eventItemWidth;
-      let commActiveIndex = parseInt(data.scrollLeft / this.data.eventItemWidth) + 1
-      commActiveIndex = commActiveIndex < 10 ? `0${commActiveIndex}` : commActiveIndex;
+      let commActiveIndex =
+        parseInt(data.scrollLeft / this.data.eventItemWidth) + 1;
+      commActiveIndex =
+        commActiveIndex < 10 ? `0${commActiveIndex}` : commActiveIndex;
       this.setData({
         commActiveIndex
       });
@@ -124,14 +129,16 @@ Page({
           wx.navigateTo({ url: `../story/story` });
           break;
         case "qd":
-          _UserSignin().then(data => {
-            wx.showModal({
-              title: "签到成功",
-              content: data,
-              showCancel: false,
-              confirmColor: "#2d2d2d"
-            });
-          }).catch(data => App.catchError(data))
+          _UserSignin()
+            .then(data => {
+              wx.showModal({
+                title: "签到成功",
+                content: data,
+                showCancel: false,
+                confirmColor: "#2d2d2d"
+              });
+            })
+            .catch(data => App.catchError(data));
           break;
       }
     } else {
@@ -147,11 +154,27 @@ Page({
         searchPage: 1
       });
       if (this.data.searchText) {
-        this.setData({ searchListHid: false });
+        if (this.data.searchListHid) {
+          App.startAnimate(this, "searchAnimate", "opacity", "1");
+          setTimeout(() => {
+            this.setData({
+              searchListHid: false,
+              searchAnimateFlag: false
+            });
+          }, 250);
+        }
+        this.getSearchList("input");
       } else {
-        this.setData({ searchListHid: true });
+        if (!this.data.searchListHid) {
+          App.startAnimate(this, 'searchAnimate', 'opacity', '0')
+          setTimeout(() => {
+            this.setData({
+              searchListHid: true,
+              searchAnimateFlag: true
+            });
+          }, 250);
+        } 
       }
-      this.getSearchList("input");
     }, 500);
   },
   getSearchList(type) {
@@ -159,19 +182,20 @@ Page({
       page: this.data.searchPage,
       size: 10,
       keyword: this.data.searchText
-    }).then(data => {
-      this.setData({ searchTotalPage: data.totalPages });
-      if (type === "input") {
-     
-        this.setData({
-          searchList: data.data
-        });
-      } else {
-        this.setData({
-          searchList: [...this.data.searchList, ...data.data]
-        });
-      }
-      }).catch(data => App.catchError(data))
+    })
+      .then(data => {
+        this.setData({ searchTotalPage: data.totalPages });
+        if (type === "input") {
+          this.setData({
+            searchList: data.data
+          });
+        } else {
+          this.setData({
+            searchList: [...this.data.searchList, ...data.data]
+          });
+        }
+      })
+      .catch(data => App.catchError(data));
   },
   navToGoodDetail(e) {
     if (App.globalData.token) {
@@ -180,7 +204,7 @@ Page({
         url: `../goodDetail/goodDetail?goodId=${goodId}`
       });
     } else {
-      this.switchToLogin()
+      this.switchToLogin();
     }
   },
   searchListScroll() {
@@ -194,9 +218,16 @@ Page({
     }
   },
   hidSearchList() {
-    this.setData({
-      searchListHid: true
-    });
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      App.startAnimate(this, 'searchAnimate', 'opacity', '0')
+      setTimeout(() => {
+        this.setData({ 
+          searchListHid: true,
+          searchAnimateFlag: true
+        })
+      }, 250);
+    }, 400);
   },
   scrollToTop() {
     wx.pageScrollTo({
@@ -204,27 +235,33 @@ Page({
     });
   },
   onReachBottom: function() {
-    this.data.haowuComp.scrollRefresh()
+    this.data.haowuComp.scrollRefresh();
   },
   onShareAppMessage: function() {
     wx.showShareMenu();
   },
   onPageScroll() {
-    this.setData({ searchListHid:true });
+    if (!this.data.searchListHid&&!this.data.searchAnimateFlag) {
+      App.startAnimate(this, "searchAnimate", "opacity", "0");
+      this.setData({ searchAnimateFlag: true})
+      setTimeout(() => {
+        this.setData({ searchListHid: true });
+      }, 250);
+    }
   },
   onPullDownRefresh() {
     wx.showToast({
-      title: '正在加载',
-      icon: 'loading'
-    })
-    this.getCommonwealList()
-    this.selectComponent("#my-swiper").getList()
+      title: "正在加载",
+      icon: "loading"
+    });
+    this.getCommonwealList();
+    this.selectComponent("#my-swiper").getList();
     this.data.haowuComp.setData({
       fatherList: [],
       page: 1,
-      totalPages: 0,
-    })
-    this.data.haowuComp.getHaowuList()
+      totalPages: 0
+    });
+    this.data.haowuComp.getHaowuList();
     setTimeout(() => {
       wx.stopPullDownRefresh();
     }, 1000);

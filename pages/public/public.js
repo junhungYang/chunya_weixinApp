@@ -14,7 +14,8 @@ Page({
     userInfo: {},
     activePage: 1,
     commonList: [],
-    totalPages: 0
+    totalPages: 0,
+    scrollFlag:true
   },
 
   /**
@@ -36,6 +37,10 @@ Page({
       .catch(data => App.catchError(data));
   },
   getCommonList(style) {
+    wx.showLoading({
+      title: '正在加载',
+      mask:true
+    })
     _CommonwealList({
       page: this.data.activePage,
       size: 10,
@@ -45,28 +50,29 @@ Page({
         item.tags = arr
       })
       if(style) {
-        let arr = [...this.data.commonList, data.data]
-        this.setData({
-          commonList: arr,
-          totalPages: data.totalPages
-        })
-      }else {
-        this.setData({
-          commonList: data.data,
-          totalPages: data.totalPages
-        })
+        data.data = [...this.data.commonList, ...data.data]
       }
+      this.setData({
+        commonList: data.data,
+        totalPages: data.totalPages,
+        scrollFlag: true
+      });
+      wx.hideLoading()
       }).catch(data => App.catchError(data))
   },
   onReachBottom: function () {
-    if(this.data.page < this.data.totalPages) {
-      this.setData({
-        activePage: this.data.activePage + 1
-      })
-      this.getCommonList('byScroll')
-    }else {
-      App.theEndPage()
+    if(this.data.scrollFlag) {
+      if (this.data.page < this.data.totalPages) {
+        this.setData({
+          activePage: this.data.activePage + 1,
+          scrollFlag:false
+        })
+        this.getCommonList('byScroll')
+      } else {
+        App.theEndPage()
+      }
     }
+ 
   },
   showModal(msg) {
     wx.showModal({

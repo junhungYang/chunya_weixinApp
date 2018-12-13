@@ -20,7 +20,8 @@ Page({
     totalPages: 0,
     from: "",
     value: "",
-    reviewsCount: 0
+    reviewsCount: 0,
+    scrollFlag: true
   },
 
   /**
@@ -57,33 +58,28 @@ Page({
     })
   },
   getCommentList(type) {
-    if (type) {
       wx.showLoading({
         title: "正在加载",
         mask: true
       });
-    }
     _PostsGetCommentList({
       postId: this.data.id,
       page: this.data.pageIndex,
       size: 10
     })
       .then(data => {
-        this.setData({
-          reviewsCount: data.count
-        })
         if (type) {
-          let arr = [...this.data.commentList, ...data.data];
-          setTimeout(() => {
-            wx.hideLoading();
-            this.setData({ commentList: arr, totalPages: data.totalPages });
-          }, 500);
-        } else {
-          this.setData({
-            commentList: data.data,
-            totalPages: data.totalPages
-          });
+          data.data = [...this.data.commentList, ...data.data];
         }
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 500);
+        this.setData({ 
+          commentList: data.data,
+           totalPages: data.totalPages, 
+           scrollFlag:true,
+          reviewsCount: data.count
+        });
       })
       .catch(data => App.catchError(data));
 
@@ -97,15 +93,17 @@ Page({
 
   },
   onReachBottom: function() {
-    if(this.data.pageIndex < this.data.totalPages) {
-      this.setData({
-        pageIndex: this.data.pageIndex + 1
-      });
-      this.getCommentList("scroll");
-    }else {
-      App.theEndPage()
+    if(this.data.scrollFlag) {
+      if (this.data.pageIndex < this.data.totalPages) {
+        this.setData({
+          pageIndex: this.data.pageIndex + 1,
+          scrollFlag: false
+        });
+        this.getCommentList("scroll");
+      } else {
+        App.theEndPage()
+      }
     }
-
   },
   inputComment(e) {
     if (e.detail.value === " ") {

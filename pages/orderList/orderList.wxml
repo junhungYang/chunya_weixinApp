@@ -20,7 +20,7 @@
         <swiper class="swiper-box" current="{{navActive}}" bindchange="changeActiveByScroll">
             <block wx:for="{{orderList}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
                 <swiper-item class="swiper-item">
-                    <scroll-view class="scroll-box" scroll-y data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="refreshListByScroll">
+                    <scroll-view class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="refreshListByScroll">
                         <view class="item" wx:for="{{fatherItem.data}}" wx:key="item.id">
                             <view class="title">
                                 <image src="../../img/logo.png" />

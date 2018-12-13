@@ -15,18 +15,20 @@ Page({
   data: {
     detail: {},
     htmlStr: "",
-    cartShowFlag: true,
     userHasCollect: 0,
     quantity: 1,
     activeProduct: {},
     goodId: "",
     reviews: [],
-    couponHidState: true,
-    serviceHidState: true,
     from: "",
     couponList: [],
     couponPage: 1,
-    couponTotal: 0
+    couponTotal: 0,
+    scrollFlag: true,
+    couponAnimate: null,
+    serviceAnimate: null,
+    cartAnimate: null,
+    mainScrollTop: 0
   },
   onLoad: function(options) {
     that = this;
@@ -65,12 +67,13 @@ Page({
     _CouponForGood({
       goodsId: this.data.goodId,
       page: this.data.couponPage,
-      size: 6
+      size: 20
     }).then(data => {
       let arr = [...this.data.couponList,...data.data]
       this.setData({
         couponList: arr,
-        couponTotal: data.totalPages
+        couponTotal: data.totalPages,
+        scrollFlag: true
       })
       setTimeout(() => {
         wx.hideLoading()
@@ -106,7 +109,8 @@ Page({
   scrollGetCoupon() {
     if(this.data.couponPage < this.data.couponTotal) {
       this.setData({
-        couponPage: this.data.couponPage + 1
+        couponPage: this.data.couponPage + 1,
+        scrollFlag: false
       })
       wx.showLoading({
         title: '正在加载',
@@ -118,20 +122,26 @@ Page({
     }
   },
   couponStateManage(e) {
-    let index = e.currentTarget.dataset.index;
-    if (index) {
-      this.setData({ couponHidState: true });
-    } else {
-      this.setData({ couponHidState: false });
-    }
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let index = e.currentTarget.dataset.index;
+      if (index) {
+        App.startAnimate(this, "couponAnimate", "left", "-100%");
+      } else {
+        App.startAnimate(this, "couponAnimate", "left", "0%");
+      }
+    }, 500);
   },
   serviceStateManage(e) {
-    let index = e.currentTarget.dataset.index;
-    if (index) {
-      this.setData({ serviceHidState: true });
-    } else {
-      this.setData({ serviceHidState: false });
-    }
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let index = e.currentTarget.dataset.index;
+      if (index) {
+        App.startAnimate(this, "serviceAnimate", "left", "-100%");
+      } else {
+        App.startAnimate(this, "serviceAnimate", "left", "0%");
+      }
+    }, 500);
   },
   chooseProduct(e) {
     let obj = e.currentTarget.dataset.item;
@@ -198,13 +208,9 @@ Page({
     this.timer = setTimeout(() => {
       let index = e.currentTarget.dataset.index;
       if (index === 1) {
-        this.setData({
-          cartShowFlag: false
-        });
+        App.startAnimate(this, "cartAnimate", "left", "0%");
       } else {
-        this.setData({
-          cartShowFlag: true
-        });
+        App.startAnimate(this, "cartAnimate", "left", "-100%");
       }
     }, 400);
   },
@@ -270,17 +276,12 @@ Page({
     }
   },
   scrollToTop() {
-    wx.pageScrollTo({
-      scrollTop: 0
-    });
-
-  },
-  onPageScroll(res) {
     this.setData({
-      cartShowFlag: true,
-      couponHidState: true,
-      serviceHidState: true
-    });
+      mainScrollTop: 0
+    })
+  },
+  onPageScroll() {
+
   },
   onShareAppMessage: function() {
     wx.showShareMenu();

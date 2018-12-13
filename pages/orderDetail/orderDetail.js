@@ -57,9 +57,11 @@ Page({
             signType: data.signType,
             paySign: data.paySign,
             success: (res) => {
+              console.log(12346579)
               wx.showToast({
                 title: "成功结算"
               });
+              this.refreshPrevPage();
               this.getOrderDetail()
             },
           });
@@ -79,11 +81,7 @@ Page({
         .then(data => {
           wx.showToast({ icon: "success", title: data, duration: 600 });
           this.getOrderDetail();
-          let pages = getCurrentPages();
-          let prevPage = pages[pages.length - 2];
-          prevPage.data.orderList.forEach((item,index) => {
-            prevPage.getOrderList(1,index)
-          })
+          this.refreshPrevPage()
           if (controlStyle === "delete") {
             setTimeout(() => {
               wx.navigateBack({ delta: 1 });
@@ -92,6 +90,13 @@ Page({
         })
         .catch(data => App.catchError(data));
     }
+  },
+  refreshPrevPage() {
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    prevPage.data.orderList.forEach((item, index) => {
+      prevPage.getOrderList(1, index)
+    })
   },
   copy() {
     wx.setClipboardData({

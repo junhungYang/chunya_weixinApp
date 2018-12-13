@@ -152,7 +152,16 @@ App({
         .catch(data => this.catchError(data));
     });
   },
-
+  startAnimate(that,target,type,value) {
+    let obj = {}
+    obj[target] = wx.createAnimation({
+      duration: 200
+    });
+    that.setData(obj)
+    that.data[target][type](value).step()
+    obj[target] = that.data[target].export()
+    that.setData(obj)
+  },
   orderControl(orderId, controlStyle, from) {
     let promiseObj;
     switch (controlStyle) {
@@ -243,6 +252,14 @@ App({
       icon: "none",
       duration: 1000
     });
+  },
+  hideLoadingInSwiper(list,type) {
+    let state = list.indexOf(type)
+    if(state === -1) {
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 1000);
+    }
   },
   //监听器
   setWatcher(data, watch) {

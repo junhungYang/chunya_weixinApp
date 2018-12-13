@@ -9,6 +9,7 @@ Page({
   data: {
     navActive: 0,
     list:['','','',''],
+    scrollFlag:true
   },
 
   /**
@@ -30,6 +31,7 @@ Page({
         mask: true
       });
     }
+    this.setData({scrollFlag:false})
     _PostsList({
       type:typeIndex,
       page,
@@ -44,11 +46,10 @@ Page({
           list[typeIndex] = data
         }
         this.setData({
-          list
+          list,
+          scrollFlag:true
         })
-        setTimeout(() => {
-          wx.hideLoading();
-        }, 600);
+        App.hideLoadingInSwiper(this.data.list,'')
       })
       .catch(data => App.catchError(data));
   },

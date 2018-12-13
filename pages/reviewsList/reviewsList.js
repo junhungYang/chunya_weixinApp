@@ -12,6 +12,7 @@ Page({
     pageIndex:1,
     totalPages: 0,
     goodId: 0,
+    scrollFlag: true
   },
 
   /**
@@ -36,16 +37,19 @@ Page({
     _GoodCommentList({
       goodId: this.data.goodId,
       page: this.data.pageIndex,
-      size: 10
+      size: 20
     }).then(data => {
         wx.setNavigationBarTitle({
           title: `评价(${data.count})`
         })
-        wx.hideLoading();
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 500);
         let arr = [...this.data.reviewsList,...data.data];
         this.setData({
           reviewsList: arr,
-          totalPages: data.totalPages
+          totalPages: data.totalPages,
+          scrollFlag: true
         })
       }).catch(data => App.catchError(data))
   },
@@ -64,19 +68,21 @@ Page({
   
   },
   onReachBottom: function () {
-    if(this.data.page < this.data.totalPages) {
-      wx.showLoading({
-        title: "正在加载",
-        mask: true
-      });
-      this.setData({
-        pageIndex: this.data.pageIndex + 1
-      });
-      this.getCommentList();
-    }else {
-      App.theEndPage()
+    if(this.data.scrollFlag) {
+      if (this.data.pageIndex < this.data.totalPages) {
+        wx.showLoading({
+          title: "正在加载",
+          mask: true
+        });
+        this.setData({
+          pageIndex: this.data.pageIndex + 1,
+          scrollFlag: false
+        });
+        this.getCommentList();
+      } else {
+        App.theEndPage()
+      }
     }
-  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

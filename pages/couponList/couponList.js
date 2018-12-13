@@ -9,6 +9,7 @@ Page({
   data: {
     list: ['','',''],
     navActive: 0,
+    scrollFlag: true
   },
 
   /**
@@ -24,7 +25,9 @@ Page({
   watch: {
     token(nV) {
       if(nV) {
-        that.getCouponList()
+        that.data.list.forEach((item, index) => {
+          that.getCouponList(1, index);
+        })
       }
     }
   },
@@ -36,7 +39,7 @@ Page({
     _CouponForUser({
       type:typeIndex,
       page,
-      size: 10
+      size: 20
     }).then(data => {
       let list = this.data.list
       if(scroll) {
@@ -46,11 +49,10 @@ Page({
         list[typeIndex] = data
       }
       this.setData({
-        list
+        list,
+        scrollFlag: true
       })
-      setTimeout(() => {
-        wx.hideLoading();
-      }, 600);
+      App.hideLoadingInSwiper(this.data.list, "");
       }).catch(data => App.catchError(data))
   },
   changeActiveByScroll(e) {
@@ -74,6 +76,7 @@ Page({
     let fatherItem = e.currentTarget.dataset.item
     if(fatherItem.currentPage < fatherItem.totalPages) {
       this.getCouponList(fatherItem.currentPage+1,fatherIndex,'scroll')
+      this.setData({scrollFlag:false})
     }else {
       App.theEndPage()
     }

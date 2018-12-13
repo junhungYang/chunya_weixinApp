@@ -8,7 +8,7 @@
         <swiper class="swiper-box" current="{{navActive}}" bindchange="changeActiveByScroll">
             <block wx:for="{{list}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
                 <swiper-item class="swiper-item">
-                    <scroll-view class="scroll-box" scroll-y data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="scrollRefresh">
+                    <scroll-view class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="scrollRefresh">
                         <view class="item" wx:for="{{fatherItem.data}}" wx:key="{{item.id}}" wx:for-index="index">
                             <image wx:if="{{fatherIndex===0}}" src="../../img/gradient1.jpg" />
                             <image wx:elif="{{fatherIndex===1}}" src="../../img/gradient2.jpg" />

@@ -8,7 +8,7 @@
         <swiper class="swiper-box" current="{{navActive}}" data-type="scroll" bindchange="changePageIndex">
             <block wx:for="{{list}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
                 <swiper-item class="swiper-item">
-                    <scroll-view class="scroll-box" scroll-y data-fatheritem="{{fatherItem}}" bindscrolltolower="scrollRefresh">
+                    <scroll-view class="scroll-box" scroll-y="{{scrollFlag}}" data-fatheritem="{{fatherItem}}" bindscrolltolower="scrollRefresh">
                         <view class="{{fatherIndex === 0 ? 'noSignup-list' : 'signup-list'}}">
                             <view class="item" wx:for="{{fatherItem.data}}" data-id="{{item.id}}" bindtap="navToDetail">
                                 <image src="{{item.listCoverUrl}}" />

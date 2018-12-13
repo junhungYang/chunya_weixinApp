@@ -10,6 +10,7 @@ Page({
   data: {
     list: ['',''],
     navActive: 0,
+    scrollFlag:true
   },
   onLoad: function (options) {
     that = this
@@ -18,23 +19,14 @@ Page({
       this.data.list.forEach((item,index) => {
         this.getActivityList(1,index);
       })
-      
     }
   },
-  changeActive(e) {
-    this.setData({
-      navActive: e.currentTarget.dataset.index,
-      page: 1,
-      list: []
-    })
-    this.getActivityList()
-  },
   getActivityList(page,index,scroll) {
-    console.log(page)
     wx.showLoading({
       title: '正在加载',
       mask:true
     })
+    this.setData({scrollFlag:false})
     _ActivityList({
       page,
       type: index,
@@ -49,11 +41,10 @@ Page({
         list[index] = data
       }
       this.setData({
-        list
+        list,
+        scrollFlag:true
       })
-      setTimeout(() => {
-        wx.hideLoading()
-      }, 600)
+      App.hideLoadingInSwiper(this.data.list, "");
       }).catch(data => App.catchError(data))
   },
   dataTranslate(dataList) {
