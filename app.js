@@ -152,10 +152,10 @@ App({
         .catch(data => this.catchError(data));
     });
   },
-  startAnimate(that,target,type,value) {
+  startAnimate(that, target, type, value, duration) {
     let obj = {}
     obj[target] = wx.createAnimation({
-      duration: 200
+      duration: duration ? duration : 200
     });
     that.setData(obj)
     that.data[target][type](value).step()

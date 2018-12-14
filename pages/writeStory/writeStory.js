@@ -14,7 +14,9 @@ Page({
      upLoadHidden:true,
      upLoadFile: 'image',
      videoSrc: '',
-     videoPoster: ''
+     videoPoster: '',
+     maskAnimate: null,
+     upLoadAnimate: null
   },
 
   onLoad: function (options) {
@@ -184,13 +186,19 @@ Page({
   upLoadHiddenManage(e) {
     let index = e.currentTarget.dataset.index
     if(index === 1) {
-      this.setData({
-        upLoadHidden: true
-      })
+      App.startAnimate(this,'maskAnimate','opacity','0')
+      App.startAnimate(this, 'upLoadAnimate', 'bottom', '-200rpx')
+      setTimeout(() => {
+        this.setData({
+          upLoadHidden: true
+        })
+      }, 210);
     }else  {
       this.setData({
         upLoadHidden: false
       })
+      App.startAnimate(this, "upLoadAnimate", "bottom", "0");
+      App.startAnimate(this, 'maskAnimate', 'opacity', '0.5')
     }
   },
   viewPic(e) {

@@ -365,7 +365,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.goodMod .reviews .list .item .item-cont .pic-group .img-box:nth-child(3n+1) {
+.goodMod .reviews .list .item .item-cont .pic-group .img-box:nth-child(3n + 1) {
   margin-left: 0;
 }
 .goodMod .reviews .list .item:last-of-type {
@@ -491,24 +491,32 @@
 }
 .cart-control {
   position: fixed;
-  top: 100%;
+  top: 0;
   left: 0;
   right: 0;
-  height: 100%;
+  bottom: 0;
   z-index: 99;
 }
 .cart-control .bg {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.73);
+  background: #000;
+  opacity: 0;
 }
 .cart-control .box {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  right: 0;
+  height: 100%;
+}
+.cart-control .box .cont {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
 }
-.cart-control .box .next-btn {
+.cart-control .box .cont .next-btn {
   height: 100rpx;
   background: #d1051f;
   color: #fff;
@@ -516,17 +524,17 @@
   line-height: 100rpx;
   text-align: center;
 }
-.cart-control .box .info {
+.cart-control .box .cont .info {
   background: #fff;
   padding: 0 6.4%;
 }
-.cart-control .box .info .text-img {
+.cart-control .box .cont .info .text-img {
   display: flex;
   padding-bottom: 19rpx;
   border-bottom: 1px solid #e8e8e8;
   position: relative;
 }
-.cart-control .box .info .text-img .img-box {
+.cart-control .box .cont .info .text-img .img-box {
   width: 164rpx;
   height: 164rpx;
   border: 1px solid #e8e8e8;
@@ -536,38 +544,35 @@
   position: relative;
   overflow: hidden;
 }
-.cart-control .box .info .text-img .img-box image {
+.cart-control .box .cont .info .text-img .img-box image {
   width: 100%;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.cart-control .box .info .text-img .about {
-  margin-left: 19rpx;
+.cart-control .box .cont .info .text-img .about {
   padding-top: 32rpx;
   flex: 1;
 }
-.cart-control .box .info .text-img .about .name {
+.cart-control .box .cont .info .text-img .about .name {
   font-size: 24rpx;
+  line-height: 30rpx;
+  max-height: 60rpx;
+  overflow: hidden;
   color: #313131;
   width: 90%;
+  margin-left: 16rpx;
 }
-.cart-control .box .info .text-img .about .price-size {
-  display: flex;
+.cart-control .box .cont .info .text-img .about .price-size {
   margin-top: 21rpx;
   position: relative;
 }
-.cart-control .box .info .text-img .about .price-size .price {
+.cart-control .box .cont .info .text-img .about .price-size .price {
   color: #d1051f;
+  margin-left: 16rpx;
 }
-.cart-control .box .info .text-img .about .price-size .size {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.cart-control .box .info .text-img .about .price-size .size view {
+.cart-control .box .cont .info .text-img .about .price-size .size view {
   display: inline-block;
   height: 28rpx;
   padding: 0 8rpx;
@@ -577,60 +582,57 @@
   border: 1px solid #e8e8e8;
   color: #6f6f6f;
 }
-.cart-control .box .info .text-img .about .price-size .size view {
-  margin-left: 18rpx;
+.cart-control .box .cont .info .text-img .about .price-size .size view {
+  margin-left: 16rpx;
 }
-.cart-control .box .info .text-img .about .price-size .size view:first-of-type {
-  margin: 0;
-}
-.cart-control .box .info .text-img .about .price-size .size .active {
+.cart-control .box .cont .info .text-img .about .price-size .size .active {
   border: 1px solid #ed015c;
   color: #ed015c;
 }
-.cart-control .box .info .text-img .close {
+.cart-control .box .cont .info .text-img .close {
   position: absolute;
   width: 44rpx;
   height: 44rpx;
   top: 31rpx;
   right: 0;
 }
-.cart-control .box .info .text-img .close image {
+.cart-control .box .cont .info .text-img .close image {
   width: 100%;
   height: 100%;
   border: 0;
 }
-.cart-control .box .info .quantity-control {
+.cart-control .box .cont .info .quantity-control {
   height: 120rpx;
   display: flex;
 }
-.cart-control .box .info .quantity-control .quantity {
+.cart-control .box .cont .info .quantity-control .quantity {
   flex: 1;
   align-self: center;
 }
-.cart-control .box .info .quantity-control .quantity text {
+.cart-control .box .cont .info .quantity-control .quantity text {
   display: block;
 }
-.cart-control .box .info .quantity-control .quantity text:first-of-type {
+.cart-control .box .cont .info .quantity-control .quantity text:first-of-type {
   font-size: 28rpx;
 }
-.cart-control .box .info .quantity-control .quantity text:last-of-type {
+.cart-control .box .cont .info .quantity-control .quantity text:last-of-type {
   font-size: 20rpx;
   color: #b2b2b2;
   margin-top: 5rpx;
 }
-.cart-control .box .info .quantity-control .control {
+.cart-control .box .cont .info .quantity-control .control {
   width: 240rpx;
   height: 64rpx;
   display: flex;
   align-self: center;
 }
-.cart-control .box .info .quantity-control .control view {
+.cart-control .box .cont .info .quantity-control .control view {
   flex: 1;
   font-size: 24rpx;
   line-height: 60rpx;
   text-align: center;
 }
-.cart-control .box .info .quantity-control .control .minus {
+.cart-control .box .cont .info .quantity-control .control .minus {
   border: 1px solid #e8e8e8;
   border-right: 0;
   border-top-left-radius: 8rpx;
@@ -638,15 +640,15 @@
   color: #999;
   background: #f8f8f8;
 }
-.cart-control .box .info .quantity-control .control .num,
-.cart-control .box .info .quantity-control .control .add {
+.cart-control .box .cont .info .quantity-control .control .num,
+.cart-control .box .cont .info .quantity-control .control .add {
   border: 1px solid #999;
   color: #313131;
 }
-.cart-control .box .info .quantity-control .control .num {
+.cart-control .box .cont .info .quantity-control .control .num {
   border-right: 0;
 }
-.cart-control .box .info .quantity-control .control .add {
+.cart-control .box .cont .info .quantity-control .control .add {
   border-top-right-radius: 8rpx;
   border-bottom-right-radius: 8rpx;
 }

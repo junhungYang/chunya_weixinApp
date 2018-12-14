@@ -15,6 +15,10 @@ Component({
   },
   methods: {
     getHaowuList() {
+      wx.showLoading({
+        title: '正在加载',
+        mask: true
+      })
       let length = this.data.fatherList.length
       _HaowuList({
         page: this.data.page,

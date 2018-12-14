@@ -28,6 +28,8 @@ Page({
     couponAnimate: null,
     serviceAnimate: null,
     cartAnimate: null,
+    cartMaskAnimate: null,
+    cartHidden: true,
     mainScrollTop: 0
   },
   onLoad: function(options) {
@@ -68,61 +70,64 @@ Page({
       goodsId: this.data.goodId,
       page: this.data.couponPage,
       size: 20
-    }).then(data => {
-      let arr = [...this.data.couponList,...data.data]
-      this.setData({
-        couponList: arr,
-        couponTotal: data.totalPages,
-        scrollFlag: true
+    })
+      .then(data => {
+        let arr = [...this.data.couponList, ...data.data];
+        this.setData({
+          couponList: arr,
+          couponTotal: data.totalPages,
+          scrollFlag: true
+        });
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 400);
       })
-      setTimeout(() => {
-        wx.hideLoading()
-      }, 400);
-      }).catch(data => App.catchError(data))
-
+      .catch(data => App.catchError(data));
   },
   addCoupon(e) {
-    let state = e.currentTarget.dataset.state
-    if(state) {
+    let state = e.currentTarget.dataset.state;
+    if (state) {
       wx.showModal({
-        title: '优惠券提示',
-        content: '该优惠券已经领取过'
-      })
-    }else {
-      let couponId = e.currentTarget.dataset.id
-      let index= e.currentTarget.dataset.index
+        title: "优惠券提示",
+        content: "该优惠券已经领取过"
+      });
+    } else {
+      let couponId = e.currentTarget.dataset.id;
+      let index = e.currentTarget.dataset.index;
       _CouponAdd({
         couponId
-      }).then(data => {
-        wx.showToast({
-          title: '成功领取',
-          icon: 'success'
+      })
+        .then(data => {
+          wx.showToast({
+            title: "成功领取",
+            icon: "success"
+          });
+          let arr = this.data.couponList;
+          arr[index].isReceive = 1;
+          this.setData({
+            couponList: arr
+          });
         })
-        let arr = this.data.couponList
-        arr[index].isReceive = 1
-        this.setData({
-          couponList: arr
-        })
-        }).catch(data => App.catchError(data))
+        .catch(data => App.catchError(data));
     }
   },
   scrollGetCoupon() {
-    if(this.data.couponPage < this.data.couponTotal) {
+    if (this.data.couponPage < this.data.couponTotal) {
       this.setData({
         couponPage: this.data.couponPage + 1,
         scrollFlag: false
-      })
+      });
       wx.showLoading({
-        title: '正在加载',
-        mask:true
-      })
-      this.getCouponList()
-    }else {
-      App.theEndPage()
+        title: "正在加载",
+        mask: true
+      });
+      this.getCouponList();
+    } else {
+      App.theEndPage();
     }
   },
   couponStateManage(e) {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       let index = e.currentTarget.dataset.index;
       if (index) {
@@ -130,10 +135,10 @@ Page({
       } else {
         App.startAnimate(this, "couponAnimate", "left", "0%");
       }
-    }, 500);
+    }, 200);
   },
   serviceStateManage(e) {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       let index = e.currentTarget.dataset.index;
       if (index) {
@@ -141,7 +146,7 @@ Page({
       } else {
         App.startAnimate(this, "serviceAnimate", "left", "0%");
       }
-    }, 500);
+    }, 200);
   },
   chooseProduct(e) {
     let obj = e.currentTarget.dataset.item;
@@ -208,37 +213,45 @@ Page({
     this.timer = setTimeout(() => {
       let index = e.currentTarget.dataset.index;
       if (index === 1) {
+        this.setData({cartHidden: false})
         App.startAnimate(this, "cartAnimate", "top", "0%");
+        App.startAnimate(this, 'cartMaskAnimate', 'opacity', '0.7')
       } else {
         App.startAnimate(this, "cartAnimate", "top", "100%");
+        App.startAnimate(this, 'cartMaskAnimate', 'opacity', '0')
+        setTimeout(() => {
+          this.setData({ cartHidden: true })
+        }, 210);
       }
-    }, 400);
+    }, 200);
   },
   //点击收藏
   collect() {
     _CollectAddorDelete({
       typeId: 0,
       valueId: this.data.detail.info.id
-    }).then(data => {
-      if(data.type === 'delete') {
-        this.setData({
-          userHasCollect: 0
-        });
-      }else {
-        this.setData({
-          userHasCollect: 1
-        });
-      }
-      if (this.data.from === "collect") {
-        let pages = getCurrentPages();
-        let prevPage = pages[pages.length - 2];
-        prevPage.setData({
-          page: 1,
-          list: []
-        });
-        prevPage.getMyCollect();
-      }
-      }).catch(data => App.catchError(data))
+    })
+      .then(data => {
+        if (data.type === "delete") {
+          this.setData({
+            userHasCollect: 0
+          });
+        } else {
+          this.setData({
+            userHasCollect: 1
+          });
+        }
+        if (this.data.from === "collect") {
+          let pages = getCurrentPages();
+          let prevPage = pages[pages.length - 2];
+          prevPage.setData({
+            page: 1,
+            list: []
+          });
+          prevPage.getMyCollect();
+        }
+      })
+      .catch(data => App.catchError(data));
   },
   //跳转至首页
   navToIndex() {
@@ -278,11 +291,9 @@ Page({
   scrollToTop() {
     this.setData({
       mainScrollTop: 0
-    })
+    });
   },
-  onPageScroll() {
-
-  },
+  onPageScroll() {},
   onShareAppMessage: function() {
     wx.showShareMenu();
   }

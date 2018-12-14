@@ -158,58 +158,60 @@
             </form>  
         </view>
     </view>
-    <view class="cart-control" animation="{{cartAnimate}}">
-        <view class="bg" bindtap="cartStateManage"></view>
-        <view class="box">
-            <view class="info">
-                <view class="text-img">
-                    <view class="img-box">
-                        <image src="{{activeProduct.primary_pic_url}}" mode="widthFix"/>
-                    </view>
-                    <view class="about">
-                        <view class="name">
-                            {{activeProduct.goods_name}}
+    <view class="cart-control" hidden="{{cartHidden}}">
+       <view class="bg" animation="{{cartMaskAnimate}}" data-index="{{2}}" bindtap="cartStateManage"></view>
+        <view class="box" animation="{{cartAnimate}}">
+            <view class="cont">
+                <view class="info">
+                    <view class="text-img">
+                        <view class="img-box">
+                            <image src="{{activeProduct.primary_pic_url}}" mode="widthFix"/>
                         </view>
-                        <view class="price-size">
-                            <view class="price">
-                                ￥{{activeProduct.retail_price}}
+                        <view class="about">
+                            <view class="name">
+                                {{activeProduct.goods_name}}
                             </view>
-                            <view class="size">
-                                <view class="{{activeProduct.id===item.id?'active':''}}"
-                                 wx:for="{{detail.productList}}" 
-                                 data-item="{{item}}" bindtap="chooseProduct">
-                                    {{item.product_name}}
+                            <view class="price-size">
+                                <view class="price">
+                                    ￥{{activeProduct.retail_price}}
+                                </view>
+                                <view class="size">
+                                    <view class="{{activeProduct.id===item.id?'active':''}}"
+                                    wx:for="{{detail.productList}}" 
+                                    data-item="{{item}}" bindtap="chooseProduct">
+                                        {{item.product_name}}
+                                    </view>
                                 </view>
                             </view>
                         </view>
+                        <view class="close" data-index="{{2}}" bindtap="cartStateManage">
+                            <image src="../../img/goodDetail/cart_close.png" />
+                        </view>
                     </view>
-                    <view class="close" data-index="{{2}}" bindtap="cartStateManage">
-                        <image src="../../img/goodDetail/cart_close.png" />
+                    <view class="quantity-control">
+                        <view class="quantity">
+                            <text>库存数量</text>
+                            <text>剩余{{activeProduct.goods_number}}件</text>
+                        </view>
+                        <view class="control">
+                            <view class="minus" data-index="{{2}}" bindtap="quantityControl">
+                                -
+                            </view>
+                            <view class="num">
+                                {{quantity}}
+                            </view>
+                            <view class="add" data-index="{{1}}" bindtap="quantityControl">
+                                +
+                            </view>
+                        </view>
                     </view>
                 </view>
-                <view class="quantity-control">
-                    <view class="quantity">
-                        <text>库存数量</text>
-                        <text>剩余{{activeProduct.goods_number}}件</text>
-                    </view>
-                    <view class="control">
-                        <view class="minus" data-index="{{2}}" bindtap="quantityControl">
-                            -
-                        </view>
-                        <view class="num">
-                            {{quantity}}
-                        </view>
-                        <view class="add" data-index="{{1}}" bindtap="quantityControl">
-                            +
-                        </view>
-                    </view>
+                <view class="next-btn">
+                    <form bindsubmit="formSubmit_collect" report-submit="true">
+                            <button  formType="submit"  hover-class="none" class='invisibleclass'
+                        bindtap="cartAdd">下一步</button>
+                        </form>  
                 </view>
-            </view>
-            <view class="next-btn">
-                <form bindsubmit="formSubmit_collect" report-submit="true">
-                <button  formType="submit"  hover-class="none" class='invisibleclass'
-            bindtap="cartAdd">下一步</button>
-            </form>  
             </view>
         </view>
     </view>

@@ -46,8 +46,8 @@
         立即发布
     </view>
     <view class="imageOrVideo" hidden="{{upLoadHidden}}">
-        <view class="bg" data-index="{{1}}" bindtap="upLoadHiddenManage"></view>
-        <view class="btn">
+        <view class="bg" animation="{{maskAnimate}}" data-index="{{1}}" bindtap="upLoadHiddenManage"></view>
+        <view class="btn" animation="{{upLoadAnimate}}">
             <view bindtap="addVideo">上传视频</view>
             <view bindtap="addImage">上传图片</view>
         </view>

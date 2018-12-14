@@ -30,6 +30,12 @@ Page({
   },
 
   onLoad() {
+    wx.showToast({
+      icon: 'loading',
+      duration: 2000,
+      title: '正在加载',
+      mask: true
+    })
     this.getCommonwealList();
     this.getColorMenu();
   },
@@ -155,13 +161,11 @@ Page({
       });
       if (this.data.searchText) {
         if (this.data.searchListHid) {
+          this.setData({
+            searchListHid: false,
+            searchAnimateFlag: false
+          });
           App.startAnimate(this, "searchAnimate", "opacity", "1");
-          setTimeout(() => {
-            this.setData({
-              searchListHid: false,
-              searchAnimateFlag: false
-            });
-          }, 250);
         }
         this.getSearchList("input");
       } else {
@@ -172,10 +176,10 @@ Page({
               searchListHid: true,
               searchAnimateFlag: true
             });
-          }, 250);
+          }, 210);
         } 
       }
-    }, 500);
+    }, 300);
   },
   getSearchList(type) {
     _GoodsList({
@@ -227,7 +231,7 @@ Page({
           searchAnimateFlag: true
         })
       }, 250);
-    }, 400);
+    }, 310);
   },
   scrollToTop() {
     wx.pageScrollTo({
@@ -246,7 +250,7 @@ Page({
       this.setData({ searchAnimateFlag: true})
       setTimeout(() => {
         this.setData({ searchListHid: true });
-      }, 250);
+      }, 210);
     }
   },
   onPullDownRefresh() {
