@@ -17,7 +17,8 @@ Page({
     sex: 1,
     phone: "",
     desc: "",
-    eventState: '我要报名'
+    eventState: '我要报名',
+    animate:null
   },
   /**
    * 生命周期函数--监听页面加载
@@ -118,10 +119,11 @@ Page({
       }).then(data => {
         setTimeout(() => {
           wx.hideLoading()
-          this.setData({
-            enterSucState: false
-          })
-        }, 600);
+        }, 400);
+        this.setData({
+          enterSucState: false
+        })
+        App.startAnimate(this,'animate','opacity',1)
         }).catch(data => App.catchError(data))
     }
   },

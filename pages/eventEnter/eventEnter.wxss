@@ -157,6 +157,7 @@
   height: 100vh;
   background: rgba(0, 0, 0, 0.6);
   z-index: 999;
+  opacity: 0;
 }
 .template .enter-success .success-info {
   width: 514rpx;

@@ -8,7 +8,7 @@
         <swiper class="swiper-box" current="{{navActive}}" bindchange="changeActiveByScroll">
             <block wx:for="{{list}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
                 <swiper-item class="swiper-item">
-                    <scroll-view class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="scrollRefresh">
+                    <scroll-view wx:if="{{fatherItem.data.length > 0}}" class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="scrollRefresh">
                         <view class="item" wx:for="{{fatherItem.data}}" wx:key="{{item.id}}" wx:for-index="index">
                             <image wx:if="{{fatherIndex===0}}" src="../../img/gradient1.jpg" />
                             <image wx:elif="{{fatherIndex===1}}" src="../../img/gradient2.jpg" />
@@ -37,6 +37,17 @@
                             </view>
                         </view>
                     </scroll-view>
+                    <view class="listEmpty" wx:if="{{fatherItem.data.length === 0}}">
+                        <view wx:if="{{fatherIndex === 0}}">
+                           - 暂无未使用优惠券 -
+                        </view>
+                        <view wx:elif="{{fatherIndex === 1}}">
+                           - 暂无使用记录 -
+                        </view>
+                        <view wx:else>
+                           - 暂无已过期优惠券 -
+                        </view>
+                    </view>
                 </swiper-item>
             </block>
         </swiper>

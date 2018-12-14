@@ -1,5 +1,5 @@
 <view class="template">
-    <view class="list">
+    <view class="list" wx:if="{{list.length > 0}}">
         <scroll-view scroll-x class="scroll-box" wx:for="{{list}}" wx:key="{{item.id}}">
             <view class="item">
                 <view class="img"  data-id="{{item.value_id}}" bindtap="navToGoodDetail">
@@ -21,5 +21,8 @@
                 </view>
             </view>
         </scroll-view>
+    </view>
+    <view class="listEmpty" wx:if="{{list.length === 0}}">
+        <text>- 暂无已收藏的商品 -</text>
     </view>
 </view>

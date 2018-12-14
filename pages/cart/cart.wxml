@@ -38,10 +38,6 @@
                 <view class="mask" wx:if="{{!item.product_status}}" data-productid="{{item.product_id}}"  bindtap="pullOff"></view>
             </view>
         </view>
-        <!--<view class="explain">
-            <image src="../../img/cart/icon4.png" />
-            <text>已同步至微信购物单</text>
-        </view> -->
         <view class="all-price">
             <view class="all-choose" bindtap="allChoose">
                 <image wx:if="{{allChoose}}" src="../../img/cart/icon2.png" />

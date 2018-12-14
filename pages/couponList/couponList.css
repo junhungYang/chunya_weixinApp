@@ -92,6 +92,18 @@
   font-size: 24rpx;
   color: #fff;
 }
+.template .container .swiper-box .swiper-item .listEmpty {
+  height: 100%;
+  position: relative;
+}
+.template .container .swiper-box .swiper-item .listEmpty view {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24rpx;
+  color: #a0a0a0;
+}
 ::-webkit-scrollbar {
   width: 0;
   height: 0;

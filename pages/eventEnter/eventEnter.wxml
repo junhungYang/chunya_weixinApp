@@ -44,7 +44,7 @@
     <view class="enter-btn" bindtap="signupEnter">
         立即报名
     </view>
-    <view class="enter-success" hidden="{{enterSucState}}">
+    <view class="enter-success" animation="{{animate}}" hidden="{{enterSucState}}">
         <view class="success-info">
             <view class="header">
                 恭喜您报名成功！

@@ -157,6 +157,18 @@
   color: #d1051f;
   border: 1px solid  #d1051f;
 }
+.template .container .swiper-box .swiper-item .noListPrompt {
+  height: 100%;
+  position: relative;
+}
+.template .container .swiper-box .swiper-item .noListPrompt view {
+  font-size: 24rpx;
+  color: #a0a0a0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 .invisibleclass {
   display: block;
   margin: 0;

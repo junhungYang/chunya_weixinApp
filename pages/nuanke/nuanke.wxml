@@ -10,7 +10,7 @@
         <view class="page-section page-section-spacing swiper">
         <swiper class="swiper-box" current="{{navIndex}}" bindchange="changeIndex">
             <swiper-item wx:for="{{list}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
-                <scroll-view class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="scrollRefresh">
+                <scroll-view wx:if="{{fatherItem.data.length > 0}}" class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="scrollRefresh">
                     <view class="item" wx:for="{{fatherItem.data}}" wx:for-item="item" wx:for-index="childIndex">
                         <view class="title">
                             <view class="main">
@@ -51,6 +51,20 @@
                         </view>
                     </view>
                 </scroll-view>
+                <view class="listEmpty">
+                    <view wx:if="{{fatherIndex === 0}}">
+                        - 更多美文暖课敬请期待 -
+                    </view>
+                    <view wx:elif="{{fatherIndex === 1}}">
+                        - 更多视觉暖课敬请期待 -
+                    </view>
+                    <view wx:elif="{{fatherIndex === 2}}">
+                        - 更多影音暖课敬请期待 -
+                    </view>
+                    <view wx:else="{{fatherIndex === 3}}">
+                        - 暂无收藏的暖课文章 -
+                    </view>
+                </view>
             </swiper-item>
         </swiper>
         </view>

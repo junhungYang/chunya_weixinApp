@@ -54,10 +54,12 @@ Page({
     })
     App.addImage(this.data.imageList.length).then(data => {
       let imageList = [...this.data.imageList,...data]
-      this.setData({ 
-        imageList,
-        upLoadHidden: true
-       });
+      this.setData({ imageList });
+      App.startAnimate(this, 'maskAnimate', 'opacity', '0')
+      App.startAnimate(this, 'upLoadAnimate', 'bottom', '-200rpx')
+      setTimeout(() => {
+        this.setData({ upLoadHidden: true })
+      }, 210);
        wx.hideLoading()
     })
   },
@@ -90,10 +92,12 @@ Page({
             content: '视频过大，请进行裁剪或上传其他视频'
           })
         }else {
-          this.setData({ 
-            videoSrc: res.tempFilePath,
-            upLoadHidden: true
-           });
+          this.setData({  videoSrc: res.tempFilePath });
+          App.startAnimate(this, 'maskAnimate', 'opacity', '0')
+          App.startAnimate(this, 'upLoadAnimate', 'bottom', '-200rpx')
+          setTimeout(() => {
+            this.setData({ upLoadHidden: true })
+          }, 210);
         }
       }
     })

@@ -20,7 +20,7 @@
         <swiper class="swiper-box" current="{{navActive}}" bindchange="changeActiveByScroll">
             <block wx:for="{{orderList}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
                 <swiper-item class="swiper-item">
-                    <scroll-view class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="refreshListByScroll">
+                    <scroll-view wx:if="{{fatherItem.data.length > 0}}" class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="refreshListByScroll">
                         <view class="item" wx:for="{{fatherItem.data}}" wx:key="item.id">
                             <view class="title">
                                 <image src="../../img/logo.png" />
@@ -35,9 +35,6 @@
                                                 <view class="text">
                                                     <text class="name">{{item1.goods_name}}</text>
                                                     <text class="price">￥{{item1.retail_price}}</text>
-                                                    <!--<view class="other">
-                                                            公益捐赠0.95元
-                                                    </view>-->
                                                 </view>
                                                 <text class="quantity">×{{item1.number}}</text>
                                             </view>  
@@ -77,6 +74,23 @@
                             </view>
                         </view>
                     </scroll-view>
+                    <view class="noListPrompt" wx:if="{{fatherItem.data.length === 0}}">
+                        <view wx:if="{{fatherIndex===0}}">
+                           - 暂无订单内容 -
+                        </view>
+                        <view wx:elif="{{fatherIndex===1}}">
+                           - 暂无待付款订单 -
+                        </view>
+                        <view wx:elif="{{fatherIndex===2}}">
+                           - 暂无待发货订单 -
+                        </view>
+                        <view wx:elif="{{fatherIndex===3}}">
+                           - 暂无待收货订单 -
+                        </view>
+                        <view wx:else>
+                           - 暂无待评价订单 -
+                        </view>
+                    </view>
                 </swiper-item>
             </block>
         </swiper>

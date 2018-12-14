@@ -137,6 +137,18 @@
 .template .container .page-body .page-section .swiper-box .item:last-of-type {
   margin-bottom: 140rpx;
 }
+.template .container .page-body .page-section .swiper-box .listEmpty {
+  height: 100%;
+  position: relative;
+}
+.template .container .page-body .page-section .swiper-box .listEmpty view {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24rpx;
+  color: #a0a0a0;
+}
 .template .toPay {
   position: fixed;
   left: 0;

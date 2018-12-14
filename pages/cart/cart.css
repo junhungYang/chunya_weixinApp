@@ -38,7 +38,7 @@
   top: 5rpx;
 }
 .template .list {
-  padding-bottom: 100rpx;
+  padding-bottom: 120rpx;
 }
 .template .list .item {
   border-radius: 15rpx;
@@ -155,22 +155,6 @@
   border-top-right-radius: 8rpx;
   border-bottom-right-radius: 8rpx;
 }
-.template .explain {
-  height: 313rpx;
-  line-height: 313rpx;
-  text-align: center;
-}
-.template .explain image {
-  width: 40rpx;
-  height: 40rpx;
-  vertical-align: middle;
-}
-.template .explain text {
-  margin-left: 20rpx;
-  font-size: 24rpx;
-  color: #b2b2b2;
-  vertical-align: middle;
-}
 .template .all-price {
   height: 100rpx;
   display: flex;
@@ -179,6 +163,7 @@
   left: 0;
   width: 100%;
   background: #f2f2f2;
+  z-index: 999;
 }
 .template .all-price .all-choose {
   margin-left: 6.4%;

@@ -98,6 +98,18 @@
   flex: 1;
   padding: 15rpx 0;
 }
+.template .listEmpty {
+  height: 100vh;
+  position: relative;
+}
+.template .listEmpty text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #a0a0a0;
+  font-size: 24rpx;
+}
 ::-webkit-scrollbar {
   width: 0;
   height: 0;

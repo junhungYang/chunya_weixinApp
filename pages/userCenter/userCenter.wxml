@@ -87,7 +87,7 @@
                                             <text>{{orderCount.orderInfo.order_status_text}}</text>
                                         </view>
                                         <view>
-                                            {{orderCount.orderInfo.tracesList.length!==0?orderCount.orderInfo.tracesList[0].AcceptStation:'暂无物流信息'}}
+                                            {{orderCount.orderInfo.tracesList.length>0?orderCount.orderInfo.tracesList[0].AcceptStation:'暂无物流信息'}}
                                         </view>
                                     </view>
                                 </view>
