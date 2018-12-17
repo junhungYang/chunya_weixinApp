@@ -8,6 +8,7 @@
                 </view>
                 <view class="text">
                     <text>{{userInfo.nickname}}</text>
+                    <image wx:if="{{userInfo.isMember===1}}" class="vip" src="../../img/VIP.png" />
                 </view>
                 <!--<view class="control">
                     编辑

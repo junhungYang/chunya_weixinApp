@@ -1,0 +1,108 @@
+<view class="container">
+    <view class="orderDetail">
+        <view class="item" >
+            <view class="productImage">
+                <image src="" mode="widthFix"/>
+            </view>
+            <view class="productDetail">
+                <text>善缘大米善缘大米</text>
+                <text>￥950</text>
+            </view>
+        </view>
+    </view>
+    <view class="refund-reason">
+        <view class="good-state">
+            <text>货物状态</text>
+            <text>请选择</text>
+            <view>
+                <image src="../../img/redictTo.png" />
+            </view>
+        </view>
+        <view class="reason">
+            <text>退款原因</text>
+            <text>请选择</text>
+            <view>
+                <image src="../../img/redictTo.png" />
+            </view>
+        </view>
+        <view class="refund-sum">
+            <text>退款金额</text>
+            <text>￥950.00</text>
+        </view>
+        <view class="max-sum">
+            最多￥950.00，含发货邮费￥0.00
+        </view>
+    </view>
+    <view class="refund-input">
+        <text>退款说明</text>
+        <view>
+            <input type="text" placeholder="选填"/>
+        </view>
+    </view>
+    <view class="image-group">
+        <view class="title">
+            上传凭证
+        </view>
+        <view class="image-list">
+            <view>
+                <image mode="widthFix" src="../../img/camere.png" />
+            </view>  
+            <view>
+                <image mode="widthFix" src="../../img/camere.png" />
+            </view>  
+            <view>
+                <image mode="widthFix" src="../../img/camere.png" />
+            </view>    
+            <view>
+                <image mode="widthFix" src="../../img/camere.png" />
+            </view>  
+        </view>
+    </view>
+    <view class="submit">
+        提交
+    </view>
+    <!--<view class="reason-list-fixed">
+        <view class="bg"></view>
+        <view class="list">
+            <view class="title">
+                退款原因
+            </view>
+            <scroll-view scroll-y class="scroll-box">
+                <view class="item" wx:for="{{10}}">
+                    <text>多拍/拍错/不想要</text>
+                    <view>
+                        <image src="../../img/noCheck.png" />
+                    </view>
+                </view>
+             </scroll-view>
+             <view class="close">
+                 关闭
+             </view>
+        </view>
+    </view> -->
+    <!--<view class="good-state-fixed">
+        <view class="bg"></view>
+        <view class="list">
+            <view class="title">
+                货物状态
+            </view>
+            <view class="scroll-box">
+                <view class="item">
+                    <text>未收到货</text>
+                    <view>
+                        <image src="../../img/noCheck.png" />
+                    </view>
+                </view>
+                <view class="item">
+                    <text>未收到货</text>
+                    <view>
+                        <image src="../../img/noCheck.png" />
+                    </view>
+                </view>
+            </view>
+            <view class="close">
+                关闭
+            </view>
+        </view>
+    </view> -->
+</view>

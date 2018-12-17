@@ -1,0 +1,89 @@
+.container {
+    .orderDetail {
+        background: #fff;
+        border-bottom: 20rpx solid #f7f7f7;
+        .item {
+            background: #fff;
+            padding: 21rpx 0;
+            display: flex;
+            margin: 0 6.4%;
+            border-bottom: 1px solid #f7f7f7;
+            .productImage {
+                width:124rpx;
+                height: 124rpx;
+                position: relative;
+                overflow: hidden;
+                image {
+                    width: 100%;
+                    position: absolute;;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+            .productDetail {
+                flex: 1;
+                margin-left: 23rpx;
+                text {
+                    color: #313131;
+                    display: block;
+                }
+                text:first-of-type {
+                    margin-top: 14rpx;
+                    font-size: 28rpx;
+                    line-height: 32rpx;
+                }
+                text:last-of-type {
+                    font-size: 22rpx;
+                    margin-top: 22rpx;
+                }
+            }
+        }
+    }
+    .refund-type {
+        background: #fff;
+        border-bottom: 20rpx solid #f7f7f7;
+        .only-price,.price-goods {
+            margin: 0 6.4%;
+            padding:30rpx 0;
+            display: flex;
+            .about {
+                flex: 1;
+                view:first-of-type {
+                    font-size: 0;
+                    image {
+                        width: 42rpx;
+                        height: 40rpx;
+                        vertical-align: middle;
+                    }
+                    text {
+                        margin-left: 20rpx;
+                        font-size: 26rpx;
+                        color: #313131;
+                        line-height: 40rpx;
+                        vertical-align: middle;  
+                    }
+                }
+                view:last-of-type {
+                    margin-left: 62rpx;
+                    color: #b2b2b2;
+                    font-size: 24rpx;
+                    line-height: 37rpx;
+                }
+            }
+            .nav {
+                width: 13rpx;
+                position: relative;
+                image {
+                    width: 13rpx;
+                    height: 24rpx;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%)
+
+                }
+            }
+        }
+    }
+}

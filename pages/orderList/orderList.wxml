@@ -55,9 +55,12 @@
                                     <view wx:if="{{item.handleOption.kuaidi}}" data-orderid="{{item.id}}" bindtap="navToShippingList">
                                         查看物流
                                     </view>
-                                    <!--<view wx:if="{{item.handleOption.return}}" data-orderid="{{item.id}}" data-str="return" bindtap="orderControl">
+                                    <view wx:if="{{item.handleOption.return}}" data-orderid="{{item.id}}" data-str="return" bindtap="orderControl">
                                         退换货
-                                    </view> -->
+                                    </view>
+                                    <view wx:if="{{item.handleOption.cancelReturn}}" >
+                                        取消退换货
+                                    </view>
                                     <view wx:if="{{item.handleOption.buy}}" data-goodslist="{{item.orderGoodsList}}" bindtap="buyAgain">
                                         再次购买
                                     </view>
@@ -70,6 +73,7 @@
                                     <view wx:if="{{item.handleOption.pay}}" data-id="{{item.id}}" bindtap="pay">
                                         结算
                                     </view>
+  
                                 </view>
                             </view>
                         </view>

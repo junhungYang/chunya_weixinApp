@@ -1,0 +1,94 @@
+.container .orderDetail {
+  background: #fff;
+  border-bottom: 20rpx solid #f7f7f7;
+}
+.container .orderDetail .item {
+  background: #fff;
+  padding: 21rpx 0;
+  display: flex;
+  margin: 0 6.4%;
+  border-bottom: 1px solid #f7f7f7;
+}
+.container .orderDetail .item .productImage {
+  width: 124rpx;
+  height: 124rpx;
+  position: relative;
+  overflow: hidden;
+}
+.container .orderDetail .item .productImage image {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.container .orderDetail .item .productDetail {
+  flex: 1;
+  margin-left: 23rpx;
+}
+.container .orderDetail .item .productDetail text {
+  color: #313131;
+  display: block;
+}
+.container .orderDetail .item .productDetail text:first-of-type {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  line-height: 32rpx;
+}
+.container .orderDetail .item .productDetail text:last-of-type {
+  font-size: 22rpx;
+  margin-top: 22rpx;
+}
+.container .refund-type {
+  background: #fff;
+  border-bottom: 20rpx solid #f7f7f7;
+}
+.container .refund-type .only-price,
+.container .refund-type .price-goods {
+  margin: 0 6.4%;
+  padding: 30rpx 0;
+  display: flex;
+}
+.container .refund-type .only-price .about,
+.container .refund-type .price-goods .about {
+  flex: 1;
+}
+.container .refund-type .only-price .about view:first-of-type,
+.container .refund-type .price-goods .about view:first-of-type {
+  font-size: 0;
+}
+.container .refund-type .only-price .about view:first-of-type image,
+.container .refund-type .price-goods .about view:first-of-type image {
+  width: 42rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+.container .refund-type .only-price .about view:first-of-type text,
+.container .refund-type .price-goods .about view:first-of-type text {
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  color: #313131;
+  line-height: 40rpx;
+  vertical-align: middle;
+}
+.container .refund-type .only-price .about view:last-of-type,
+.container .refund-type .price-goods .about view:last-of-type {
+  margin-left: 62rpx;
+  color: #b2b2b2;
+  font-size: 24rpx;
+  line-height: 37rpx;
+}
+.container .refund-type .only-price .nav,
+.container .refund-type .price-goods .nav {
+  width: 13rpx;
+  position: relative;
+}
+.container .refund-type .only-price .nav image,
+.container .refund-type .price-goods .nav image {
+  width: 13rpx;
+  height: 24rpx;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

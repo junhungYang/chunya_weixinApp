@@ -1,0 +1,44 @@
+<view class="container">
+    <view class="orderDetail">
+        <view class="item" wx:for="{{orderDetail.orderGoods}}" wx:key="{{item.id}}">
+            <view class="productImage">
+                <image src="{{item.product_pic_url}}" mode="widthFix"/>
+            </view>
+            <view class="productDetail">
+                <text>{{item.goods_name}}</text>
+                <text>￥{{item.retail_price}}</text>
+            </view>
+        </view>
+        
+    </view>
+    <view class="refund-type">
+        <view class="only-price" data-from="0" bindtap="navToControl">
+            <view class="about">
+                <view>
+                    <image src="../../img/refund_price.png" />
+                    <text>仅退款</text>
+                </view>
+                <view>
+                    <text>未收到货(包含未签收),或卖家协商同意前提下</text>
+                </view>
+            </view>
+            <view class="nav">
+                <image src="../../img/redictTo.png" />
+            </view>
+        </view>
+        <view class="price-goods" data-from="1" bindtap="navToControl">
+            <view class="about">
+                <view>
+                    <image src="../../img/refund_all.png" />
+                    <text>退货退款</text>
+                </view>
+                <view>
+                    <text>已收到货,需要退换已收到的货物</text>
+                </view>
+            </view>
+            <view class="nav">
+                <image src="../../img/redictTo.png" />
+            </view>
+        </view>
+    </view>
+</view>

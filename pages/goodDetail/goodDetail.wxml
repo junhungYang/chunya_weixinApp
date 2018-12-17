@@ -14,8 +14,12 @@
                     </view>
                 </view>
                 <view class="price">
+                    <text class="vip">VIP : ￥{{detail.productList[0].vipPrice}}</text>
                     <text class="new">￥{{detail.info.retail_price_range}}</text>
                     <text class="old">￥{{detail.info.market_price_range}}</text>
+                </view>
+                <view class="canBeVip" wx:if="{{detail.info.isMemberLimit===1}}">
+                    购买即可成为会员
                 </view>
                 <view class="coupon" bindtap="couponStateManage">
                     <view>
@@ -173,7 +177,8 @@
                             </view>
                             <view class="price-size">
                                 <view class="price">
-                                    ￥{{activeProduct.retail_price}}
+                                    <text class="vip">VIP: ￥{{activeProduct.vipPrice}}</text>
+                                    <text class="retail">￥{{activeProduct.retail_price}}</text>
                                 </view>
                                 <view class="size">
                                     <view class="{{activeProduct.id===item.id?'active':''}}"

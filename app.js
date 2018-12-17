@@ -185,6 +185,9 @@ App({
       case "logistics":
         break;
       case "return":
+        wx.navigateTo({
+          url: `../refundEnter/refundEnter?orderId=${orderId}`
+        })
         break;
     }
     return promiseObj;

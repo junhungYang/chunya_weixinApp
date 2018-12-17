@@ -260,13 +260,15 @@
 .template .price-control .bg {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: #000000;
+  opacity: 0;
 }
 .template .price-control .main-control {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -514rpx;
   width: 100%;
+  height: 514rpx;
 }
 .template .price-control .main-control .cont {
   background: #fff;

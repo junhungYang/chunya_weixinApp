@@ -29,7 +29,9 @@
           "pages/nuanke/nuanke",
           "pages/watchVideo/watchVideo",
           "pages/aboutChunya/aboutChunya",
-          "pages/couponBeforeBalance/couponBeforeBalance"
+          "pages/couponBeforeBalance/couponBeforeBalance",
+            "pages/refundControl/refundControl",
+            "pages/refundEnter/refundEnter"
        
   ],
   "window": {

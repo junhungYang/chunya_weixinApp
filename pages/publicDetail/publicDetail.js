@@ -20,7 +20,9 @@ Page({
     id: '',
     donorName: '',
     commonData: {},
-    inputPrice: ''
+    inputPrice: '',
+    maskAnimate: null,
+    controlAnimate: null
   },
   onLoad: function(options) {  
     that = this
@@ -66,13 +68,15 @@ Page({
   priceStateManage(e) {
     let index = e.currentTarget.dataset.index;
     if (index === 1) {
-      this.setData({
-        priceState: false
-      });
+      this.setData({ priceState: false });
+      App.startAnimate(this,'maskAnimate','opacity',0.5)
+      App.startAnimate(this, 'controlAnimate','bottom', '0')
     } else {
-      this.setData({
-        priceState: true
-      });
+      App.startAnimate(this, 'maskAnimate', 'opacity', 0)
+      App.startAnimate(this, 'controlAnimate', 'bottom', '-514rpx')
+      setTimeout(() => {
+        this.setData({  priceState: true });
+      }, 210);
     }
   },
   hiddenNameStateManage() {
@@ -159,9 +163,11 @@ Page({
         wx.showToast({
           title: "捐款成功"
         });
-        this.setData({
-          priceState: true
-        })
+        App.startAnimate(this, 'maskAnimate', 'opacity', 0)
+        App.startAnimate(this, 'controlAnimate', 'bottom', '-514rpx')
+        setTimeout(() => {
+          this.setData({ priceState: true });
+        }, 210);
         this.getCommonwealDetail()
         this.refreshPrevPage()
       }

@@ -1,0 +1,248 @@
+.container {
+    background :#fff;
+    .orderDetail {
+        background: #fff;
+        border-bottom: 20rpx solid #f7f7f7;
+        .item {
+            background: #fff;
+            padding: 21rpx 0;
+            display: flex;
+            margin: 0 6.4%;
+            border-bottom: 1px solid #f7f7f7;
+            .productImage {
+                width:124rpx;
+                height: 124rpx;
+                position: relative;
+                image {
+                    width: 100%;
+                    position: absolute;;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+            .productDetail {
+                flex: 1;
+                margin-left: 23rpx;
+                text {
+                    color: #313131;
+                    display: block;
+                }
+                text:first-of-type {
+                    margin-top: 14rpx;
+                    font-size: 28rpx;
+                    line-height: 32rpx;
+                }
+                text:last-of-type {
+                    font-size: 22rpx;
+                    margin-top: 22rpx;
+                }
+            }
+        }
+    }
+    .refund-reason {
+        background: #fff;
+        .good-state,.reason,.refund-sum {
+            margin: 0 6.4%
+        }
+        .good-state,.reason {
+            display: flex;
+            text:first-of-type {
+                font-size: 28rpx;
+                color: #313131;
+            } 
+            text:nth-of-type(2) {
+                flex: 1;
+                color: #b2b2b2;
+                text-align: right;
+                font-size: 24rpx;
+            }
+            view {
+                width: 13rpx;
+                position: relative;
+                margin-left: 20rpx;
+                image {
+                    width: 13rpx;
+                    height: 24rpx;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+        .good-state,.reason {
+            height: 100rpx;
+            border-bottom: 2rpx solid  #f7f7f7;
+            text {
+                line-height: 100rpx;
+            }
+        }
+        .refund-sum {
+            height: 80rpx;
+            text:first-of-type {
+                font-size: 28rpx;
+                color: #313131;
+                line-height: 80rpx;
+                vertical-align: middle;
+            }
+            text:last-of-type {
+                font-size: 24rpx;
+                vertical-align: middle;
+                color: #d1051f;
+                line-height: 80rpx;
+                margin-left: 20rpx;
+            }
+        }
+        .max-sum {
+            padding: 0 6.4%;
+            height: 50rpx;
+            background: #f7f7f7;
+            line-height: 50rpx;
+            font-size: 20rpx;
+            color :#b2b2b2;
+        }
+    }
+    .refund-input {
+        background :#fff;
+        padding: 0 6.4%;
+        height: 86rpx;
+        display: flex;
+        border-bottom: 20rpx solid #f7f7f7;
+        text { 
+            line-height: 86rpx;
+            color: #313131;
+            font-size: 28rpx;
+        }
+        view {
+            flex: 1;
+            margin-left: 21rpx;
+            input {
+                width: 100%;
+                height: 100%;
+                line-height: 86rpx;
+                font-size: 24rpx;
+                color: #b2b2b2;
+            }
+        }
+    }
+    .image-group {
+        background :#fff;
+        padding: 20rpx 6.4% 30rpx;
+        .title {
+            color: #313131;
+            font-size: 28rpx;
+            padding-bottom: 8rpx;
+        }
+        .image-list {
+            font-size: 0;
+            min-height: 572rpx;
+            view {
+                width: 207rpx;
+                height: 207rpx;
+                margin: 0 7rpx;
+                margin-top: 14rpx;
+                display: inline-block;
+                position: relative;
+                background:#000;
+                image {
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    width: 100%;
+                    transform: translateY(-50%)
+                }
+            }
+        }
+        .image-list view:nth-child(3n+1) {
+            margin-left: 0;
+        }
+    }
+    .submit {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        background: #d1051f;
+        line-height: 100rpx;
+        height: 100rpx;
+        text-align: center;
+        font-size: 28rpx;
+        color: #fff;
+    }
+    .reason-list-fixed,.good-state-fixed {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        .bg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.6;
+            background: #000;
+        }
+        .list {
+            background: #fff;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            bottom: 0;
+            .title {
+                height: 88rpx;
+                line-height: 88rpx;
+                text-align: center;
+                font-size: 28rpx;
+                color: #313131;
+            }
+            .scroll-box {
+                margin: 0 6.4%;
+                padding-bottom: 80rpx;
+                width: 87.2%;
+                .item {
+                    height: 86rpx;
+                    display: flex;
+                    border-bottom: 1px solid #f7f7f7;
+                    text {
+                        flex: 1;
+                        color: #313131;
+                        line-height: 86rpx;
+                        font-size: 28rpx;
+                    }
+                    view {
+                        width: 24rpx;
+                        position: relative;
+                        image {
+                            position: absolute;
+                            left: 0;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 24rpx;
+                            height: 24rpx;
+                        }
+                    }
+                }
+                .item:last-of-type {
+                    border: 0;
+                }
+            }
+            .close {
+                width: 100%;
+                background: #d1051f;
+                line-height: 100rpx;
+                height: 100rpx;
+                text-align: center;
+                font-size: 28rpx;
+                color: #fff;
+            }
+        }
+    }
+    .reason-list-fixed {
+        .list {
+            .scroll-box {
+                height: 500rpx;
+                overflow: hidden;
+            }
+        }
+    }
+}

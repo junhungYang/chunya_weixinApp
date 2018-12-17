@@ -55,10 +55,17 @@
   padding-top: 45rpx;
   font-size: 0;
 }
-.template .main .info .text text:first-of-type {
-  display: block;
+.template .main .info .text text {
   font-size: 28rpx;
   color: #fff;
+  vertical-align: middle;
+  line-height: 43rpx;
+}
+.template .main .info .text .vip {
+  margin-left: 10rpx;
+  width: 43rpx;
+  height: 43rpx;
+  vertical-align: middle;
 }
 .template .main .info .control {
   position: absolute;

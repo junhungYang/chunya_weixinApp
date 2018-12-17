@@ -1,0 +1,264 @@
+.container {
+  background: #fff;
+}
+.container .orderDetail {
+  background: #fff;
+  border-bottom: 20rpx solid #f7f7f7;
+}
+.container .orderDetail .item {
+  background: #fff;
+  padding: 21rpx 0;
+  display: flex;
+  margin: 0 6.4%;
+  border-bottom: 1px solid #f7f7f7;
+}
+.container .orderDetail .item .productImage {
+  width: 124rpx;
+  height: 124rpx;
+  position: relative;
+}
+.container .orderDetail .item .productImage image {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.container .orderDetail .item .productDetail {
+  flex: 1;
+  margin-left: 23rpx;
+}
+.container .orderDetail .item .productDetail text {
+  color: #313131;
+  display: block;
+}
+.container .orderDetail .item .productDetail text:first-of-type {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  line-height: 32rpx;
+}
+.container .orderDetail .item .productDetail text:last-of-type {
+  font-size: 22rpx;
+  margin-top: 22rpx;
+}
+.container .refund-reason {
+  background: #fff;
+}
+.container .refund-reason .good-state,
+.container .refund-reason .reason,
+.container .refund-reason .refund-sum {
+  margin: 0 6.4%;
+}
+.container .refund-reason .good-state,
+.container .refund-reason .reason {
+  display: flex;
+}
+.container .refund-reason .good-state text:first-of-type,
+.container .refund-reason .reason text:first-of-type {
+  font-size: 28rpx;
+  color: #313131;
+}
+.container .refund-reason .good-state text:nth-of-type(2),
+.container .refund-reason .reason text:nth-of-type(2) {
+  flex: 1;
+  color: #b2b2b2;
+  text-align: right;
+  font-size: 24rpx;
+}
+.container .refund-reason .good-state view,
+.container .refund-reason .reason view {
+  width: 13rpx;
+  position: relative;
+  margin-left: 20rpx;
+}
+.container .refund-reason .good-state view image,
+.container .refund-reason .reason view image {
+  width: 13rpx;
+  height: 24rpx;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.container .refund-reason .good-state,
+.container .refund-reason .reason {
+  height: 100rpx;
+  border-bottom: 2rpx solid  #f7f7f7;
+}
+.container .refund-reason .good-state text,
+.container .refund-reason .reason text {
+  line-height: 100rpx;
+}
+.container .refund-reason .refund-sum {
+  height: 80rpx;
+}
+.container .refund-reason .refund-sum text:first-of-type {
+  font-size: 28rpx;
+  color: #313131;
+  line-height: 80rpx;
+  vertical-align: middle;
+}
+.container .refund-reason .refund-sum text:last-of-type {
+  font-size: 24rpx;
+  vertical-align: middle;
+  color: #d1051f;
+  line-height: 80rpx;
+  margin-left: 20rpx;
+}
+.container .refund-reason .max-sum {
+  padding: 0 6.4%;
+  height: 50rpx;
+  background: #f7f7f7;
+  line-height: 50rpx;
+  font-size: 20rpx;
+  color: #b2b2b2;
+}
+.container .refund-input {
+  background: #fff;
+  padding: 0 6.4%;
+  height: 86rpx;
+  display: flex;
+  border-bottom: 20rpx solid #f7f7f7;
+}
+.container .refund-input text {
+  line-height: 86rpx;
+  color: #313131;
+  font-size: 28rpx;
+}
+.container .refund-input view {
+  flex: 1;
+  margin-left: 21rpx;
+}
+.container .refund-input view input {
+  width: 100%;
+  height: 100%;
+  line-height: 86rpx;
+  font-size: 24rpx;
+  color: #b2b2b2;
+}
+.container .image-group {
+  background: #fff;
+  padding: 20rpx 6.4% 30rpx;
+}
+.container .image-group .title {
+  color: #313131;
+  font-size: 28rpx;
+  padding-bottom: 8rpx;
+}
+.container .image-group .image-list {
+  font-size: 0;
+  min-height: 572rpx;
+}
+.container .image-group .image-list view {
+  width: 207rpx;
+  height: 207rpx;
+  margin: 0 7rpx;
+  margin-top: 14rpx;
+  display: inline-block;
+  position: relative;
+  background: #000;
+}
+.container .image-group .image-list view image {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+.container .image-group .image-list view:nth-child(3n+1) {
+  margin-left: 0;
+}
+.container .submit {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: #d1051f;
+  line-height: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+}
+.container .reason-list-fixed,
+.container .good-state-fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.container .reason-list-fixed .bg,
+.container .good-state-fixed .bg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background: #000;
+}
+.container .reason-list-fixed .list,
+.container .good-state-fixed .list {
+  background: #fff;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+}
+.container .reason-list-fixed .list .title,
+.container .good-state-fixed .list .title {
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #313131;
+}
+.container .reason-list-fixed .list .scroll-box,
+.container .good-state-fixed .list .scroll-box {
+  margin: 0 6.4%;
+  padding-bottom: 80rpx;
+  width: 87.2%;
+}
+.container .reason-list-fixed .list .scroll-box .item,
+.container .good-state-fixed .list .scroll-box .item {
+  height: 86rpx;
+  display: flex;
+  border-bottom: 1px solid #f7f7f7;
+}
+.container .reason-list-fixed .list .scroll-box .item text,
+.container .good-state-fixed .list .scroll-box .item text {
+  flex: 1;
+  color: #313131;
+  line-height: 86rpx;
+  font-size: 28rpx;
+}
+.container .reason-list-fixed .list .scroll-box .item view,
+.container .good-state-fixed .list .scroll-box .item view {
+  width: 24rpx;
+  position: relative;
+}
+.container .reason-list-fixed .list .scroll-box .item view image,
+.container .good-state-fixed .list .scroll-box .item view image {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24rpx;
+  height: 24rpx;
+}
+.container .reason-list-fixed .list .scroll-box .item:last-of-type,
+.container .good-state-fixed .list .scroll-box .item:last-of-type {
+  border: 0;
+}
+.container .reason-list-fixed .list .close,
+.container .good-state-fixed .list .close {
+  width: 100%;
+  background: #d1051f;
+  line-height: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+}
+.container .reason-list-fixed .list .scroll-box {
+  height: 500rpx;
+  overflow: hidden;
+}
