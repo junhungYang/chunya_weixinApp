@@ -1567,10 +1567,6 @@ const _wxappMenuList = function (data) {
     wx.request({
       url: `${GlobalUrl}api/official/wxappMenuList`,
       method: "POST",
-      header: {
-        "Content-Type": "application/josn",
-        "X-Nideshop-Token": Token
-      },
       success: res => {
         if (res.data.code === 0) {
           resolve(res.data.data);
@@ -1585,7 +1581,85 @@ const _wxappMenuList = function (data) {
   });
 };
 
+
+// 获取退款原因列表
+const _GetRefundReasonList = function (data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/getRefundReasonList`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject({
+            errno: res.data.errno,
+            errmsg: res.data.errmsg
+          });
+        }
+      }
+    });
+  });
+}
+
+// 申请退款
+const _ApplyRefund = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/applyRefund`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/json",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject({
+            errno: res.data.errno,
+            errmsg: res.data.errmsg
+          });
+        }
+      }
+    });
+  });
+};
+
+const _CancelRefund = function(data) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${GlobalUrl}api/order/cancleRefund`,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Nideshop-Token": Token
+      },
+      success: res => {
+        if (res.data.errno === 0) {
+          resolve(res.data.data);
+        } else {
+          reject({
+            errno: res.data.errno,
+            errmsg: res.data.errmsg
+          });
+        }
+      }
+    });
+  });
+}
+
 module.exports = {
+  _CancelRefund,
+  _GetRefundReasonList,
+  _ApplyRefund,
   _wxappMenuList,
   _GoodCommentList,
   _PostComment,

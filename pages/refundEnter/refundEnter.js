@@ -8,7 +8,8 @@ Page({
      */
     data: {
         orderDetail: [],
-        id: null
+        id: null,
+        fatherFrom: null
     },
 
     /**
@@ -16,8 +17,11 @@ Page({
      */
     onLoad: function (options) {
         that = this
-        this.setData({id: options.orderId})
-        App.setWatcher(App.globalData.token,this.watch)
+        this.setData({
+            id: options.orderId,
+            fatherFrom: options.fatherFrom
+        })
+        App.setWatcher(App.globalData, this.watch)
         if(App.globalData.token) {
             this.getDetail()
         }
@@ -34,7 +38,7 @@ Page({
     navToControl(e) {
         let from = e.currentTarget.dataset.from
         wx.navigateTo({
-            url: `../refundControl/refundControl?from=${from}&orderId=${this.data.id}`
+            url: `../refundControl/refundControl?from=${from}&fatherFrom=${this.data.fatherFrom}&orderId=${this.data.id}`
         })
     },
     watch:{

@@ -12,7 +12,7 @@
         
     </view>
     <view class="refund-type">
-        <view class="only-price" data-from="0" bindtap="navToControl">
+        <view class="only-price" data-from="1" bindtap="navToControl">
             <view class="about">
                 <view>
                     <image src="../../img/refund_price.png" />
@@ -26,7 +26,7 @@
                 <image src="../../img/redictTo.png" />
             </view>
         </view>
-        <view class="price-goods" data-from="1" bindtap="navToControl">
+        <view class="price-goods" data-from="2" bindtap="navToControl">
             <view class="about">
                 <view>
                     <image src="../../img/refund_all.png" />

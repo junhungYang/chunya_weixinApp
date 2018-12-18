@@ -138,7 +138,8 @@
                 data-orderid="{{data.orderInfo.id}}" data-str="return" bindtap="orderControl">
                 退换货
             </view>
-            <view wx:if="data.orderInfo.handleOption.cancelReturn">
+            <view wx:if="{{data.orderInfo.handleOption.cancelReturn}}"
+                data-orderid="{{data.orderInfo.id}}" data-str="cancelReturn" bindtap="orderControl">
                 取消退换货
             </view>
             <view wx:if="{{data.orderInfo.handleOption.buy}}" data-goodslist="{{data.orderGoods}}" bindtap="buyAgain">

@@ -58,7 +58,7 @@
                                     <view wx:if="{{item.handleOption.return}}" data-orderid="{{item.id}}" data-str="return" bindtap="orderControl">
                                         退换货
                                     </view>
-                                    <view wx:if="{{item.handleOption.cancelReturn}}" >
+                                    <view wx:if="{{item.handleOption.cancelReturn}}" data-orderid="{{item.id}}" data-str="cancelReturn" bindtap="orderControl">
                                         取消退换货
                                     </view>
                                     <view wx:if="{{item.handleOption.buy}}" data-goodslist="{{item.orderGoodsList}}" bindtap="buyAgain">

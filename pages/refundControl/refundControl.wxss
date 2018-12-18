@@ -64,6 +64,9 @@
   color: #b2b2b2;
   text-align: right;
   font-size: 24rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .container .refund-reason .good-state view,
 .container .refund-reason .reason view {
@@ -91,19 +94,25 @@
 }
 .container .refund-reason .refund-sum {
   height: 80rpx;
+  display: flex;
 }
-.container .refund-reason .refund-sum text:first-of-type {
+.container .refund-reason .refund-sum text {
   font-size: 28rpx;
   color: #313131;
   line-height: 80rpx;
-  vertical-align: middle;
 }
-.container .refund-reason .refund-sum text:last-of-type {
-  font-size: 24rpx;
-  vertical-align: middle;
-  color: #d1051f;
+.container .refund-reason .refund-sum view {
+  flex: 1;
+  margin-left: 21rpx;
+}
+.container .refund-reason .refund-sum view input,
+.container .refund-reason .refund-sum view text {
+  display: block;
+  width: 100%;
+  height: 80rpx;
   line-height: 80rpx;
-  margin-left: 20rpx;
+  font-size: 24rpx;
+  color: #d1051f;
 }
 .container .refund-reason .max-sum {
   padding: 0 6.4%;
@@ -129,16 +138,18 @@
   flex: 1;
   margin-left: 21rpx;
 }
-.container .refund-input view input {
+.container .refund-input view input,
+.container .refund-input view text {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: 86rpx;
   line-height: 86rpx;
   font-size: 24rpx;
   color: #b2b2b2;
 }
 .container .image-group {
   background: #fff;
-  padding: 20rpx 6.4% 30rpx;
+  padding: 20rpx 6.4% 0rpx;
 }
 .container .image-group .title {
   color: #313131;
@@ -148,6 +159,7 @@
 .container .image-group .image-list {
   font-size: 0;
   min-height: 572rpx;
+  padding-bottom: 130rpx;
 }
 .container .image-group .image-list view {
   width: 207rpx;
@@ -157,13 +169,22 @@
   display: inline-block;
   position: relative;
   background: #000;
+  overflow: hidden;
 }
-.container .image-group .image-list view image {
+.container .image-group .image-list view .image-item {
   position: absolute;
   left: 0;
   top: 50%;
   width: 100%;
   transform: translateY(-50%);
+}
+.container .image-group .image-list view .delIcon {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  right: 5rpx;
+  top: 5rpx;
+  z-index: 2;
 }
 .container .image-group .image-list view:nth-child(3n+1) {
   margin-left: 0;
@@ -192,7 +213,7 @@
 .container .good-state-fixed .bg {
   width: 100%;
   height: 100%;
-  opacity: 0.6;
+  opacity: 0;
   background: #000;
 }
 .container .reason-list-fixed .list,
@@ -201,7 +222,6 @@
   position: absolute;
   left: 0;
   width: 100%;
-  bottom: 0;
 }
 .container .reason-list-fixed .list .title,
 .container .good-state-fixed .list .title {
@@ -229,6 +249,9 @@
   color: #313131;
   line-height: 86rpx;
   font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .container .reason-list-fixed .list .scroll-box .item view,
 .container .good-state-fixed .list .scroll-box .item view {
@@ -261,4 +284,10 @@
 .container .reason-list-fixed .list .scroll-box {
   height: 500rpx;
   overflow: hidden;
+}
+.container .good-state-fixed .list {
+  bottom: -442rpx;
+}
+.container .reason-list-fixed .list {
+  bottom: -768rpx;
 }

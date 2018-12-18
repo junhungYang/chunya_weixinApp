@@ -8,7 +8,8 @@ import {
   _OrderDeleteOrder,
   _OrderCancelOrder,
   _OrderConfirmOrder,
-  _TakeDelay
+  _TakeDelay,
+  _CancelRefund
 } from "./utils/request";
 App({
   onLaunch: function() {
@@ -186,8 +187,11 @@ App({
         break;
       case "return":
         wx.navigateTo({
-          url: `../refundEnter/refundEnter?orderId=${orderId}`
+          url: `../refundEnter/refundEnter?orderId=${orderId}&fatherFrom=${from}`
         })
+        break;
+      case "cancelReturn":
+        promiseObj = _CancelRefund({orderId})
         break;
     }
     return promiseObj;
