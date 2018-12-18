@@ -28,14 +28,14 @@
           </button>
       </form>  
     </view>
-    <!--<view class="item">
+    <view class="item">
       <form bindsubmit="formSubmit_collect" report-submit="true">
           <button  formType="submit"  hover-class="none" class="getFromId" data-type="gy" bindtap="navToColorBtnMod">
               <image src="{{'../../img/index/' + 'gy' + '.png'}}"/>
               <text>公益</text>
           </button>
       </form>  
-    </view> -->
+    </view>
   </view>
   <view class="index-cont">
       <view class="hot-events">

@@ -67,6 +67,103 @@
             }
         }
     }
+    .emoji {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        .bg {
+            height: 100%;
+        }
+        .emoji-group {
+            position: absolute;
+            width: 100%;
+            height: 321rpx;
+            overflow: hidden;
+            background: #fff;
+            left: 0;
+            bottom: 0;
+            border-top-left-radius: 15rpx;
+            border-top-right-radius: 15rpx;
+            box-shadow: 0rpx -5rpx 10rpx rgba(190, 190, 190, 0.4);
+            padding-top: 20rpx;
+            padding-bottom: 10rpx;
+            view {
+                display: flex;
+                flex-wrap: wrap;
+                flex-grow: 1;
+                text {
+                    width: 107rpx;
+                    height: 107rpx;
+                    line-height: 107rpx;
+                    text-align: center;
+                    font-size: 30rpx;
+                }
+            }
+        }
+    }
+    .choose-img {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        .bg {
+            height: 100%;
+        }
+        .img-group {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-sizing: border-box;
+            padding: 0 6.4%;
+            height: 600rpx;
+            background: #fff;
+            overflow: hidden;
+            border-top-left-radius: 15rpx;
+            border-top-right-radius: 15rpx;
+            box-shadow: 0rpx -5rpx 10rpx rgba(190, 190, 190, 0.4);
+            padding-top: 48rpx;
+            padding-bottom: 20rpx;
+            .wrap {
+                view {
+                    display: inline-block;
+                    width: 205rpx;
+                    height: 205rpx;
+                    overflow: hidden;
+                    position: relative;
+                    margin-left: 7rpx;
+                    margin-right: 7rpx;
+                    background:rgb(0,0,0);
+                        .contImage {
+                            width: 120%;
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%,-50%);
+                            
+                        }
+                        .add-image {
+                            width: 100%;
+                            background: #fff;
+                        }
+                        .delIcon {
+                            width: 35rpx;
+                            height: 35rpx;
+                            position: absolute;
+                            right:5rpx;
+                            top: 5rpx;
+                            z-index: 2
+                        }
+                }
+            }
+        }
+                .img-group .img-box:nth-child(3n+1) {
+                margin-left: 0;
+            }
+    }
     .release {
         height: 107rpx;
         background:#fff;
@@ -76,103 +173,7 @@
         width: 100%;
         box-shadow: 0 0 15rpx rgba(73, 73, 73, 0.4);
         padding-bottom: 15rpx;
-        .emoji {
-            position: fixed;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 110rpx;
-            .bg {
-                height: 100%;
-            }
-            .emoji-group {
-                position: absolute;
-                width: 100%;
-                height: 321rpx;
-                overflow: hidden;
-                background: #fff;
-                left: 0;
-                bottom: 0;
-                border-top-left-radius: 15rpx;
-                border-top-right-radius: 15rpx;
-                box-shadow: 0rpx -5rpx 10rpx rgba(190, 190, 190, 0.4);
-                padding-top: 20rpx;
-                padding-bottom: 10rpx;
-                view {
-                    display: flex;
-                    flex-wrap: wrap;
-                    flex-grow: 1;
-                    text {
-                        width: 107rpx;
-                        height: 107rpx;
-                        line-height: 107rpx;
-                        text-align: center;
-                        font-size: 30rpx;
-                    }
-                }
-            }
-        }
-        .choose-img {
-            position: fixed;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 110rpx;
-            .bg {
-                height: 100%;
-            }
-            .img-group {
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                box-sizing: border-box;
-                padding: 0 6.4%;
-                height: 600rpx;
-                background: #fff;
-                overflow: hidden;
-                border-top-left-radius: 15rpx;
-                border-top-right-radius: 15rpx;
-                box-shadow: 0rpx -5rpx 10rpx rgba(190, 190, 190, 0.4);
-                padding-top: 48rpx;
-                padding-bottom: 20rpx;
-                .wrap {
-                    view {
-                        display: inline-block;
-                        width: 205rpx;
-                        height: 205rpx;
-                        overflow: hidden;
-                        position: relative;
-                        margin-left: 7rpx;
-                        margin-right: 7rpx;
-                        background:rgb(0,0,0);
-                            .contImage {
-                                width: 120%;
-                                position: absolute;
-                                left: 50%;
-                                top: 50%;
-                                transform: translate(-50%,-50%);
-                                
-                            }
-                            .add-image {
-                                width: 100%;
-                                background: #fff;
-                            }
-                            .delIcon {
-                                width: 35rpx;
-                                height: 35rpx;
-                                position: absolute;
-                                right:5rpx;
-                                top: 5rpx;
-                                z-index: 2
-                            }
-                    }
-                }
-            }
-                 .img-group .img-box:nth-child(3n+1) {
-                    margin-left: 0;
-                }
-        }
+        z-index: 99;
         .control,input {
             margin: 0 6.4%;
         }

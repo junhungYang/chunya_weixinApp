@@ -29,7 +29,10 @@ Page({
     ],
     scrollFlag: true,
     emojiAnimate: null,
-    chooseImgAnimate: null
+    chooseImgAnimate: null,
+    release_H: '',
+    emoji_H: '',
+    chooseImg_H: ''
   },
 
   /**
@@ -42,6 +45,13 @@ Page({
       id: Number(options.id)
     });
     this.getCommentList();
+  },
+  onReady: function() {
+    let query = wx.createSelectorQuery()
+    query.select("#release").boundingClientRect();
+    query.exec(res => {
+      this.setData({ release_H: res[0].height});
+    });
   },
   watch: {
     token(nV) {
@@ -122,22 +132,65 @@ Page({
           emojiState: true,
           imageList: []
         });
+        if (this.data.chooseImg_H) {
+          App.startAnimate(this, "chooseImgAnimate", "bottom", `-${this.data.chooseImg_H - this.data.release_H}px`, 0);
+        }
+        if (this.data.emoji_H) {
+          App.startAnimate(this, "emojiAnimate", "bottom", `-${this.data.emoji_H - this.data.release_H}px`, 0);
+        }
         this.getCommentList();
         this.refreshPrevPage();
       })
       .catch(data => App.catchError(data));
   },
   emojiStateManage(e) {
-    this.setData({
-      imageState: true,
-      emojiState:!this.data.emojiState
-    })
+    if (this.data.emojiState) {
+      this.setData({ 
+        imageState: true,
+        emojiState: false
+       });
+       if(!this.data.emoji_H) {
+         let query = wx.createSelectorQuery()
+         query.select("#emoji").boundingClientRect();
+         query.exec(res => {
+           this.setData({ emoji_H: res[0].height });
+         });
+       } 
+      App.startAnimate(this, "emojiAnimate", "bottom", `${this.data.release_H}px`);
+      if (this.data.chooseImg_H) {
+        App.startAnimate(this, "chooseImgAnimate", "bottom", `-${this.data.chooseImg_H - this.data.release_H}px`, 0);
+      }
+    }else {
+      App.startAnimate(this, "emojiAnimate", "bottom", `-${this.data.emoji_H-this.data.release_H}px`);
+      setTimeout(() => {
+        this.setData({ emojiState: true })
+      }, 250);
+    }
   },
   imageStateManage() {
-    this.setData({
-      emojiState: true,
-      imageState: ! this.data.imageState
-    })
+    if(this.data.imageState) {
+      this.setData({
+        emojiState: true,
+        imageState: false
+      })
+      if (!this.data.chooseImg_H) {
+        let query = wx.createSelectorQuery()
+        query.select("#choose-img").boundingClientRect();
+        query.exec(res => {
+          this.setData({ chooseImg_H: res[0].height });
+        });
+      }
+      App.startAnimate(this, "chooseImgAnimate", "bottom", `${this.data.release_H}px`);
+      if (this.data.emoji_H) {
+        App.startAnimate(this, "emojiAnimate", "bottom", `-${this.data.emoji_H - this.data.release_H}px`,0);
+      }
+    }else {
+      App.startAnimate(this, "chooseImgAnimate", "bottom", `-${this.data.chooseImg_H - this.data.release_H}px`);
+      setTimeout(() => {
+        this.setData({ imageState: true });
+      }, 250);
+    }
+   
   },
   refreshPrevPage() {
     let pages = getCurrentPages();
@@ -219,10 +272,6 @@ Page({
       })
     }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
