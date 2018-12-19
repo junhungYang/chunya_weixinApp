@@ -40,21 +40,31 @@
 .template .list {
   padding-bottom: 120rpx;
 }
-.template .list .item {
+.template .list .scroll-box {
   border-radius: 15rpx;
   width: 87.2%;
   height: 294rpx;
   margin: 0 6.4%;
   margin-top: 18rpx;
   box-sizing: border-box;
-  padding-right: 18rpx;
-  display: flex;
   background: #fff;
   position: relative;
   z-index: 1;
   overflow: hidden;
 }
-.template .list .item .mask {
+.template .list .scroll-box .item {
+  font-size: 0;
+  height: 100%;
+  white-space: nowrap;
+}
+.template .list .scroll-box .item .main {
+  display: inline-block;
+  position: relative;
+  width: 659rpx;
+  height: 100%;
+  font-size: 0;
+}
+.template .list .scroll-box .item .main .mask {
   position: absolute;
   left: 0;
   top: 0;
@@ -62,12 +72,14 @@
   height: 100%;
   background: rgba(66, 66, 66, 0.401);
 }
-.template .list .item .choose {
+.template .list .scroll-box .item .main .choose {
+  display: inline-block;
   padding-left: 18rpx;
   width: 42rpx;
   position: relative;
+  height: 100%;
 }
-.template .list .item .choose image {
+.template .list .scroll-box .item .main .choose image {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -75,28 +87,40 @@
   height: 32rpx;
   transform: translate(-50%, -50%);
 }
-.template .list .item .image {
-  align-self: center;
+.template .list .scroll-box .item .main .image {
+  display: inline-block;
+  width: 176rpx;
+  height: 100%;
+  position: relative;
+}
+.template .list .scroll-box .item .main .image .image-wrap {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 176rpx;
   height: 176rpx;
-  position: relative;
+  position: absolute;
   overflow: hidden;
-  background: #f2f2f2;
+  background: #ffffff;
 }
-.template .list .item .image image {
+.template .list .scroll-box .item .main .image .image-wrap image {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 176rpx;
 }
-.template .list .item .text {
-  flex: 1;
+.template .list .scroll-box .item .main .text {
+  display: inline-block;
+  width: 385rpx;
+  height: 100%;
   margin-left: 20rpx;
   position: relative;
+  padding-right: 18rpx;
+  vertical-align: top;
 }
-.template .list .item .text text:first-of-type {
-  margin-top: 53rpx;
+.template .list .scroll-box .item .main .text text:first-of-type {
+  margin-top: 59rpx;
   display: block;
   font-size: 28rpx;
   color: #313131;
@@ -104,8 +128,8 @@
   max-height: 76rpx;
   overflow: hidden;
 }
-.template .list .item .text text:nth-of-type(2) {
-  display: inline-block;
+.template .list .scroll-box .item .main .text text:nth-of-type(2) {
+  margin-top: 10rpx;
   height: 28rpx;
   padding: 0 8rpx;
   text-align: center;
@@ -114,28 +138,28 @@
   border: 1px solid #ed015c;
   color: #ed015c;
 }
-.template .list .item .text text:last-of-type {
+.template .list .scroll-box .item .main .text text:last-of-type {
   position: absolute;
   left: 0;
   bottom: 68rpx;
   color: #d1051f;
   font-size: 24rpx;
 }
-.template .list .item .quantity-control {
+.template .list .scroll-box .item .main .quantity-control {
   position: absolute;
-  right: 21rpx;
+  right: 25rpx;
   bottom: 50rpx;
   width: 240rpx;
   height: 64rpx;
   display: flex;
 }
-.template .list .item .quantity-control view {
+.template .list .scroll-box .item .main .quantity-control view {
   flex: 1;
   font-size: 24rpx;
   line-height: 60rpx;
   text-align: center;
 }
-.template .list .item .quantity-control .minus {
+.template .list .scroll-box .item .main .quantity-control .minus {
   border: 1px solid #e8e8e8;
   border-right: 0;
   border-top-left-radius: 8rpx;
@@ -143,17 +167,28 @@
   color: #999;
   background: #f8f8f8;
 }
-.template .list .item .quantity-control .num,
-.template .list .item .quantity-control .add {
+.template .list .scroll-box .item .main .quantity-control .num,
+.template .list .scroll-box .item .main .quantity-control .add {
   border: 1px solid #999;
   color: #313131;
 }
-.template .list .item .quantity-control .num {
+.template .list .scroll-box .item .main .quantity-control .num {
   border-right: 0;
 }
-.template .list .item .quantity-control .add {
+.template .list .scroll-box .item .main .quantity-control .add {
   border-top-right-radius: 8rpx;
   border-bottom-right-radius: 8rpx;
+}
+.template .list .scroll-box .item .delete {
+  display: inline-block;
+  width: 100rpx;
+  height: 100%;
+  background: #d1051f;
+  color: #fff;
+  font-size: 24rpx;
+  vertical-align: top;
+  line-height: 294rpx;
+  text-align: center;
 }
 .template .all-price {
   height: 100rpx;

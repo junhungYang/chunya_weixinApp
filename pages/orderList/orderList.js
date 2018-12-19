@@ -116,19 +116,22 @@ Page({
   },
 
   orderControl(e) {
-    let orderId = e.currentTarget.dataset.orderid;
-    let controlStyle = e.currentTarget.dataset.str;
-    let promiseObj = App.orderControl(orderId, controlStyle, "list");
-    if (promiseObj) {
-      promiseObj
-        .then(data => {
-          wx.showToast({ icon: "success", title: data, duration: 1000 });
-          this.data.orderList.forEach((item,index) => {
-            this.getOrderList(1,index);
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let orderId = e.currentTarget.dataset.orderid;
+      let controlStyle = e.currentTarget.dataset.str;
+      let promiseObj = App.orderControl(orderId, controlStyle, "list");
+      if (promiseObj) {
+        promiseObj
+          .then(data => {
+            wx.showToast({ icon: "success", title: data, duration: 1000 });
+            this.data.orderList.forEach((item, index) => {
+              this.getOrderList(1, index);
+            })
           })
-        })
-        .catch(data => App.catchError(data));
-    }
+          .catch(data => App.catchError(data));
+      }
+    }, 300);
   },
   navToOrderDetail(e) {
     let orderId = e.currentTarget.dataset.item.id;

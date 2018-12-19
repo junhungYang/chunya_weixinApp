@@ -73,23 +73,24 @@ Page({
     App.buyAgain(e)
   },
   orderControl(e) {
-    let orderId = e.currentTarget.dataset.orderid;
-    let controlStyle = e.currentTarget.dataset.str;
-    let promiseObj = App.orderControl(orderId, controlStyle,'detail');
-    if(promiseObj) {
-      promiseObj
-        .then(data => {
-          wx.showToast({ icon: "success", title: data, duration: 600 });
-          this.getOrderDetail();
-          this.refreshPrevPage()
-          if (controlStyle === "delete") {
-            setTimeout(() => {
-              wx.navigateBack({ delta: 1 });
-            }, 600);
-          }
-        })
-        .catch(data => App.catchError(data));
-    }
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let orderId = e.currentTarget.dataset.orderid;
+      let controlStyle = e.currentTarget.dataset.str;
+      let promiseObj = App.orderControl(orderId, controlStyle, 'detail');
+      if (promiseObj) {
+        promiseObj.then(data => {
+            wx.showToast({ icon: "success", title: data, duration: 600 });
+            this.getOrderDetail();
+            this.refreshPrevPage()
+            if (controlStyle === "delete") {
+              setTimeout(() => {
+                wx.navigateBack({ delta: 1 });
+              }, 600);
+            }
+          }).catch(data => App.catchError(data));
+      }
+    }, 300);
   },
   refreshPrevPage() {
     let pages = getCurrentPages();

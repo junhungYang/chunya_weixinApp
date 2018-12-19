@@ -14,7 +14,7 @@ Page({
     couponInfoList: [],
     cartTotal: {},
     allChoose: false,
-    hasToken: false,
+    hasToken: false
   },
   onLoad() {
     that = this;
@@ -131,10 +131,14 @@ Page({
       .catch(data => App.catchError(data));
   },
   buyConfirm() {
+
     if (this.data.cartTotal.checkedGoodsAmount !== 0) {
-      wx.navigateTo({
-        url: `../beforeBalance/beforeBalance`
-      });
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        wx.navigateTo({
+          url: `../beforeBalance/beforeBalance`
+        });
+      }, 300);
     } else {
       wx.showToast({
         icon: "none",
@@ -179,6 +183,17 @@ Page({
         })
         .catch(data => App.catchError(data));
     }
+  },
+  goodDelete(e) {
+    let productIds = `${e.currentTarget.dataset.id}`;
+    _CartDelete({
+      productIds
+    }).then(data => {
+      this.setData({
+        cartList: data.cartList,
+        cartTotal: data.cartTotal
+      })
+    }).catch(data => App.catchError(data))
   },
   goodsDelete() {
     let arr = []

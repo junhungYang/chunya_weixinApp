@@ -28,14 +28,14 @@
           </button>
       </form>  
     </view>
-    <view class="item">
+    <!--<view class="item">
       <form bindsubmit="formSubmit_collect" report-submit="true">
           <button  formType="submit"  hover-class="none" class="getFromId" data-type="gy" bindtap="navToColorBtnMod">
               <image src="{{'../../img/index/' + 'gy' + '.png'}}"/>
               <text>公益</text>
           </button>
       </form>  
-    </view>
+    </view> -->
   </view>
   <view class="index-cont">
       <view class="hot-events">
@@ -63,5 +63,12 @@
     <image src="../../img/index/kefu_icon.png" />
     <button open-type="contact" size="20" class="contact"></button>
     <image class="toTop" src="../../img/index/toTop_icon.png" bindtap="scrollToTop"/>
+  </view>
+  <view class="index-mask" wx:if="{{maskState}}" animation="{{maskAnimate}}">
+    <view class="bg" bindtap="closeMask"></view>
+    <view class="banner">
+      <image class="bannerImg" mode="widthFix" src="../../img/index_banner.png"/>
+      <image class="close" src="../../img/close_banner.png" bindtap="closeMask"/>
+    </view>
   </view>
 </view>

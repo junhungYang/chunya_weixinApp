@@ -26,7 +26,9 @@ Page({
     haowuComp: null,
     colorMenu: [],
     searchAnimate: null,
-    searchAnimateFlag: true
+    searchAnimateFlag: true,
+    maskState: true,
+    maskAnimate: null
   },
 
   onLoad() {
@@ -40,8 +42,25 @@ Page({
     this.getColorMenu();
   },
   onReady() {
+    App.startAnimate(this, 'maskAnimate', 'opacity', 1,1000)
     let haowuComp = this.selectComponent("#haowu");
     this.setData({ haowuComp });
+  },
+  closeMask() {
+    App.startAnimate(this,'maskAnimate','opacity',0)
+    setTimeout(() => {
+      this.setData({
+        maskState: false
+      })
+    }, 250);
+  },
+  navToBeVip() {
+    wx.navigateTo({
+      url: '../toBeVip/toBeVip'
+    })
+    this.setData({
+      maskState: false
+    })
   },
   getColorMenu() {
     _wxappMenuList().then(data => {

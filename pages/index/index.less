@@ -232,7 +232,39 @@
         right: 18rpx;
         bottom: 0;
       }
+  }
+  .index-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    opacity: 0;
+    .bg {
+      height: 100%;
+      background: rgba(10,9,16,0.8);
     }
+    .banner {
+      position: absolute;
+      left:0;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      image {
+        display: block;
+      }
+      .bannerImg {
+        width: 100%;
+      }
+      .close {
+        width: 44rpx;
+        height: 44rpx;
+        margin: 0 auto;
+        margin-top: 40rpx;
+      }
+    }
+  }
 }
 
 @font-face {

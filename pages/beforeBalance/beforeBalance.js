@@ -10,7 +10,8 @@ Page({
     data: {},
     allQuantity: "",
     postscript: "",
-    invoice: {}
+    invoice: {},
+    submitFlag: true
   },
   onLoad: function(options) {
     that = this
@@ -74,30 +75,33 @@ Page({
     this.timer = setTimeout(() => {
       let wxData = this.data
       if (wxData.data.checkedAddress) {
-        let obj = {
-          postscript:wxData.postscript,
-          addressId:wxData.data.checkedAddress.id,
-          fullCutCouponDec:wxData.data.fullCutCouponDec,
-          isBilling: 0
+        if(wxData.submitFlag) {
+          this.setData({ submitFlag: false })
+          let obj = {
+            postscript: wxData.postscript,
+            addressId: wxData.data.checkedAddress.id,
+            fullCutCouponDec: wxData.data.fullCutCouponDec,
+            isBilling: 0
+          }
+          if (wxData.data.checkedInvoice.invoicerMobile) {
+            obj.isBilling = 1;
+            obj.invoiceId = wxData.data.checkedInvoice.id;
+          }
+          if (wxData.data.checkedCoupon) {
+            obj.couponId = wxData.data.checkedCoupon.id
+            obj.couponNumber = wxData.data.checkedCoupon.coupon_number;
+          }
+          _OrderSubmit(obj)
+            .then(data => {
+              let orderId = data.orderInfo.id;
+              _WeChatPay({ orderId })
+                .then(data => {
+                  App.pay(data);
+                })
+                .catch(data => App.catchError(data));
+            })
+            .catch(data => App.catchError(data));
         }
-        if (wxData.data.checkedInvoice.invoicerMobile) {
-          obj.isBilling = 1;
-          obj.invoiceId = wxData.data.checkedInvoice.id;
-        }
-        if (wxData.data.checkedCoupon) {
-          obj.couponId = wxData.data.checkedCoupon.id
-          obj.couponNumber = wxData.data.checkedCoupon.coupon_number;
-        }
-        _OrderSubmit(obj)
-          .then(data => {
-            let orderId = data.orderInfo.id;
-            _WeChatPay({ orderId })
-              .then(data => {
-                App.pay(data);
-              })
-              .catch(data => App.catchError(data));
-          })
-          .catch(data => App.catchError(data));
       } else {
         wx.showModal({
           title: "请先添加地址"
