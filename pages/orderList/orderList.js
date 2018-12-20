@@ -145,6 +145,22 @@ Page({
       url: `../shippingList/shippingList?orderId=${orderId}`
     });
   },
+  navToRefund(e) {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let orderId = e.currentTarget.dataset.orderid
+      let orderState = e.currentTarget.dataset.orderstate
+      if (orderState === 201 || orderState === 301) {
+        wx.navigateTo({
+          url: `../refundControl/refundControl?orderId=${orderId}&fatherFrom=list&orderState=${orderState}`
+        });
+      } else {
+        wx.navigateTo({
+          url: `../refundEnter/refundEnter?orderId=${orderId}&fatherFrom=list`
+        })
+      }
+    }, 300);
+  },
   pay(e) {
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {

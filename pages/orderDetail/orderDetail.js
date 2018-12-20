@@ -57,7 +57,6 @@ Page({
             signType: data.signType,
             paySign: data.paySign,
             success: (res) => {
-              console.log(12346579)
               wx.showToast({
                 title: "成功结算"
               });
@@ -89,6 +88,22 @@ Page({
               }, 600);
             }
           }).catch(data => App.catchError(data));
+      }
+    }, 300);
+  },
+  navToRefund(e) {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let orderId = e.currentTarget.dataset.orderid
+      let orderState = e.currentTarget.dataset.orderstate
+      if (orderState === 201 || orderState === 301) {
+        wx.navigateTo({
+          url: `../refundControl/refundControl?orderId=${orderId}&fatherFrom=detail&orderState=${orderState}`
+        });
+      } else {
+        wx.navigateTo({
+          url: `../refundEnter/refundEnter?orderId=${orderId}&fatherFrom=detail`
+        })
       }
     }, 300);
   },

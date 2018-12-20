@@ -14,7 +14,7 @@
                     <text class="good-name">{{item1.name}}</text>
                     <view class="price">
                         <text class="now-price">￥{{item1.retail_price}}</text>
-                        <text class="old-price">￥{{item1.market_price}}</text>
+                        <!--<text class="old-price">￥{{item1.market_price}}</text> -->
                     </view>
                 </button>
             </form>      

@@ -1,31 +1,39 @@
 <view class="template">
     <view class="nav">
-         <text class="{{navActive===1?'nav-active':''}}" data-index="{{1}}" bindtap="changeActive">可使用优惠券</text>
-        <text  class="{{navActive===0?'nav-active':''}}" data-index="{{0}}" bindtap="changeActive">不可用优惠券</text>
+        <text  class="{{navActive===0?'nav-active':''}}" data-index="{{0}}" bindtap="changeActiveByClick">不可用优惠券</text>
+         <text class="{{navActive===1?'nav-active':''}}" data-index="{{1}}" bindtap="changeActiveByClick">可使用优惠券</text>
     </view>
-    <view class="list">
-        <view class="item" wx:for="{{list}}" wx:key="{{item.id}}" wx:for-index="index">
-            <image src="{{navActive?' ../../img/gradient1.jpg':'../../img/cantUse.png'}}" />
-            <view class="box">
-                <view class="info">
-                    <view>
-                        <text>￥</text>
-                        <text>{{item.type_money}}</text>
-                    </view>
-                    <view>
-                        <text>{{item.name}}</text>
-                        <text>有效期{{item.use_start_date}}-{{item.use_end_date}}</text>
-                        <text wx:if="{{item.is_at_the_same_time}}">可与满减/折扣/第二份半价活动优惠同时享受</text>
-                    </view>
-                    
-                </view>
-                <view wx:if="{{navActive===1}}" class="btn" data-id="{{item.id}}" bindtap="useCoupon">
-                    使用
-                </view>
-                <view class="btn" wx:else>
-                    不可用
-                </view>
-            </view>
-        </view>
+    <view class="container">
+        <swiper class="swiper-box" current="{{navActive}}" bindchange="changeActiveByScroll">
+            <block wx:for="{{list}}" wx:for-item="fatherItem" wx:for-index="fatherIndex">
+                <swiper-item class="swiper-item">
+                    <scroll-view wx:if="{{fatherItem.data.length > 0}}" class="scroll-box" scroll-y="{{scrollFlag}}" data-item="{{fatherItem}}" data-index="{{fatherIndex}}" bindscrolltolower="scrollRefresh">
+                        <view class="item" wx:for="{{fatherItem.data}}" wx:key="{{item.id}}" wx:for-index="index">
+                            <image src="{{fatherIndex ? ' ../../img/gradient1.jpg':'../../img/cantUse.png'}}" />
+                            <view class="box">
+                                <view class="info">
+                                    <view>
+                                        <text>￥</text>
+                                        <text>{{item.type_money}}</text>
+                                    </view>
+                                    <view>
+                                        <text>{{item.name}}</text>
+                                        <text>有效期{{item.use_start_date}}-{{item.use_end_date}}</text>
+                                        <text wx:if="{{item.is_at_the_same_time}}">可与满减/折扣/第二份半价活动优惠同时享受</text>
+                                    </view>
+                                    
+                                </view>
+                                <view wx:if="{{navActive===1}}" class="btn" data-id="{{item.id}}" bindtap="useCoupon">
+                                    使用
+                                </view>
+                                <view class="btn" wx:else>
+                                    不可用
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </swiper-item>
+            </block>
+        </swiper>
     </view>
 </view>

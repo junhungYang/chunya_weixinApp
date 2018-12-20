@@ -55,7 +55,7 @@
                                     <view wx:if="{{item.handleOption.kuaidi}}" data-orderid="{{item.id}}" bindtap="navToShippingList">
                                         查看物流
                                     </view>
-                                    <view wx:if="{{item.handleOption.return}}" data-orderid="{{item.id}}" data-str="return" bindtap="orderControl">
+                                    <view wx:if="{{item.handleOption.return}}" data-orderid="{{item.id}}" data-orderstate="{{item.order_status}}" bindtap="navToRefund">
                                         退换货
                                     </view>
                                     <view wx:if="{{item.handleOption.cancelReturn}}" data-orderid="{{item.id}}" data-str="cancelReturn" bindtap="orderControl">

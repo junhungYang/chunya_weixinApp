@@ -13,7 +13,8 @@
     <view class="refund-reason">
         <view wx:if="{{from===2}}" class="good-state" bindtap="goodsStateManage">
             <text>货物状态</text>
-            <text>{{goodsState}}</text>
+            <text wx:if="{{orderState === 301}}">已收到货</text>
+            <text wx:else>{{goodsState}}</text>
             <view>
                 <image src="../../img/redictTo.png" />
             </view>
@@ -84,7 +85,7 @@
              </view>
         </view>
     </view>
-    <view class="good-state-fixed" hidden="{{goodsStateHid}}">
+    <view class="good-state-fixed" hidden="{{goodsStateHid}}" wx:if="{{orderState !== 301}}">
         <view class="bg" animation="{{goodsMaskAnimate}}" data-from="close" bindtap="goodsStateManage"></view>
         <view class="list" id="state-list" animation="{{goodsStateAnimate}}">
             <view class="title">

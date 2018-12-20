@@ -127,9 +127,10 @@
   line-height: 38rpx;
   max-height: 76rpx;
   overflow: hidden;
+  white-space: normal;
+  margin-bottom: 10rpx;
 }
 .template .list .scroll-box .item .main .text text:nth-of-type(2) {
-  margin-top: 10rpx;
   height: 28rpx;
   padding: 0 8rpx;
   text-align: center;

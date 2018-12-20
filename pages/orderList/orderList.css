@@ -105,6 +105,10 @@
   color: #313131;
   line-height: 36rpx;
 }
+.template .container .swiper-box .swiper-item .scroll-box .item .desc .text .name {
+  max-height: 72rpx;
+  overflow: hidden;
+}
 .template .container .swiper-box .swiper-item .scroll-box .item .desc .text .price {
   margin-top: 10rpx;
 }

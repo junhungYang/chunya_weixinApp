@@ -27,12 +27,19 @@ Page({
         }
     },
     getDetail() {
+        wx.showLoading({
+            title: '正在加载',
+            mask: true
+        })
         _OrderDetail({
             orderId: this.data.id
         }).then(data => {
             this.setData({
                 orderDetail: data
             })
+            setTimeout(() => {
+                wx.hideLoading()
+            }, 500);
         }).catch(data => App.catchError(data))
     },
     navToControl(e) {

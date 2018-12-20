@@ -1,4 +1,4 @@
-import { _GetRefundReasonList, _ApplyRefund } from "../../utils/request";
+import { _GetRefundReasonList, _ApplyRefund, _OrderDetail } from "../../utils/request";
 const App = getApp();
 var that;
 Page({
@@ -24,7 +24,8 @@ Page({
     reasonStateAnimate: null,
     reasonMaskAnimate: null,
     stateList_H: '',
-    reasonList_H: ''
+    reasonList_H: '',
+    orderState: null
   },
 
   /**
@@ -32,19 +33,43 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    let pages = getCurrentPages();
-    let prevPage = pages[pages.length - 2];
     this.setData({
       id: options.orderId,
-      from: Number(options.from),
       fatherFrom: options.fatherFrom,
-      orderDetail: prevPage.data.orderDetail
     });
-    console.log(this.data.orderDetail);
+    if(options.orderState === '201') {
+      this.setData({ 
+        from: 1,
+        orderState: 201
+       })
+    }else {
+      if(options.orderState === '301') {
+        this.setData({ orderState: 301, goodsState: "已收到货" });
+      }
+      let from = options.from ? Number(options.from) : 2;
+      this.setData({ from})
+    }
     App.setWatcher(App.globalData, this.watch);
     if (App.globalData.token) {
       this.getRefundReasonList();
+      this.getDetail()
     }
+  },
+  getDetail() {
+    wx.showLoading({
+      title: '正在加载',
+      mask: true
+    })
+    _OrderDetail({
+      orderId: this.data.id
+    }).then(data => {
+      this.setData({
+        orderDetail: data
+      })
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 500);
+    }).catch(data => App.catchError(data))
   },
   watch: {
     token(nV) {
@@ -63,36 +88,38 @@ Page({
       .catch(data => App.catchError(data));
   },
   goodsStateManage(e) {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(() => {
-      if (this.data.goodsStateHid) {
-        this.setData({
-          goodsStateHid: false,
-          inputStateHid: true
-        });
-        if (!this.data.stateList_H) {
-          const query = wx.createSelectorQuery()
-          query.select("#state-list").boundingClientRect()
-          query.exec((res) => {
-            this.setData({ stateList_H: res[0].height })
+    if(this.data.orderState !== 301) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        if (this.data.goodsStateHid) {
+          this.setData({
+            goodsStateHid: false,
+            inputStateHid: true
+          });
+          if (!this.data.stateList_H) {
+            const query = wx.createSelectorQuery()
+            query.select("#state-list").boundingClientRect()
+            query.exec((res) => {
+              this.setData({ stateList_H: res[0].height })
+              App.startAnimate(this, "goodsStateAnimate", 'bottom', '0%');
+              App.startAnimate(this, 'goodsMaskAnimate', 'opacity', '0.6')
+            })
+          } else {
             App.startAnimate(this, "goodsStateAnimate", 'bottom', '0%');
             App.startAnimate(this, 'goodsMaskAnimate', 'opacity', '0.6')
-          })
+          }
         } else {
-          App.startAnimate(this, "goodsStateAnimate", 'bottom', '0%');
-          App.startAnimate(this, 'goodsMaskAnimate', 'opacity', '0.6')
+          App.startAnimate(this, "goodsStateAnimate", "bottom", `-${this.data.stateList_H}px`);
+          App.startAnimate(this, 'goodsMaskAnimate', 'opacity', '0')
+          setTimeout(() => {
+            this.setData({
+              goodsStateHid: true,
+              inputStateHid: false
+            })
+          }, 250);
         }
-      } else {
-        App.startAnimate(this, "goodsStateAnimate", "bottom", `-${this.data.stateList_H}px`);
-        App.startAnimate(this, 'goodsMaskAnimate', 'opacity', '0')
-        setTimeout(() => {
-          this.setData({
-            goodsStateHid: true,
-            inputStateHid: false
-          })
-        }, 250);
-      }
-    }, 300);
+      }, 300);
+    }
   },
   reasonStateManage(e) {
     clearTimeout(this.timer)
@@ -250,31 +277,38 @@ Page({
       wx.showToast({
         title: data,
         icon: 'success',
-        duration: 2200,
+        duration: 1500,
         mask: true
       })
       setTimeout(() => {
         this.refreshPrevPage()
-      }, 2100);
+      }, 1000);
     }).catch(data => App.catchError(data))
   },
   refreshPrevPage() {
     let pages = getCurrentPages();
-    let prevPage = pages[pages.length - 3];
+    let prevPage,prevPrevPage,delta
+    if (!this.data.orderState) {
+      prevPage = pages[pages.length - 3];
+      prevPrevPage = pages[pages.length - 4];
+      delta = 2
+    }else {
+      prevPage = pages[pages.length - 2];
+      prevPrevPage = pages[pages.length - 3];
+      delta = 1
+    }
     if(this.data.fatherFrom === 'list') {
+      console.log(prevPage)
       prevPage.data.orderList.forEach((item,index) => {
         prevPage.getOrderList(1,index)
       })
     }else {
-      let prevPrevPage = pages[pages.length - 4]
       prevPage.getOrderDetail()
       prevPrevPage.data.orderList.forEach((item,index) => {
         prevPrevPage.getOrderList(1,index)
       })
     }
-    wx.navigateBack({
-      delta: 2
-    })
+    wx.navigateBack({ delta })
   },
   showModal(content) {
     wx.showModal({

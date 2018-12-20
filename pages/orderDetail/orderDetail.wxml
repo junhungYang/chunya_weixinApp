@@ -135,7 +135,7 @@
                 查看物流
             </view>
             <view wx:if="{{data.orderInfo.handleOption.return}}"
-                data-orderid="{{data.orderInfo.id}}" data-str="return" bindtap="orderControl">
+                data-orderid="{{data.orderInfo.id}}" data-orderstate="{{data.orderInfo.order_status}}" bindtap="navToRefund">
                 退换货
             </view>
             <view wx:if="{{data.orderInfo.handleOption.cancelReturn}}"

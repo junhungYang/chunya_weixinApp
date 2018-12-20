@@ -22,7 +22,8 @@ Page({
     commonData: {},
     inputPrice: '',
     maskAnimate: null,
-    controlAnimate: null
+    controlAnimate: null,
+    priceControl_H: ''
   },
   onLoad: function(options) {  
     that = this
@@ -70,10 +71,17 @@ Page({
     if (index === 1) {
       this.setData({ priceState: false });
       App.startAnimate(this,'maskAnimate','opacity',0.5)
-      App.startAnimate(this, 'controlAnimate','bottom', '0')
+      App.startAnimate(this, 'controlAnimate','bottom', '-4rpx')
+      if(!this.data.priceControl_H) {
+        let query = wx.createSelectorQuery();
+        query.select("#price-control").boundingClientRect();
+        query.exec(res => {
+          this.setData({ priceControl_H: res[0].height });
+        });
+      }
     } else {
       App.startAnimate(this, 'maskAnimate', 'opacity', 0)
-      App.startAnimate(this, 'controlAnimate', 'bottom', '-514rpx')
+      App.startAnimate(this, 'controlAnimate', 'bottom', `-${this.data.priceControl_H}px`)
       setTimeout(() => {
         this.setData({  priceState: true });
       }, 210);
@@ -95,8 +103,7 @@ Page({
       });
     } else {
       this.setData({
-        activePrice: index,
-
+        activePrice: index
       });
     }
   },
@@ -164,7 +171,7 @@ Page({
           title: "捐款成功"
         });
         App.startAnimate(this, 'maskAnimate', 'opacity', 0)
-        App.startAnimate(this, 'controlAnimate', 'bottom', '-514rpx')
+        App.startAnimate(this, 'controlAnimate', 'bottom', `-${this.data.priceControl_H}px`)
         setTimeout(() => {
           this.setData({ priceState: true });
         }, 210);

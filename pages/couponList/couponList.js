@@ -81,15 +81,4 @@ Page({
       App.theEndPage()
     }
   }
-  // onReachBottom: function() {
-  //   if(this.data.page < this.data.totalPages) {
-  //     this.setData({
-  //       page: this.data.page + 1
-  //     });
-  //     this.getCouponList();
-  //   }else {
-  //     App.theEndPage()
-  //   }
-
-  // }
 });

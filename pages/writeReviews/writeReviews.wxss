@@ -44,6 +44,8 @@
   font-size: 28rpx;
   color: #313131;
   line-height: 34rpx;
+  max-height: 68rpx;
+  overflow: hidden;
 }
 .template .wrap .list .item .header .good-level .product {
   font-size: 20rpx;

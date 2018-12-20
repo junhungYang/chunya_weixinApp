@@ -82,6 +82,7 @@
   align-self: center;
   padding-left: 23rpx;
   position: relative;
+  overflow: hidden;
 }
 .template .desc .good-list .item view text {
   display: block;

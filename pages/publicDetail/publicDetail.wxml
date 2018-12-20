@@ -117,7 +117,7 @@
     </view>
     <view class="price-control" hidden="{{priceState}}">
         <view class="bg" data-index="{{2}}" animation="{{maskAnimate}}" bindtap="priceStateManage"></view>
-        <view class="main-control" animation="{{controlAnimate}}">
+        <view class="main-control" id="price-control" animation="{{controlAnimate}}">
             <view class="cont">
                 <view class="title">
                     <text>温度捐</text><text>让这个世界多一点温暖</text>

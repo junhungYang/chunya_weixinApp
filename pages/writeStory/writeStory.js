@@ -16,7 +16,8 @@ Page({
      videoSrc: '',
      videoPoster: '',
      maskAnimate: null,
-     upLoadAnimate: null
+     upLoadAnimate: null,
+     upLoadControl_H: ''
   },
 
   onLoad: function (options) {
@@ -56,7 +57,7 @@ Page({
       let imageList = [...this.data.imageList,...data]
       this.setData({ imageList });
       App.startAnimate(this, 'maskAnimate', 'opacity', '0')
-      App.startAnimate(this, 'upLoadAnimate', 'bottom', '-200rpx')
+      App.startAnimate(this, "upLoadAnimate", "bottom", `-${this.data.upLoadControl_H}px`);
       setTimeout(() => {
         this.setData({ upLoadHidden: true })
       }, 210);
@@ -94,7 +95,7 @@ Page({
         }else {
           this.setData({  videoSrc: res.tempFilePath });
           App.startAnimate(this, 'maskAnimate', 'opacity', '0')
-          App.startAnimate(this, 'upLoadAnimate', 'bottom', '-200rpx')
+          App.startAnimate(this, "upLoadAnimate", "bottom", `-${this.data.upLoadControl_H}px`);
           setTimeout(() => {
             this.setData({ upLoadHidden: true })
           }, 210);
@@ -191,7 +192,7 @@ Page({
     let index = e.currentTarget.dataset.index
     if(index === 1) {
       App.startAnimate(this,'maskAnimate','opacity','0')
-      App.startAnimate(this, 'upLoadAnimate', 'bottom', '-200rpx')
+      App.startAnimate(this, "upLoadAnimate", "bottom", `-${this.data.upLoadControl_H}px`);
       setTimeout(() => {
         this.setData({
           upLoadHidden: true
@@ -201,6 +202,13 @@ Page({
       this.setData({
         upLoadHidden: false
       })
+      if(!this.data.upLoadControl_H) {
+        let query = wx.createSelectorQuery()
+        query.select("#imgOrVideo").boundingClientRect();
+        query.exec(res => {
+          this.setData({ upLoadControl_H: res[0].height });
+        });
+      }
       App.startAnimate(this, "upLoadAnimate", "bottom", "0");
       App.startAnimate(this, 'maskAnimate', 'opacity', '0.5')
     }

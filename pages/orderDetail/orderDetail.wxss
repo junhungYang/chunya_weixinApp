@@ -112,7 +112,12 @@
 .template .main .order-refund .order .text .price {
   display: block;
   font-size: 28rpx;
+  line-height: 36rpx;
   color: #313131;
+}
+.template .main .order-refund .order .text .name {
+  max-height: 72rpx;
+  overflow: hidden;
 }
 .template .main .order-refund .order .text .price {
   margin-top: 10rpx;
