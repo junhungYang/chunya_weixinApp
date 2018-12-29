@@ -1,0 +1,28 @@
+.container .head {
+  font-size: 0;
+}
+.container .head image {
+  width: 100%;
+}
+.container .coupon {
+  position: relative;
+  font-size: 0;
+}
+.container .coupon image {
+  width: 100%;
+}
+.container .coupon .get-coupon {
+  position: absolute;
+  left: 50%;
+  top: 288rpx;
+  transform: translateX(-50%);
+}
+.container .coupon .get-coupon image {
+  width: 561rpx;
+}
+.container .list .item {
+  font-size: 0;
+}
+.container .list .item image {
+  width: 100%;
+}

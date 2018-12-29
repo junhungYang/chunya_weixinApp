@@ -1,0 +1,34 @@
+<view class="container">
+    <view class="head">
+        <image src="../../img/yuanDan/1.jpg" mode="widthFix"/>
+    </view>
+    <view class="coupon">
+        <image src="../../img/yuanDan/2.jpg" mode="widthFix"/>
+        <view class="get-coupon" bindtap="getCoupon">
+            <image src="../../img/yuanDan/3.png" mode="widthFix"/>
+        </view>
+    </view>
+    <view class="list">
+        <view class="item" data-id="{{1181013}}" bindtap="navToGoodDetail">
+            <image mode="widthFix" src="../../img/yuanDan/4.jpg" />
+        </view>
+        <view class="item" data-id="{{1181014}}" bindtap="navToGoodDetail">
+            <image mode="widthFix" src="../../img/yuanDan/5.jpg" />
+        </view>
+        <view class="item" data-id="{{1181012}}" bindtap="navToGoodDetail">
+            <image mode="widthFix" src="../../img/yuanDan/6.jpg" />
+        </view>
+        <view class="item" data-id="{{1181009}}" bindtap="navToGoodDetail">
+            <image mode="widthFix" src="../../img/yuanDan/7.jpg" />
+        </view>
+        <view class="item" data-id="{{1181008}}" bindtap="navToGoodDetail">
+            <image mode="widthFix" src="../../img/yuanDan/8.jpg" />
+        </view>
+        <view class="item" data-id="{{1181011}}" bindtap="navToGoodDetail">
+            <image mode="widthFix" src="../../img/yuanDan/9.jpg" />
+        </view>
+        <view class="item" data-id="{{1181010}}" bindtap="navToGoodDetail">
+            <image mode="widthFix" src="../../img/yuanDan/10.jpg" />
+        </view>
+    </view>
+</view>

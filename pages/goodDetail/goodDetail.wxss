@@ -65,7 +65,6 @@
   border-radius: 5rpx;
 }
 .goodMod .goodInfo .info .price .new {
-  margin-left: 20rpx;
   font-size: 28rpx;
   line-height: 32rpx;
   color: #d1051f;
@@ -606,7 +605,6 @@
 }
 .cart-control .box .cont .info .text-img .about .price-size .price .retail {
   color: #d1051f;
-  margin-left: 16rpx;
   font-size: 28rpx;
   line-height: 34rpx;
   vertical-align: middle;

@@ -14,7 +14,7 @@
                     </view>
                 </view>
                 <view class="price">
-                    <text class="vip">VIP : ￥{{detail.productList[0].vipPrice}}</text>
+                    <!--<text class="vip">VIP : ￥{{detail.productList[0].vipPrice}}</text> -->
                     <text class="new">￥{{detail.info.retail_price_range}}</text>
                     <text class="old">￥{{detail.info.market_price_range}}</text>
                 </view>
@@ -177,7 +177,7 @@
                             </view>
                             <view class="price-size">
                                 <view class="price">
-                                    <text class="vip">VIP: ￥{{activeProduct.vipPrice}}</text>
+                                    <!--<text class="vip">VIP: ￥{{activeProduct.vipPrice}}</text>-->
                                     <text class="retail">￥{{activeProduct.retail_price}}</text>
                                 </view>
                                 <view class="size">

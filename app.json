@@ -32,7 +32,8 @@
           "pages/couponBeforeBalance/couponBeforeBalance",
             "pages/refundControl/refundControl",
             "pages/refundEnter/refundEnter",
-            "pages/toBeVip/toBeVip"
+            "pages/toBeVip/toBeVip",
+            "pages/yuanDanEvent/yuanDanEvent"
   ],
   "window": {
     "backgroundTextStyle": "light",
